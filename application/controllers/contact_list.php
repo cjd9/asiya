@@ -53,7 +53,12 @@ class Contact_list extends MY_Controller
 			$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type= "S"', NULL, NULL, 0, NULL);
 		}
 		 
-		$this->load->view('contact_list/list',$data);
+		 $this->load->view('include/header'); 
+
+		 $this->load->view('include/left'); 
+		 $this->load->view('contact_list/list',$data);
+
+ 		 $this->load->view('include/footer'); 
 	}
 	
 	// Call Add contact_list
