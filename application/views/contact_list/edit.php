@@ -1,7 +1,7 @@
 <?php $this->load->view('include/header'); ?>
- 
+
 <?php $this->load->view('include/left'); ?>
-        
+
 			<div class="mainpanel">
 					<div class="pageheader">
 						<div class="media">
@@ -12,26 +12,26 @@
 								<ul class="breadcrumb">
 									<li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
 									<li><a href="#">Patient Registration</a></li>
-									
+
 								</ul>
 								<h4>Edit Patient </h4>
 							</div>
 						</div><!-- media -->
 					</div><!-- pageheader -->
-					
+
 					<div class="contentpanel">
-					
+
 						<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-						
-						<?php  
+
+						<?php
 							$r = $rscontact_list->row();
 						 ?>
-						
-						<div class="row">
+
+						<div class="row ">
 							<div class="col-md-12">
-								<form id="edit_patient_form" action="<?php echo $editaction; ?>" method="post" enctype="" onSubmit="return validate()">
+								<form id="edit_patient_form" action="<?php echo $editaction; ?>" method="post" enctype="multipart/form-data" onSubmit="return validate()">
 								<input type="hidden" name="edit_pk" id="edit_pk"  value="<?php echo $r->pk; ?>"/>
-								
+
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										<div class="panel-btns">
@@ -40,10 +40,29 @@
 										</div><!-- panel-btns -->
 										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Patient </b></h3>
 									</div><!-- panel-heading -->
-									
+
 									<div class="panel-body">
+                    <div class="row text-center padding-bottom-30"">
+                      <div class="profile-avatar-wrapper border-radius-50 pos-relative teel margin-bottom-10 display-inline-block">
+                              <input type="hidden" name="image-x" required>
+                              <input type="hidden" name="image-y" required>
+                              <input type="hidden" name="image-x2" required>
+                              <input type="hidden" name="image-y2" required>
+                              <input type="hidden" name="crop-w" required>
+                              <input type="hidden" name="crop-h" required>
+                              <input type="hidden" name="image-w" required>
+                              <input type="hidden" name="image-h" required>
+                              <div class="overflow-hidden profile-pic-preview-wrapper border-radius-50 teel">
+                                  <img class="profile-pic" <?php echo $this->session->userdata('user_type') ? 'has-profile-pic' : '' ?> src="<?php echo $this->session->userdata('userid') ? base_url(PROFILE_PIC_UPLOAD_PATH . $r->patient_id . '.jpg') : base_url('public/images/avatar2.png') ?>" old-src="<?php echo $this->session->userdata('userid') ? base_url(PROFILE_PIC_UPLOAD_PATH . $this->session->userdata('userid') . '.jpg') : base_url('public/images/avatar2.png') ?>"/>
+                              </div>
+                              <a class="edit-icon v-align-contents no-form teel pos-absolute">
+                                  <span></span>
+                                  <input type="file" name="profile_pic" id="profile_pic" class="pos-absolute width-100 height-100 top-0"/>
+                              </a>
+                      </div>
+                  </div>
 										<div class="row">
-											
+
 											<div class="form-group">
 												<div class="col-sm-6">
 													<label class="col-md-3 control-label">Patient  ID</label>
@@ -51,7 +70,7 @@
 														<input type="text" id="patient_id" name="patient_id" class="form-control validate[required]" value="<?php echo $r->patient_id; ?>" readonly />
 													</div>
 												</div>
-												
+
 												<div class="col-sm-6">
 													<label class="col-sm-4 control-label">Date Of Registration</label>
 													<div class="col-sm-6">
@@ -62,7 +81,7 @@
 													</div>
 												</div>
 											</div><!-- form-group -->
-											
+
 											<div class="form-group">
 												<div class="col-sm-6">
 													<label class="col-sm-3 control-label">Patient Name</label>
@@ -76,8 +95,8 @@
 														<input type="text" id="p_lname" name="p_lname" class="form-control validate[required],custom[onlyLetterSp]" value="<?php echo $r->p_lname; ?>"/>
 													</div>
 												</div>
-												
-												<div class="col-sm-6">												
+
+												<div class="col-sm-6">
 													<label class="col-sm-4 control-label">Date Of Birth</label>
 													<div class="col-sm-6">
 														<div class="input-group">
@@ -87,9 +106,9 @@
 													</div>
 												</div>
 											</div><!-- form-group -->
-											
+
 											<div class="form-group">
-												<div class="col-sm-6">	
+												<div class="col-sm-6">
 													<label class="col-sm-3 control-label">Gender</label>
 													<div class="col-sm-6">
 														  <select id="select-templating1" name="p_gender" data-placeholder="Choose One" class="select2-container width100p">
@@ -100,26 +119,26 @@
 														<span id="msg2" class="" style="color:#FF0000"></span>
 													</div>
 												</div>
-												
-												<div class="col-sm-6">												
+
+												<div class="col-sm-6">
 													<label class="col-sm-4 control-label">Religion</label>
 													<div class="col-sm-6">
 														<select id="p_religion_id" name="p_religion_id" data-placeholder="Choose Religion " class="select2-container width100p">
 															<option value=""></option>
 															<?php
-																foreach ($rsreligion->result() as $r1) 
+																foreach ($rsreligion->result() as $r1)
 																{
 															?>
 															<option value="<?php echo $r1->pk; ?>" <?php if($r1->pk == $r->p_religion_id) { ?> selected="selected" <?php } ?>>
 															<?php echo $r1->religion; ?></option>
-															<?php	
-																}		
+															<?php
+																}
 															?>
 														</select>
 													</div>
 												</div>
 											</div><!-- form-group -->
-											
+
 											<div class="form-group">
 												<div class="col-sm-6">
 													<label class="col-md-3 control-label">Occupation</label>
@@ -127,21 +146,21 @@
 														<input type="text" id="" name="p_occupation" class="form-control validate[required]" value="<?php echo $r->p_occupation; ?>"/>
 													</div>
 												</div>
-												
-												<div class="col-sm-6">	
+
+												<div class="col-sm-6">
 													<label class="col-sm-4 control-label">Age</label>
 													<div class="col-sm-6">
 														<input type="text" id="p_age" name="p_age" class="form-control" value="<?php echo $r->p_age; ?>"/>
 													</div>
 												</div>
 											</div><!-- form-group -->
-											
+
 											<hr />
-											
+
 											<h5><u><b>Contact Details</b></u></h5>
-											
+
 											<div class="form-group">
-												<div class="col-sm-6">	
+												<div class="col-sm-6">
 													<label class="col-sm-3 control-label">Email</label>
 													<div class="col-sm-9">
 														<div class="input-group">
@@ -150,8 +169,8 @@
 														</div><!-- input-group -->
 													</div>
 												</div>
-												
-												<div class="col-sm-6">	
+
+												<div class="col-sm-6">
 													<label class="col-sm-4 control-label">Phone No.</label>
 													<div class="col-sm-6">
 														<div class="input-group">
@@ -161,13 +180,13 @@
 													</div>
 												</div>
 											</div><!-- form-group -->
-												
+
 											<div class="form-group">
-												<div class="col-sm-6">	
-													
+												<div class="col-sm-6">
+
 												</div>
-											
-												<div class="col-sm-6">	
+
+												<div class="col-sm-6">
 													<label class="col-sm-4 control-label">Contact No.</label>
 													<div class="col-sm-6">
 														<div class="input-group">
@@ -177,20 +196,20 @@
 													</div>
 												</div>
 											</div><!-- form-group -->
-											
+
 											<hr />
-											
+
 											<h5><u><b>Address Details</b></u></h5>
-											
+
 											<div class="form-group">
-												<div class="col-sm-6">	
+												<div class="col-sm-6">
 													<label class="col-sm-3 control-label">Address</label>
 													<div class="col-sm-9">
-														<textarea rows="2" name="p_address" id="p_address" class="form-control validate[required]"><?php echo $r->p_address; ?></textarea> 
+														<textarea rows="2" name="p_address" id="p_address" class="form-control validate[required]"><?php echo $r->p_address; ?></textarea>
 													</div>
 												</div>
-												
-												<div class="col-sm-6">	
+
+												<div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-sm-4 control-label">City</label>
 														<div class="col-sm-6">
@@ -198,8 +217,8 @@
 														</div>
 													</div><!-- form-group -->
 												</div>
-												
-												<div class="col-sm-6">	
+
+												<div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-sm-4 control-label">State</label>
 														<div class="col-sm-6">
@@ -207,15 +226,15 @@
 														</div>
 													</div><!-- form-group -->
 												</div>
-												
+
 											</div><!-- form-group -->
-											
+
 											<div class="form-group">
-												<div class="col-sm-6">	
+												<div class="col-sm-6">
 													<div class="form-group">
 													</div>
 												</div>
-												<div class="col-sm-6">	
+												<div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-sm-4 control-label">Zip</label>
 														<div class="col-sm-6">
@@ -224,20 +243,20 @@
 													</div><!-- form-group -->
 												</div>
 											</div><!-- form-group -->
-											
+
 											<hr />
-											
+
 											<h5><u><b>Emergency Contact Details</b></u></h5>
-											
+
 											<div class="form-group">
-												<div class="col-sm-6">	
+												<div class="col-sm-6">
 													<label class="col-sm-3 control-label">Name</label>
 													<div class="col-sm-9">
 														<input type="text" id="p_emergency_name" name="p_emergency_name" class="form-control" value="<?php echo $r->p_emergency_name; ?>"/>
 													</div>
 												</div>
-												
-												<div class="col-sm-6">	
+
+												<div class="col-sm-6">
 													<div class="form-group">
 														<label class="col-sm-4 control-label">Contact No.</label>
 														<div class="col-sm-6">
@@ -248,13 +267,13 @@
 														</div>
 													</div><!-- form-group -->
 												</div>
-												
+
 											</div><!-- form-group -->
-											
-											
+
+
 										</div><!-- row -->
 									</div><!-- panel-body -->
-									
+
 									<div class="panel-footer">
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
@@ -262,44 +281,46 @@
 											<a href="<?php print base_url(); ?>index.php/contact_list" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
-									</div><!-- panel-footer -->  
+									</div><!-- panel-footer -->
 								</div><!-- panel -->
 								</form>
-								
+
 							</div><!-- col-md-6 -->
 						</div><!--row -->
 					</div><!-- contentpanel -->
-					
+
 				</div><!-- mainpanel -->
 			</div><!-- mainwrapper -->
-		</section>  
-						
+		</section>
+
 		<?php $this->load->view('include/footer'); ?>
-		
+
 	<script>
 		//$.noConflict();
 		$(document).ready(function()
 		{
 			$("#edit_patient_form").validationEngine({promptPosition: "topRight: -100"});
-			
+
 			/*$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy' });
 			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy'});*/
-			
+
 			// select box validations -
 			$('#add_patient_form').on('submit', function() {
-			
+
 				$('#msg2').text('');
-				
+
 				if($('#select-templating1').val() == '' || $('#select-templating1').val() == null)
 				{
 					$('#msg2').text('This field is required');
 					return false;
 				}
-				
-			});	
-		
-		}); 
+
+			});
+
+		});
 	</script>
-	
+  <?php
+      $this->load->view('helpers/profile_pic_upload_modal.php');
+  ?>
     </body>
 </html>

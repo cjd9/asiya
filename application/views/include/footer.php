@@ -6,7 +6,7 @@
         <script src="<?php print base_url(); ?>js/pace.min.js"></script>
         <script src="<?php print base_url(); ?>js/retina.min.js"></script>
         <script src="<?php print base_url(); ?>js/jquery.cookies.js"></script>
-		
+
 		<script src="<?php print base_url(); ?>js/jquery.autogrow-textarea.js"></script>
         <script src="<?php print base_url(); ?>js/jquery.mousewheel.js"></script>
         <script src="<?php print base_url(); ?>js/jquery.tagsinput.min.js"></script>
@@ -16,53 +16,57 @@
         <script src="<?php print base_url(); ?>js/select2.min.js"></script>
         <script src="<?php print base_url(); ?>js/colorpicker.js"></script>
         <script src="<?php print base_url(); ?>js/dropzone.min.js"></script>
-        
+
         <script src="<?php print base_url(); ?>js/jquery.dataTables.min.js"></script>
         <script src="<?php print base_url(); ?>js/dataTables.bootstrap.js"></script>
 	<script src="<?php print base_url(); ?>js/dataTables.responsive.js"></script>
         <script src="<?php print base_url(); ?>js/select2.min.js"></script>
-		
+
 		<script src="<?php print base_url(); ?>js/wysihtml5-0.3.0.min.js"></script>
         <script src="<?php print base_url(); ?>js/bootstrap-wysihtml5.js"></script>
+				<script src="<?php echo base_url();?>js/toastr/toastr.min.js" type="text/javascript"></script>
+				<script src="<?php echo base_url();?>/js/Jcrop/js/jquery.Jcrop.min.js" type="text/javascript"></script>
+				<script src="<?php echo base_url();?>/js/Jcrop/js/jquery.color.js" type="text/javascript"></script>
 
-        <script src="<?php print base_url(); ?>js/custom.js"></script>
-		
 		<!-- Start Validation JS---->
 		<!--<script src="<?php echo base_url();?>assets/validation/js/jquery-1.8.2.min.js"></script>-->
+
 		<script src="<?php echo base_url();?>js/my_js/validation/languages/jquery.validationEngine-en.js"></script>
 		<script src="<?php echo base_url();?>js/my_js/validation/jquery.validationEngine.js"></script>
 		<script src="<?php echo base_url();?>js/bootbox.min.js"></script>
+		<script src="<?php print base_url(); ?>js/custom.js"></script>
+
 		<script src="<?php echo base_url();?>js/my_js/master.js"></script>
-		<!-- End Validation JS---->	
-		
+		<!-- End Validation JS---->
+
 		<script>
 		$(document).ready(function()
 		{
 			$("select.select2-container").select2();
-			
+
 			$('.datepicker').datepicker({
 				changeMonth: true,
 				changeYear: true,
 				yearRange: '1945:2050',
 				dateFormat: 'dd-mm-yy'
 			});
-			
-			$("body").on("hidden.bs.modal", '.modal', function() 
+
+			$("body").on("hidden.bs.modal", '.modal', function()
 			{
 				$(this).removeData('bs.modal');
 			});
-			
+
 			// function to update the staff work shift -
 			$("#staff_work_shift").click( function () {
-			
+
 				var work_shift_field = $(this);
-			
+
 				var work_shift = work_shift_field.attr("data-id");;
-				
+
 				//alert(work_shift);
-				
+
 				var result = confirm('You want to Update Work Shift?');
-				
+
 				if(result)
 				{
 					$.ajax({
@@ -72,10 +76,10 @@
 							cache:false,
 							//dataType:'json',
 							data:{ work_shift:work_shift },
-							success: function (res) 
+							success: function (res)
 							{
 								//alert(res);
-								
+
 								// check if user work shift is successfully updated -
 								if(res != 0)
 								{
@@ -85,10 +89,10 @@
 							}
 					});
 				}
-			
+
 			});
-		}); 
-		
+		});
+
 		jQuery(document).ready(function()
 		{
 			jQuery('#basicTable').DataTable(
@@ -96,68 +100,68 @@
 				responsive: true,
 				"autoWidth": false
 			});
-			
+
 			jQuery('#basicTable1').DataTable(
 			{
 				responsive: true,
 				"autoWidth": false
 			});
-			
+
 			// Tags Input
 			jQuery('#tags').tagsInput({width:'auto'});
-			 
+
 			// Textarea Autogrow
 			jQuery('#autoResizeTA').autogrow();
-		  
+
 			// Form Toggles
 			jQuery('.toggle').toggles({on: true});
 		});
         </script>
-		
+
 		<script>
 		// function to password validate form -
 		function paass_validate()
 		{
 			var flag = 0;
-		
+
 			if($('#current_password').val() == '')
 			{
 				//$('#msg1').addClass('error').text('This Field is Required');
 				flag = 1;
 			}
-			
+
 			if($('#new_password').val() == '')
 			{
 				//$('#msg2').addClass('error').text('This Field is Required');
 				flag = 1;
 			}
-			
+
 			if($('#confirm_password').val() == '')
 			{
 				//$('#msg3').addClass('error').text('This Field is Required');
 				flag = 1;
 			}
-			
+
 			if(flag == 1)
 			{
 				return false;
 			}
 		}
 		</script>
-		
+
 		<script>
 		// function to validate current password -
-		$('#current_password').on('change', function(e) 
+		$('#current_password').on('change', function(e)
 		{
 			$('#error_msg').text('');
-		
+
 			var current_password = $('#current_password').val();
-			
+
 			if(current_password == '' || current_password == null)
 			{
 				return false;
 			}
-			
+
 			// ajax work -
 			$.ajax({
 					url: "<?php print base_url(); ?>index.php/login/check_current_password",
@@ -176,15 +180,15 @@
 					}
 				});
 		});
-		
+
 		// function to compare new password and confirm passsword -
-		$('#confirm_password').on('change', function(e) 
+		$('#confirm_password').on('change', function(e)
 		{
 			$('#error_msg1').text('');
-		
+
 			var new_password = $('#new_password').val();
 			var confirm_password = $('#confirm_password').val();
-			
+
 			if(new_password != '' || confirm_password != '')
 			{
 				if(new_password !== confirm_password)
@@ -202,11 +206,11 @@
 				return false;
 			}
 		});
-		
+
 		// code to check password strength - Date - 21-04-2015
 		// Ref - https://www.hscripts.com/scripts/JavaScript/password-checker.php
 		var pass_strength;
-		
+
 		function IsEnoughLength(str,length)
 		{
 			if ((str == null) || isNaN(length))return false;else if (str.length < length)
@@ -214,7 +218,7 @@
 			else
 				return true;
 		}
-		
+
 		function HasMixedCase(passwd)
 		{
 			if(passwd.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/))
@@ -222,7 +226,7 @@
 			else
 				return false;
 		}
-		
+
 		function HasNumeral(passwd)
 		{
 			if(passwd.match(/[0-9]/))
@@ -230,7 +234,7 @@
 			else
 				return false;
 		}
-		
+
 		function HasSpecialChars(passwd)
 		{
 			if(passwd.match(/.[!,@,#,$,%,^,&,*,?,_,~]/))
@@ -238,23 +242,23 @@
 			else
 				return false;
 		}
-		
+
 		//Show Password Strength with Colour
 		function CheckPasswordStrength(pwd)
 		{
 			if (IsEnoughLength(pwd,14) && HasMixedCase(pwd) && HasNumeral(pwd) && HasSpecialChars(pwd))
 				pass_strength = "Password Strength : <b><font style='color:olive'>Very strong</font></b>";
-				
+
 			else if (IsEnoughLength(pwd,8) && HasMixedCase(pwd) && (HasNumeral(pwd) || HasSpecialChars(pwd)))
 				pass_strength = "Password Strength : <b><font style='color:Blue'>Strong</font></b>";
-				
+
 			else if (IsEnoughLength(pwd,8) && HasNumeral(pwd))
 				pass_strength = "Password Strength : <b><font style='color:Green'>Good</font></b>";
-				
+
 			else
 				pass_strength = "Password Strength : <b><font style='color:red'>Weak</font></b>";
-				
+
 			document.getElementById('pwd_strength').innerHTML = pass_strength;
 		}
-		
+
 		</script>
