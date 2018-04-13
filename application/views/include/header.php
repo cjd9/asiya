@@ -27,7 +27,9 @@
 
 		<!-- User Added CSS for Watermark and autocomplete in appointment schedule -->
 		<link href="<?php print base_url(); ?>css/watermark.css" rel="stylesheet" />
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="<?php print base_url(); ?>js/jquery-migrate-1.2.1.min.js"></script>
+      <script src="<?php print base_url(); ?>js/jquery-ui-1.10.3.min.js"></script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
