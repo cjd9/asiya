@@ -231,10 +231,9 @@ class Treatment extends MY_Controller
 
 						foreach ($data['treatment'] as $value) {
 								$insert_treatment_meta[] = array(
-										 'treatment_id' => $data['edit_pk'],
+										'treatment_id' => $data['edit_pk'],
 										'therapy' => $value['therapy'],
 										'reps' => $value['reps'],
-
 										'sets' => $value['sets'],
 										'time' => $value['time'], //.str_pad($value['degree_month'],2,"0",STR_PAD_LEFT)."01",
 								);

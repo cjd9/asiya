@@ -37,6 +37,8 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('PROFILE_PIC_UPLOAD_PATH', '/patient_upload_data/');
 define('PROFILE_PIC_THUMB_PATH', 'resources/prpic/thumbnails/');
+define('VIDEO_PATH', '/exercise_program_file/');
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
