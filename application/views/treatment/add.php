@@ -183,8 +183,10 @@
 </section>
 
 	<?php $this->load->view('include/footer'); ?>
+        <script src="<?php print base_url(); ?>js/jquery.validate.min.js"></script>
 
 <script>
+
 	$(document).ready(function()
 	{
     var count = 0;
@@ -207,7 +209,7 @@ function addRow(){
     $('.add-btn').on("click", function(e){
 
       count= count+1;
-       e.preventDefault(); alert();
+       e.preventDefault();
              $('.add-row').append(
           '     <div class="col-sm-12 table-responsive">'+
           '     <table class="table table-dark mb30 responsive">'+
@@ -218,7 +220,8 @@ function addRow(){
           '<th><div align="center">Repitions</div></th>'+
           '<th><div align="center">Sets</div></th>'+
           '<th><div align="center">Hold Time</div></th>'+
-          '<th><div align="center">Add</div></th>'+
+          '<th><div align="center">Add  </div></th>'+
+          '<th><div align="center">Del</div></th>'+
           '</tr>'+
           '</thead>'+
           '<tbody>'+
@@ -228,14 +231,44 @@ function addRow(){
           '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
           '<td><input type="number" name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+
           '<td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>'+
+          '<td><button href= "" class="form-control add-btn" id="delete" style="z-index:0">x</button></td>'+
           '</tr>'+
           '</tbody>'+
   '     </table>'+
   '</div>');
-  $(this).html().replace(/ARRAY_INDEX/g,  1);
-  addRow();
-}); }
+			
+			
+
+
+		  $(this).html().replace(/ARRAY_INDEX/g,  1);
+		  addRow();
+		 
+		}); 
+
+		 deleteRow();
+
+}
+	
+	$("#add_treatment_form").validate({
+		  rules: {
+		    treatment_fees: {
+		      required: true
+
+		    }
+		  }
+		});
+
+
+
 	});
+
+function deleteRow(){
+	$('#delete').on("click",function(e){
+				e.preventDefault();
+				console.log($(this).closest("table").parent('div'));
+				$(this).closest("table").parent('div').addClass('hide');
+		});
+}
 </script>
 
     </body>

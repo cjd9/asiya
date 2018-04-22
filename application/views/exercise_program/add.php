@@ -108,7 +108,7 @@
 												</div>
 											</div><!-- form-group -->
                       <br>
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<div class="col-sm-12">
 												<label class="col-md-2 control-label">File<span class="asterisk">*</span></label>
 													<div class="col-sm-8" id="file_upload">
@@ -120,7 +120,7 @@
 														</button>
 													</div>
 												</div>
-											</div><!-- form-group -->
+											</div><!-- form-group --> -->
 
 											<div class="form-group">
 												<div class="col-sm-12">
@@ -164,26 +164,8 @@
 		</section>
 
 		<?php $this->load->view('include/footer'); ?>
+		        <script src="<?php print base_url(); ?>js/jquery.validate.min.js"></script>
 
-	<script>
-		$(document).ready(function()
-		{
-			$("#add_exercise_program_form").validationEngine({promptPosition: "topRight: -100"});
-
-			// select box validations -
-			$('#add_exercise_program_form').on('submit', function()
-			{
-				$('#msg1').text('');
-
-				if($('#patient_id').val() == '' || $('#patient_id').val() == null)
-				{
-					$('#msg1').text('This field is required');
-					return false;
-				}
-			});
-
-		});
-	</script>
 
 	<script>
 
@@ -239,6 +221,16 @@
 								 }
 						 });
 		});
+
+
+		$("#add_exercise_program_form").validate({
+				  rules: {
+				    expiry_date: {
+				      required: true
+
+				    }
+				  }
+				});
 
 
 	});

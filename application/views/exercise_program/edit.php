@@ -116,21 +116,34 @@
                                             </div><!-- End form-group -->
 											
 											<div class="form-group"><!-- Start form-group -->
-												<div class="col-sm-8">
-													<label class="col-sm-3">File</label>
-													<div class="col-sm-8" id="file_upload">
-														<input type="file" id="exercise_program_file" name="exercise_program_file[]" class=""/>
-													</div>
-                                            	</div>
-                                            
-												<div class="col-sm-2">
-													<button type="button" class="btn btn-primary btn-sm" id="add_more"> 
-														 <span class="glyphicon glyphicon-plus"> <b>Upload More</b></span>
-													</button>
+												<div class="form-group" id="">
+													<?php	echo $html; ?>
+
 												</div>
                                             </div><!-- End form-group -->
-											
+										
+                      <br>
+                    			<
 										</div><!-- row -->
+										<div class = "row">
+												<div class="form-group">
+												<div class="col-sm-12">
+													<label class="col-md-2 control-label">Choose Tag<span class="asterisk">*</span></label>
+													<div class="col-sm-6">
+														  <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p">
+															<option value=""></option>
+									<?php foreach($video_list as $vid){?>
+																<option value="<?php echo $vid['tag']?>"><?php echo $vid['tag']?></option>
+									<?php } ?>
+														</select>
+														<span id="msg1" class="" style="color:#FF0000"></span>
+													</div>
+												</div>
+											</div>
+											<div class="form-group" id="video-append">
+											</div>
+
+										</div>
 									</div><!-- panel-body -->
 									
 									<div class="panel-footer">
@@ -212,7 +225,53 @@
 	});
 	
 	//************************************************************************************************
-	
+	$("#tag").live("change", function(e)
+		{
+			// user click on remove text
+			e.preventDefault();
+			var tag = $('#tag').val();
+			$.ajax({
+								 url: '/exercise_program/fetchVideoByTag',
+								 type: 'POST',
+								 data: {tag:tag},
+								 dataType: 'html',
+								 success: function (result)
+								 {
+									 $('#video-append').empty()
+
+									 $('#video-append').append(result)
+								 },
+								 beforeSend: function ()
+								 {
+								 }
+						 });
+		});
+
+	$('#delete_video').live("click",function (e)
+	{	
+					e.preventDefault();
+
+		$.ajax({
+					url: "<?php print base_url(); ?>/exercise_program/delete_exercise_program_file",
+					type: "post",
+					async:false,
+					cache:false,
+					//dataType:'json',
+					data:{ id:$(this).val() },
+					success: function (res) 
+					{
+						//alert(res);
+						
+						if(res != 0)
+						{
+							alert('File Deleted Successfully.');
+						
+							// remove deleted row -
+							row.closest('tr').remove();
+						}
+					}
+			});
+	});
 	// function to delete xray report file using ajax -
 	$('.btn-delete').on('click', function() 
 	{
@@ -241,6 +300,8 @@
 						if(res != 0)
 						{
 							alert('File Deleted Successfully.');
+							location.reload();
+
 						
 							// remove deleted row -
 							row.closest('tr').remove();

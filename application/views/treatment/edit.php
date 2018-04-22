@@ -230,7 +230,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
       $('.add-btn').on("click", function(e){
 
         count= count+1;
-         e.preventDefault(); alert();
+         e.preventDefault();
                $('.add-row').append(
             '     <div class="col-sm-12 table-responsive">'+
             '     <table class="table table-dark mb30 responsive">'+
