@@ -124,7 +124,7 @@ class Exercise_program extends MY_Controller
 		$patient_id = $data['patient_id'];
 		$exercise_program = $data['exercise_program'];
 
-	
+
 
 
 			$last_id= $this->mastermodel->add_data('exercise_program', $_POST);
@@ -133,7 +133,7 @@ class Exercise_program extends MY_Controller
 					 if(isset($value['check'])){
 					 		$vid_link = $this->addUrl($value['vid_name'],$data['expiry_date']);
 							$insert_video_meta[] = array(
-									'exrcise_id' => $exercise_id,
+									'exercise_id' => $exercise_id,
 									'exercise_video_id' => $value['check'],
 									'vid_name' => $value['vid_name'],
 									'vid_link' => $vid_link,
@@ -163,7 +163,7 @@ class Exercise_program extends MY_Controller
     {
 		// get form data -
 		$data = $_POST;
-		//print_r($data); die;
+	//	print_r($data); die;
 		//var_dump($_FILES);
 
 		// convert date format in form data -
@@ -176,7 +176,7 @@ class Exercise_program extends MY_Controller
 		$patient_id = $data['patient_id'];
 		$exercise_program = $data['exercise_program'];
 
-		
+
 		// WHERE condition -
 		$where = array('exercise_id' => $data['exercise_id']);	// give name for edit record id field on form as 'edit_pk'
 
@@ -211,12 +211,12 @@ class Exercise_program extends MY_Controller
 				 }
 			$res = $this->mastermodel->insertBatch('exercise_meta', $insert_video_meta);
 
-		 }		 
+		 }
 
 		if(isset($_POST['edit_video'])){
 		$update_video_meta= array();
 				 foreach ($_POST['edit_video'] as $value) {
-					 if(isset($value['check'])){
+
 					 		$vid_link = $this->addUrl($value['vid_name'],$data['expiry_date']);
 							$update_video_meta = array(
 									'exercise_id' => $exercise_id,
@@ -229,7 +229,7 @@ class Exercise_program extends MY_Controller
 							);
 						$this->mastermodel->updateTableRowById($update_video_meta, 'exercise_meta', 'id', $value['insert_id']);
 
-					}
+
 				 }
 
 

@@ -120,7 +120,7 @@
 														</button>
 													</div>
 												</div>
-											</div><!-- form-group --> -->
+											</div><!-- form-group --> 
 
 											<div class="form-group">
 												<div class="col-sm-12">

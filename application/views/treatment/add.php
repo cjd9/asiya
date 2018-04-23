@@ -191,6 +191,7 @@
 	{
     var count = 0;
      addRow();
+
 		//$("#add_treatment_form").validationEngine({promptPosition: "topRight: -100"});
 
 		// select box validations -
@@ -211,7 +212,7 @@ function addRow(){
       count= count+1;
        e.preventDefault();
              $('.add-row').append(
-          '     <div class="col-sm-12 table-responsive">'+
+'     <div class="col-sm-12 table-responsive">'+
           '     <table class="table table-dark mb30 responsive">'+
           '<thead>'+
           '<tr>'+
@@ -231,24 +232,24 @@ function addRow(){
           '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
           '<td><input type="number" name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+
           '<td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>'+
-          '<td><button href= "" class="form-control add-btn" id="delete" style="z-index:0">x</button></td>'+
+          '<td><button href= "" class="form-control delete" id="" style="z-index:0">x</button></td>'+
           '</tr>'+
           '</tbody>'+
   '     </table>'+
   '</div>');
-			
-			
+
+
 
 
 		  $(this).html().replace(/ARRAY_INDEX/g,  1);
 		  addRow();
-		 
-		}); 
+
+		});
 
 		 deleteRow();
 
 }
-	
+
 	$("#add_treatment_form").validate({
 		  rules: {
 		    treatment_fees: {
@@ -263,10 +264,10 @@ function addRow(){
 	});
 
 function deleteRow(){
-	$('#delete').on("click",function(e){
+	$('.delete').on("click",function(e){
 				e.preventDefault();
 				console.log($(this).closest("table").parent('div'));
-				$(this).closest("table").parent('div').addClass('hide');
+				$(this).closest("table").parent('div').remove();
 		});
 }
 </script>
