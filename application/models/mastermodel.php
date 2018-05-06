@@ -115,7 +115,7 @@ class Mastermodel extends MY_Model
 
 		// get response of the successful sms push -
 		$result = explode('|', $output);	// make error_code and mobile_no:msg id separate from response
-
+		//print_r($result); die;
 		$error_code = $result[0];
 
 		$res = array();
@@ -128,13 +128,17 @@ class Mastermodel extends MY_Model
 			$result1 = explode(':', $result[1]);	// make mobile_no and msg_id separate from response
 
 			$res['msg_id'] = $result1[1];
+			$res['status'] = 'DELIVRD';
+		}
+		else{
+			$res['status'] = 'FAILED';
 		}
 
 		//var_dump($res);
 
 		//return $res;
 
-		return $res['msg_id'];
+		return $res;
 	}
 
 	public function insertBatch($table, $data)

@@ -16,27 +16,28 @@ class Sms extends MY_Controller
 /*-----------------------------------------------------Start SMS--------------------------------------------------*/
 	// sms send List
 	function index()
-	{
+	{	
+		$current_staff_id = $this->session->userdata("userid");
 		// get all records having sms status 'Message Sent' -
-		$row = $this->db->query("SELECT * FROM sms WHERE sms_status = 'Message Sent' OR sms_status = '' AND is_deleted = 0");
+		$row = $this->db->query("SELECT * FROM sms WHERE sms_status = 'S' AND is_deleted = 0 and sent_by = ".$current_staff_id);
 		
-		foreach($row->result() as $r)
-		{
-			$id = $r->pk;
-			$msgid = $r->msg_id;
+		// foreach($row->result() as $r)
+		// {
+		// 	$id = $r->pk;
+		// 	$msgid = $r->msg_id;
 			
-			// get sms status from api -
-			$sms_status = $this->sms_status($msgid);
+		// 	// get sms status from api -
+		// 	$sms_status = $this->sms_status($msgid);
 			
-			//$sms_status = strip_tags($sms_status, '<br>');
-			$sms_status = str_replace("<br>", "", $sms_status);
+		// 	//$sms_status = strip_tags($sms_status, '<br>');
+		// 	$sms_status = str_replace("<br>", "", $sms_status);
 			
-			// update sms status in table -
-			$data['sms_status'] = trim($sms_status);
+		// 	// update sms status in table -
+		// 	$data['sms_status'] = trim($sms_status);
 			
-			$this->db->where('pk', $id);
-			$this->db->update('sms', $data);
-		}
+		// 	$this->db->where('pk', $id);
+		// 	$this->db->update('sms', $data);
+		// }
 		
 		$data['deleteaction'] = base_url().'index.php/sms/delete';
 	
@@ -44,7 +45,8 @@ class Sms extends MY_Controller
 		$where = array('is_deleted' => 0);
 		
 		// get data from table -
-		$data['rssms'] = $this->mastermodel->get_data('*', 'sms', $where, NULL, NULL, 0, NULL);
+		$data['rssms'] = $row;
+		//$data['rssms'] = $this->mastermodel->get_data('*', 'sms', $where, NULL, NULL, 0, NULL);
 		 
 		$this->load->view('sms/list',$data);
 	}
@@ -58,8 +60,8 @@ class Sms extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 		
 		// get data from table -
-		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM contact_allocation WHERE staff_id = $current_staff_id AND is_deleted = 0) ORDER BY patient_id");	// order by patient_id
-		
+		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+		//print_r($data['rscontact_list']->result_array()); die;
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 		
 		$this->load->view('sms/add',$data);
@@ -130,20 +132,25 @@ class Sms extends MY_Controller
 			/************************* send email *********************/
 			$patient_contact_no = $_POST['patient_contact_no'];
 			
-			$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
+			$res = $this->mastermodel->send_sms('9923939500', $patient_name, $msg);
 						
 			// insert msg id -
-			$data1['msg_id'] = trim($res);	// trim used to remove last space in msg id
-			
+			$data1['msg_id'] = trim($res['msg_id']);	// trim used to remove last space in msg id
+			$data1['sms_status'] = 'S';
 			$this->db->where('pk', $id);
 			$this->db->update('sms', $data1);
 			
 			/************************* send email *********************/
 				
-			echo $res;
+			echo $res['msg_id'];
 		}
 		else
-		{
+		{	
+			$id = $this->db->insert_id();
+			$data1['msg_id'] = '';	// trim used to remove last space in msg id
+			$data1['sms_status'] = 'P';
+			$this->db->where('pk', $id);
+			$this->db->update('sms', $data1);
 			echo FALSE;
 		}
 	}
@@ -155,7 +162,7 @@ class Sms extends MY_Controller
 		
 		// get details from table to re-send the email to patient -
 		$row = $this->db->get_where('sms', array('pk' => $id))->row();
-		
+		//print_r($row); die;
 		// get patient name -
 		$r = $this->db->get_where('contact_list', array('patient_id' => $row->patient_id))->row();
 		$patient_name = ucwords($r->p_fname.' '.$r->p_lname);
@@ -184,7 +191,7 @@ class Sms extends MY_Controller
 		
 		$patient_contact_no = $r->p_contact_no;
 		
-		$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
+		$res = $this->mastermodel->send_sms('9923939500', $patient_name, $msg);
 			
 		// update sms send status -
 		if($res['status'] == "DELIVRD")
@@ -197,7 +204,7 @@ class Sms extends MY_Controller
 		}
 		
 		// insert msg id -
-		$data1['msg_id'] = $res['msgid'];
+		$data1['msg_id'] = $res['msg_id'];
 		
 		// check if pending sms -
 		if($row->sms_status == 'P')
@@ -221,7 +228,7 @@ class Sms extends MY_Controller
 		
 		/************************************************* send email ************************************/
 			
-		echo $res;
+		echo $res['msg_id'];
     }
 	
 	// Exercise Program Delete Data to the DB
