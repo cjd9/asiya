@@ -95,12 +95,46 @@ class Exercise_program extends MY_Controller
 	function view($exercise_id)
 	{
 		// WHERE condition -
+	$data['editaction'] = base_url()."exercise_program/update";
+
+		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
+
+		// WHERE condition -
 		$where = array('exercise_id' => $exercise_id, 'exercise_program.is_deleted' => 0);
 
 		// get data from table -
 		$data['rsexercise_program'] = $this->mastermodel->get_data('*', 'exercise_program', $where, NULL, NULL, 0, NULL);
+					 $data['video_list'] = $this->db->query("SELECT DISTINCT tag FROM exercise_video_master ")->result_array();
 
-		$this->load->view('exercise_program/view',$data);
+		$html='';
+			$selected_vids = $this->db->query("SELECT * FROM exercise_meta where exercise_id = '".$exercise_id."'");
+
+			foreach($selected_vids->result_array() as $vid){
+			 $html .= '<div class="col-sm-3 " style="border-style: outset; margin-right: 10px; margin-top: 15px;">
+
+					 <div class="outer-container">
+							 <div class="inner-container" >
+									 <div class="video-overlay"></div>
+
+									 <a href="'. $vid["vid_link"].'"> LINK</a><br><br>
+										<label  id="delete_video" value="'. $vid["vid_name"].'"> '. $vid["vid_name"].'</label><br>
+
+									 <video id="player" src="/exercise_program_file/'. $vid["vid_name"].'"  width="250" height="200"></video>
+							 </div>
+								 <div class = "form-control">
+									 <label class="control-label" for="">No of Reps:</label>  <input type="number" disabled name="edit_video['.$vid["id"].'][reps]" value="'.$vid["reps"].'" class= "form-control" placeholder="No Of reps">
+									 <label class="control-label" for="">No of Sets:</label>     <input type="number" disabled name="edit_video['.$vid["id"].'][sets]" value="'.$vid["sets"].'" class= "form-control" placeholder="No Of sets">
+									 <label class="control-label" for="">Hold Time:</label>     <input type="number" disabled disabled name="edit_video['.$vid["id"].'][hold_time]" value="'.$vid["hold_time"].'" class= "form-control" placeholder="Hold Time">
+								 	 <input type = "hidden" disabled name ="edit_video['.$vid["id"].'][vid_name]" value="'.$vid["vid_name"].'">
+								 	  <input type = "hidden" disabled name ="edit_video['.$vid["id"].'][insert_id]" value="'.$vid["id"].'">
+
+								 </div>
+						 </div>
+				 </div>';
+		    }
+
+		    $data['html'] = $html;
+		$this->load->view('exercise_program/edit_new',$data);
 	}
 
 	// Exercise Program Store Data to the DB
@@ -296,9 +330,9 @@ class Exercise_program extends MY_Controller
 			 $decodeparam = base64_decode($param);
 
 			$url = explode('||', $decodeparam);
-						// print_r( $url); die;
+						 print_r( $url); die;
 
-			 $date = date('Y-m-d');
+			 $date = date('d-m-Y');
 			 if ($date < $url[1]) {
 				 $data['video'] = $url[2];
            $this->load->view('exercise_program/video',$data);

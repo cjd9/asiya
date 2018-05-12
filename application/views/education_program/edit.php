@@ -47,7 +47,7 @@
 											<div class="form-group">
 												<label class="col-md-2 control-label"> Description</label>
 												<div class="col-sm-9">
-													<textarea rows="2" name="education_program_desc" class="form-control validate[required]"><?php echo $r->education_program_desc; ?></textarea>
+													<textarea  name="education_program_desc" id="education_program_desc" class="" rows="10" cols="80"><?php echo $r->education_program_desc; ?></textarea>
 												</div>
 											</div><!-- form-group -->
 											
@@ -97,6 +97,20 @@
 		{
 			$("#edit_education_program_form").validationEngine({promptPosition: "topRight: -100"});
 		}); 
+	</script>
+
+	    <script src="<?php print base_url(); ?>js/ckeditor.js"></script>
+
+	<script>
+
+		$(document).ready(function()
+
+		  {
+          CKEDITOR.basePath = CKEDITOR.basePath +'ckeditor/';
+           window.CKEDITOR_BASEPATH = CKEDITOR.basePath;
+        CKEDITOR.replace( 'education_program_desc' );
+			//$("#add_education_program_form").validationEngine({promptPosition: "topRight: -100"});
+		});
 	</script>
 
     </body>

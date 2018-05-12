@@ -126,13 +126,12 @@
 											<td><?php $r = $this->db->get_where('staff_details', array('pk' => $row->added_by_user))->row(); echo $r->s_fname.' '.$r->s_lname; ?></td>
 											<td>
 											   <div align="center">
-												   <a href="<?php print base_url(); ?>index.php/treatment/view_treatment/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
-													<i class="fa fa-search"></i> View										
-												   </a>
-													<a href="<?php print base_url(); ?>index.php/treatment/print_treatment/<?php echo $row->patient_id; ?>/<?php echo $row->treatment_id; ?>" class="btn btn-primary btn-sm">
+												  <a href="<?php print base_url(); ?>treatment/view_treatment/<?php echo $row->pk; ?>" class="btn btn-info btn-sm"><i class="fa fa-search"></i> View </a>
+
+													<a href="<?php print base_url(); ?>treatment/print_treatment/<?php echo $row->patient_id; ?>/<?php echo $row->treatment_id; ?>" class="btn btn-primary btn-sm">
 														<i class="fa fa-print"></i> Print									         
 												   </a> 
-												   <a href="<?php print base_url(); ?>index.php/treatment/edit/<?php echo $row->pk; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit </a>
+												   <a href="<?php print base_url(); ?>treatment/edit/<?php echo $row->pk; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit </a>
 													 
 													<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_delete" onclick="delete_1(<?php echo $row->pk; ?>)">
 														 <i class="fa fa-trash-o"></i> Delete										  

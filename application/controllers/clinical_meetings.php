@@ -6,7 +6,7 @@
 */
 class Clinical_meetings extends MY_Controller
 {
-	function Clinical_meetings()
+	function __construct()
 	{
 		parent::__construct();
 	}
@@ -14,7 +14,7 @@ class Clinical_meetings extends MY_Controller
 	// Clinical Meetings List
 	function index()
 	{
-		$data['deleteaction'] =base_url().'index.php/clinical_meetings/delete';
+		$data['deleteaction'] =base_url().'clinical_meetings/delete';
 	
 		// WHERE condition -
 		$where = array('clinical_meetings.is_deleted' => 0);
@@ -28,7 +28,7 @@ class Clinical_meetings extends MY_Controller
 	// Clinical Meetings Add
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/clinical_meetings/save";
+		$data['saveaction'] = base_url()."clinical_meetings/save";
 		
 		$this->load->view('clinical_meetings/add',$data);
 	}
@@ -36,7 +36,7 @@ class Clinical_meetings extends MY_Controller
 	// Clinical Meetings Edit
 	function edit($pk)
 	{
-		$data['editaction'] = base_url()."index.php/clinical_meetings/update";
+		$data['editaction'] = base_url()."clinical_meetings/update";
 		
 		// WHERE condition -
 		$where = array('pk' => $pk);
@@ -65,8 +65,8 @@ class Clinical_meetings extends MY_Controller
 		// get form data -
 		$data = $_POST;
 		
-		//var_dump($_POST);
-		//var_dump($_FILES);
+		// var_dump($_POST);
+		// var_dump($_FILES);
 		
 		$data['clinical_meetings_file'] = '';
 
@@ -79,7 +79,6 @@ class Clinical_meetings extends MY_Controller
 					
 			// function to upload multiple files -
 			$result = $this->mastermodel->upload_file('clinical_meetings_file', $_FILES, $config);
-			
 			$clinical_meetings_file = $result[0][0];
 			
 			$data['clinical_meetings_file'] = $clinical_meetings_file;

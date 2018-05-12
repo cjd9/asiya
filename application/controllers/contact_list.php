@@ -87,7 +87,7 @@ class Contact_list extends MY_Controller
 		// get data from table -
 		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', $where, NULL, NULL, 0, NULL);
 
-		$this->load->view('contact_list/view',$data);
+		$this->load->view('contact_list/edit_new',$data);
 	}
 
 	// Print Patient Registration Details
@@ -362,7 +362,6 @@ class Contact_list extends MY_Controller
 							$this->load->library('common');
 							//create thumbnails
 							$res = $this->common->createProfilePhotoThumbnails($profile_pic, $data, $resizeDimensions, $destination_path, $destination_filename, $extension);
-							echo $res; die;//$update_query = "UPDATE users SET profile_picture = '1' WHERE ocare_id='$new_ocareid'";
 							//$this->Common_Model->updateDeleteQuery($update_query);
 
 

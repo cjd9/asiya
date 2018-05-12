@@ -85,7 +85,6 @@
 		  {
           CKEDITOR.basePath = CKEDITOR.basePath +'ckeditor/';
            window.CKEDITOR_BASEPATH = CKEDITOR.basePath;
-          alert( CKEDITOR.basePath );
         CKEDITOR.replace( 'education_program_desc' );
 			//$("#add_education_program_form").validationEngine({promptPosition: "topRight: -100"});
 		});

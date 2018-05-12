@@ -77,8 +77,10 @@
 											<td><?php print $this->db->get_where('contact_list', array('patient_id' => $row->patient_id))->row()->p_gender; ?></td>
 											<td><?php print $this->db->get_where('contact_list', array('patient_id' => $row->patient_id))->row()->p_contact_no; ?></td>
 											<td>
-											   <div align="center"><a href="<?php print base_url(); ?>evaluation/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i> View
-												 </a>
+											   <div align="center">
+											   	<a href="<?php print base_url(); ?>evaluation/view/<?php echo $row->pk; ?>"class="btn btn-info btn-sm">
+													<i class="fa fa-edit"></i> View
+												</a>
 
 												  <a href="<?php print base_url(); ?>evaluation/print_evaluation_form/<?php echo $row->patient_id; ?>/<?php echo $row->pk; ?>" class="btn btn-primary btn-sm">
 													<i class="fa fa-print"></i> Print

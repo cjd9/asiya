@@ -81,13 +81,23 @@ class Treatment extends MY_Controller
 	// function to view Treatment Details
 	function view_treatment($pk)
 	{
+		$data['editaction'] = base_url()."treatment/update";
+
 		// WHERE condition -
 		$where = array('pk' => $pk);
 
 		// get data from table -
-		$data['rstreatment'] = $this->mastermodel->get_data('*', 'treatment', $where, NULL, NULL, 0, NULL);
+		$data['rstreatment'] = $this->db->query('SELECT * FROM treatment left join treatment_meta on treatment.pk=treatment_meta.treatment_id where pk = '.$pk);
 
-		$this->load->view('treatment/view',$data);
+		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
+
+		// get current login user -
+		$current_staff_id = $this->session->userdata("userid");
+
+		// get data from table -
+		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+
+		$this->load->view('treatment/edit_new',$data);
 	}
 
 	// Print Treatment Details
