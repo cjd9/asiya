@@ -9,7 +9,7 @@
 */
 class Appointment_schedule extends MY_Controller
 {
-	function Appointment_schedule()
+	function __construct()
 	{
 		parent::__construct();
 	}
@@ -25,7 +25,7 @@ class Appointment_schedule extends MY_Controller
 			$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type = "S"', NULL, NULL, 0, NULL);
 		}
 		else{
-			$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type = "S" AND pk != '.$this->session->userdata('userid').'', NULL, NULL, 0, NULL);
+			$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type = "S" AND pk = '.$this->session->userdata('userid').'', NULL, NULL, 0, NULL);
 		}
 		if(isset($_POST['staff_id']))
 		{
@@ -159,10 +159,10 @@ class Appointment_schedule extends MY_Controller
 	}
 
 	// function to send SMS/Email to patient -
-	function send_sms_email()
+	function send_sms_email($app_id = '')
 	{
 		// get appointment id -
-		$appointment_id 	= $_POST['appointment_id'];
+		$appointment_id 	= $_REQUEST['appointment_id'];
 
 		/********** send Email **************/
 
@@ -196,7 +196,7 @@ class Appointment_schedule extends MY_Controller
 
 				// get patient email id from contact list -
 				$rspatient = $this->db->query("SELECT * FROM contact_list WHERE p_fname = '$p_fname' AND p_lname = '$p_lname' AND p_contact_no = '$p_contact_no' AND is_deleted = 0");
-					print_r($rspatient->row());
+					//print_r($rspatient->row());
 				if($rspatient->num_rows() > 0)
 				{
 					$to_email = $rspatient->row()->p_email_id;
@@ -218,27 +218,27 @@ class Appointment_schedule extends MY_Controller
 					$msg = $html;
 
 					// send email to patient, function defined below -
-					$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+					//$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
 
 				}
 			}
 
 			/************************* send SMS *********************/
-			// $p_contact_no = $row->p_contact_no;
-      //
-			// if($p_contact_no != '')
-			// {
-			// 	$patient_contact_no = $p_contact_no;
-			// 	$patient_name = $p_fname.' '.$p_lname;
-      //
-			// 	//$msg = 'Hello '.$patient_name.', Your Appointement Booked Successfully. Thanks, - Clinic Management System.';
-      //
-			// 	//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Centre of Physiotherapy and Rehabilitation.';
-      //
-			// 	$msg = "Hello ".$patient_name.", Your next Physiotherapy Appointment with us dated on ".$appointment_date." at ".$appointment_time." is confirmed.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
-      //
-			// 	$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
-			// }
+			$p_contact_no = $row->p_contact_no;
+      
+			if($p_contact_no != '')
+			{
+				$patient_contact_no = $p_contact_no;
+				$patient_name = $p_fname.' '.$p_lname;
+      
+				//$msg = 'Hello '.$patient_name.', Your Appointement Booked Successfully. Thanks, - Clinic Management System.';
+      
+				//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Centre of Physiotherapy and Rehabilitation.';
+      
+				$msg = "Hello ".$patient_name.", Your next Physiotherapy Appointment with us dated on ".$appointment_date." at ".$appointment_time." is confirmed.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
+      
+				$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
+			}
 
 			/************************* send SMS *********************/
 		}
@@ -247,7 +247,7 @@ class Appointment_schedule extends MY_Controller
 
 		if($res_email || $res_sms)
 		{
-			echo $_POST['appointment_id'];	// send appointment id as response
+			echo $appointment_id;	// send appointment id as response
 		}
 		else
 		{

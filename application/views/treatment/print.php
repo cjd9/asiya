@@ -26,6 +26,32 @@
 		
 		<div>
 			<?php  
+			$edit_treatment_html = '';
+				foreach($rstreatment->result_array() as $treatment_meta) {
+				  $edit_treatment_html .= '
+				    <table width="95%" cellpadding="4"  border="0" align="center" style="top: 200px;">
+				      <thead>
+				        <tr>
+
+				          <th width="19%"><div align="center">Therapy</div></th>
+				          <th width="19%"><div align="center">Repitions</div></th>
+				          <th width="19%"><div align="center">Sets</div></th>
+				          <th width="19%"><div align="center">Hold Time</div></th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        <tr>
+				          <td width="77%"><div align="center">'.$treatment_meta["therapy"].'</div></td>
+				          <td width="77%"><div align="center">'.$treatment_meta["reps"].'</div></td>
+				          <td width="77%"><div align="center">'.$treatment_meta["sets"].'</div></td>
+				          <td width="77%"><div align="center">'.$treatment_meta["time"].'mins</div></td>
+
+				        </tr>
+				      </tbody>
+				    </table>
+				  ';
+
+				}
 				$r = $rstreatment->row();
 			?>
 			<p>
@@ -46,7 +72,7 @@
 						</td>
 					</tr>
 				</table>
-				
+				<br> <br>
 				<table width="95%" cellpadding="4"  border="0" align="center" style="top: 110px;">
 					<tr>
 						<th height="41" colspan="2"><b><u>PLAN OF CARE</u></b></th>
@@ -64,36 +90,16 @@
 						<td width="77%">: <?php echo $r->next_therapy_plan; ?></td>
 					</tr>
 					<tr>
-						<td width="23%" style="vertical-align:text-top">Fees</td>
+						<td width="23%" style="vertical-align:text-top" >Fees</td>
 						<td width="77%">: Rs. <?php echo $r->treatment_fees; ?></td>
 					</tr>
 				</table>
-				
-				<table width="95%" cellpadding="4"  border="0" align="center" style="top: 110px;">
-					<tr>
-						<th height="41" colspan="2"><b><u>Treatment Therapy</u></b></th>
-					</tr>
-					<tr>
-						<td width="23%" style="vertical-align:text-top">Manual Therapy</td>
-						<td width="77%">: <?php echo $r->maual_therapy; ?></td>
-					</tr>
-					<tr>
-						<td width="23%" style="vertical-align:text-top">Exercise Therapy</td>
-						<td width="77%">: <?php echo $r->exercise_therapy; ?></td>
-					</tr>
-					<tr>
-						<td width="23%" style="vertical-align:text-top">Electro Therapy</td>
-						<td width="77%">: <?php echo $r->electro_therapy; ?></td>
-					</tr>
-					<tr>
-						<td width="23%" style="vertical-align:text-top">Others</td>
-						<td width="77%">: <?php echo $r->other_therapy; ?></td>
-					</tr>
-					<tr>
-						<td width="23%" style="vertical-align:text-top">Notes</td>
-						<td width="77%">: <?php echo $r->notes_therapy; ?></td>
-					</tr>
-				</table>
+				<br> <br><br> <br>
+				<h3 style="text-align:center" ><b><u>PATIENT THERAPY DETAILS</u></b></h3>
+
+			
+				<?php echo $edit_treatment_html; ?>
+
 			</p>
 		</div>
 	</body>

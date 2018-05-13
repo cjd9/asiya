@@ -27,25 +27,25 @@ class Mastermodel extends MY_Model
 		$mail = new PHPMailer;
 
 		$mail->isSMTP();
-		// $mail->Host = 'mail.asiya.co.in';
-		// $mail->SMTPAuth = true;
-		// $mail->Username = 'contact@asiya.co.in';
-		// $mail->Password = 'asiya@1234';
-		// $mail->SMTPSecure = 'tls';
-    //
-		// $mail->From = 'contact@asiya.co.in';
-
-		$mail->Host = 'smtp.gmail.com';
+		$mail->Host = 'mail.asiya.co.in';
 		$mail->SMTPAuth = true;
-		$mail->Username = 'dclyde14@gmail.com';
-		$mail->Password = '94224557956';
+		$mail->Username = 'contact@asiya.co.in';
+		$mail->Password = 'asiya@1234';
 		$mail->SMTPSecure = 'tls';
+    
+		$mail->From = 'contact@asiya.co.in';
 
-		$mail->From = 'dclyde14@gmail.com';
+		// $mail->Host = 'smtp.gmail.com';
+		// $mail->SMTPAuth = true;
+		// $mail->Username = 'dclyde14@gmail.com';
+		// $mail->Password = '94224557956';
+		// $mail->SMTPSecure = 'tls';
+
+		// $mail->From = 'dclyde14@gmail.com';
 
 		$mail->FromName = 'Asiya Center of Physiotherapy & Rehabilitation';
-	//	$mail->addAddress($to_email, $to_name);
-	$mail->addAddress('dclyde14@gmail.com', 'clyde dsouza');
+	$mail->addAddress($to_email, $to_name);
+	//$mail->addAddress('dclyde14@gmail.com', 'clyde dsouza');
 		//$mail->addReplyTo('contact@asiya.co.in', 'Asiya Center of Physiotherapy & Rehabilitation');
 
 		// check if CC -

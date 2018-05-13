@@ -132,7 +132,7 @@ class Sms extends MY_Controller
 			/************************* send email *********************/
 			$patient_contact_no = $_POST['patient_contact_no'];
 			
-			$res = $this->mastermodel->send_sms('9923939500', $patient_name, $msg);
+			$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 						
 			// insert msg id -
 			$data1['msg_id'] = trim($res['msg_id']);	// trim used to remove last space in msg id
@@ -191,7 +191,7 @@ class Sms extends MY_Controller
 		
 		$patient_contact_no = $r->p_contact_no;
 		
-		$res = $this->mastermodel->send_sms('9923939500', $patient_name, $msg);
+		$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 			
 		// update sms send status -
 		if($res['status'] == "DELIVRD")

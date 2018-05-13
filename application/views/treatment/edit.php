@@ -18,11 +18,11 @@ foreach($rstreatment->result_array() as $treatment_meta) {
       </thead>
       <tbody>
         <tr>
-          <td><input class="form-control" name="edit_treatment['.$treatment_meta["treatment_id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
-          <td><input type="number" name = "edit_treatment['.$treatment_meta["treatment_id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
-          <td><input type="number" name = "edit_treatment['.$treatment_meta["treatment_id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
-          <td><input type="number" name = "edit_treatment['.$treatment_meta["treatment_id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
-          <input type="hidden" value = '.$treatment_meta['id'].'</td>
+          <td><input class="form-control" name="edit_treatment['.$treatment_meta["id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
+          <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
+          <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
+          <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
+          <input type="hidden" name = "edit_treatment['.$treatment_meta["id"].'][id]" value = "'.$treatment_meta['id'].'"</td>
           <td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>
 
         </tr>

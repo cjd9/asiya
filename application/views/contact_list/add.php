@@ -194,7 +194,6 @@
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
 															<input type="text" id="p_phone_no" name="p_phone_no" class="form-control" placeholder="Landline No." maxlength = "12"/>
-                              <span id="p_phone_no_err" class="" style="color:#FF0000"></span>
 
 														</div><!-- input-group -->
 													</div>
@@ -212,6 +211,8 @@
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
 															<input type="text" id="p_contact_no" name="p_contact_no" class="form-control" placeholder="Type Mobile No." maxlength = "10"/>
+							                              <span id="p_contact_no_err" class="" style="color:#FF0000"></span>
+
 														</div><!-- input-group -->
 													</div>
 												</div>
@@ -325,7 +326,7 @@
 		//$.noConflict();
 		$(document).ready(function()
 		{
-			$("#add_patient_form").validationEngine({promptPosition: "topRight: -100"});
+			//$("#add_patient_form").validationEngine({promptPosition: "topRight: -100"});
 
 			/*$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy' });
 			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy'});*/
@@ -372,17 +373,17 @@
 
 
 
-        $('#p_phone_no_err').text('');
+        $('#p_contact_no').text('');
 
-        if($('#p_phone_no').val() == '' || $('#p_phone_no').val() == null)
+        if($('#p_contact_no').val() == '' || $('#p_contact_no').val() == null)
         {
-          $('#p_phone_no_err').text('This field is required');
+          $('#p_contact_no_err').text('This field is required');
           return false;
         }
 
-        if($('#p_phone_no').val().length != 10 )
+        if($('#p_contact_no').val().length != 10 )
         {
-          $('#p_phone_no_err').text('Phone number shouold be of 10 digits only');
+          $('#p_contact_no_err').text('Phone number shouold be of 10 digits only');
           return false;
         }
 

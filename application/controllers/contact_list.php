@@ -9,7 +9,7 @@
 */
 class Contact_list extends MY_Controller
 {
-	function Contact_list()
+	function __construct()
 	{
 		parent::__construct();
 		//print_r($this->session); die;
@@ -19,7 +19,7 @@ class Contact_list extends MY_Controller
 	// Call contact_list
 	function index()
 	{
-		$data['deleteaction'] = base_url().'index.php/contact_list/delete';
+		$data['deleteaction'] = base_url().'contact_list/delete';
 
 		// check if patient is search by contact no. -
 
@@ -55,7 +55,7 @@ class Contact_list extends MY_Controller
 	// Call Add contact_list
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/contact_list/save";
+		$data['saveaction'] = base_url()."contact_list/save";
 
 		$data['rsreligion'] = $this->mastermodel->get_data('*', 'religion', NULL, NULL, NULL, 0, NULL);
 
@@ -65,7 +65,7 @@ class Contact_list extends MY_Controller
 	// Call Edit contact_list
 	function edit($pk)
 	{
-		$data['editaction'] = base_url()."index.php/contact_list/update";
+		$data['editaction'] = base_url()."contact_list/update";
 
 		// WHERE condition -
 		$where = array('pk' => $pk);
@@ -81,13 +81,15 @@ class Contact_list extends MY_Controller
 	// Call View contact_list
 	function view($pk)
 	{
+		$data['editaction'] = base_url()."contact_list/update";
+
 		// WHERE condition -
 		$where = array('pk' => $pk);
 
 		// get data from table -
 		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', $where, NULL, NULL, 0, NULL);
 
-		$this->load->view('contact_list/edit_new',$data);
+		$data['rsreligion'] = $this->mastermodel->get_data('*', 'religion', NULL, NULL, NULL, 0, NULL);$this->load->view('contact_list/edit_new',$data);
 	}
 
 	// Print Patient Registration Details
@@ -224,6 +226,27 @@ class Contact_list extends MY_Controller
     {
 		// get form data -
 		$data = $_POST;
+		
+		if(empty($data['p_gender'])){
+		if(file_exists($_FILES['profile_pic']['tmp_name']) || is_uploaded_file($_FILES['profile_pic']['tmp_name'])) {
+							$profile_pic = $_FILES['profile_pic']['tmp_name'];
+							$destination_path = FCPATH . PROFILE_PIC_UPLOAD_PATH;
+							if (!is_dir($destination_path))
+							{
+									mkdir($destination_path, 0777, true);
+							}
+							$extension = '.jpg';
+							$destination_filename =$data['patient_id'] . $extension;
+							$resizeDimensions = array([200, 200]);
+							$this->load->library('common');
+							//create thumbnails
+							$res = $this->common->createProfilePhotoThumbnails($profile_pic, $data, $resizeDimensions, $destination_path, $destination_filename, $extension);
+							//$update_query = "UPDATE users SET profile_picture = '1' WHERE ocare_id='$new_ocareid'";
+							//$this->Common_Model->updateDeleteQuery($update_query);
+							die;
+
+			}
+		}	
 
 		if(file_exists($_FILES['profile_pic']['tmp_name']) || is_uploaded_file($_FILES['profile_pic']['tmp_name'])) {
 							$profile_pic = $_FILES['profile_pic']['tmp_name'];
@@ -267,7 +290,7 @@ class Contact_list extends MY_Controller
 
 		// insert record into contact list -
 		$this->mastermodel->add_data('contact_list', $data);
-	if($user_type == "S"){
+	if($this->session->userdata('user_type')=='S'){
 				$patient_id = $data['patient_id'];
 
 				// get current login user -
@@ -320,7 +343,7 @@ class Contact_list extends MY_Controller
 
 					$msg = $html;
 
-					$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+					//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
 				}
 
 				/****************** Send Email *************************/
@@ -334,7 +357,7 @@ class Contact_list extends MY_Controller
 
 					$msg = 'Hello '.$patient_name.', Your Registration is Successful. Login Details : Username - '.$data['p_contact_no'].', Password : '.$patient_id.'. Thanks, - Clinic Management System.';
 
-					//$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
+					$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 				}
  }
 		/************************* send SMS *********************/

@@ -25,7 +25,12 @@ class Login extends CI_Controller
 /*-----------------------------------------------------Start Login--------------------------------------------------*/
 	//Call Staff and Patient Home Page
     function index()
-    {		
+    {	
+    	//print_r($this->session->userdata); die;
+    	if($this->session->userdata('logged_in'))
+		{ 
+			redirect(base_url('/dashboard'));
+		}
 		$this->load->view('login/home');
     }	
 	
@@ -139,9 +144,10 @@ class Login extends CI_Controller
 /*------------------------------------------------------------------------------------------*/
 	// function to check Patient current password -
 	function p_check_current_password()
-	{
-		$current_password = encrypt($this->input->post('current_password'));
-		
+	{  
+		$current_password = $this->input->post('current_password');
+
+			echo $current_password; die;
 		$current_user_id = $this->session->userdata('userid');
 		
 		//$where = array('p_password' => $current_password, 'p_username' => $this->session->userdata('username'));

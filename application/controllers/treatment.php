@@ -9,7 +9,7 @@
 */
 class Treatment extends MY_Controller
 {
-	function Treatment()
+	function __construct()
 	{
 		parent::__construct();
 	}
@@ -17,7 +17,7 @@ class Treatment extends MY_Controller
 	// Treatment List
 	function index()
 	{
-		$data['deleteaction'] = base_url().'index.php/treatment/delete';
+		$data['deleteaction'] = base_url().'treatment/delete';
 
 		if(isset($_POST['patient_id']))
 		{
@@ -43,7 +43,7 @@ class Treatment extends MY_Controller
 	// Add Treatment Form
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/treatment/save";
+		$data['saveaction'] = base_url()."treatment/save";
 
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
@@ -65,8 +65,8 @@ class Treatment extends MY_Controller
 		$where = array('pk' => $pk);
 
 		// get data from table -
-		$data['rstreatment'] = $this->db->query('SELECT * FROM treatment left join treatment_meta on treatment.pk=treatment_meta.treatment_id where pk = '.$pk);
-
+		$data['rstreatment'] = $this->db->query('SELECT * FROM treatment left join treatment_meta on treatment.treatment_id=treatment_meta.treatment_id where pk = '.$pk);
+		//print_r($data['rstreatment']->result_array()); die;
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
 		// get current login user -
@@ -87,7 +87,8 @@ class Treatment extends MY_Controller
 		$where = array('pk' => $pk);
 
 		// get data from table -
-		$data['rstreatment'] = $this->db->query('SELECT * FROM treatment left join treatment_meta on treatment.pk=treatment_meta.treatment_id where pk = '.$pk);
+		$data['rstreatment'] = $this->db->query('SELECT * FROM treatment left join treatment_meta on treatment.treatment_id=treatment_meta.treatment_id where pk = '.$pk);
+		//print_r($data['rstreatment']->result_array()); die;
 
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
@@ -102,12 +103,12 @@ class Treatment extends MY_Controller
 
 	// Print Treatment Details
 	function print_treatment($patient_id, $treatment_id)
-    {
+    {	
 		// WHERE condition -
 		$where = array('patient_id' => $patient_id, 'treatment_id' => $treatment_id);
 
 		// get data from table -
-		$data['rstreatment'] = $this->mastermodel->get_data('*', 'treatment', $where, NULL, NULL, 0, NULL);
+		$data['rstreatment'] = $this->db->query('SELECT * FROM treatment left join treatment_meta on treatment.treatment_id=treatment_meta.treatment_id where treatment.treatment_id = "'.$treatment_id.'"');
 
 		// get html page contents
 		$html = $this->load->view('treatment/print', $data, true);
@@ -130,7 +131,7 @@ class Treatment extends MY_Controller
 
 	// Print Billing Receipt -
 	function print_receipt()
-    {
+    {	
 		$pk_list = implode(',', $_POST['id_list']);
 
 		// get data from table for all selected treatments -
@@ -166,8 +167,9 @@ class Treatment extends MY_Controller
 		// get form data
 		$_POST['date_of_treatment'] = date('Y-m-d',strtotime($_POST['date_of_treatment']));
 		$data = $_POST;
+		//print_r($data); die;
 		unset($_POST['treatment']);
-	print_r($data);
+	
 		// convert date format in form data -
 		//$data = $this->mastermodel->date_format($data);
 		$last_id = $this->mastermodel->add_data('treatment', $_POST);
@@ -180,7 +182,7 @@ class Treatment extends MY_Controller
 		//if (!isset($data['treatment'][0]['therapy'])) {
 					 foreach ($data['treatment'] as $value) {
 							 $insert_treatment_meta[] = array(
-								 		'treatment_id' => $last_id,
+								 	 'treatment_id' => $data['treatment_id'],
 									 'therapy' => $value['therapy'],
 									 'reps' => $value['reps'],
 
@@ -199,7 +201,7 @@ class Treatment extends MY_Controller
 
 	// update Treatment record
 	function update()
-    {
+    {    //print_r($_POST); die;
 		// get form data -
 		$_POST['date_of_treatment'] = date('Y-m-d',strtotime($_POST['date_of_treatment']));
 		$data = $_POST;
@@ -221,6 +223,7 @@ class Treatment extends MY_Controller
 		//editing and deleting
 			if (!empty($data['edit_treatment'])) {
 					//edit details
+			//	print_r($data['edit_treatment']); die;
 					foreach ($data['edit_treatment'] as $treatment) {
 							if (!empty($treatment['delete']))
 									$delete_ids[] = $treatment['id'];
@@ -241,15 +244,16 @@ class Treatment extends MY_Controller
 
 						foreach ($data['treatment'] as $value) {
 								$insert_treatment_meta[] = array(
-										'treatment_id' => $data['edit_pk'],
+										'treatment_id' => $data['treatment_id'],
 										'therapy' => $value['therapy'],
 										'reps' => $value['reps'],
 										'sets' => $value['sets'],
 										'time' => $value['time'], //.str_pad($value['degree_month'],2,"0",STR_PAD_LEFT)."01",
 								);
 						}
+				$this->mastermodel->insertBatch('treatment_meta', $insert_treatment_meta);
+
 			  }
-			$this->mastermodel->insertBatch('treatment_meta', $insert_treatment_meta);
 		// function used to redirect -
 		$this->mastermodel->redirect($result, 'treatment', 'treatment', 'Updated');
     }

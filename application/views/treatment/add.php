@@ -147,10 +147,10 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td><input class="form-control" name="treatment[0][therapy]" id="maual_therapy"></input></td>
-													<td><input type="number" name = "treatment[0][reps]" class="form-control"  placeholder="No of Reps"/></textarea></td>
-													<td><input type="number" name = "treatment[0][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>
-													<td><input type="number" name = "treatment[0][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>
+													<td><input class="form-control required-field" name="treatment[0][therapy]" id="maual_therapy"></input></td>
+													<td><input type="number" name = "treatment[0][reps]" class="required-field form-control"  placeholder="No of Reps"/></textarea></td>
+													<td><input type="number" name = "treatment[0][sets]" class="required-field form-control" placeholder="No of Sets"/></textarea></td>
+													<td><input type="number" name = "treatment[0][time]" class="required-field form-control" placeholder="Hold time in mins"/></textarea></td>
 													<td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>
 												</tr>
 											</tbody>
@@ -189,6 +189,9 @@
 
 	$(document).ready(function()
 	{
+		 jQuery.validator.addClassRules("required-field", {
+        required: true,
+    });
     var count = 0;
      addRow();
 
@@ -208,7 +211,9 @@
 		// });
 function addRow(){
     $('.add-btn').on("click", function(e){
-
+    		 jQuery.validator.addClassRules("required-field", {
+        required: true,
+    });
       count= count+1;
        e.preventDefault();
              $('.add-row').append(
@@ -227,7 +232,7 @@ function addRow(){
           '</thead>'+
           '<tbody>'+
           '<tr>'+
-          '<td><input class="form-control" name="treatment['+count+'][therapy]" id="maual_therapy"></input></td>'+
+          '<td><input class="required-field form-control" name="treatment['+count+'][therapy]" id="maual_therapy"></input></td>'+
           '<td><input type="number" name = "treatment['+count+'][reps]" class="form-control"  placeholder="No of Reps"/></textarea></td>'+
           '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
           '<td><input type="number" name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+

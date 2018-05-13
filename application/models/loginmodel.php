@@ -82,7 +82,7 @@ class Loginmodel extends CI_Model
 
 /*-----------------------------------------------------------------------PATIENT LOGIN START------------------------------------------------------------------------------*/
 	public function p_validatelogin()
-	{
+	{ //print_r($_POST); die;
 		$username = $this->input->post('username');
         $password = $this->input->post('password');
 		
@@ -90,7 +90,7 @@ class Loginmodel extends CI_Model
 		//$encrypt_password = md5($password);
 		
 		// encrypt password using helper function -
-		$encrypt_password = encrypt($password);
+		$encrypt_password = $password;
         
         // Prep the query
         //$this->db->where('p_username',$username);

@@ -146,7 +146,7 @@
 								   <tr>
 										<td align="center"><?php echo ++$cnt; ?></td>
                                         <td><?php echo $row->patient_id; ?></td>
-										<td><?php echo decrypt($row->p_password); ?></td>
+										<td><?php echo $row->p_password; ?></td>
                                         <td><?php echo ucwords($row->p_fname.' '.$row->p_mname.' '.$row->p_lname); ?></td>
 										<td><?php echo $row->p_contact_no; ?></td>
 										<td class="text-center"><?php if($row->p_status == 'A') { echo '<span class="label label-success status" id="'.$row->pk.'">Active</span>'; } else { echo '<span class="label label-danger status" id="'.$row->pk.'">Inactive</span>'; } ?></td>
@@ -175,7 +175,7 @@
 									 	</td>
                                         <td align="center">
 
-										   	<a href="<?php print base_url(); ?>contact_list/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+										   	<a href="<?php print base_url(); ?>contact_list/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" >
 										     <i class="fa fa-search"></i> View
 										    </a>
 
