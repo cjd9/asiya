@@ -95,6 +95,7 @@ class Appointment_schedule extends MY_Controller
 		if($res)
 		{
 			echo $this->db->insert_id();	// send insert id as response
+			$this->send_sms_email($this->db->insert_id());
 		}
 		else
 		{
@@ -128,6 +129,7 @@ class Appointment_schedule extends MY_Controller
 		if($res)
 		{
 			echo $_POST['appointment_id'];	// send update id as response
+			$this->send_sms_email($_POST['appointment_id']);
 		}
 		else
 		{
@@ -225,18 +227,18 @@ class Appointment_schedule extends MY_Controller
 
 			/************************* send SMS *********************/
 			$p_contact_no = $row->p_contact_no;
-      
+
 			if($p_contact_no != '')
 			{
 				$patient_contact_no = $p_contact_no;
 				$patient_name = $p_fname.' '.$p_lname;
-      
+
 				//$msg = 'Hello '.$patient_name.', Your Appointement Booked Successfully. Thanks, - Clinic Management System.';
-      
+
 				//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Centre of Physiotherapy and Rehabilitation.';
-      
+
 				$msg = "Hello ".$patient_name.", Your next Physiotherapy Appointment with us dated on ".$appointment_date." at ".$appointment_time." is confirmed.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
-      
+
 				$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 			}
 
@@ -259,11 +261,11 @@ class Appointment_schedule extends MY_Controller
 	function get_contact_no()
 	{
 		// get patient details -
-		$p_fname 	= $_POST['p_fname'];
-		$p_lname 	= $_POST['p_lname'];
+		$pk 	= $_POST['pk'];
+
 
 		// get contact no. -
-		$res = $this->db->query("SELECT p_contact_no FROM contact_list WHERE p_fname = '$p_fname' AND p_lname = '$p_lname' AND is_deleted = 0");
+		$res = $this->db->query("SELECT p_contact_no FROM contact_list WHERE pk = '$pk' AND is_deleted = 0");
 
 		if($res->num_rows() > 0)
 		{
@@ -296,7 +298,7 @@ class Appointment_schedule extends MY_Controller
 		$file_name = 'Appointment_Schedule('.$shift.')';
 
 		// get gender for all staff's for the seleceted date and work shift -
-		$rsstaff = $this->db->query("SELECT * FROM staff_details WHERE pk IN (SELECT staff_id FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND work_shift = '$schedule_work_shift' AND is_deleted = 0)");
+		$rsstaff = $this->db->query("SELECT * FROM staff_details WHERE pk IN (SELECT staff_id FROM appointment_schedule WHERE date_of_appointment = '$schedule_date'  AND is_deleted = 0)");
 
 		if($rsstaff->num_rows() > 0)
 		{
@@ -346,7 +348,7 @@ class Appointment_schedule extends MY_Controller
 				$row++;
 
 				// get time slot for male staff for selecetd work shift -
-				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Male' AND user_shift = '$schedule_work_shift'");
+				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Male'  ");
 
 				// set time slot column -
 				foreach ($rstime_slots->result() as $t)
@@ -363,7 +365,7 @@ class Appointment_schedule extends MY_Controller
 					$c = $col;
 
 					// get schedule of male staff for selected date and shift -
-					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND work_shift = '$schedule_work_shift' AND staff_id = $staff_id AND is_deleted = 0");
+					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND staff_id = $staff_id AND is_deleted = 0");
 
 					// get staff name -
 					$rsstaff = $this->db->get_where('staff_details', array('pk' => $staff_id))->row();
@@ -407,7 +409,7 @@ class Appointment_schedule extends MY_Controller
 				$row++;
 
 				// get time slot for female staff for selecetd work shift -
-				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Female' AND user_shift = '$schedule_work_shift'");
+				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Female' ");
 
 				// set time slot column -
 				foreach ($rstime_slots->result() as $t)
@@ -424,7 +426,7 @@ class Appointment_schedule extends MY_Controller
 					$c = $col;
 
 					// get schedule of female staff for selected date and shift -
-					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND work_shift = '$schedule_work_shift' AND staff_id = $staff_id AND is_deleted = 0");
+					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date'  AND staff_id = $staff_id AND is_deleted = 0");
 
 					// get staff name -
 					$rsstaff = $this->db->get_where('staff_details', array('pk' => $staff_id))->row();
@@ -471,7 +473,7 @@ class Appointment_schedule extends MY_Controller
 				$row++;
 
 				// get time slot for male staff for selecetd work shift -
-				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Male' AND user_shift = '$schedule_work_shift'");
+				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Male' ");
 
 				// set time slot column -
 				foreach ($rstime_slots->result() as $t)
@@ -488,7 +490,7 @@ class Appointment_schedule extends MY_Controller
 					$c = $col;
 
 					// get schedule of male staff for selected date and shift -
-					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND work_shift = '$schedule_work_shift' AND staff_id = $staff_id AND is_deleted = 0");
+					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND staff_id = $staff_id AND is_deleted = 0");
 
 					// get staff name -
 					$rsstaff = $this->db->get_where('staff_details', array('pk' => $staff_id))->row();
@@ -532,7 +534,7 @@ class Appointment_schedule extends MY_Controller
 				$row++;
 
 				// get time slot for female staff for selecetd work shift -
-				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Female' AND user_shift = '$schedule_work_shift'");
+				$rstime_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = 'Female'");
 
 				// set time slot column -
 				foreach ($rstime_slots->result() as $t)
@@ -549,7 +551,7 @@ class Appointment_schedule extends MY_Controller
 					$c = $col;
 
 					// get schedule of female staff for selected date and shift -
-					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND work_shift = '$schedule_work_shift' AND staff_id = $staff_id AND is_deleted = 0");
+					$rsschedule = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date'  AND staff_id = $staff_id AND is_deleted = 0");
 
 					// get staff name -
 					$rsstaff = $this->db->get_where('staff_details', array('pk' => $staff_id))->row();

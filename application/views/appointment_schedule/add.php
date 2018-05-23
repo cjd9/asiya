@@ -366,12 +366,7 @@
 					return false;
 				}
 
-				if(p_lname == '')
-				{
-					confirm_btn.closest('tr').find('.p_lname').parent('div').addClass('has-error');
 
-					return false;
-				}
 
 				/*if(p_contact_no == '')
 				{
@@ -726,7 +721,7 @@
 		var data =
 		<?php
 			// get patient fname form table -
-			$rsfname = $this->db->query("SELECT @a:=@a+1 sno,p_fname as label FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
+			$rsfname = $this->db->query("SELECT pk,CONCAT(p_fname, ' ', p_lname)  as label, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
 			echo json_encode($rsfname->result());
 
 		?>
@@ -735,13 +730,13 @@
 		var data1 =
 		<?php
 			// get patient lname form table -
-			$rsfname = $this->db->query("SELECT @a:=@a+1 sno,p_lname as label FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
+			$rsfname = $this->db->query("SELECT pk, CONCAT(p_fname, ' ', p_lname)  as fullname, patient_id as label FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
 			echo json_encode($rsfname->result());
 		?>
 
 
 		$(document).ready( function () {
-			function get_contact_no(p_fname, p_lname)
+			function get_contact_no(pk)
 			{
 				var result = '';
 
@@ -751,7 +746,7 @@
 						async:false,
 						cache:false,
 						//dataType:'json',
-						data:{ p_fname:p_fname, p_lname:p_lname },
+						data:{ pk:pk },
 						success: function (res)
 						{
 							//alert(res);
@@ -779,21 +774,23 @@
 				  it will be loaded in the textbox */
 				  autoFocus: true ,
 					select: function (event, ui) {
-						 var last_name = data1[ui.item.sno-1].label;
+						// var last_name = data1[ui.item.sno-1].label;
 						 var row = $(this);
 
 						 var p_fname = row.closest('tr').find('.p_fname').val();
-						 row.closest('tr').find('.p_lname').val(last_name);
+						// row.closest('tr').find('.p_lname').val(last_name);
 
 						 //alert(p_fname);
 						 //alert(p_lname);
 
 
 							 // get patient's contact no. using ajax -
-							 res = get_contact_no(ui.item.label, last_name);
+							 res = get_contact_no(ui.item.pk);
+
 
 							 // append mobile no. to current patient details field -
 							 row.closest('tr').find('.p_contact_no').val(res);
+							 row.closest('tr').find('.p_lname').val(ui.item.patient_id);
 
 
 
@@ -807,6 +804,28 @@
 				  /* auto focus true means, the first item in the auto complete list is selected by default. therefore when the user hits enter,
 				  it will be loaded in the textbox */
 				  autoFocus: true ,
+					select: function (event, ui) {
+						// var last_name = data1[ui.item.sno-1].label;
+						 var row = $(this);
+
+						 var p_fname = row.closest('tr').find('.p_fname').val();
+						// row.closest('tr').find('.p_lname').val(last_name);
+
+						 //alert(p_fname);
+						 //alert(p_lname);
+
+
+							 // get patient's contact no. using ajax -
+							 res = get_contact_no(ui.item.pk);
+
+
+							 // append mobile no. to current patient details field -
+							 row.closest('tr').find('.p_contact_no').val(res);
+							 row.closest('tr').find('.p_fname').val(ui.item.fullname);
+
+
+
+					}
 
 				});
 		});
