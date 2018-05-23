@@ -35,11 +35,11 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
         <![endif]-->
-
+<!-- 
 		<style>
 			.datepicker{z-index:1151 !important;}
         </style>
-
+ -->
     </head>
 
     <body>

@@ -81,10 +81,7 @@
 											<b>:</b> <?php echo $r->p_occupation; ?>
 									</div>
 
-									<div class="col-sm-6">
-										<label class="col-sm-4 control-label"><b>Age</b></label>
-											<b>:</b> <?php echo $r->p_age; ?> Year
-									</div>
+									
 								</div><!-- form-group -->
 
 								<hr />

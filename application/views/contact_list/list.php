@@ -9,9 +9,9 @@
                             <div class="media-body">
                                 <ul class="breadcrumb">
                                     <li><i class="glyphicon glyphicon-home"></i></li>
-                                    <li>Contact List</li>
+                                    <li>Patient List</li>
                                 </ul>
-                                <h4>Contact List</h4>
+                                <h4>Patient List</h4>
                             </div>
                         </div><!-- media -->
                     </div><!-- pageheader -->
@@ -47,7 +47,7 @@
 
                         <div class="panel panel-primary-head">
                             <div class="panel-heading">
-                                <h4 class="panel-title"><b>Contact List</b></h4>
+                                <h4 class="panel-title"><b>Patient List</b></h4>
                             </div><!-- panel-heading -->
                            <br />
 
@@ -62,7 +62,7 @@
          <div class="table-responsive">
 
 							<div align="center">
-								<form id="search_patient_form" action="<?php echo base_url().'contact_list'; ?>" method="post">
+							<!-- 	<form id="search_patient_form" action="<?php echo base_url().'contact_list'; ?>" method="post">
 								<div class="form-group">
 
 										<label class="col-sm-4 control-label" style="text-align:right"><b> Search Patient : </b></label>
@@ -75,7 +75,7 @@
 										</div>
 
 								</div><!-- form-group -->
-								</form>
+								</form> -->
 							</div><!-- panel -->
 
 							<hr />

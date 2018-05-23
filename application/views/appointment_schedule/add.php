@@ -297,6 +297,7 @@
 				changeYear: true,
 				yearRange: '1945:2050',
 				dateFormat: 'dd-mm-yy',
+				minDate: 0
 				//minDate: 0	// disable all previous dates
 			});
 
@@ -375,21 +376,19 @@
 					return false;
 				}*/
 
-				/*alert(date_of_appointment);
-				alert(staff_id);
-				alert(work_shift);
-
-				//alert(appointment_id);
-
-				alert(time_slot_id);
-
-				alert(p_fname);
-				alert(p_lname);
-				alert(p_contact_no);*/
-
-				var res = confirm('You Want To Confirm Appointment?');
-
-				if(res)
+				bootbox.confirm({
+                title: "Update Patient?",
+                message: "'You Want To Confirm Appointment?'?.",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
+                    }
+                },
+                callback: function (result) {
+				if(result)
 				{
 					//alert('Confirm Appointment...');
 
@@ -408,7 +407,7 @@
 								// check if appointment is successfully save -
 								if(res != 0)
 								{
-									alert('Appointment Saved Successfully.');
+									bootbox.alert("Appointment Saved Successfully!");
 
 									// disable confirm button -
 									confirm_btn.addClass('disabled');
@@ -438,6 +437,11 @@
 				{
 					return false;
 				}
+                }
+            });
+
+
+			
 
 			});
 

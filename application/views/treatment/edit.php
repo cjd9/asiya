@@ -3,22 +3,23 @@
 <?php $this->load->view('include/left'); ?>
 <?php
 $edit_treatment_html = '';
-foreach($rstreatment->result_array() as $treatment_meta) {
-  $edit_treatment_html .= '<div class="col-sm-12 table-responsive">
-    <table class="table table-dark mb30 responsive">
+$edit_treatment_html .= ' <div class="col-sm-12 table-responsive">
+   
+        <table class="table table-dark mb30 responsive">
       <thead>
         <tr>
 
           <th><div align="center">Therapy</div></th>
-          <th><div align="center">Repitions</div></th>
+          <th><div align="center">Repetitions </div></th>
           <th><div align="center">Sets</div></th>
           <th><div align="center">Hold Time</div></th>
           <th><div align="center">Add</div></th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td><input class="form-control" name="edit_treatment['.$treatment_meta["id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
+      <tbody>';
+foreach($rstreatment->result_array() as $treatment_meta) { 
+	$edit_treatment_html .= '<tr>
+          <td><input class="form-control" placeholder="Therapy Name" name="edit_treatment['.$treatment_meta["id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
@@ -26,11 +27,12 @@ foreach($rstreatment->result_array() as $treatment_meta) {
           <td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>
 
         </tr>
-      </tbody>
-    </table>
-  </div>';
+      ';
 
 }
+  $edit_treatment_html .= '</tbody>
+    </table>
+  </div>';
 
 ?>
 <div class="mainpanel">
@@ -234,19 +236,9 @@ foreach($rstreatment->result_array() as $treatment_meta) {
                $('.add-row').append(
             '     <div class="col-sm-12 table-responsive">'+
             '     <table class="table table-dark mb30 responsive">'+
-            '<thead>'+
-            '<tr>'+
-
-            '<th><div align="center">Therapy</div></th>'+
-            '<th><div align="center">Repitions</div></th>'+
-            '<th><div align="center">Sets</div></th>'+
-            '<th><div align="center">Hold Time</div></th>'+
-            '<th><div align="center">Add</div></th>'+
-            '</tr>'+
-            '</thead>'+
             '<tbody>'+
             '<tr>'+
-            '<td><input class="form-control" name="treatment['+count+'][therapy]" id="maual_therapy"></input></td>'+
+            '<td><input class="form-control" placeholder="Therapy Name" name="treatment['+count+'][therapy]" id="maual_therapy"></input></td>'+
             '<td><input type="number" name = "treatment['+count+'][reps]" class="form-control"  placeholder="No of Reps"/></textarea></td>'+
             '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
             '<td><input type="number" name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+

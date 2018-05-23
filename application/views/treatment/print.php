@@ -19,7 +19,7 @@
 	</head>
 	<body style="border:5px double; height:98%;">
 		<div id="header">
-			<h2><img src="<?php echo base_url(); ?>images/logo-1.jpg" height="550%" width="15%"/> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
+			<h2><img src="<?php echo base_url(); ?>images/logo-new.png" height="550%" width="15%"/> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />
@@ -27,19 +27,20 @@
 		<div>
 			<?php  
 			$edit_treatment_html = '';
-				foreach($rstreatment->result_array() as $treatment_meta) {
-				  $edit_treatment_html .= '
+			 $edit_treatment_html .= '
 				    <table width="95%" cellpadding="4"  border="0" align="center" style="top: 200px;">
 				      <thead>
 				        <tr>
 
 				          <th width="19%"><div align="center">Therapy</div></th>
-				          <th width="19%"><div align="center">Repitions</div></th>
+				          <th width="19%"><div align="center">Repetitions</div></th>
 				          <th width="19%"><div align="center">Sets</div></th>
 				          <th width="19%"><div align="center">Hold Time</div></th>
 				        </tr>
 				      </thead>
-				      <tbody>
+				      <tbody>';
+				foreach($rstreatment->result_array() as $treatment_meta) {
+				  $edit_treatment_html .= '
 				        <tr>
 				          <td width="77%"><div align="center">'.$treatment_meta["therapy"].'</div></td>
 				          <td width="77%"><div align="center">'.$treatment_meta["reps"].'</div></td>
@@ -47,11 +48,11 @@
 				          <td width="77%"><div align="center">'.$treatment_meta["time"].'mins</div></td>
 
 				        </tr>
-				      </tbody>
-				    </table>
 				  ';
 
 				}
+				 $edit_treatment_html .= '</tbody>
+				    </table>';
 				$r = $rstreatment->row();
 			?>
 			<p>

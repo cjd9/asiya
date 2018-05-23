@@ -137,7 +137,7 @@
 												</div>
 												</div>
                       <br>
-                    <div class="form-group" id="video-append">
+                  			  <div class="form-group" id="video-append">
 
 
 										</div><!-- row -->
@@ -147,7 +147,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>index.php/exercise_program" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>exercise_program" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
@@ -165,6 +165,7 @@
 
 		<?php $this->load->view('include/footer'); ?>
 		        <script src="<?php print base_url(); ?>js/jquery.validate.min.js"></script>
+  <script src="<?php print base_url(); ?>js/jquery.validate.min.js"></script>
 
 
 	<script>
@@ -215,6 +216,16 @@
 									 $('#video-append').empty()
 
 									 $('#video-append').append(result)
+									 		$('.datepicker').datepicker({
+												changeMonth: true,
+												changeYear: true,
+												yearRange: '1945:2050',
+												dateFormat: 'yy-mm-dd',
+												 minDate: 0
+											});
+												jQuery.validator.addClassRules("required-field", {
+											        required: true,
+											    });
 								 },
 								 beforeSend: function ()
 								 {

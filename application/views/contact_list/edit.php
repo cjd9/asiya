@@ -147,12 +147,7 @@
 													</div>
 												</div>
 
-												<div class="col-sm-6">
-													<label class="col-sm-4 control-label">Age</label>
-													<div class="col-sm-6">
-														<input type="text" id="p_age" name="p_age" class="form-control" value="<?php echo $r->p_age; ?>"/>
-													</div>
-												</div>
+												
 											</div><!-- form-group -->
 
 											<hr />

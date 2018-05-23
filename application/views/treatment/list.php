@@ -171,7 +171,13 @@
 	
 	 <script>
 	 	$(document).ready(function()
-		{
+		{	
+
+				    $('html, body').animate({
+				        scrollTop: $(document).height()
+				    }, 1100);
+				   
+				
 			// print biiling receipt for selected treatment sessions -
 			$('#print_receipt').on('click', function(e) {
 			

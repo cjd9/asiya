@@ -24,43 +24,43 @@
 						<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 
-            <div class="row">
-              <div class="text-center padding-top-30 padding-bottom-30">
-                      <div class="profile-avatar-wrapper border-radius-50 pos-relative teel margin-bottom-10 display-inline-block">
-                            <form id="add_patient_form" action="<?php echo $saveaction; ?>" method="post" enctype="multipart/form-data" save-instantly>
-                              <input type="hidden" name="image-x">
-                              <input type="hidden" name="image-y">
-                              <input type="hidden" name="image-x2">
-                              <input type="hidden" name="image-y2">
-                              <input type="hidden" name="crop-w">
-                              <input type="hidden" name="crop-h">
-                              <input type="hidden" name="image-w">
-                              <input type="hidden" name="image-h">
-                              <div class="overflow-hidden profile-pic-preview-wrapper border-radius-50 teel">
-                                  <img class="profile-pic"  id="profilepicview" />
-                              </div>
-                              <a class="edit-icon v-align-contents no-form teel pos-absolute">
-                                  <span></span>
-                                  <input type="file" name="profile_pic" id="profile_pic" class="pos-absolute width-100 height-100 top-0"/>
-                              </a>
-                      </div>
-              </div>
-            </div>
+        
 						<div class="row">
 							<div class="col-md-12">
 
 								<div class="panel panel-default">
+
 									<div class="panel-heading">
-										<div class="panel-btns">
-											<a href="#" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
-											<a href="#" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-										</div><!-- panel-btns -->
+										
 										<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Patient </b></h3>
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">
 										<div class="row">
+												<div class="text-center padding-top-30 padding-bottom-30">
+												                      <div class="profile-avatar-wrapper border-radius-50 pos-relative teel margin-bottom-10 display-inline-block">
+												                            <form id="add_patient_form" action="<?php echo $saveaction; ?>" method="post" enctype="multipart/form-data" save-instantly>
+												                              <input type="hidden" name="image-x">
+												                              <input type="hidden" name="image-y">
+												                              <input type="hidden" name="image-x2">
+												                              <input type="hidden" name="image-y2">
+												                              <input type="hidden" name="crop-w">
+												                              <input type="hidden" name="crop-h">
+												                              <input type="hidden" name="image-w">
+												                              <input type="hidden" name="image-h">
+												                              <div class="overflow-hidden profile-pic-preview-wrapper border-radius-50 teel">
+												                                  <img class="profile-pic"  id="profilepicview" />
+												                   <img class="profile-pic" src="<?php echo base_url('images/default_man_photo.jpg') ?>"/>
 
+												                              </div>
+
+												                              <a class="edit-icon v-align-contents no-form teel pos-absolute">
+												                              	<i class="glyphicon glyphicon-pencil"></i>
+												                                  <span></span>
+												                                  <input type="file" name="profile_pic" id="profile_pic" class="pos-absolute width-100 height-100 top-0"/>
+												                              </a>
+												                      </div>
+												              </div>
 											<?php
 												$sql = "SELECT patient_id FROM contact_list ORDER BY patient_id DESC LIMIT 1";
 
@@ -165,12 +165,7 @@
 													</div>
 												</div>
 
-												<div class="col-sm-6">
-													<label class="col-sm-4 control-label">Age<span class="asterisk">*</span></label>
-													<div class="col-sm-6">
-														<input type="text" id="p_age" name="p_age" class="form-control" placeholder="Type Patient Age" />
-													</div>
-												</div>
+												
 											</div><!-- form-group -->
 
 											<hr />

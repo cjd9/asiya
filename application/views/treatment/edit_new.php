@@ -3,34 +3,35 @@
 <?php $this->load->view('include/left'); ?>
 <?php
 $edit_treatment_html = '';
-foreach($rstreatment->result_array() as $treatment_meta) {
   $edit_treatment_html .= '<div class="col-sm-12 table-responsive">
     <table class="table table-dark mb30 responsive">
       <thead>
         <tr>
 
           <th><div align="center">Therapy</div></th>
-          <th><div align="center">Repitions</div></th>
+          <th><div align="center">Repetitions</div></th>
           <th><div align="center">Sets</div></th>
           <th><div align="center">Hold Time</div></th>
           <th><div align="center">Add</div></th>
         </tr>
-      </thead>
+      </thead>';
+foreach($rstreatment->result_array() as $treatment_meta) {
+  $edit_treatment_html .= '
       <tbody>
         <tr>
-          <td><input class="form-control" disabled name="edit_treatment['.$treatment_meta["treatment_id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
-          <td><input type="number" name = "edit_treatment['.$treatment_meta["treatment_id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
-          <td><input type="number" name = "edit_treatment['.$treatment_meta["treatment_id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
-          <td><input type="number" name = "edit_treatment['.$treatment_meta["treatment_id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
+          <td><input class="form-control" placeholder="Therapy Name" disabled name="edit_treatment['.$treatment_meta["treatment_id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
+          <td><input type="number" disabled name = "edit_treatment['.$treatment_meta["treatment_id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
+          <td><input type="number" disabled name = "edit_treatment['.$treatment_meta["treatment_id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
+          <td><input type="number" disabled name = "edit_treatment['.$treatment_meta["treatment_id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
           <input type="hidden" value = '.$treatment_meta['id'].'</td>
           <td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>
 
         </tr>
-      </tbody>
-    </table>
-  </div>';
+      </tbody>';
 
 }
+   $edit_treatment_html .= '</table>
+  </div>';
 
 ?>
 <div class="mainpanel">

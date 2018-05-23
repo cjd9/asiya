@@ -44,7 +44,7 @@
 		</li>
 		
 		<li <?php if(current_url() == base_url().'contact_list' || current_url() == base_url().'contact_list/add' || strpos(current_url(), base_url().'contact_list/edit/') !== false) {?> class="active" <?php } ?>>
-			<a href="<?php echo base_url().'contact_list'; ?>"><i class="fa fa-book"></i> <span>Contact List</span></a>
+			<a href="<?php echo base_url().'contact_list'; ?>"><i class="fa fa-book"></i> <span>Patient List</span></a>
 		</li>
 		
 		<li <?php if(current_url() == base_url().'evaluation' || current_url() == base_url().'evaluation/add' || strpos(current_url(), base_url().'evaluation/edit/') !== false) {?> class="active" <?php } ?>>
