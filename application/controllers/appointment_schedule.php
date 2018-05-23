@@ -164,8 +164,11 @@ class Appointment_schedule extends MY_Controller
 	function send_sms_email($app_id = '')
 	{
 		// get appointment id -
-		$appointment_id 	= $_REQUEST['appointment_id'];
-
+		if(isset( $_REQUEST['appointment_id'])){
+			$appointment_id 	= $_REQUEST['appointment_id'];
+		}else{
+		$appointment_id 	= $app_id;
+	}
 		/********** send Email **************/
 
 		$res = FALSE;
