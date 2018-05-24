@@ -42,7 +42,7 @@
 					<!-- /.modal -->
                     
                    <div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/activity_program/add">
+                      	 <a href="<?php print base_url(); ?>activity_program/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Activity</button>
 						 </a>
 					   <br /><br />
@@ -68,7 +68,8 @@
 									</thead>
 									
 									<tbody>
-									<?php $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
+									<?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
+									<?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>
 										<tr>
 											<td align="center"><?php echo ++$cnt; ?></td>
 											<td><?php echo date("d-m-Y",strtotime($row->date_of_upload)); ?></td>
@@ -76,11 +77,11 @@
 											<td><?php echo date("d-m-Y",strtotime($row->expiry_date)); ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>index.php/activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+													<a href="<?php print base_url(); ?>activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" >
 														<i class="fa fa-search"></i> View
 													</a>
 													
-													<a href="<?php print base_url(); ?>index.php/activity_program/edit/<?php echo $row->activity_id; ?>" class="btn btn-info btn-sm">
+													<a href="<?php print base_url(); ?>activity_program/edit/<?php echo $row->activity_id; ?>" class="btn btn-info btn-sm">
 														<i class="fa fa-edit"></i> Edit									        
 													</a>
 													
@@ -90,6 +91,7 @@
 												</div>
 											</td>
 										</tr>
+										<?php } ?>
 									<?php endforeach ; ?>
 									</tbody>
 								</table>

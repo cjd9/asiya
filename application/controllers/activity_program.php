@@ -6,7 +6,7 @@
 */
 class Activity_program extends MY_Controller
 {
-	function Activity_program()
+	function __construct()
 	{
 		parent::__construct();
 	}
@@ -22,8 +22,7 @@ class Activity_program extends MY_Controller
 		// get data from table -
 		//$data['rsactivity_program'] = $this->mastermodel->get_data('*', 'activity_program', $where, NULL, NULL, 0, NULL);
 
-		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0");
-
+		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 group by activity_id,pk");
 		$this->load->view('activity_program/list',$data);
 	}
 
@@ -58,7 +57,7 @@ class Activity_program extends MY_Controller
 		// get data from table -
 		$data['rsactivity_program'] = $this->mastermodel->get_data('*', 'activity_program', $where, NULL, NULL, 0, NULL);
 
-		$this->load->view('activity_program/view',$data);
+		$this->load->view('activity_program/edit_new',$data);
 	}
 
 	// Activity Program Store Data to the DB

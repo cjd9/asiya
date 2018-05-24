@@ -34,17 +34,14 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<div class="panel-btns">
-											<a href="#" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
-											<a href="#" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-										</div><!-- panel-btns -->
+										
 										<a href="<?php echo base_url().'contact_list'; ?>" type="button" class="btn btn-default btn-sm">
 								          <span class="glyphicon glyphicon-arrow-left"></span> Back
 								        </a>
 
-										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-edit"></i> <b>Edit Patient </b></h3>
+										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-edit"></i> <b>View Patient </b></h3>
 									</div><!-- panel-heading -->
-
+									
 									<div class="panel-body">
                     <div class="row text-center padding-bottom-30"">
                       <div class="profile-avatar-wrapper border-radius-50 pos-relative teel margin-bottom-10 display-inline-block">

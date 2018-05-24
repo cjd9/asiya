@@ -711,13 +711,6 @@
 		    patient_id: {
 		      required: true
 
-		    },
-		    p_allergies: {
-		      required: true
-
-		    },
-		    p_special_test: {
-		      required: true
 		    }
 		  }
 		});
@@ -732,7 +725,7 @@
               return false;
             }
           },
-          'onTabClick': function(activeTab, navigation, currentIndex, nextIndex) { alert();
+          'onTabClick': function(activeTab, navigation, currentIndex, nextIndex) { 
             if (nextIndex <= currentIndex) {
               return;
             }

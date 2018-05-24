@@ -60,7 +60,7 @@
 									<thead class="">
 										<tr>
 											<th><div align="center">#</div></th>
-											<th>Upload Date</th>
+											<th>Date</th>
 											<th>Meeting Description</th>
 											<th>Meeting File</th>
 											<!--<th>Expiry Date</th>-->

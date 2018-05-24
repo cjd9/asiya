@@ -39,13 +39,19 @@
 									<div class="panel-body">
 										<div class="row">
 											
-											<div class="form-group">
+										<div class="form-group">
 												<label class="col-md-3 control-label"> Meetings Description<span class="asterisk">*</span></label>
 												<div class="col-sm-9">
 													<input type="text" name="clinical_meetings_desc" id="clinical_meetings_desc" class="form-control validate[required]">
 												</div>
-											</div><!-- form-group -->
+										</div><!-- form-group -->
+										<div class="form-group">
 											
+												<label class="col-md-3 control-label"> Date<span class="asterisk">*</span></label>
+												<div class="col-sm-6">
+												<input type="text" class="form-control validate[required] datepicker" name="meeting_date" id="date_of_treatment" value="<?php echo date('d-m-Y')?>">
+												</div>
+										</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label"> Meetings File<span class="asterisk">*</span></label>
 												<div class="col-sm-6">
@@ -60,7 +66,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>index.php/clinical_meetings" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>clinical_meetings" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->  

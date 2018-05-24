@@ -83,7 +83,9 @@ class Clinical_meetings extends MY_Controller
 			
 			$data['clinical_meetings_file'] = $clinical_meetings_file;
 		}
-		
+		//$data['expiry_date'] = $this->mastermodel->date_convert($data['expiry_date'],'ymd');
+		$data['meeting_date'] = $this->mastermodel->date_convert($data['meeting_date'],'ymd');
+
 		// convert date format in form data -
 		//$data['expiry_date'] = $this->mastermodel->date_convert($data['expiry_date'],'ymd');
 		

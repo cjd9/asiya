@@ -44,6 +44,7 @@ class Exercise_program extends MY_Controller
 
 
 		 //$data['video_file'] = '';
+		// print_r($_FILES); die;
 
 		 if(!empty($_FILES['video_file']['name']))
 		 {
@@ -58,7 +59,7 @@ class Exercise_program extends MY_Controller
 
 			 $data['name'] = $video_file;
 		 }
-
+		// print_r($data); die;
 		 $result = $this->mastermodel->add_data('exercise_video_master', $data);
 
  		// function used to redirect -
@@ -106,8 +107,7 @@ class Exercise_program extends MY_Controller
 									 <div class="video-overlay"></div>
 
 									 <a href="'. $vid["vid_link"].'"> LINK</a><br><br>
-										<button  id="delete_video" value="'. $vid["id"].'"> DELETE</button><br>
-
+									 
 									 <video id="player" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
 							 </div>
 								 <div class = "form-control">

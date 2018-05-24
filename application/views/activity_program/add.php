@@ -28,11 +28,7 @@
 								<form id="add_activity_program_form" action="<?php echo $saveaction; ?>" method="post" enctype="multipart/form-data" onSubmit="return validate()">
 								
 								<div class="panel panel-default">
-									<div class="panel-heading">
-										<div class="panel-btns">
-											<a href="#" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
-											<a href="#" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-										</div><!-- panel-btns -->
+									
 										<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Activity Program </b></h3>
 									</div><!-- panel-heading -->
 									
