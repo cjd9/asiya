@@ -206,10 +206,10 @@
 																<input type="hidden" name="appointment_id" class="appointment_id" value="<?php echo $appointment_id; ?>" />
 
 																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="<?php echo $p_fname; ?>" placeholder="First Name" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																	<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="<?php echo $p_fname; ?>" placeholder="Full Name" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
 																</div>
 																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="<?php echo $p_lname; ?>" placeholder="Last Name" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																	<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="<?php echo $p_lname; ?>" placeholder="Patient ID" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
 																</div>
 															</td>
 															<td>
@@ -239,10 +239,10 @@
 															<td align="center"><?php echo $row->time_slot; ?> <input type="hidden" name="time_slot_id" class="time_slot_id" value="<?php echo $row->pk; ?>" /> </td>
 															<td>
 																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="" placeholder="First Name" />
+																	<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="" placeholder="Full Name" />
 																</div>
 																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="" placeholder="Last Name" />
+																	<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="" placeholder="Patient ID" />
 																</div>
 															</td>
 															<td><input type="text" class="form-control validate[required] p_contact_no" name="p_contact_no" value="" placeholder="Contact No." /></td>
@@ -441,7 +441,7 @@
             });
 
 
-			
+
 
 			});
 
@@ -738,6 +738,13 @@
 			echo json_encode($rsfname->result());
 		?>
 
+		var data2 =
+		<?php
+			// get patient lname form table -
+			$rsfname = $this->db->query("SELECT pk,  p_contact_no as label, CONCAT(p_fname, ' ', p_lname)  as fullname, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
+			echo json_encode($rsfname->result());
+		?>
+
 
 		$(document).ready( function () {
 			function get_contact_no(pk)
@@ -825,6 +832,37 @@
 
 							 // append mobile no. to current patient details field -
 							 row.closest('tr').find('.p_contact_no').val(res);
+							 row.closest('tr').find('.p_fname').val(ui.item.fullname);
+
+
+
+					}
+
+				});
+
+				$( ".p_contact_no" ).autocomplete({
+				  /*Source refers to the list of last names that are available in the auto complete list. */
+				  source:data2,
+				  /* auto focus true means, the first item in the auto complete list is selected by default. therefore when the user hits enter,
+				  it will be loaded in the textbox */
+				  autoFocus: true ,
+					select: function (event, ui) {
+						// var last_name = data1[ui.item.sno-1].label;
+						 var row = $(this);
+
+						 var p_fname = row.closest('tr').find('.p_contact_no').val();
+						// row.closest('tr').find('.p_lname').val(last_name);
+
+						 //alert(p_fname);
+						 //alert(p_lname);
+
+
+							 // get patient's contact no. using ajax -
+							 res = get_contact_no(ui.item.pk);
+
+
+							 // append mobile no. to current patient details field -
+							 row.closest('tr').find('.p_lname').val(ui.item.patient_id);
 							 row.closest('tr').find('.p_fname').val(ui.item.fullname);
 
 

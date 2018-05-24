@@ -30,6 +30,41 @@ class Exercise_program extends MY_Controller
 		$this->load->view('exercise_program/list',$data);
 	}
 
+	function displayVideo()
+	{
+		$current_staff_id = $this->session->userdata("userid");
+
+		$data['rsexercise_program'] = $this->db->query("SELECT DISTINCT(exercise_id), patient_id, date_of_upload, expiry_date FROM exercise_program WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+		$this->load->view('exercise_program/add_video',$data);
+	}
+
+	 function addVideoDetails()
+	 {
+		 $data = $_POST;
+
+
+		 //$data['video_file'] = '';
+
+		 if(!empty($_FILES['video_file']['name']))
+		 {
+			 // config array for file -
+			 $config['upload_path']		= './exercise_program_file/';	// folder name to store files -
+			 $config['allowed_types'] 	= '*';							// file type to be supported
+			 $config['max_size']			= '50000';						// maximum file size to upload
+
+			 // function to upload multiple files -
+			 $result = $this->mastermodel->upload_file('video_file', $_FILES, $config);
+			 $video_file = $result[0][0];
+
+			 $data['name'] = $video_file;
+		 }
+
+		 $result = $this->mastermodel->add_data('exercise_video_master', $data);
+
+ 		// function used to redirect -
+ 		$this->mastermodel->redirect(TRUE, 'exercise_program', 'exercise_program', 'Added');
+ 	}
+
 	// Exercise Program Add
 	function add()
 	{
@@ -206,7 +241,7 @@ class Exercise_program extends MY_Controller
     {
 		// get form data -
 		$data = $_POST;
-	print_r($data); 
+	print_r($data);
 		//var_dump($_FILES);
 
 		// convert date format in form data -
@@ -236,9 +271,9 @@ class Exercise_program extends MY_Controller
 		// remove edit id from array -
 		unset($data['edit_pk']);
 		$result = $this->mastermodel->update_data('exercise_program', $where, $data);
-		if(!isset($_POST['video'])){ 
+		if(!isset($_POST['video'])){
 		$insert_video_meta= array();
-				 foreach ($_POST['video'] as $value) { 
+				 foreach ($_POST['video'] as $value) {
 					 if(isset($value['check'])){
 					 		$vid_link = $this->addUrl($value['vid_name'],$value['exercise_end_date']);
 							$insert_video_meta[] = array(

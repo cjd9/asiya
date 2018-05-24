@@ -132,7 +132,7 @@ class Education_program extends MY_Controller
 		// get form data -
 		$data = $_POST;
 
-		//print_r($_FILES); die;
+		print_r($_FILES); die;
 
 		$data['education_program_file'] = '';
 
@@ -293,7 +293,7 @@ class Education_program extends MY_Controller
 			$r = $this->db->query("SELECT * FROM contact_list WHERE patient_id = '$patient_id'")->row();
 			$patient_name = ucwords($r->p_fname.' '.$r->p_lname);
 			$patient_email = $r->p_email_id;
-			
+
 			/************************* send email *********************/
 
 			// check if patient's email id is present -
