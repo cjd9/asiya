@@ -4386,6 +4386,10 @@ label.error {
         width: auto;
     }
 
+    .ui-datepicker .ui-widget-content {
+    background: red none;
+    }
+
     /* wizard */
     .contentpanel-wizard .row .col-md-6 {
         float: none;

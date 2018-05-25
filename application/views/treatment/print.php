@@ -10,16 +10,16 @@
 		{ 
 			position: fixed; 
 			left: 0px; 
-			top: -50px; 
+			top: -70px; 
 			right: 0px;
 			text-align: center; 
 		}
 	   
 	  </style>
 	</head>
-	<body style="border:5px double; height:98%;">
+	<body style="border:5px double; height:120%;">
 		<div id="header">
-			<h2><img src="<?php echo base_url(); ?>images/logo-new.png" height="550%" width="15%"/> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
+			<div style="=top:30px;"><img src="<?php echo base_url(); ?>images/logo-new.png"  /> </div><h2><b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />

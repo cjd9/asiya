@@ -59,6 +59,7 @@
 ----------------------------------*/
 .ui-state-disabled {
 	cursor: default !important;
+	color: #d4c3c3 ;
 }
 
 
@@ -428,6 +429,8 @@ button.ui-button::-moz-focus-inner {
 	width: 100%;
 	font-size: 0;
 }
+
+
 
 /* RTL support */
 .ui-datepicker-rtl {

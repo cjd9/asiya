@@ -74,7 +74,7 @@
 											<button class="btn btn-success btn-bordered" name="search_patient" id="search_patient"> <i class="fa fa-search"></i> <b> Search </b> </button>
 										</div>
 
-								</div><!-- form-group -->
+								</div>
 								</form> -->
 							</div><!-- panel -->
 

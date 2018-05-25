@@ -12,7 +12,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<!-- panel-btns -->
-							<h3 class="panel-title"><i class="glyphicon glyphicon-search"></i> <b>View Activity Program</b></h3>
+							<h3 class="panel-title" ><i class="glyphicon glyphicon-search"></i> <b>View Activity Program</b></h3>
 						</div><!-- panel-heading -->
 						
 						<div class="panel-body">

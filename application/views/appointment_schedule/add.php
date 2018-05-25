@@ -79,10 +79,7 @@
 
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<div class="panel-btns">
-										<a href="#" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
-										<a href="#" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-									</div><!-- panel-btns -->
+								
 									<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Appointment Schedule</b></h3>
 								</div><!-- panel-heading -->
 
@@ -375,7 +372,7 @@
 
 				bootbox.confirm({
                 title: "Update Patient?",
-                message: "'You Want To Confirm Appointment?'?.",
+                message: "Confirm appointnment for "+p_fname+"?",
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Cancel'
@@ -404,7 +401,7 @@
 								// check if appointment is successfully save -
 								if(res != 0)
 								{
-									bootbox.alert("Appointment Saved Successfully!");
+									bootbox.alert("Appointment Confirmed Successfully!");
 
 									// disable confirm button -
 									confirm_btn.addClass('disabled');

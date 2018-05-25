@@ -11,7 +11,7 @@
 								          <span class="glyphicon glyphicon-arrow-left "></span> Back
 								 </a>
 								
-								<h4 class="text-center">View Activity Program </h4>
+								<h4 class="text-center" style="margin-top: -30px;">View Activity Program </h4>
 							</div>
 						</div><!-- media -->
 					</div><!-- pageheader -->

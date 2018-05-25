@@ -234,7 +234,7 @@ class Appointment_schedule extends MY_Controller
 			if($p_contact_no != '')
 			{
 				$patient_contact_no = $p_contact_no;
-				$patient_name = $p_fname.' '.$p_lname;
+				$patient_name = $p_fname;
 
 				//$msg = 'Hello '.$patient_name.', Your Appointement Booked Successfully. Thanks, - Clinic Management System.';
 

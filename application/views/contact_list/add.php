@@ -102,7 +102,7 @@
 													<label class="col-sm-3 control-label">Patient Name<span class="asterisk">*</span></label>
 													<div class="col-sm-3">
 														<input type="text" id="p_fname" name="p_fname" class="form-control validate[required],custom[onlyLetterSp]" placeholder="First Name"/>
-                            <span id="p_fname_err" class="" style="color:#FF0000"></span>
+                            <span id="p_fname_err" class="err" style="color:#FF0000"></span>
 
 													</div>
 													<div class="col-sm-3">
@@ -110,7 +110,7 @@
 													</div>
 													<div class="col-sm-3">
 														<input type="text" id="p_lname" name="p_lname" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Last Name"/>
-                            <span id="p_lname_err" class="" style="color:#FF0000"></span>
+                            <span id="p_lname_err" class="err" style="color:#FF0000"></span>
 
                         	</div>
 												</div>
@@ -174,17 +174,19 @@
 
 											<div class="form-group">
 												<div class="col-sm-6">
-													<label class="col-sm-3 control-label">Email<span class="asterisk">*</span></label>
+													<label class="col-sm-3 control-label">Email<span class="asterisk"></span></label>
 													<div class="col-sm-9">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-															<input type="email" id="p_email_id" name="p_email_id" class="form-control" placeholder="Type Email ID"/>
+															<input type="text"     id="p_email_id" name="p_email_id" class="form-control" placeholder="Type Email ID"/>
+															 <span id="p_email_err" class="err" style="color:#FF0000"></span>
+
 														</div><!-- input-group -->
 													</div>
 												</div>
 
 												<div class="col-sm-6">
-													<label class="col-sm-4 control-label">Phone No.<span class="asterisk">*</span></label>
+													<label class="col-sm-4 control-label">Phone No.<span class="asterisk"></span></label>
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
@@ -206,7 +208,7 @@
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
 															<input type="text" id="p_contact_no" name="p_contact_no" class="form-control" placeholder="Type Mobile No." maxlength = "10"/>
-							                              <span id="p_contact_no_err" class="" style="color:#FF0000"></span>
+							                              <span id="p_contact_no_err" class="err" style="color:#FF0000"></span>
 
 														</div><!-- input-group -->
 													</div>
@@ -218,32 +220,32 @@
 											<h5><u><b>Address Details</b></u></h5>
 
 											<div class="form-group">
-												<div class="col-sm-6">
+												<div class="col-md-6">
 													<label class="col-sm-3 control-label">Address<span class="asterisk">*</span></label>
 													<div class="col-sm-9">
 														<textarea rows="2" name="p_address" id="p_address" class="form-control validate[required]"></textarea>
-                            <span id="p_address_err" class="" style="color:#FF0000"></span>
+						                            <span id="p_address_err" class="err" style="color:#FF0000"></span>
 
-                          </div>
+						                          </div>
 												</div>
 
-												<div class="col-sm-6">
+												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-4 control-label">City<span class="asterisk">*</span></label>
 														<div class="col-sm-6">
 															<input type="text" id="p_city" name="p_city" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Type City"/>
-                              <span id="p_city_err" class="" style="color:#FF0000"></span>
+                              									<span id="p_city_err" class="err" style="color:#FF0000"></span>
 
 														</div>
 													</div><!-- form-group -->
 												</div>
 
-												<div class="col-sm-6">
+												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-sm-4 control-label">State<span class="asterisk">*</span></label>
 														<div class="col-sm-6">
 															<input type="text" id="p_state" name="p_state" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Type State"/>
-                              <span id="p_state_err" class="" style="color:#FF0000"></span>
+                             								 <span id="p_state_err" class="err" style="color:#FF0000"></span>
 
 														</div>
 													</div><!-- form-group -->
@@ -252,15 +254,15 @@
 											</div><!-- form-group -->
 
 											<div class="form-group">
-												<div class="col-sm-6">
+												<div class="col-md-6">
 													<div class="form-group">
 													</div>
 												</div>
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-sm-4 control-label">Zip<span class="asterisk">*</span></label>
+														<label class="col-sm-4 control-label">Zip<span class="asterisk"></span></label>
 														<div class="col-sm-6">
-															<input type="text" id="p_zip" name="p_zip" class="form-control" placeholder="Type Zip Code" maxlength="7"/>
+															<input type="text" id="p_zip" name="p_zip" class="form-control" placeholder="Type Zip Code" maxlength="6"/>
 														</div>
 													</div><!-- form-group -->
 												</div>
@@ -280,7 +282,7 @@
 
 												<div class="col-sm-6">
 													<div class="form-group">
-														<label class="col-sm-4 control-label">Contact No.<span class="asterisk">*</span></label>
+														<label class="col-sm-4 control-label">Contact No.<span class="asterisk"></span></label>
 														<div class="col-sm-6">
 															<div class="input-group">
 																<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
@@ -319,6 +321,18 @@
 
 	<script>
 		//$.noConflict();
+		function validateEmail(inputtxt) {
+		    var emailid = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		    if(inputtxt.match(emailid))  
+		    {  
+		        return true;  
+		    }  
+		    else  
+		    {  
+		        return false;  
+   			 }
+   		}	 
+
 		$(document).ready(function()
 		{
 			//$("#add_patient_form").validationEngine({promptPosition: "topRight: -100"});
@@ -328,13 +342,15 @@
 
 			// select box validations -
 			$('#add_patient_form').on('submit', function()
-			{
+			{	
+				$valid = true;
+				$('.err').text('');
 				$('#msg1').text('');
 
 				if($('#p_gender').val() == '' || $('#p_gender').val() == null)
 				{
 					$('#msg1').text('This field is required');
-					return false;
+					$valid = false;
 				}
 
 				$('#msg2').text('');
@@ -342,44 +358,48 @@
 				if($('#p_religion_id').val() == '' || $('#p_religion_id').val() == null)
 				{
 					$('#msg2').text('This field is required');
-					return false;
+					$valid = false;
 				}
         $('#p_fname_err').text('');
 
         if($('#p_fname').val() == '' || $('#p_fname').val() == null)
 				{
 					$('#p_fname_err').text('This field is required');
-					return false;
+					$valid = false;
 				}
         $('#p_lname_err').text('');
 
         if($('#p_lname').val() == '' || $('#p_lname').val() == null)
 				{
 					$('#p_lname_err').text('This field is required');
-					return false;
+					$valid = false;
 				}
         $('#p_address_err').text('');
 
         if($('#p_address').val() == '' || $('#p_address').val() == null)
         {
           $('#p_address_err').text('This field is required');
-          return false;
+          $valid = false;
         }
 
-
+        if ( validateEmail($('#p_email_id').val()) == false  && $('#p_email_id').val() != '' ) 
+        {
+            $valid = false;
+          $('#p_email_err').text('Enter a valid email ID');
+        }
 
         $('#p_contact_no').text('');
 
         if($('#p_contact_no').val() == '' || $('#p_contact_no').val() == null)
         {
           $('#p_contact_no_err').text('This field is required');
-          return false;
+          $valid = false;
         }
 
         if($('#p_contact_no').val().length != 10 )
         {
           $('#p_contact_no_err').text('Phone number shouold be of 10 digits only');
-          return false;
+          $valid = false;
         }
 
         $('#p_city_err').text('');
@@ -387,7 +407,7 @@
         if($('#p_city').val() == '' || $('#p_city').val() == null)
         {
           $('#p_city_err').text('This field is required');
-          return false;
+          $valid = false;
         }
 
         $('#p_state_err').text('');
@@ -395,11 +415,16 @@
         if($('#p_state').val() == '' || $('#p_state').val() == null)
         {
           $('#p_state_err').text('This field is required');
-          return false;
+          $valid = false;
         }
+
+        if(!$valid){
+        	return false;
+        }
+			
+
 			});
 
-      p_address
 
 
 

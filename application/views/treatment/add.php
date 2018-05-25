@@ -29,10 +29,7 @@
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<div class="panel-btns">
-								<a href="#" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
-								<a href="#" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-							</div><!-- panel-btns -->
+							
 							<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Treatment</b></h3>
 						</div><!-- panel-heading -->
 
@@ -151,7 +148,7 @@
 													<td><input type="number" name = "treatment[0][reps]" class="required-field form-control"  placeholder="No of Reps"/></textarea></td>
 													<td><input type="number" name = "treatment[0][sets]" class="required-field form-control" placeholder="No of Sets"/></textarea></td>
 													<td><input type="number" name = "treatment[0][time]" class="required-field form-control" placeholder="Hold time in mins"/></textarea></td>
-													<td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>
+													<td><button href= "" class="form-control add-btn" id="add-btn-0" style="z-index:0">+</button></td>
 												</tr>
 											</tbody>
 										</table>
@@ -210,7 +207,7 @@
     //
 		// });
 function addRow(){
-    $('.add-btn').on("click", function(e){
+    $('#add-btn-'+count).on("click", function(e){
     		 jQuery.validator.addClassRules("required-field", {
         required: true,
     });
@@ -225,7 +222,7 @@ function addRow(){
           '<td><input type="number" name = "treatment['+count+'][reps]" class="form-control"  placeholder="No of Reps"/></textarea></td>'+
           '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
           '<td><input type="number" name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+
-          '<td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>'+
+          '<td><button href= "" class="form-control add-btn" id="add-btn-'+count+'" style="z-index:0">+</button></td>'+
           '<td><button href= "" class="form-control delete" id="" style="z-index:0">x</button></td>'+
           '</tr>'+
           '</tbody>'+

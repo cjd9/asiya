@@ -34,10 +34,7 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<div class="panel-btns">
-											<a href="#" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
-											<a href="#" class="panel-close tooltips" data-toggle="tooltip" title="Close Panel"><i class="fa fa-times"></i></a>
-										</div><!-- panel-btns -->
+										
 										<a href="<?php echo base_url().'exercise_program'; ?>" type="button" class="btn btn-default btn-sm">
 								          <span class="glyphicon glyphicon-arrow-left "></span> Back
 								        </a>

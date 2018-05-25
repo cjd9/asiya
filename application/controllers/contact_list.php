@@ -278,7 +278,7 @@ class Contact_list extends MY_Controller
 		$data['p_username'] = $data['p_contact_no'];
 		//$data['p_password'] = md5($data['patient_id']);
 
-		$data['p_password'] = md5($data['patient_id']);
+		$data['p_password'] = $data['patient_id'];
 
 		$data['p_status'] = 'A';	// default patient Status Active
 
@@ -363,7 +363,7 @@ class Contact_list extends MY_Controller
 		/************************* send SMS *********************/
 
 		// function used to redirect -
-		$this->mastermodel->redirect($result, 'contact_list', 'contact_list/add', 'Added');
+		$this->mastermodel->redirect(TRUE, 'contact_list', 'contact_list/add', 'Added');
 	}
 
 	// update contact_list record

@@ -47,48 +47,7 @@
 						 </a>
 					   <br /><br />
 							
-                        <div class="panel panel-primary-head">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><b>Treatment</b></h4>
-                            </div><!-- panel-heading -->
-                           <br />
-						    
-							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-							
-							<div class="table-responsive">
-								<table id="basicTable" class="table table-striped table-bordered">
-									<thead class="">
-										<tr>
-											<th><div align="center">#</div></th>
-											<th><div align="center">Patient ID</div></th>
-											<th><div align="center">Patient Name</div></th>
-											<th><div align="center">Patient Gender</div></th>
-											<th><div align="center">Patient Contact No.</div></th>
-											<th><div align="center">Action</div></th>
-										</tr>
-									</thead>
-							 
-									<tbody>
-										<?php $cnt = 0; foreach($rspatient->result() as $row) : ?>
-										<tr>
-											<td align="center"><?php echo ++$cnt; ?></td>
-											<td><?php echo $row->patient_id; ?></td>
-											<td><?php $row1 = $this->db->get_where('contact_list', array('patient_id' => $row->patient_id))->row(); echo $row1->p_fname.' '.$row1->p_lname; ?></td>
-											<td><?php echo $row1->p_gender; ?></td>
-											<td><?php echo $row1->p_contact_no; ?></td>
-											<td align="center">
-												<form name="get_treatments_form" id="" action="<?php print base_url(); ?>index.php/treatment" method="post">
-													<input type="hidden" name="patient_id" id="" value="<?php echo $row->patient_id; ?>" />
-													<button class="btn btn-success btn-sm mr5"><i class="fa fa-search"></i> View Treatments </button>
-												</form>
-											</td>
-										</tr>
-										<?php endforeach ; ?>
-									</tbody>
-								</table>
-							</div>
-							
-							<?php if(isset($patient_id)) { ?>
+								<?php if(isset($patient_id)) { ?>
 							
 							<hr />
 							
@@ -145,6 +104,48 @@
 							</div>
 							<?php } ?>
 						
+                        <div class="panel panel-primary-head">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><b>Treatment</b></h4>
+                            </div><!-- panel-heading -->
+                           <br />
+						    
+							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
+							
+							<div class="table-responsive">
+								<table id="basicTable" class="table table-striped table-bordered">
+									<thead class="">
+										<tr>
+											<th><div align="center">#</div></th>
+											<th><div align="center">Patient ID</div></th>
+											<th><div align="center">Patient Name</div></th>
+											<th><div align="center">Patient Gender</div></th>
+											<th><div align="center">Patient Contact No.</div></th>
+											<th><div align="center">Action</div></th>
+										</tr>
+									</thead>
+							 
+									<tbody>
+										<?php $cnt = 0; foreach($rspatient->result() as $row) : ?>
+										<tr>
+											<td align="center"><?php echo ++$cnt; ?></td>
+											<td><?php echo $row->patient_id; ?></td>
+											<td><?php $row1 = $this->db->get_where('contact_list', array('patient_id' => $row->patient_id))->row(); echo $row1->p_fname.' '.$row1->p_lname; ?></td>
+											<td><?php echo $row1->p_gender; ?></td>
+											<td><?php echo $row1->p_contact_no; ?></td>
+											<td align="center">
+												<form name="get_treatments_form" id="" action="<?php print base_url(); ?>index.php/treatment" method="post">
+													<input type="hidden" name="patient_id" id="" value="<?php echo $row->patient_id; ?>" />
+													<button class="btn btn-success btn-sm mr5"><i class="fa fa-search"></i> View Treatments </button>
+												</form>
+											</td>
+										</tr>
+										<?php endforeach ; ?>
+									</tbody>
+								</table>
+							</div>
+							
+					
 							<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
             					<div class="modal-dialog modal-lg">
 									<div class="modal-content">
@@ -173,9 +174,9 @@
 	 	$(document).ready(function()
 		{	
 
-				    $('html, body').animate({
-				        scrollTop: $(document).height()
-				    }, 1100);
+				    // $('html, body').animate({
+				    //     scrollTop: $(document).height()
+				    // }, 1100);
 				   
 				
 			// print biiling receipt for selected treatment sessions -
