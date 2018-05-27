@@ -89,13 +89,13 @@
 
 .fc-state-down, .fc-state-active,
 .fc-state-disabled {
-    background-color: #428bca;
+    background-color: #8cac35;
     border-color: #357ebd;
     color: #fff;
 }
 
 .external-event {
-    background-color: #428bca;
+    background-color: #8cac35;
     border-color: #357ebd;
     color: #fff;
     margin-bottom: 5px;

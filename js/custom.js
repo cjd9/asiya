@@ -174,7 +174,7 @@ jQuery(document).ready(function() {
 
                   // get patient's contact no. using ajax -
                   $.ajax({
-                        url: "<?php print base_url(); ?>index.php/contact_list/share_patient",
+                        url: "/contact_list/share_patient",
                         type: "post",
                         async:false,
                         cache:false,
@@ -188,7 +188,7 @@ jQuery(document).ready(function() {
                               alert("Patient Shared Successfully.");
 
                               // submit hidden form to load same page with staff patient list -
-                              window.location = "<?php echo base_url().'index.php/contact_list'; ?>";
+                              window.location = "/contact_list";
                            }
                         }
                   });

@@ -45,7 +45,11 @@
                       	 <a href="<?php print base_url(); ?>index.php/treatment/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Treatment</button>
 						 </a>
+
 					   <br /><br />
+					    <div class="panel-heading" style="background-color: #8cac35; color: white;">
+                                <h4 class="panel-title"><b>Treatment</b></h4>
+                            </div><!-- panel-heading -->
 							
 								<?php if(isset($patient_id)) { ?>
 							
@@ -105,9 +109,7 @@
 							<?php } ?>
 						
                         <div class="panel panel-primary-head">
-                            <div class="panel-heading">
-                                <h4 class="panel-title"><b>Treatment</b></h4>
-                            </div><!-- panel-heading -->
+                           
                            <br />
 						    
 							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>

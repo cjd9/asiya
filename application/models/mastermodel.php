@@ -32,7 +32,7 @@ class Mastermodel extends MY_Model
 		$mail->Username = 'contact@asiya.co.in';
 		$mail->Password = 'asiya@1234';
 		$mail->SMTPSecure = 'tls';
-    
+    $mail->Port = 25;
 		$mail->From = 'contact@asiya.co.in';
 
 		// $mail->Host = 'smtp.gmail.com';
@@ -79,7 +79,7 @@ class Mastermodel extends MY_Model
 		{
 			//$mail->ClearAllRecipients();
     		//$mail->ClearAttachments();   //Remove all attachements
-
+			print_r($mail);
 			return true;
 		}
 	}

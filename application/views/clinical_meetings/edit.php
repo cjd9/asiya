@@ -47,7 +47,13 @@
 													<input type="text" name="clinical_meetings_desc" id="clinical_meetings_desc" class="form-control validate[required]" value="<?php echo $r->clinical_meetings_desc; ?>" />
 												</div>
 											</div><!-- form-group -->
+											<div class="form-group">
 											
+												<label class="col-md-3 control-label"> Date<span class="asterisk">*</span></label>
+												<div class="col-sm-6">
+												<input type="text" class="form-control validate[required] datepicker" name="meeting_date" id="meeting_date" value="<?php echo date('d-m-Y')?>">
+												</div>
+											</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label"> Meetings File</label>
 												<div class="col-sm-5">
@@ -87,7 +93,29 @@
 		
 	<script>
 		$(document).ready(function()
-		{
+		{		
+				$('#meeting_date').datepicker(
+					{
+						changeMonth: true,
+						changeYear: true,
+						yearRange: '1945:2050',
+						dateFormat: 'dd-mm-yy',
+						minDate: 0
+						//minDate: 0	// disable all previous dates
+					});
+
+
+			$(function () {
+					    $('input[type=file]').change(function () {
+					        var val = $(this).val().toLowerCase(),
+					            regex = new RegExp("(.*?)\.(docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|bmp|jpeg)$");
+
+					        if (!(regex.test(val))) {
+					            $(this).val('');
+					            alert('Please select any one of docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|jpeg file format');
+					        }
+					    });
+					});
 			$("#edit_clinical_meetings_form").validationEngine({promptPosition: "topRight: -100"});
 		}); 
 	</script>

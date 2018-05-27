@@ -232,8 +232,8 @@ h4, .h4 {
 }
 
 .btn-primary-alt {
-   border: 2px solid #428BCA;
-   color: #428BCA;
+   border: 2px solid #8cac35;
+   color: #8cac35;
    text-transform: uppercase;
    font-size: 12px;
 }
@@ -700,7 +700,7 @@ h4, .h4 {
 }
 
 .badge-primary {
-   background-color: #428BCA;
+   background-color: #8cac35;
 }
 
 .badge-warning {

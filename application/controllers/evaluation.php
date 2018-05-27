@@ -55,7 +55,7 @@ class Evaluation extends MY_Controller
 		// get data from table -
 		$data['rsevaluation'] = $this->mastermodel->get_data('*', 'patient_evaluation', $where, NULL, NULL, 0, NULL);
 
-		$this->load->view('evaluation/edit_new',$data);
+		$this->load->view('evaluation/edit',$data);
 	}
 
 	// Call View Evaluation

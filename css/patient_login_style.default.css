@@ -82,7 +82,7 @@ a:focus {
 /**************************************/
 
 .headerwrapper {
-    background-color: #428BCA;
+    background-color: #8cac35;
     min-height: 60px;
     position: fixed;
     width: 100%;
@@ -510,13 +510,13 @@ a:focus {
 .leftpanel .nav > li.active > a,
 .leftpanel .nav > li.active > a:hover {
     color: #fff;
-    background-color: #428bca;
+    background-color: #8cac35;
 }
 
 .leftpanel .nav > li > a i {
     width: 16px;
     margin-right: 5px;
-    color: #428bca;
+    color: #8cac35;
     font-size: 15px;
     top: 1px;
     position: relative;
@@ -697,7 +697,7 @@ a:focus {
 .pageheader .breadcrumb li a:hover,
 .pageheader .breadcrumb li a:active,
 .pagehaeder .breadcrumb li a:focus {
-    color: #428bca;
+    color: #8cac35;
 }
 
 .pageheader .breadcrumb li a i {
@@ -1091,7 +1091,7 @@ a:focus {
 .btn-primary.btn-bordered:hover,
 .btn-primary.btn-bordered:active,
 .btn-primary.btn-bordered:focus {
-    color: #428bca;
+    color: #8cac35;
 }
 
 .btn-success.btn-bordered,
@@ -1159,15 +1159,15 @@ a:focus {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border-color: #428bca;
+    border-color: #8cac35;
 }
 
 .dropdown-menu-primary > li > a {
-    color: #428bca;
+    color: #8cac35;
 }
 
 .dropdown-menu-primary > li > a:hover {
-    background-color: #428bca;
+    background-color: #8cac35;
     color: #fff;
 }
 
@@ -1255,8 +1255,8 @@ a:focus {
 
 .pagination-primary > li > a,
 .pagination-primary > li > a:hover {
-    border-color: #428bca;
-    color: #428bca;
+    border-color: #8cac35;
+    color: #8cac35;
 }
 
 .pagination-primary > .disabled > span,
@@ -1265,8 +1265,8 @@ a:focus {
 .pagination-primary > .disabled > a,
 .pagination-primary > .disabled > a:hover,
 .pagination-primary > .disabled > a:focus {
-    border-color: #428bca;
-    color: #428bca;
+    border-color: #8cac35;
+    color: #8cac35;
     opacity: 0.5;
 }
 
@@ -1592,7 +1592,7 @@ a:focus {
 }
 
 .panel-primary-head .panel-heading {
-    background-color: #428bca;
+    background-color: #8cac35;
 }
 
 .panel-success-head .panel-heading {
@@ -1735,7 +1735,7 @@ a:focus {
 
 .nav-primary {
     border-color: #357ebd;
-    background-color: #428bca;
+    background-color: #8cac35;
 }
 
 .nav-primary > li.active > a,
@@ -1889,9 +1889,9 @@ a:focus {
 .nav-line > li.active > a:hover,
 .nav-line > li.active > a:active,
 .nav-line > li.active > a:focus {
-    -moz-box-shadow: 0 3px 0 #428bca;
-    -webkit-box-shadow: 0 3px 0 #428bca;
-    box-shadow: 0 3px 0 #428bca;
+    -moz-box-shadow: 0 3px 0 #8cac35;
+    -webkit-box-shadow: 0 3px 0 #8cac35;
+    box-shadow: 0 3px 0 #8cac35;
     margin: 0;
 }
 
@@ -1962,7 +1962,7 @@ a:focus {
 
 .ckbox-primary input[type="checkbox"]:checked + label:before {
     border-color: #357EBD;
-    background-color: #428BCA;
+    background-color: #8cac35;
 }
 
 .ckbox-warning input[type="checkbox"]:checked + label:before {
@@ -2023,11 +2023,11 @@ a:focus {
 }
 
 .rdio-primary input[type="radio"]:checked + label:before {
-    border-color: #428BCA;
+    border-color: #8cac35;
 }
 
 .rdio-primary input[type="radio"]:checked + label::after {
-    background-color: #428BCA;
+    background-color: #8cac35;
 }
 
 .rdio-warning input[type="radio"]:checked + label:before {
@@ -2175,12 +2175,12 @@ a:focus {
 }
 
 .nav-wizard > li.done a {
-    background-color: #428bca;
+    background-color: #8cac35;
     color: #fff;
 }
 
 .nav-wizard > li.done a:after {
-    border-left-color: #428bca;
+    border-left-color: #8cac35;
 }
 
 .panel-wizard {
@@ -2237,13 +2237,13 @@ a:focus {
 .nav-disabled-click > li.done > a:hover,
 .nav-disabled-click > li.done > a:active,
 .nav-disabled-click > li.done > a:focus {
-    background-color: #428bca;
+    background-color: #8cac35;
 }
 
 .nav-disabled-click > li.done > a:hover:after,
 .nav-disabled-click > li.done > a:active:after,
 .nav-disabled-click > li.done > a:focus:after {
-    border-left-color: #428bca;
+    border-left-color: #8cac35;
 }
 
 .nav-wizard-success > li.done > a {
@@ -2294,7 +2294,7 @@ a:focus {
 }
 
 .table-primary thead tr th {
-    background-color: #428BCA;
+    background-color: #8cac35;
 }
 
 .table-success thead tr th {
@@ -2665,7 +2665,7 @@ table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
 .media-manager-sidebar .tag-list li a:hover {
     color: #fff;
     text-decoration: none;
-    background: #428BCA;
+    background: #8cac35;
 }
 
 
@@ -2987,7 +2987,7 @@ table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
 /***** 9.7 SIGN IN/UP PAGE *****/
 
 body.signin {
-    /*background-color: #428bca;*/
+    /*background-color: #8cac35;*/
     background-image:url(../images/login/10.jpg);
     background-repeat:no-repeat;	
 	background-size: 1440px 1000px;
@@ -3108,7 +3108,7 @@ body.signin {
 }
 
 .panel-blue .panel-icon .fa {
-    color: #428bca;
+    color: #8cac35;
 }
 
 .row-stat .md-title {
@@ -3243,7 +3243,7 @@ body.signin {
 }
 
 .mainwrapper.collapsed .nav > li.active > a > span:not(.badge) {
-    background-color: #428bca;
+    background-color: #8cac35;
     border: 0;
     height: 44px;
     top: 0;

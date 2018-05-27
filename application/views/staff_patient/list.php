@@ -194,7 +194,7 @@
 					
 						// get patient's contact no. using ajax -
 						$.ajax({
-								url: "<?php print base_url(); ?>index.php/staff_patient/share_patient",
+								url: "<?php echo base_url(); ?> staff_patient/share_patient",
 								type: "post",
 								async:false,
 								cache:false,

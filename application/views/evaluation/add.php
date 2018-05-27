@@ -715,30 +715,30 @@
 		  }
 		});
 
-      $('#rootwizard').bootstrapWizard({
-          'tabClass': 'nav nav-pills',
-          'onNext': function(tab, navigation, index) {
-            var $valid = $("#valWizard").valid();
-            console.log($valid);
-            if (!$valid) {
-              $validator.focusInvalid();
-              return false;
-            }
-          },
-          'onTabClick': function(activeTab, navigation, currentIndex, nextIndex) { 
-            if (nextIndex <= currentIndex) {
-              return;
-            }
-            var $valid = $("#valWizard").valid();
-            if (!$valid) {
-              $validator.focusInvalid();
-              return false;
-            }
-            if (nextIndex > currentIndex+1){
-             return false;
-            }
-          }
-    });
+    //   $('#rootwizard').bootstrapWizard({
+    //       'tabClass': 'nav nav-pills',
+    //       'onNext': function(tab, navigation, index) {
+    //         var $valid = $("#valWizard").valid();
+    //         console.log($valid);
+    //         if (!$valid) {
+    //           $validator.focusInvalid();
+    //           return false;
+    //         }
+    //       },
+    //       'onTabClick': function(activeTab, navigation, currentIndex, nextIndex) { 
+    //         if (nextIndex <= currentIndex) {
+    //           return;
+    //         }
+    //         var $valid = $("#valWizard").valid();
+    //         if (!$valid) {
+    //           $validator.focusInvalid();
+    //           return false;
+    //         }
+    //         if (nextIndex > currentIndex+1){
+    //          return false;
+    //         }
+    //       }
+    // });
 
 });
 	</script>

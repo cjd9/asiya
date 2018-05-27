@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
         {
 	    data: chrome,
 	    label: "Chrome",
-	    color: "#428BCA"
+	    color: "#8cac35"
         }
 	],
 	{
@@ -110,7 +110,7 @@ jQuery(document).ready(function() {
         },
         { data: chrome,
           label: "Chrome",
-          color: "#428BCA",
+          color: "#8cac35",
           lines: {
             fill: true
           },
@@ -367,7 +367,7 @@ jQuery(document).ready(function() {
 					barWidth: 0.5,
 					align: "center",
                lineWidth: 0,
-               fillColor: "#428BCA"
+               fillColor: "#8cac35"
 				}
 		  },
         grid: {
@@ -388,7 +388,7 @@ jQuery(document).ready(function() {
         { label: "Series 1", data: [[1,10]], color: '#D9534F'},
         { label: "Series 2", data: [[1,30]], color: '#1CAF9A'},
         { label: "Series 3", data: [[1,90]], color: '#F0AD4E'},
-        { label: "Series 4", data: [[1,70]], color: '#428BCA'},
+        { label: "Series 4", data: [[1,70]], color: '#8cac35'},
         { label: "Series 5", data: [[1,80]], color: '#5BC0DE'}
 	 ];
     
@@ -435,7 +435,7 @@ jQuery(document).ready(function() {
         xkey: 'y',
         ykeys: ['a', 'b'],
         labels: ['Series A', 'Series B'],
-        lineColors: ['#D9534F', '#428BCA'],
+        lineColors: ['#D9534F', '#8cac35'],
         lineWidth: '2px',
         hideHover: 'auto',
 	resize: true
@@ -505,7 +505,7 @@ jQuery(document).ready(function() {
         xkey: 'y',
         ykeys: ['a', 'b'],
         labels: ['Series A', 'Series B'],
-        barColors: ['#1CAF9A', '#428BCA'],
+        barColors: ['#1CAF9A', '#8cac35'],
         lineWidth: '1px',
         fillOpacity: 0.8,
         smooth: false,
@@ -531,7 +531,7 @@ jQuery(document).ready(function() {
           {label: "Safari", value: 20},
           {label: "Internet Explorer", value: 10}
         ],
-        colors: ['#D9534F','#1CAF9A','#428BCA','#5BC0DE','#428BCA']
+        colors: ['#D9534F','#1CAF9A','#8cac35','#5BC0DE','#8cac35']
     });
 
     
@@ -540,7 +540,7 @@ jQuery(document).ready(function() {
     jQuery('#sparkline').sparkline([4,3,3,1,4,3,2,2,3], {
 		  type: 'bar', 
 		  height:'30px',
-        barColor: '#428BCA'
+        barColor: '#8cac35'
     });
     
     jQuery('#sparkline2').sparkline([4,3,3,1,4,3,2,2,3], {
@@ -554,7 +554,7 @@ jQuery(document).ready(function() {
     jQuery('#sparkline3').sparkline([4,3,3,1,4,3,2,2,3], {
 		  type: 'pie', 
 		  height:'33px',
-        sliceColors: ['#F0AD4E','#428BCA','#D9534F','#1CAF9A','#5BC0DE']
+        sliceColors: ['#F0AD4E','#8cac35','#D9534F','#1CAF9A','#5BC0DE']
     });
     
     jQuery('#sparkline4').sparkline([4,3,3,5,4,3,2,5,3], {

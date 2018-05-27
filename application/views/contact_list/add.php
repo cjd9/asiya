@@ -101,7 +101,7 @@
 												<div class="col-sm-6">
 													<label class="col-sm-3 control-label">Patient Name<span class="asterisk">*</span></label>
 													<div class="col-sm-3">
-														<input type="text" id="p_fname" name="p_fname" class="form-control validate[required],custom[onlyLetterSp]" placeholder="First Name"/>
+														<input type="text" pattern="[A-Za-z]+" oninvalid="setCustomValidity('Invalid characters in this field, Enter only alphabets')" oninput="setCustomValidity('')" id="p_fname" name="p_fname" class="form-control validate[required],custom[onlyLetterSp]" placeholder="First Name"/>
                             <span id="p_fname_err" class="err" style="color:#FF0000"></span>
 
 													</div>
@@ -109,7 +109,7 @@
 														<input type="text" id="p_mname" name="p_mname" class="form-control" placeholder="Middle Name"/>
 													</div>
 													<div class="col-sm-3">
-														<input type="text" id="p_lname" name="p_lname" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Last Name"/>
+														<input type="text" pattern="[A-Za-z]+" oninvalid="setCustomValidity('Invalid characters in this field, Enter only alphabets')" oninput="setCustomValidity('')" id="p_lname" name="p_lname" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Last Name"/>
                             <span id="p_lname_err" class="err" style="color:#FF0000"></span>
 
                         	</div>
@@ -208,9 +208,10 @@
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
 															<input type="text" id="p_contact_no" name="p_contact_no" class="form-control" placeholder="Type Mobile No." maxlength = "10"/>
-							                              <span id="p_contact_no_err" class="err" style="color:#FF0000"></span>
 
 														</div><!-- input-group -->
+						        	                      <span id="p_contact_no_err" class="err" style="color:#FF0000"></span>
+
 													</div>
 												</div>
 											</div><!-- form-group -->
@@ -233,7 +234,7 @@
 													<div class="form-group">
 														<label class="col-sm-4 control-label">City<span class="asterisk">*</span></label>
 														<div class="col-sm-6">
-															<input type="text" id="p_city" name="p_city" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Type City"/>
+															<input type="text" pattern="[A-Za-z]+" oninvalid="setCustomValidity('Invalid characters in this field, Enter only alphabets')" oninput="setCustomValidity('')" id="p_city" name="p_city" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Type City"/>
                               									<span id="p_city_err" class="err" style="color:#FF0000"></span>
 
 														</div>
@@ -244,7 +245,7 @@
 													<div class="form-group">
 														<label class="col-sm-4 control-label">State<span class="asterisk">*</span></label>
 														<div class="col-sm-6">
-															<input type="text" id="p_state" name="p_state" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Type State"/>
+															<input type="text" pattern="[A-Za-z]+" oninvalid="setCustomValidity('Invalid characters in this field, Enter only alphabets')" oninput="setCustomValidity('')" id="p_state" name="p_state" class="form-control validate[required],custom[onlyLetterSp]" placeholder="Type State"/>
                              								 <span id="p_state_err" class="err" style="color:#FF0000"></span>
 
 														</div>
@@ -274,7 +275,7 @@
 
 											<div class="form-group">
 												<div class="col-sm-6">
-													<label class="col-sm-3 control-label">Name<span class="asterisk">*</span></label>
+													<label class="col-sm-3 control-label">Name<span class="asterisk"></span></label>
 													<div class="col-sm-9">
 														<input type="text" id="p_emergency_name" name="p_emergency_name" class="form-control" placeholder="Type Emergency Contact Person Name"/>
 													</div>

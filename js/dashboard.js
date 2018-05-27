@@ -106,7 +106,7 @@ jQuery(document).ready(function(){
 	[{
 	    data: visitors,
 	    label: "Visits",
-	    color: "#428bca"
+	    color: "#8cac35"
 	},
         {
 	    data: unique,
@@ -197,7 +197,7 @@ jQuery(document).ready(function(){
         {
 	    data: uniqueimpressions,
 	    label: "Unique Impressions",
-	    color: "#428bca"
+	    color: "#8cac35"
         }
 	],
 	{
@@ -272,7 +272,7 @@ jQuery(document).ready(function(){
     jQuery('#sparkline').sparkline([4,3,3,1,4,3,2,2,3,10,9,6], {
 	type: 'bar', 
         height:'30px',
-        barColor: '#428BCA'
+        barColor: '#8cac35'
     });
     
     jQuery('#sparkline2').sparkline([9,8,8,6,9,10,6,5,6,3,4,2], {
@@ -284,7 +284,7 @@ jQuery(document).ready(function(){
     jQuery('#sparkline3').sparkline([4,3,3,1,4,3,2,2,3,10,9,6], {
 	type: 'bar', 
         height:'30px',
-        barColor: '#428BCA'
+        barColor: '#8cac35'
     });
     
     jQuery('#sparkline4').sparkline([9,8,8,6,9,10,6,5,6,3,4,2], {
@@ -296,7 +296,7 @@ jQuery(document).ready(function(){
     jQuery('#sparkline5').sparkline([4,3,3,1,4,3,2,2,3,10,9,6], {
 	type: 'bar', 
         height:'30px',
-        barColor: '#428BCA'
+        barColor: '#8cac35'
     });
     
     jQuery('#sparkline6').sparkline([9,8,8,6,9,10,6,5,6,3,4,2], {

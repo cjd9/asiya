@@ -660,7 +660,19 @@
 	<script type="text/javascript">
 
 		$(document).ready(function()
-		{
+		{	
+			$(function () {
+					    $('input[type=file]').change(function () {
+					        var val = $(this).val().toLowerCase(),
+					            regex = new RegExp("(.*?)\.(docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|bmp|jpeg)$");
+
+					        if (!(regex.test(val))) {
+					            $(this).val('');
+					            alert('Please select any one of docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|jpeg file format');
+					        }
+					    });
+			});
+
 			$("#checkboxDefault").click(function()
 			{
 				if($("#checkboxDefault").is(":checked") || $("#checkboxDefault").is(":checked"))
