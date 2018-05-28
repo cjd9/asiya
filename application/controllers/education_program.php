@@ -17,7 +17,7 @@ class Education_program extends MY_Controller
 	// Education Program List
 	function index()
 	{
-		$data['deleteaction'] =base_url().'index.php/education_program/delete';
+		$data['deleteaction'] =base_url().'education_program/delete';
 
 		// WHERE condition -
 		$where = array('education_program.is_deleted' => 0);
@@ -31,7 +31,7 @@ class Education_program extends MY_Controller
 	// Education Program Add
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/education_program/save";
+		$data['saveaction'] = base_url()."education_program/save";
 
 		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
@@ -41,7 +41,7 @@ class Education_program extends MY_Controller
 	// Education Program Edit
 	function edit($pk)
 	{
-		$data['editaction'] = base_url()."index.php/education_program/update";
+		$data['editaction'] = base_url()."education_program/update";
 
 		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
@@ -75,7 +75,7 @@ class Education_program extends MY_Controller
 		// get data from table -
 		$data['rseducation_program'] = $this->mastermodel->get_data('*', 'education_program', $where, NULL, NULL, 0, NULL);
 
-		$data['saveaction'] = base_url()."index.php/education_program/send_sms_patient";
+		$data['saveaction'] = base_url()."education_program/send_sms_patient";
 
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
@@ -97,7 +97,7 @@ class Education_program extends MY_Controller
 		// get data from table -
 		$data['rseducation_program'] = $this->mastermodel->get_data('*', 'education_program', $where, NULL, NULL, 0, NULL);
 
-		$data['saveaction'] = base_url()."index.php/education_program/send_email";
+		$data['saveaction'] = base_url()."education_program/send_email";
 
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
@@ -113,7 +113,7 @@ class Education_program extends MY_Controller
 	// Samvaad Program Comment
 	function comment_box($pk)
 	{
-		$data['commentaction'] =base_url().'index.php/education_program/comment';
+		$data['commentaction'] =base_url().'education_program/comment';
 
 		$data['id'] = $pk;
 
@@ -132,7 +132,6 @@ class Education_program extends MY_Controller
 		// get form data -
 		$data = $_POST;
 
-		print_r($_FILES); die;
 
 		$data['education_program_file'] = '';
 
@@ -150,7 +149,7 @@ class Education_program extends MY_Controller
 
 			$data['education_program_file'] = $education_program_file;
 		}
-
+		$data['meeting_date'] = $this->mastermodel->date_convert($data['samvaad_date'],'ymd');
 		$result = $this->mastermodel->add_data('education_program', $data);
 
 		// function used to redirect -

@@ -175,7 +175,7 @@
 			var id = row.attr('data-value');
 			
 			$.ajax({
-					url: "<?php print base_url(); ?>index.php/activity_program/delete_activity_program_file",
+					url: "<?php print base_url(); ?>activity_program/delete_activity_program_file",
 					type: "post",
 					async:false,
 					cache:false,

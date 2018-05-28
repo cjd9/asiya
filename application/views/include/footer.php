@@ -70,7 +70,7 @@
 				if(result)
 				{
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/login/update_work_shift",
+							url: "<?php print base_url(); ?>login/update_work_shift",
 							type: "post",
 							async:false,
 							cache:false,
@@ -164,7 +164,7 @@
 
 			// ajax work -
 			$.ajax({
-					url: "<?php print base_url(); ?>index.php/login/check_current_password",
+					url: "<?php print base_url(); ?>login/check_current_password",
 					type: "post",
 					async:false,
 					cache:false,

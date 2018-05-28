@@ -29,7 +29,7 @@
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							
+
 							<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Treatment</b></h3>
 						</div><!-- panel-heading -->
 
@@ -119,7 +119,7 @@
 									</div>
 
 									<div class="col-sm-6">
-										<label class="col-sm-4 control-label">Fees</label>
+										<label class="col-sm-4 control-label">Fees<span class="asterisk">*</span></label>
 										<div class="col-sm-3">
 											<input type="text" class="form-control validate[required]" name="treatment_fees" id="treatment_fees" />
 										</div>
@@ -145,9 +145,9 @@
 											<tbody>
 												<tr>
 													<td><input class="form-control required-field" name="treatment[0][therapy]" placeholder="Therapy Name" id="maual_therapy"></input></td>
-													<td><input type="number" name = "treatment[0][reps]" class="required-field form-control"  placeholder="No of Reps"/></textarea></td>
-													<td><input type="number" name = "treatment[0][sets]" class="required-field form-control" placeholder="No of Sets"/></textarea></td>
-													<td><input type="number" name = "treatment[0][time]" class="required-field form-control" placeholder="Hold time in mins"/></textarea></td>
+													<td><input type="number" name = "treatment[0][reps]" class="required-field form-control positiveNumber"  placeholder="No of Reps"/></textarea></td>
+													<td><input type="number" name = "treatment[0][sets]" class="required-field form-control positiveNumber" placeholder="No of Sets"/></textarea></td>
+													<td><input type="number" name = "treatment[0][time]" class="required-field form-control positiveNumber" placeholder="Hold time in mins"/></textarea></td>
 													<td><button href= "" class="form-control add-btn" id="add-btn-0" style="z-index:0">+</button></td>
 												</tr>
 											</tbody>
@@ -163,7 +163,7 @@
 						  <div class="row">
 							<div class="col-sm-7 col-sm-offset-4">
 								<button class="btn btn-primary mr5">Submit</button>
-								<a href="<?php print base_url(); ?>index.php/treatment" class="btn btn-dark">Cancel</a>
+								<a href="<?php print base_url(); ?>treatment" class="btn btn-dark">Cancel</a>
 							</div>
 						  </div>
 						</div><!-- panel-footer -->
@@ -189,6 +189,10 @@
 		 jQuery.validator.addClassRules("required-field", {
         required: true,
     });
+		jQuery.validator.addMethod('positiveNumber',
+		function (value) {
+				return Number(value) > 0;
+			}, 'Enter a positive number.');
     var count = 0;
      addRow();
 
@@ -211,6 +215,10 @@ function addRow(){
     		 jQuery.validator.addClassRules("required-field", {
         required: true,
     });
+		jQuery.validator.addMethod('positiveNumber',
+    function (value) {
+        return Number(value) > 0;
+			}, 'Enter a positive number.');
       count= count+1;
        e.preventDefault();
              $('.add-row').append(
@@ -218,10 +226,10 @@ function addRow(){
           '     <table class="table table-dark mb30 responsive">'+
           '<tbody>'+
           '<tr>'+
-          '<td><input class="required-field form-control" name="treatment['+count+'][therapy]" placeholder="Therapy Name" id="maual_therapy"></input></td>'+
-          '<td><input type="number" name = "treatment['+count+'][reps]" class="form-control"  placeholder="No of Reps"/></textarea></td>'+
-          '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
-          '<td><input type="number" name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+
+          '<td><input type="text" class="form-control required-field" name="treatment['+count+'][therapy]" placeholder="Therapy Name" id="maual_therapy"></input></td>'+
+          '<td><input type="number" name = "treatment['+count+'][reps]" class="form-control required-field positiveNumber"  placeholder="No of Reps"/></textarea></td>'+
+          '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control required-field positiveNumber" placeholder="No of Sets"/></textarea></td>'+
+          '<td><input type="number" name = "treatment['+count+'][time]" class="form-control required-field positiveNumber" placeholder="Hold time in mins"/></textarea></td>'+
           '<td><button href= "" class="form-control add-btn" id="add-btn-'+count+'" style="z-index:0">+</button></td>'+
           '<td><button href= "" class="form-control delete" id="" style="z-index:0">x</button></td>'+
           '</tr>'+
@@ -244,6 +252,10 @@ function addRow(){
 	$("#add_treatment_form").validate({
 		  rules: {
 		    treatment_fees: {
+		      required: true
+
+		    },
+				short_term_goal:{
 		      required: true
 
 		    }

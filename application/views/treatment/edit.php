@@ -172,7 +172,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 						  <div class="row">
 							<div class="col-sm-7 col-sm-offset-4">
 								<button class="btn btn-primary mr5">Submit</button>
-								<a href="<?php print base_url(); ?>index.php/treatment" class="btn btn-dark">Cancel</a>
+								<a href="<?php print base_url(); ?>treatment" class="btn btn-dark">Cancel</a>
 							</div>
 						  </div>
 						</div><!-- panel-footer -->

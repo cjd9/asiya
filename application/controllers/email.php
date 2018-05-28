@@ -17,7 +17,7 @@ class Email extends MY_Controller
 	// email send List
 	function index()
 	{
-		$data['deleteaction'] = base_url().'index.php/email/delete';
+		$data['deleteaction'] = base_url().'email/delete';
 
 		// WHERE condition -
 		$where = array('is_deleted' => 0);
@@ -31,7 +31,7 @@ class Email extends MY_Controller
 	// email send form
 	function add()
 	{
-		//$data['saveaction'] = base_url()."index.php/email/save";
+		//$data['saveaction'] = base_url()."email/save";
 
 		// get current login user -
 		$current_staff_id = $this->session->userdata("userid");
@@ -52,7 +52,7 @@ class Email extends MY_Controller
 	// Exercise Program Edit
 	function forward($pk)
 	{
-		//$data['editaction'] = base_url()."index.php/exercise_program/update";
+		//$data['editaction'] = base_url()."exercise_program/update";
 
 		// WHERE condition -
 		$where = array('pk' => $pk);

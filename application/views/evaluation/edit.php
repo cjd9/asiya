@@ -849,7 +849,7 @@
 			//alert(id);
 			
 			$.ajax({
-					url: "<?php print base_url(); ?>index.php/evaluation/delete_xray_report_file",
+					url: "<?php print base_url(); ?>evaluation/delete_xray_report_file",
 					type: "post",
 					async:false,
 					cache:false,

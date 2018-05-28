@@ -111,7 +111,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>index.php/p_appointment_schedule" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>p_appointment_schedule" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->  
@@ -150,7 +150,7 @@
 				
 				// get all time slots for selected gender and shift -
 				$.ajax({
-						url: "<?php print base_url(); ?>index.php/p_appointment_schedule/get_time_slot",
+						url: "<?php print base_url(); ?>p_appointment_schedule/get_time_slot",
 						type: "post",
 						async:false,
 						cache:false,

@@ -42,7 +42,7 @@
 					<!-- /.modal -->
                     
                    <div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/exercise_program/add">
+                      	 <a href="<?php print base_url(); ?>exercise_program/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Exercise</button>
 						 </a>
 					   <br /><br />

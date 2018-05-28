@@ -42,7 +42,7 @@
 					<!-- /.modal -->
                     
                    <div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/treatment/add">
+                      	 <a href="<?php print base_url(); ?>treatment/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Treatment</button>
 						 </a>
 
@@ -136,7 +136,7 @@
 											<td><?php echo $row1->p_gender; ?></td>
 											<td><?php echo $row1->p_contact_no; ?></td>
 											<td align="center">
-												<form name="get_treatments_form" id="" action="<?php print base_url(); ?>index.php/treatment" method="post">
+												<form name="get_treatments_form" id="" action="<?php print base_url(); ?>treatment" method="post">
 													<input type="hidden" name="patient_id" id="" value="<?php echo $row->patient_id; ?>" />
 													<button class="btn btn-success btn-sm mr5"><i class="fa fa-search"></i> View Treatments </button>
 												</form>
@@ -157,7 +157,7 @@
 							</div>
 							
 							<!-- Hidden Form to post selected treatment id list to print receipt -->
-							<form name="print_receipt_form" id="print_receipt_form" action="<?php print base_url(); ?>index.php/treatment/print_receipt" method="post">
+							<form name="print_receipt_form" id="print_receipt_form" action="<?php print base_url(); ?>treatment/print_receipt" method="post">
 								<input type="hidden" name="id_list[]" id="id_list" />
 							</form>
 							<!-- Hidden Form to post selected treatment id list to print receipt -->

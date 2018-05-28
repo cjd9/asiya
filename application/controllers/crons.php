@@ -1,35 +1,35 @@
-<?php 
+<?php
 /*
 	Created By	: Bhagwan Sahane.
 	Date 		: 26-03-2015
 	Demo Name 	: Login & Logout.
 */
-class Crons extends CI_Controller 
+class Crons extends CI_Controller
 {
 	function __construct()
     {
     	parent::__construct();
-		
+
 		date_default_timezone_set('Asia/Kolkata');
-		
+
 		$this->load->database();
-		
+
 		$this->load->helper('message');
 		$this->load->helper('common');
 		$this->load->helper('url');
-		
+
 		$this->load->library('session');
-			
+
   		$this->load->model('mastermodel');
     }
 
 	//Call Staff and Patient Home Page
     function index()
-    {	
+    {
     	redirect(base_url())	;
 		$this->load->view('login/home');
-    }	
-	
+    }
+
 
 	function sendAppointmentReminder()
 	{
@@ -107,18 +107,18 @@ class Crons extends CI_Controller
 
 					/************************* send SMS *********************/
 					$p_contact_no = $row->p_contact_no;
-		      
+
 					if($p_contact_no != '')
 					{
 						$patient_contact_no = $p_contact_no;
 						$patient_name = $p_fname.' '.$p_lname;
-		      
+
 						//$msg = 'Hello '.$patient_name.', Your Appointement Booked Successfully. Thanks, - Clinic Management System.';
-		      
+
 						//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Centre of Physiotherapy and Rehabilitation.';
-		      
+
 						$msg = "Hello ".$patient_name.", A Reminder, Your Appointment today  at ".$appointment_time." is scheduled.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
-		      
+
 						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 					}
 
@@ -202,7 +202,7 @@ class Crons extends CI_Controller
 					}
 			}
 		}
-		
+
 
 	}
 
@@ -215,9 +215,9 @@ class Crons extends CI_Controller
 //    public function get_data($fields = '*', $table, $conditions = NULL, $joins = NULL, $order = NULL, $start = 0, $limit = NULL)
 		$joins = "'religion', 'religion.pk = religious_festivals.id'";
 
-		$result = $this->db->query("SELECT * FROM (`religious_festivals`) 
-			JOIN religion ON religion.pk = religious_festivals.religion_id 
-			left JOIN contact_list ON contact_list.p_religion_id = religious_festivals.religion_id 
+		$result = $this->db->query("SELECT * FROM (`religious_festivals`)
+			JOIN religion ON religion.pk = religious_festivals.religion_id
+			left JOIN contact_list ON contact_list.p_religion_id = religious_festivals.religion_id
 
 			 WHERE `date` ='".$today."'")->result_array();
 
@@ -275,7 +275,7 @@ class Crons extends CI_Controller
 		}
 
 	}
-	
+
 
 }
 ?>

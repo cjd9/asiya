@@ -6,7 +6,7 @@
         <h4 class="modal-title" id="myModalLabel">Profile Setting</h4>
       </div>
       <div class="modal-body">
-        <form id="edit_staff_form" action="<?php echo base_url(); ?>index.php/login/edit_profile" method="post" enctype="multipart/form-data" onSubmit="">
+        <form id="edit_staff_form" action="<?php echo base_url(); ?>login/edit_profile" method="post" enctype="multipart/form-data" onSubmit="">
         <input type="hidden" name="edit_pk" id="edit_pk"  value="<?php echo $r->pk; ?>"/>
 
           <div class="form-group">

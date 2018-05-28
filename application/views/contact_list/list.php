@@ -54,7 +54,7 @@
 							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
               <div align="right" class="<?php echo $this->session->userdata('user_type') == 'A'? '' : 'hide' ?>">
-                  <a href="<?php print base_url(); ?>index.php/contact_list/export">
+                  <a href="<?php print base_url(); ?>contact_list/export">
                   <button class="btn btn-warning"><b><i class="glyphicon glyphicon-download"></i> Export</b></button>
                 </a>
               </div>

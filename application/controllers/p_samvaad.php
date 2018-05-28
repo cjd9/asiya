@@ -26,7 +26,7 @@ class P_samvaad extends MY_Controller
 	// Samvaad Program Comment
 	function comment_box($pk)
 	{
-		$data['commentaction'] =base_url().'index.php/p_samvaad/comment';
+		$data['commentaction'] =base_url().'p_samvaad/comment';
 		
 		$data['id'] = $pk;
 		

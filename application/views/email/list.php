@@ -42,7 +42,7 @@
 					<!-- /.modal -->
                     
                    <div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/email/add">
+                      	 <a href="<?php print base_url(); ?>email/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Send Email</button>
 						 </a>
 					   <br /><br />
@@ -88,7 +88,7 @@
 										<td class="text-center"><?php if($row->email_status == 'S') { echo '<span class="label label-success status">Sent</span>'; } else { echo '<span class="label label-danger status">Pending</span>'; } ?></td>
                                         <td>
 											<div align="center">
-												<a href="<?php echo base_url(); ?>index.php/email/forward/<?php echo $row->pk; ?>" class="btn btn-primary btn-sm mr5">
+												<a href="<?php echo base_url(); ?>email/forward/<?php echo $row->pk; ?>" class="btn btn-primary btn-sm mr5">
 													<i class="fa fa-forward"></i> Forward
 												</a>
 											
@@ -96,7 +96,7 @@
 													<i class="fa fa-send"></i> Resend									         
 												</button>
 												
-												<a href="<?php echo base_url(); ?>index.php/email/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+												<a href="<?php echo base_url(); ?>email/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
 													<i class="fa fa-search"></i> View
 												</a>
 												
@@ -138,7 +138,7 @@
 			if(res)
 			{
 				$.ajax({
-						url: "<?php print base_url(); ?>index.php/email/resend_email",
+						url: "<?php print base_url(); ?>email/resend_email",
 						type: "post",
 						async:false,
 						cache:false,
@@ -157,7 +157,7 @@
 								$("#email_sent_msg").removeClass('alert-danger').addClass('alert-success').show();
 								
 								// redirect to list page after 5 seconds -
-								setTimeout("window.location.href = '<?php print base_url(); ?>index.php/email';", 5000);
+								setTimeout("window.location.href = '<?php print base_url(); ?>email';", 5000);
 							}
 							else
 							{	

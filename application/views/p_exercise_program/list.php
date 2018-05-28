@@ -62,7 +62,7 @@
 											<td><?php echo date("d-m-Y",strtotime($row->expiry_date)); ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>index.php/exercise_program/view/<?php echo $row->exercise_id; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+													<a href="<?php print base_url(); ?>exercise_program/view/<?php echo $row->exercise_id; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
 														<i class="fa fa-search"></i> View Details
 													</a>
 													

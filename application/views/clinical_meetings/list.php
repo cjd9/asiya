@@ -42,7 +42,7 @@
 					<!-- /.modal -->
                     
                    <div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/clinical_meetings/add">
+                      	 <a href="<?php print base_url(); ?>clinical_meetings/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Clinical Meetings</button>
 						 </a>
 					   <br /><br />
@@ -82,7 +82,7 @@
 											<!--<td><?php echo date("d-m-Y",strtotime($row->expiry_date)); ?></td>-->
 											<td>
 											   <div align="center">
-												<a href="<?php print base_url(); ?>index.php/clinical_meetings/edit/<?php echo $row->pk; ?>" class="btn btn-info btn-sm">
+												<a href="<?php print base_url(); ?>clinical_meetings/edit/<?php echo $row->pk; ?>" class="btn btn-info btn-sm">
 													 <i class="fa fa-edit"></i> Edit									        
 												</a>
 												 

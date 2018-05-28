@@ -13,9 +13,9 @@ class Dashboard extends MY_Controller
 /*-----------------------------------------------------Start Dashboard--------------------------------------------------*/
 	function index()
 	{
-		 $this->load->view('include/header'); 
+		 $this->load->view('include/header');
 
-		 $this->load->view('include/left'); 
+		 $this->load->view('include/left');
 		$current_staff_id = $this->session->userdata("userid");
 
 		$treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
@@ -35,7 +35,7 @@ class Dashboard extends MY_Controller
 				 	$fee_total += $row['treatment_fees'];
 				 	$treatment_total = $count;
 				 	$t[$i] = $count;
-				 	$fee[$i]= $fee_total;
+				 	$fee[$i]= $fee_total/1000;
 
 				 }
 
@@ -43,23 +43,29 @@ class Dashboard extends MY_Controller
 		}
 
 
-		$arr1['name']= '"treatment"';
+		$arr1['name']= '"Total treatment"';
 		$arr1['data']= '['.str_replace('"', '', implode(",",$t)).']';
-		
 
-		$arr2['name']= '"fee"';
+
+		$arr2['name']= '"Total fee(in thousands)"';
 		$arr2['data']= '['.str_replace('"', '', implode(",",$fee)).']';
 				// echo json_encode($arr); die;
 
-		$data['json'] = json_encode($arr1).','.json_encode($arr2); 
+		$data['json'] = json_encode($arr1).','.json_encode($arr2);
 		$data['json'] = str_replace('"', '', $data['json']);
 		$data['json'] = str_replace("", '"', $data['json']);
+		$data['json'] =  preg_replace('/\\\\/', '"', $data['json']);
 		//echo $data['json']; die;
+		$staff_id 				= $this->session->userdata('userid');
+		$today = date('Y-m-d');
+		$tomorrow = date("Y-m-d", strtotime("+1 day"));
+		$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
+		$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
 
 
 		$this->load->view('dashboard/dashboard',$data);
 
-		 $this->load->view('include/footer'); 
+		 $this->load->view('include/footer');
 
 	}
 /*-----------------------------------------------------Start Dashboard--------------------------------------------------*/

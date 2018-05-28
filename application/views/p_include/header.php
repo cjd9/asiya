@@ -73,7 +73,7 @@
                               <!--<li><a href="" data-toggle="modal" data-target="#myModal_pass"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>-->
 							  <li><a href="" data-toggle="modal" data-target="#myModal_pass"><i class="glyphicon glyphicon-wrench"></i>Change Pasword</a></li>
                               <li class="divider"></li>
-                              <li><a href="<?php echo base_url().'index.php/login/p_logout'; ?>"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
+                              <li><a href="<?php echo base_url().'login/p_logout'; ?>"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
                             </ul>
                         </div><!-- btn-group -->
                     </div><!-- pull-right -->
@@ -90,7 +90,7 @@
 						<h4 class="modal-title" id="myModalLabel">Change Password Setting</h4>
 					</div>
 					<div class="modal-body">
-						<form id="add_change_pass" action="<?php echo base_url().'index.php/login/p_change_password'; ?>" method="post" enctype="multipart/form-data" onSubmit="return paass_validate()">
+						<form id="add_change_pass" action="<?php echo base_url().'login/p_change_password'; ?>" method="post" enctype="multipart/form-data" onSubmit="return paass_validate()">
 														
 							<div class="form-group">
 								<label class="col-sm-4 control-label">Enter Current Password</label>

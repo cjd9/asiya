@@ -124,7 +124,7 @@
 			
 			// ajax work -
 			$.ajax({
-					url: "<?php print base_url(); ?>index.php/login/p_check_current_password",
+					url: "<?php print base_url(); ?>login/p_check_current_password",
 					type: "post",
 					async:false,
 					cache:false,

@@ -19,7 +19,7 @@ class Loginmodel extends CI_Model
 		//$encrypt_password = md5($password);
 
 		// encrypt password using helper function -
-		$encrypt_password = encrypt($password);
+		$encrypt_password = $password;
 
         // Prep the query
         $this->db->where('s_username',$username);
@@ -62,7 +62,7 @@ class Loginmodel extends CI_Model
 
 		//$data['password'] = md5($this->input->post('new_password'));
 
-		$data['s_password'] = encrypt($this->input->post('new_password'));
+		$data['s_password'] = $this->input->post('new_password');
 
 		$this->db->where('pk',$this->session->userdata('userid'));
 		$this->db->update('staff_details', $data);
@@ -134,7 +134,7 @@ class Loginmodel extends CI_Model
 		$this->db->trans_start();
 
 		//$data['p_password'] = md5($this->input->post('new_password'));
-		$data['p_password'] = encrypt($this->input->post('new_password'));
+		$data['p_password'] = $this->input->post('new_password');
 
 		$this->db->where('pk',$this->session->userdata('userid'));
 		$this->db->update('contact_list', $data);

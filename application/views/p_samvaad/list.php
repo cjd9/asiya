@@ -54,7 +54,7 @@
 											</td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>index.php/p_samvaad/comment_box/<?php echo $row->pk; ?>"  class="btn btn-sm btn-bordered btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
+													<a href="<?php print base_url(); ?>p_samvaad/comment_box/<?php echo $row->pk; ?>"  class="btn btn-sm btn-bordered btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
 												  	<i class="fa fa-comments"></i> Comment
 													</a>										        
 												</div>

@@ -29,7 +29,7 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										
+
 										<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add SAMVAAD</b></h3>
 									</div><!-- panel-heading -->
 
@@ -39,9 +39,16 @@
 											<div class="form-group">
 												<label class="col-md-1 control-label"> Description<span class="asterisk">*</span></label>
 												<div class="col-sm-9">
-													<textarea  name="education_program_desc" id="education_program_desc" class="" rows="10" cols="80"></textarea>
+													<textarea  name="education_program_desc" id="education_program_desc" class="" rows="50" cols="80"></textarea>
 												</div>
 											</div><!-- form-group -->
+											<div class="form-group">
+
+													<label class="col-md-1 control-label"> Date<span class="asterisk">*</span></label>
+													<div class="col-sm-6">
+													<input type="text" class="form-control validate[required]" name="samvaad_date" id="samvaad_date" value="<?php echo date('d-m-Y')?>">
+													</div>
+											</div>
 
 											<div class="form-group">
 												<label class="col-md-1 control-label"> File<span class="asterisk">*</span></label>
@@ -73,7 +80,10 @@
 		</section>
 
 		<?php $this->load->view('include/footer'); ?>
-    <script src="<?php print base_url(); ?>js/ckeditor.js"></script>
+    <!-- <script src="<?php print base_url(); ?>js/ckeditor.js"></script> -->
+
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
 	<script>
 
@@ -90,11 +100,24 @@
 			            alert('Please select any one of docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|jpeg file format');
 			        }
 			    });
+
+					$('#samvaad_date').datepicker(
+					{
+						changeMonth: true,
+						changeYear: true,
+						yearRange: '1945:2050',
+						dateFormat: 'dd-mm-yy',
+						minDate: 0
+						//minDate: 0	// disable all previous dates
+					});
 			});
 
-          CKEDITOR.basePath = CKEDITOR.basePath +'ckeditor/';
-           window.CKEDITOR_BASEPATH = CKEDITOR.basePath;
-        CKEDITOR.replace( 'education_program_desc' );
+			$('#education_program_desc').summernote({
+        placeholder: 'Edit Your Text Here ... ',
+        tabsize: 2,
+        height: 200
+      });
+
 			//$("#add_education_program_form").validationEngine({promptPosition: "topRight: -100"});
 		});
 	</script>

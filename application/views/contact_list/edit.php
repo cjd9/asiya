@@ -34,7 +34,7 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-								
+
 										<a href="<?php echo base_url().'contact_list'; ?>" type="button" class="btn btn-default btn-sm">
 								          <span class="glyphicon glyphicon-arrow-left "></span> Back
 								        </a>
@@ -148,7 +148,7 @@
 													</div>
 												</div>
 
-												
+
 											</div><!-- form-group -->
 
 											<hr />
@@ -274,7 +274,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>index.php/contact_list" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>contact_list" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
@@ -296,7 +296,19 @@
 		$(document).ready(function()
 		{
 			$("#edit_patient_form").validationEngine({promptPosition: "topRight: -100"});
+			$(function () {
+			$('input[type=file]').change(function () {
+					var val = $(this).val().toLowerCase(),
+							regex = new RegExp("(.*?)\.(docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|bmp|jpeg)$");
 
+					if (!(regex.test(val))) {
+							$(this).val('');
+							alert('Please select any one of docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|jpeg file format');
+					}
+			});
+
+			
+			});
 			/*$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy' });
 			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy'});*/
 

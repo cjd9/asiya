@@ -51,7 +51,7 @@
 											<td><?php echo wordwrap($row->activity_program,200,"<br>\n",TRUE); ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>index.php/activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+													<a href="<?php print base_url(); ?>activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
 														<i class="fa fa-search"></i> View Details
 													</a>
 													

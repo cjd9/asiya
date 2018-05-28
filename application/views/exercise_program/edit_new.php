@@ -248,7 +248,7 @@
 			//alert(id);
 
 			$.ajax({
-					url: "<?php print base_url(); ?>index.php/exercise_program/delete_exercise_program_file",
+					url: "<?php print base_url(); ?>exercise_program/delete_exercise_program_file",
 					type: "post",
 					async:false,
 					cache:false,

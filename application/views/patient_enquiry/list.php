@@ -62,7 +62,7 @@
 											<td>
 											<div align="center">
 												<div class="input-group">
-												<form id="update_appt_status_form" name="update_appt_status_form" action="<?php echo base_url(); ?>index.php/patient_enquiry/update_appt_status" method="post">
+												<form id="update_appt_status_form" name="update_appt_status_form" action="<?php echo base_url(); ?>patient_enquiry/update_appt_status" method="post">
 													<input type="hidden" name="pk" id="pk" value="<?php echo $row->pk; ?>" />	
 													<select id="status" name="status" data-placeholder="Choose Shift " class="select2-container width100p" onchange="this.form.submit()">
 														<?php if($row->status == 'PE') { ?><option value="PE" selected="selected">Pending</option><?php } ?>
@@ -75,7 +75,7 @@
 											</td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>index.php/patient_enquiry/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="fa fa-search"></i> View </a>
+													<a href="<?php print base_url(); ?>patient_enquiry/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="fa fa-search"></i> View </a>
 												</div>
 											</td>
 									  </tr>

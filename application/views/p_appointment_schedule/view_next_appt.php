@@ -19,11 +19,11 @@
                    	</div><!-- pageheader -->
                     
                    	<div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/p_appointment_schedule/add">
+                      	 <a href="<?php print base_url(); ?>p_appointment_schedule/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Take New Appointment</button>
 						 </a>
 						 
-						  <a href="<?php print base_url(); ?>index.php/p_appointment_schedule">
+						  <a href="<?php print base_url(); ?>p_appointment_schedule">
 					  	 	<button class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</button>
 						 </a>
 					   <br /><br />
@@ -61,7 +61,7 @@
 											<td><?php if($row->work_shift == 'M') { echo 'Morning'; } else { echo 'Evening'; } ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>index.php/p_appointment_schedule/cancel_appt/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs" onclick="return confirmation()">
+													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel_appt/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs" onclick="return confirmation()">
 														 <i class="fa fa-trash-o"></i> Cancel									        
 													</a>
 												</div>

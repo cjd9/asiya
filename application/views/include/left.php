@@ -43,14 +43,14 @@
 			<a href="<?php echo base_url().'dashboard'; ?>"><i class="fa fa-home"></i> <span>Dashboard</span></a>
 		</li>
 		<?php 	if($this->session->userdata('user_type')=='A'){?>
-		<li <?php if(current_url() == base_url().'staff_patient' || current_url() == base_url().'staff_patient/add' || strpos(current_url(), base_url().'index.php/staff_patient/edit/') !== false) {?> class="active" <?php } ?>>
-			<a href="<?php echo base_url().'index.php/staff_patient'; ?>"><i class="fa fa-list-alt"></i> <span>Staff-Patient Master</span></a>
+		<li <?php if(current_url() == base_url().'staff_patient' || current_url() == base_url().'staff_patient/add' || strpos(current_url(), base_url().'staff_patient/edit/') !== false) {?> class="active" <?php } ?>>
+			<a href="<?php echo base_url().'staff_patient'; ?>"><i class="fa fa-list-alt"></i> <span>Staff-Patient Master</span></a>
 		</li>
 <?php }?>
 <?php 	if($this->session->userdata('user_type')=='A'){?>
 
-	<li <?php if(current_url() == base_url().'index.php/staff_list' || current_url() == base_url().'index.php/staff_list/add' || strpos(current_url(), base_url().'index.php/staff_list/edit/') !== false) {?> class="active" <?php } ?>>
-		<a href="<?php echo base_url().'index.php/staff_list'; ?>"><i class="fa fa-user-md"></i> <span>Staff List</span></a>
+	<li <?php if(current_url() == base_url().'staff_list' || current_url() == base_url().'staff_list/add' || strpos(current_url(), base_url().'staff_list/edit/') !== false) {?> class="active" <?php } ?>>
+		<a href="<?php echo base_url().'staff_list'; ?>"><i class="fa fa-user-md"></i> <span>Staff List</span></a>
 	</li>
 <?php }?>
 

@@ -42,7 +42,7 @@
 					<!-- /.modal -->
 
                    <div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/sms/add">
+                      	 <a href="<?php print base_url(); ?>sms/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Send SMS</button>
 						 </a>
 					   <br /><br />
@@ -89,7 +89,7 @@
 										<td class="text-center"><strong><?php echo $row->sms_status; ?></strong></td>
                                         <td>
 											<div align="center">
-												<a href="<?php print base_url(); ?>index.php/sms/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+												<a href="<?php print base_url(); ?>sms/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
 										     		<i class="fa fa-search"></i> View
 										    	</a>
 
@@ -135,7 +135,7 @@
 			if(res)
 			{
 				$.ajax({
-						url: "<?php print base_url(); ?>index.php/sms/resend_sms",
+						url: "<?php print base_url(); ?>sms/resend_sms",
 						type: "post",
 						async:false,
 						cache:false,
@@ -154,7 +154,7 @@
 								$("#sms_sent_msg").removeClass('alert-danger').addClass('alert-success').show();
 
 								// redirect to list page after 5 seconds -
-								setTimeout("window.location.href = '<?php print base_url(); ?>index.php/sms';", 5000);
+								setTimeout("window.location.href = '<?php print base_url(); ?>sms';", 5000);
 							}
 							else
 							{

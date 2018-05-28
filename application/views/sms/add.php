@@ -83,7 +83,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Send</button>
-											<a href="<?php print base_url(); ?>index.php/sms" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>sms" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->  
@@ -139,7 +139,7 @@
 				m_data.append( 'msg', $('textarea[name=msg]').val());
 				 
 				$.ajax({
-						url: '<?php echo base_url(); ?>index.php/sms/send',
+						url: '<?php echo base_url(); ?>sms/send',
 						data: m_data,
 						processData: false,
 						contentType: false,
@@ -157,7 +157,7 @@
 								$("#sms_sent_msg").removeClass('alert-danger').addClass('alert-success').show();
 								
 								// redirect to list page after 5 seconds -
-								setTimeout("window.location.href = '<?php print base_url(); ?>index.php/sms';", 5000);
+								setTimeout("window.location.href = '<?php print base_url(); ?>sms';", 5000);
 							}
 							else
 							{	
@@ -180,7 +180,7 @@
 				//alert(patient_id);
 				
 				$.ajax({
-						url: "<?php print base_url(); ?>index.php/sms/get_contact_no",
+						url: "<?php print base_url(); ?>sms/get_contact_no",
 						type: "post",
 						async:false,
 						cache:false,

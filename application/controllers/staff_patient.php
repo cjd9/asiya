@@ -15,7 +15,7 @@ class Staff_patient extends MY_Controller
 	// view staff patient list
 	function index()
 	{
-		$data['deleteaction'] = base_url().'index.php/staff_patient/delete';
+		$data['deleteaction'] = base_url().'staff_patient/delete';
 		
 		// check if staff id is selected -
 		if(isset($_POST['staff_id']))

@@ -122,7 +122,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>index.php/exercise_program" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>exercise_program" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
@@ -259,7 +259,7 @@
 			//alert(id);
 
 			$.ajax({
-					url: "<?php print base_url(); ?>index.php/exercise_program/delete_exercise_program_file",
+					url: "<?php print base_url(); ?>exercise_program/delete_exercise_program_file",
 					type: "post",
 					async:false,
 					cache:false,

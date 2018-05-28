@@ -32,7 +32,7 @@ class p_appointment_schedule extends MY_Controller
 	// add new appointment
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/p_appointment_schedule/save";
+		$data['saveaction'] = base_url()."p_appointment_schedule/save";
 		
 		$this->load->view('p_appointment_schedule/add',$data);
 	}
@@ -40,7 +40,7 @@ class p_appointment_schedule extends MY_Controller
 	// cancel appointment
 	function cancel($pk)
 	{
-		$data['cancelaction'] = base_url()."index.php/p_appointment_schedule/cancel_request";
+		$data['cancelaction'] = base_url()."p_appointment_schedule/cancel_request";
 		
 		// WHERE condition -
 		$where = array('pk' => $pk);

@@ -106,7 +106,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Send</button>
-											<a href="<?php print base_url(); ?>index.php/email" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>email" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->  
@@ -167,7 +167,7 @@
 				}
 				 
 				$.ajax({
-						url: '<?php echo base_url(); ?>index.php/email/forward_email',
+						url: '<?php echo base_url(); ?>email/forward_email',
 						data: m_data,
 						processData: false,
 						contentType: false,
@@ -185,7 +185,7 @@
 								$("#email_sent_msg").removeClass('alert-danger').addClass('alert-success').show();
 								
 								// redirect to list page after 5 seconds -
-								setTimeout("window.location.href = '<?php print base_url(); ?>index.php/email';", 5000);
+								setTimeout("window.location.href = '<?php print base_url(); ?>email';", 5000);
 							}
 							else
 							{	
@@ -208,7 +208,7 @@
 				//alert(patient_id);
 				
 				$.ajax({
-						url: "<?php print base_url(); ?>index.php/email/get_patient_email",
+						url: "<?php print base_url(); ?>email/get_patient_email",
 						type: "post",
 						async:false,
 						cache:false,

@@ -17,7 +17,7 @@ class Staff_list extends MY_Controller
 	// Call staff_list
 	function index()
 	{
-		$data['deleteaction'] = base_url().'index.php/staff_list/delete';
+		$data['deleteaction'] = base_url().'staff_list/delete';
 
 		// WHERE condition -
 		$where = array('is_deleted' => 0, 'user_type' => 'S');
@@ -31,7 +31,7 @@ class Staff_list extends MY_Controller
 	// Call Add staff_list
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/staff_list/save";
+		$data['saveaction'] = base_url()."staff_list/save";
 
 		$data['rsreligion'] = $this->mastermodel->get_data('*', 'religion', NULL, NULL, NULL, 0, NULL);
 
@@ -41,7 +41,7 @@ class Staff_list extends MY_Controller
 	// Call Edit staff_list
 	function edit($pk)
 	{
-		$data['editaction'] = base_url()."index.php/staff_list/update";
+		$data['editaction'] = base_url()."staff_list/update";
 
 		// WHERE condition -
 		$where = array('pk' => $pk);

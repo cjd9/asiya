@@ -17,7 +17,7 @@ class Contact_allocation extends MY_Controller
 	// Call Contact allocation
 	function index()
 	{
-		$data['deleteaction'] = base_url().'index.php/contact_allocation/delete';
+		$data['deleteaction'] = base_url().'contact_allocation/delete';
 	
 		// get current login user -
 		$current_staff_id = $this->session->userdata("userid");

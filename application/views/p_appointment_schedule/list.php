@@ -19,11 +19,11 @@
                    	</div><!-- pageheader -->
                     
                    	<div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/p_appointment_schedule/add">
+                      	 <a href="<?php print base_url(); ?>p_appointment_schedule/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Take New Appointment</button>
 						 </a>
 						 
-						 <a href="<?php print base_url(); ?>index.php/p_appointment_schedule/view_next_appt">
+						 <a href="<?php print base_url(); ?>p_appointment_schedule/view_next_appt">
 					  	 	<button class="btn btn-primary"><i class="fa fa-search"></i> Next Appointment Schedule</button>
 						 </a>
 					   <br /><br />
@@ -67,11 +67,11 @@
 											<td>
 												<div align="center">
 												<?php if($row->status == 'CO') { ?>
-													<a href="<?php print base_url(); ?>index.php/p_appointment_schedule/cancel/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs">
+													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs">
 														 <i class="fa fa-trash-o"></i> Cancel									        
 													</a>
 												<?php } else if($row->status == 'PE') { ?>
-													<a href="<?php print base_url(); ?>index.php/p_appointment_schedule/cancel_appointment/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs" onclick="return confirmation()">
+													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel_appointment/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs" onclick="return confirmation()">
 														 <i class="fa fa-trash-o"></i> Cancel									        
 
 													</a>
@@ -125,7 +125,7 @@
 					
 					// cancel appointment details using ajax -
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/p_appointment_schedule/cancel_request",
+							url: "<?php print base_url(); ?>p_appointment_schedule/cancel_request",
 							type: "post",
 							async:false,
 							cache:false,

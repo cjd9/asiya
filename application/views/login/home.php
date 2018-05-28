@@ -27,10 +27,10 @@
 					<h1 class="style1" style="margin-top:7%; text-transform:uppercase"><b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
 				
 					<div class="btn-list" style="margin-top:5%">
-						<a href="<?php print base_url(); ?>index.php/login/staff" class="btn btn-primary btn-rounded">
+						<a href="<?php print base_url(); ?>login/staff" class="btn btn-primary btn-rounded">
 							<b><h2><span class="fa fa-user-md"></span>&nbsp; STAFF LOGIN &nbsp;</h2></b>
 						</a>
-						<a href="<?php print base_url(); ?>index.php/login/patient" class="btn btn-warning btn-rounded">
+						<a href="<?php print base_url(); ?>login/patient" class="btn btn-warning btn-rounded">
 							<b><h2><span class="fa fa-wheelchair"></span> PATIENT LOGIN</h2></b>
 						</a>
 					</div>

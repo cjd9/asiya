@@ -223,7 +223,7 @@ jQuery(document).ready(function() {
                //alert(patient_id);
 
                $.ajax({
-                     url: "<?php print base_url(); ?>index.php/contact_list/follow_patient",
+                     url: "<?php print base_url(); ?>contact_list/follow_patient",
                      type: "post",
                      async:false,
                      cache:false,
@@ -237,7 +237,7 @@ jQuery(document).ready(function() {
                            alert("Patient Added to Contact List Successfully.");
 
                            // submit hidden form to load same page with staff patient list -
-                           window.location = "<?php echo base_url().'index.php/contact_list'; ?>";
+                           window.location = "<?php echo base_url().'contact_list'; ?>";
                         }
                      }
                });

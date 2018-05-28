@@ -44,7 +44,7 @@
 						
 						<div class="mb30"></div>
 						
-						<form action="<?php echo base_url().'index.php/login/p_validatelogin'; ?>" method="post">
+						<form action="<?php echo base_url().'login/p_validatelogin'; ?>" method="post">
 							
 							<div class="input-group mb15">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

@@ -24,14 +24,14 @@
 						<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 
-        
+
 						<div class="row">
 							<div class="col-md-12">
 
 								<div class="panel panel-default">
 
 									<div class="panel-heading">
-										
+
 										<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Patient </b></h3>
 									</div><!-- panel-heading -->
 
@@ -165,7 +165,7 @@
 													</div>
 												</div>
 
-												
+
 											</div><!-- form-group -->
 
 											<hr />
@@ -207,7 +207,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-															<input type="text" id="p_contact_no" name="p_contact_no" class="form-control" placeholder="Type Mobile No." maxlength = "10"/>
+															<input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" id="p_contact_no" name="p_contact_no" class="form-control" placeholder="Type Mobile No." maxlength = "10"/>
 
 														</div><!-- input-group -->
 						        	                      <span id="p_contact_no_err" class="err" style="color:#FF0000"></span>
@@ -263,7 +263,7 @@
 													<div class="form-group">
 														<label class="col-sm-4 control-label">Zip<span class="asterisk"></span></label>
 														<div class="col-sm-6">
-															<input type="text" id="p_zip" name="p_zip" class="form-control" placeholder="Type Zip Code" maxlength="6"/>
+															<input type="text" id="p_zip" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  name="p_zip" class="form-control" placeholder="Type Zip Code" maxlength="6"/>
 														</div>
 													</div><!-- form-group -->
 												</div>
@@ -303,7 +303,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>index.php/contact_list" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>contact_list" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
@@ -324,15 +324,15 @@
 		//$.noConflict();
 		function validateEmail(inputtxt) {
 		    var emailid = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		    if(inputtxt.match(emailid))  
-		    {  
-		        return true;  
-		    }  
-		    else  
-		    {  
-		        return false;  
+		    if(inputtxt.match(emailid))
+		    {
+		        return true;
+		    }
+		    else
+		    {
+		        return false;
    			 }
-   		}	 
+   		}
 
 		$(document).ready(function()
 		{
@@ -343,7 +343,7 @@
 
 			// select box validations -
 			$('#add_patient_form').on('submit', function()
-			{	
+			{
 				$valid = true;
 				$('.err').text('');
 				$('#msg1').text('');
@@ -383,7 +383,7 @@
           $valid = false;
         }
 
-        if ( validateEmail($('#p_email_id').val()) == false  && $('#p_email_id').val() != '' ) 
+        if ( validateEmail($('#p_email_id').val()) == false  && $('#p_email_id').val() != '' )
         {
             $valid = false;
           $('#p_email_err').text('Enter a valid email ID');
@@ -399,7 +399,7 @@
 
         if($('#p_contact_no').val().length != 10 )
         {
-          $('#p_contact_no_err').text('Phone number shouold be of 10 digits only');
+          $('#p_contact_no_err').text('Mobile number should be of 10 digits only');
           $valid = false;
         }
 
@@ -422,7 +422,7 @@
         if(!$valid){
         	return false;
         }
-			
+
 
 			});
 

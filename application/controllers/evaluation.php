@@ -17,7 +17,7 @@ class Evaluation extends MY_Controller
 	// Call Evaluation
 	function index()
 	{
-		$data['deleteaction'] = base_url().'index.php/evaluation/delete';
+		$data['deleteaction'] = base_url().'evaluation/delete';
 
 		// get current login user -
 		$current_staff_id = $this->session->userdata("userid");
@@ -30,7 +30,7 @@ class Evaluation extends MY_Controller
 	// Call Add Evaluation
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/evaluation/save";
+		$data['saveaction'] = base_url()."evaluation/save";
 
 		// get data from table -
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
@@ -47,7 +47,7 @@ class Evaluation extends MY_Controller
 	// Call Edit Evaluation
 	function edit($pk)
 	{
-		$data['editaction'] = base_url()."index.php/evaluation/update";
+		$data['editaction'] = base_url()."evaluation/update";
 
 		// WHERE condition -
 		$where = array('pk' => $pk);

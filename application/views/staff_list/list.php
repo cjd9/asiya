@@ -42,7 +42,7 @@
 					<!-- /.modal -->
                     
                    <div class="contentpanel">
-                      	 <a href="<?php print base_url(); ?>index.php/staff_list/add">
+                      	 <a href="<?php print base_url(); ?>staff_list/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Staff Registration</button>
 						 </a>
 					   <br /><br />
@@ -97,14 +97,14 @@
 										
                                         <td>
 										   <div align="center">
-										   	<a href="<?php print base_url(); ?>index.php/staff_list/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i> View										    
+										   	<a href="<?php print base_url(); ?>staff_list/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-search"></i> View										    
 											</a>
 										    
-											 <a href="<?php print base_url(); ?>index.php/staff_list/print_staff_details/<?php echo $row->pk; ?>" class="btn btn-primary btn-sm">
+											 <a href="<?php print base_url(); ?>staff_list/print_staff_details/<?php echo $row->pk; ?>" class="btn btn-primary btn-sm">
 										        <i class="fa fa-print"></i> Print									         
 											</a>
 											
-										   	<a href="<?php print base_url(); ?>index.php/staff_list/edit/<?php echo $row->pk; ?>" class="btn btn-info btn-sm">
+										   	<a href="<?php print base_url(); ?>staff_list/edit/<?php echo $row->pk; ?>" class="btn btn-info btn-sm">
 											 <i class="fa fa-edit"></i> Edit										   
 											</a>
 										 
@@ -158,7 +158,7 @@
 				if(result)
 				{
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/staff_list/update_status",
+							url: "<?php print base_url(); ?>staff_list/update_status",
 							type: "post",
 							async:false,
 							cache:false,
@@ -203,7 +203,7 @@
 				if(result)
 				{
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/staff_list/update_work_shift",
+							url: "<?php print base_url(); ?>staff_list/update_work_shift",
 							type: "post",
 							async:false,
 							cache:false,

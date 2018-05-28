@@ -20,7 +20,7 @@
 					
                    <div class="contentpanel">
 				   
-				   		<!--<a href="http://localhost/doctor_portal/admin/index.php/contact_list/add">
+				   		<!--<a href="http://localhost/doctor_portal/admin/contact_list/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Patient Registration</button>
 						 </a>-->
 						 
@@ -53,7 +53,7 @@
                                         <td><?php $r = $this->db->get_where('staff_details', array('pk' => $row->current_assign_staff_id))->row(); echo $r->staff_id; ?></td>
                                         <td><?php echo $r->s_fname.' '.$r->s_lname; ?></td>
                                         <td>
-											<form name="get_patients_form" class="get_patients_form" id="" action="<?php print base_url(); ?>index.php/staff_patient" method="post">
+											<form name="get_patients_form" class="get_patients_form" id="" action="<?php print base_url(); ?>staff_patient" method="post">
 												<input type="hidden" name="staff_id" id="" class="staff_id" value="<?php echo $row->current_assign_staff_id; ?>" />
 												<button class="btn btn-success btn-sm mr5"><i class="fa fa-search"></i> View Patient List </button>
 											</form>
@@ -96,7 +96,7 @@
 											<td><?php echo $row1->p_contact_no; ?></td>
 											<td class="text-center"><?php if($row1->p_status == 'A') { echo '<span class="label label-success status" id="'.$row->pk.'">Active</span>'; } else { echo '<span class="label label-danger status" id="'.$row->pk.'">Inactive</span>'; } ?></td>
 											<td align="center">
-												<a href="<?php print base_url(); ?>index.php/staff_patient/view/<?php echo $row->pk; ?>" class="btn btn-primary btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="fa fa-search"></i> Sharing History </a>
+												<a href="<?php print base_url(); ?>staff_patient/view/<?php echo $row->pk; ?>" class="btn btn-primary btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="fa fa-search"></i> Sharing History </a>
 											</td>
 											<td align="">
 												<div class="form-group col-sm-3 btn_share1">
@@ -133,7 +133,7 @@
 							</div>
 							
 							<!-- Hidden Form to reload the page after sharing patient with staff -->
-							<form name="get_patients_reload" class="" id="get_patients_reload" action="<?php print base_url(); ?>index.php/staff_patient" method="post">
+							<form name="get_patients_reload" class="" id="get_patients_reload" action="<?php print base_url(); ?>staff_patient" method="post">
 								<input type="hidden" name="staff_id" id="" class="staff_id" value="<?php echo $staff_id; ?>" />
 							</form>
 							<!-- Hidden Form to post selected treatment id list to print receipt -->
@@ -247,7 +247,7 @@
 				if(result)
 				{
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/contact_list/update_status",
+							url: "<?php print base_url(); ?>contact_list/update_status",
 							type: "post",
 							async:false,
 							cache:false,

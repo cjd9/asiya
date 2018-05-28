@@ -19,7 +19,7 @@ class Appointment_schedule extends MY_Controller
 	{
 		$data = array();
 
-		$data['saveaction'] = base_url()."index.php/appointment_schedule";
+		$data['saveaction'] = base_url()."appointment_schedule";
 
 		if($this->session->userdata('user_type')=='A'){
 			$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type = "S"', NULL, NULL, 0, NULL);

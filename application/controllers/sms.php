@@ -45,7 +45,7 @@ class Sms extends MY_Controller
 		// 	$this->db->update('sms', $data);
 		// }
 
-		$data['deleteaction'] = base_url().'index.php/sms/delete';
+		$data['deleteaction'] = base_url().'sms/delete';
 
 		// WHERE condition -
 		$where = array('is_deleted' => 0);
@@ -60,7 +60,7 @@ class Sms extends MY_Controller
 	// sms send form
 	function add()
 	{
-		//$data['saveaction'] = base_url()."index.php/email/save";
+		//$data['saveaction'] = base_url()."email/save";
 
 		// get current login user -
 		$current_staff_id = $this->session->userdata("userid");

@@ -64,13 +64,13 @@
 											<td><?php $r = $this->db->get_where('staff_details', array('pk' => $row->added_by_user))->row(); echo $r->s_fname.' '.$r->s_lname; ?></td>
 											<td>
 											   <div align="center">
-												   <!--<a href="<?php //print base_url(); ?>index.php/p_history/p_view_treatment/<?php //echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+												   <!--<a href="<?php //print base_url(); ?>p_history/p_view_treatment/<?php //echo $row->pk; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
 													<i class="fa fa-search"></i> View										
 												   </a>
-													<a href="<?php //print base_url(); ?>index.php/p_history/p_print_treatment/<?php //echo $row->patient_id; ?>/<?php //echo $row->treatment_id; ?>" class="btn btn-primary btn-sm">
+													<a href="<?php //print base_url(); ?>p_history/p_print_treatment/<?php //echo $row->patient_id; ?>/<?php //echo $row->treatment_id; ?>" class="btn btn-primary btn-sm">
 														<i class="fa fa-print"></i> Treatment Details									         
 												   </a> -->
-												   <a href="<?php print base_url(); ?>index.php/p_history/p_billing_details/<?php echo $row->patient_id; ?>/<?php echo $row->treatment_id; ?>" class="btn btn-info btn-sm">
+												   <a href="<?php print base_url(); ?>p_history/p_billing_details/<?php echo $row->patient_id; ?>/<?php echo $row->treatment_id; ?>" class="btn btn-info btn-sm">
 												   		<i class="fa fa-edit"></i> Billing Details 
 													</a>
 													

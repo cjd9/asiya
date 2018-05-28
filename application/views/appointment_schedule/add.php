@@ -35,7 +35,7 @@
 								<div class="panel-body">
 									<div class="row">
 
-									<form id="export_appointment_schedule_form" action="<?php echo base_url().'index.php/appointment_schedule/export_schedule'; ?>" method="post">
+									<form id="export_appointment_schedule_form" action="<?php echo base_url().'appointment_schedule/export_schedule'; ?>" method="post">
 
 										<div class="form-group">
 											<div class="col-sm-4">
@@ -388,7 +388,7 @@
 
 					// save appointment details using ajax -
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/appointment_schedule/confirm_appointment",
+							url: "<?php print base_url(); ?>appointment_schedule/confirm_appointment",
 							type: "post",
 							async:false,
 							cache:false,
@@ -527,7 +527,7 @@
 
 					// update appointment details using ajax -
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/appointment_schedule/update_appointment",
+							url: "<?php print base_url(); ?>appointment_schedule/update_appointment",
 							type: "post",
 							async:false,
 							cache:false,
@@ -582,7 +582,7 @@
 
 					// cancel appointment details using ajax -
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/appointment_schedule/cancel_appointment",
+							url: "<?php print base_url(); ?>appointment_schedule/cancel_appointment",
 							type: "post",
 							async:false,
 							cache:false,
@@ -645,7 +645,7 @@
 
 					// send SMS/Email to Patient using ajax -
 					$.ajax({
-							url: "<?php print base_url(); ?>index.php/appointment_schedule/send_sms_email",
+							url: "<?php print base_url(); ?>appointment_schedule/send_sms_email",
 							type: "post",
 							async:false,
 							cache:false,
@@ -685,7 +685,7 @@
 				var result = '';
 
 				$.ajax({
-						url: "<?php print base_url(); ?>index.php/appointment_schedule/get_contact_no",
+						url: "<?php print base_url(); ?>appointment_schedule/get_contact_no",
 						type: "post",
 						async:false,
 						cache:false,
@@ -746,7 +746,7 @@
 				var result = '';
 
 				$.ajax({
-						url: "<?php print base_url(); ?>index.php/appointment_schedule/get_contact_no",
+						url: "<?php print base_url(); ?>appointment_schedule/get_contact_no",
 						type: "post",
 						async:false,
 						cache:false,

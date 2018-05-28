@@ -112,7 +112,7 @@
 				if(result)
 				{
 					$.ajax({
-							url: "<?php echo base_url(); ?>index.php/contact_allocation/update_status",
+							url: "<?php echo base_url(); ?>contact_allocation/update_status",
 							type: "post",
 							async:false,
 							cache:false,
@@ -125,7 +125,7 @@
 								// check if user status is successfully updated -
 								if(res != 0)
 								{
-									window.location = "<?php echo base_url(); ?>index.php/contact_allocation";
+									window.location = "<?php echo base_url(); ?>contact_allocation";
 								}
 							}
 					});

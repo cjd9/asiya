@@ -14,7 +14,7 @@ class Activity_program extends MY_Controller
 	// Activity Program List
 	function index()
 	{
-		$data['deleteaction'] =base_url().'index.php/activity_program/delete';
+		$data['deleteaction'] =base_url().'activity_program/delete';
 
 		// WHERE condition -
 		//$where = array('activity_program.is_deleted' => 0);
@@ -29,7 +29,7 @@ class Activity_program extends MY_Controller
 	// Activity Program Add
 	function add()
 	{
-		$data['saveaction'] = base_url()."index.php/activity_program/save";
+		$data['saveaction'] = base_url()."activity_program/save";
 
 		$this->load->view('activity_program/add',$data);
 	}
@@ -37,7 +37,7 @@ class Activity_program extends MY_Controller
 	// Activity Program Edit
 	function edit($activity_id)
 	{
-		$data['editaction'] = base_url()."index.php/activity_program/update";
+		$data['editaction'] = base_url()."activity_program/update";
 
 		// WHERE condition -
 		$where = array('activity_id' => $activity_id, 'activity_program.is_deleted' => 0);
