@@ -35,11 +35,16 @@
 
 									<div class="panel-body">
 										<div class="row">
-
+											<div class="form-group">
+												<label class="col-md-1 control-label">Title<span class="asterisk">*</span></label>
+												<div class="col-sm-9">
+													<input type="text" name="title" id="title" class="form-control validate[required]">
+												</div>
+											</div><!-- form-group -->
 											<div class="form-group">
 												<label class="col-md-1 control-label"> Description<span class="asterisk">*</span></label>
 												<div class="col-sm-9">
-													<textarea  name="education_program_desc" id="education_program_desc" class="" rows="50" cols="80"></textarea>
+													<textarea  name="education_program_desc" id="education_program_desc" class="" ></textarea>
 												</div>
 											</div><!-- form-group -->
 											<div class="form-group">
@@ -53,7 +58,7 @@
 											<div class="form-group">
 												<label class="col-md-1 control-label"> File<span class="asterisk">*</span></label>
 												<div class="col-sm-6">
-													<input type="file" id="education_program_file" name="education_program_file" class="form-control" />
+													<input type="file" id="education_program_file" accept=".jpg,.png,.pdf" name="education_program_file" class="form-control" />
 												</div>
 											</div><!-- form-group -->
 
@@ -113,14 +118,21 @@
 			});
 
 			$('#education_program_desc').summernote({
-        placeholder: 'Edit Your Text Here ... ',
-        tabsize: 2,
-        height: 200
-      });
+		        placeholder: 'Edit Your Text Here ... ',
+		        
+				tabsize: 2,
+		        height: 200,
+			    theme: 'lumen'
+				
+     		 });
 
 			//$("#add_education_program_form").validationEngine({promptPosition: "topRight: -100"});
 		});
 	</script>
-
+<style>
+    .panel-heading .btn-group {
+    	margin-bottom: 0 !important;
+    }
+</style>
     </body>
 </html>

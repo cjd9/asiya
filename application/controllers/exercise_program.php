@@ -23,8 +23,16 @@ class Exercise_program extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		// get data from table -
-		$data['rsexercise_program'] = $this->db->query("SELECT DISTINCT(exercise_id), patient_id, date_of_upload, expiry_date FROM exercise_program WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+			if($this->session->userdata('user_type')=='A')
+			{
+			$data['rsexercise_program'] = $this->db->query("SELECT DISTINCT(exercise_id), patient_id, date_of_upload, expiry_date FROM exercise_program WHERE is_deleted = 0");	// order by patient_id
 
+			}
+			else
+			{
+			$data['rsexercise_program'] = $this->db->query("SELECT DISTINCT(exercise_id), patient_id, date_of_upload, expiry_date FROM exercise_program WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+
+			}
 		//$data['rsexercise_program'] = $this->db->query("SELECT DISTINCT(exercise_id), patient_id, date_of_upload, expiry_date FROM exercise_program WHERE is_deleted = 0 GROUP BY exercise_id");
 
 		$this->load->view('exercise_program/list',$data);
@@ -76,6 +84,16 @@ class Exercise_program extends MY_Controller
 
 		// get data from table -
 		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+		if($this->session->userdata('user_type')=='A')
+			{
+			$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE  is_deleted = 0");	// order by patient_id
+
+			}
+			else
+			{
+				$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+
+			}
 		$data['video_list'] = $this->db->query("SELECT DISTINCT tag FROM exercise_video_master")->result_array();	// order by patient_id
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
@@ -100,15 +118,15 @@ class Exercise_program extends MY_Controller
 			$selected_vids = $this->db->query("SELECT * FROM exercise_meta where exercise_id = '".$exercise_id."'");
 
 			foreach($selected_vids->result_array() as $vid){
-			 $html .= '<div class="col-sm-4 " style="border-style: outset; margin-right: 10px; margin-top: 15px;">
+			 $html .= '<div class="col-xs-12 col-sm-12 col-md-3  " style="margin-top: 15px;">
 
-					 <div class="outer-container">
+					 <div class="outer-container img-thumbnail">
 							 <div class="inner-container" >
 									 <div class="video-overlay"></div>
 
 									 <a href="'. $vid["vid_link"].'"> LINK</a><br><br>
 									 
-									 <video id="player" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
+									 <video id="player" class="img-thumbnail" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
 							 </div>
 								 <div class = "form-control">
 								 	<label class="control-label" for="">Start Date:</label> <input type="text" class="form-control datepicker" name="edit_video['.$vid["id"].'][exercise_start_date]" value="'.$vid["exercise_start_date"].'" placeholder="dd-mm-yyyy" >
@@ -148,16 +166,16 @@ class Exercise_program extends MY_Controller
 			$selected_vids = $this->db->query("SELECT * FROM exercise_meta where exercise_id = '".$exercise_id."'");
 
 			foreach($selected_vids->result_array() as $vid){
-			 $html .= '<div class="col-sm-4 " style="border-style: outset; margin-right: 10px; margin-top: 15px;">
+			 $html .= '<div class="col-xs-12 col-sm-12 col-md-3 " style="margin-top: 15px;">
 
-					 <div class="outer-container">
+					 <div class="outer-containerl img-thumbnail">
 							 <div class="inner-container" >
 									 <div class="video-overlay"></div>
 
 									 <a href="'. $vid["vid_link"].'"> LINK</a><br><br>
 										<label  id="delete_video" value="'. $vid["vid_name"].'"> '. $vid["vid_name"].'</label><br>
 
-									 <video id="player" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
+									 <video id="player" class="img-thumbnail" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
 							 </div>
 								 <div class = "form-control">
 								 	<label class="control-label" for="">Start Date:</label> <input type="text" class="form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
@@ -394,13 +412,13 @@ class Exercise_program extends MY_Controller
 			 $tag=$_POST['tag'];
 			 $data['video_list'] = $this->db->query("SELECT * FROM exercise_video_master where tag = '".$tag."'");
 			 foreach($data['video_list']->result_array() as $vid){
-			 $html .= '<div class="col-sm-4 " style="border-style: outset; margin-right: 10px; margin-top: 15px;">
+			 $html .= '<div class="col-xs-12 col-sm-12 col-md-3  " style="margin-top: 15px;">
 
-					 <div class="outer-container">
+					 <div class="outer-container img-thumbnail">
 							 <div class="inner-container" >
 									 <div class="video-overlay"><strong>'. $vid["title"].'</strong></div>
 									 <input type="checkbox" name="video['.$vid["id"].'][check]"  value="'.$vid["id"].'" checked/> Select Video<br>
-									 <video id="player" src="/exercise_program_file/'. $vid["name"].'"  width="300" height="250"></video>
+									 <video id="player"  class="img-thumbnail" class="img-thumbnail" src="/exercise_program_file/'. $vid["name"].'"  width="300" height="250"></video>
 							 </div>
 								 <div class = "form-control">
 								 <label class="control-label" for="">Start Date:</label> <input type="text" class="required-field form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >

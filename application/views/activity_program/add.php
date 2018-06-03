@@ -28,8 +28,9 @@
 								<form id="add_activity_program_form" action="<?php echo $saveaction; ?>" method="post" enctype="multipart/form-data" onSubmit="return validate()">
 								
 								<div class="panel panel-default">
-									
+									<div class ="panel-heading">
 										<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Activity Program </b></h3>
+
 									</div><!-- panel-heading -->
 									
 									<div class="panel-body">
@@ -54,7 +55,7 @@
 											<input type="hidden" id="activity_id" name="activity_id" class="form-control validate[required]" value="<?php echo $x; ?>" />
 											
 											<div class="form-group">
-												<label class="col-sm-2 control-label">Date of Upload<span class="asterisk">*</span></label>
+												<label class="col-sm-2 control-label">Date<span class="asterisk">*</span></label>
 												<div class="col-sm-3">
 													<div class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -71,7 +72,7 @@
 											</div><!-- form-group -->
 											
 											<div class="form-group">
-												<label class="col-md-2 control-label">File Expiry Date<span class="asterisk">*</span></label>
+												<label class="col-md-2 control-label">Expiry Date<span class="asterisk">*</span></label>
 												<div class="col-sm-3">
 													<div class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -81,17 +82,17 @@
 											</div><!-- form-group -->
 											
 											<div class="form-group">
-												<div class="col-sm-12">
+												
 												<label class="col-md-2 control-label">File<span class="asterisk">*</span></label>
 													<div class="col-sm-8" id="file_upload">
-														<input type="file" id="activity_program_file" name="activity_program_file[]" class=""/>
+														<input type="file" class="form-control" id="activity_program_file" name="activity_program_file[]" class=""/>
 													</div>
 													<div class="col-sm-2"> 
 														<button type="button" class="btn btn-primary btn-sm" id="add_more"> 
 															 <span class="glyphicon glyphicon-plus"> <b>Upload More</b></span>
 														</button>
 													</div>
-												</div>
+												
 											</div><!-- form-group -->
 											
 										</div><!-- row -->

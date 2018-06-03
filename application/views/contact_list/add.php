@@ -57,7 +57,7 @@
 												                              <a class="edit-icon v-align-contents no-form teel pos-absolute">
 												                              	<i class="glyphicon glyphicon-pencil"></i>
 												                                  <span></span>
-												                                  <input type="file" name="profile_pic" id="profile_pic" class="pos-absolute width-100 height-100 top-0"/>
+												                                  <input type="file" accept=".jpg,.jpeg,.png" name="profile_pic" id="profile_pic" class="pos-absolute width-100 height-100 top-0"/>
 												                              </a>
 												                      </div>
 												              </div>

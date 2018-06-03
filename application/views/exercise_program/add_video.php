@@ -35,33 +35,34 @@
 
 									<div class="panel-body">
 										<div class="row">
-                      <div class="form-group">
-												<label class="col-md-3 control-label">Title<span class="asterisk">*</span></label>
+                     				 <div class="form-group">
+												<label class="col-md-3 control-label">Exercise Name<span class="asterisk">*</span></label>
 												<div class="col-sm-9">
 													<input type="text" name="title" id="title" class="form-control validate[required]">
 												</div>
-											</div><!-- form-group -->
-                      <div class="form-group">
-												<label class="col-md-3 control-label">Tag<span class="asterisk">*</span></label>
+									</div><!-- form-group -->
+                   				   <div class="form-group">
+                      				<div class="form-group">
+												<label class="col-md-3 control-label"> Exercise Description<span class="asterisk">*</span></label>
 												<div class="col-sm-9">
-                          <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p">
-                          <option value=""></option>
-                          <option value="disc">disc</option>
-                          <option value="low">low</option>
+													<textarea name="description" id="description" class="form-control validate[required]"></textarea>
+												</div>
+									</div><!-- form-group -->
+												<label class="col-md-3 control-label">Category<span class="asterisk">*</span></label>
+												<div class="col-sm-9">
+						                          <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p">
+						                          <option value=""></option>
+						                          <option value="disc">disc</option>
+						                          <option value="low">low</option>
 
-                        </select>
+						                        </select>
 												</div>
 											</div><!-- form-group -->
-											<div class="form-group">
-												<label class="col-md-3 control-label"> Video Description<span class="asterisk">*</span></label>
-												<div class="col-sm-9">
-													<input type="text" name="description" id="description" class="form-control validate[required]">
-												</div>
-											</div><!-- form-group -->
+											
 
 											<div class="form-group">
-												<label class="col-md-3 control-label"> Video File<span class="asterisk">*</span></label>
-												<div class="col-sm-6">
+												<label class="col-md-3 control-label"> Upload Video<span class="asterisk">*</span></label>
+												<div class="col-sm-9">
 													<input type="file" id="video_file" name="video_file" class="form-control" />
 												</div>
 											</div><!-- form-group -->
@@ -95,6 +96,17 @@
 		{
 			$("#add_clinical_meetings_form").validationEngine({promptPosition: "topRight: -100"});
 		});
+		$(function () {
+					    $('input[type=file]').change(function () {
+					        var val = $(this).val().toLowerCase(),
+					            regex = new RegExp("(.*?)\.(docxx|mp4|bmp)$");
+
+					        if (!(regex.test(val))) {
+					            $(this).val('');
+					            alert('Please select any one of docx|doc|pdf|xml|bmp|ppt|xls|jpg|png|jpeg file format');
+					        }
+					    });
+					});
 	</script>
 
     </body>

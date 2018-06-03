@@ -9,7 +9,7 @@
 */
 class Education_program extends MY_Controller
 {
-	function Education_program()
+	function __construct()
 	{
 		parent::__construct();
 	}
@@ -149,11 +149,11 @@ class Education_program extends MY_Controller
 
 			$data['education_program_file'] = $education_program_file;
 		}
-		$data['meeting_date'] = $this->mastermodel->date_convert($data['samvaad_date'],'ymd');
+		$data['samvaad_date'] = $this->mastermodel->date_convert($data['samvaad_date'],'ymd');
 		$result = $this->mastermodel->add_data('education_program', $data);
 
 		// function used to redirect -
-		$this->mastermodel->redirect($result, 'education_program', 'education_program/add', 'Added');
+		$this->mastermodel->redirect(TRUE, 'education_program', 'education_program/add', 'Added');
 	}
 
 	// Education Program Update Data to the DB

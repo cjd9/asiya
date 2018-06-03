@@ -9,7 +9,7 @@
 */
 class p_appointment_schedule extends MY_Controller
 {
-	function p_appointment_schedule()
+	function __construct()
 	{
 		parent::__construct();
 	}
@@ -142,13 +142,13 @@ class p_appointment_schedule extends MY_Controller
 			$msg .= '<b>Problem : </b> '.$data['problem'].' <br>';
 			$msg .= '<br><br> Thanks, <br> - Clinic Management System.';
 			
-			$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', TRUE);
+			//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', TRUE);
 			
 			/****************** Send Email *************************/
 		}
 		
 		// function used to redirect -
-		$this->mastermodel->redirect($result, 'p_appointment_schedule', 'p_appointment_schedule/add', 'Added');
+		$this->mastermodel->redirect(TRUE, 'p_appointment_schedule', 'p_appointment_schedule/add', 'Added');
 	}
 	
 	// function to cancel appointment booking if status is 'pending' -

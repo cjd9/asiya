@@ -31,7 +31,7 @@ $config['base_url'] .=  str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVE
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

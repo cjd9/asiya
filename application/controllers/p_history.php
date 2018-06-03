@@ -6,7 +6,7 @@
 */
 class P_history extends MY_Controller
 {
-	function P_history()
+	function __construct()
 	{
 		parent::__construct();
 	}

@@ -27,7 +27,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
           <input type="hidden" name = "edit_treatment['.$treatment_meta["id"].'][id]" value = "'.$treatment_meta['id'].'"</td>
-          <td><button href= "" class="form-control add-btn" id="add-btn-'.$count.'" style="z-index:0">+</button></td>
+          <td><button href= "" class="form-control add-btn" id="add-btn-'.$count.'" style="z-index:0"><i class ="fa fa-plus"></i></button></td>
           
 
         </tr>
@@ -247,18 +247,29 @@ foreach($rstreatment->result_array() as $treatment_meta) {
             '<tbody>'+
             '<tr>'+
             '<td><input class="form-control" placeholder="Therapy Name" name="treatment['+count+'][therapy]" id="maual_therapy"></input></td>'+
-            '<td><input type="number" name = "treatment['+count+'][reps]" class="form-control"  placeholder="No of Reps"/></textarea></td>'+
-            '<td><input type="number" name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
-            '<td><input type="number" name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+
+            '<td><input type="number" min="0"  name = "treatment['+count+'][reps]" class="form-control"  placeholder="No of Reps"/></textarea></td>'+
+            '<td><input type="number" min="0"  name = "treatment['+count+'][sets]" class="form-control" placeholder="No of Sets"/></textarea></td>'+
+            '<td><input type="number" min="0"  name = "treatment['+count+'][time]" class="form-control" placeholder="Hold time in mins"/></textarea></td>'+
             '<td><button href= "" class="form-control add-btn" id="add-btn-'+count+'"  style="z-index:0">+</button></td>'+
+            '<td><button href= "" class="form-control delete" id="" style="z-index:0"><i class ="fa fa-times"></i></button></td>'+
             '</tr>'+
             '</tbody>'+
     '     </table>'+
     '</div>');
     $(this).html().replace(/ARRAY_INDEX/g,  1);
     addRow();
+    deleteRow();
   }); }
   	});
+
+
+function deleteRow(){
+	$('.delete').on("click",function(e){
+				e.preventDefault();
+				console.log($(this).closest("table").parent('div'));
+				$(this).closest("table").parent('div').remove();
+		});
+}
   </script>
 
     </body>

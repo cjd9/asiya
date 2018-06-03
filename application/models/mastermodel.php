@@ -38,7 +38,6 @@ class Mastermodel extends MY_Model
 		// $mail->Host = 'smtp.gmail.com';
 		// $mail->SMTPAuth = true;
 		// $mail->Username = 'dclyde14@gmail.com';
-		// $mail->Password = '94224557956';
 		// $mail->SMTPSecure = 'tls';
 
 		// $mail->From = 'dclyde14@gmail.com';
@@ -79,7 +78,6 @@ class Mastermodel extends MY_Model
 		{
 			//$mail->ClearAllRecipients();
     		//$mail->ClearAttachments();   //Remove all attachements
-			print_r($mail);
 			return true;
 		}
 	}

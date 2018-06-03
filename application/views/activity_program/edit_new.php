@@ -7,7 +7,7 @@
 						<div class="media">
 							
 							<div class="media-body">
-								<a href="<?php echo base_url().'contact_list'; ?>" type="button" class="btn btn-default btn-sm">
+								<a href="<?php echo base_url().'activity_program'; ?>" type="button" class="btn btn-default btn-sm">
 								          <span class="glyphicon glyphicon-arrow-left "></span> Back
 								 </a>
 								
@@ -30,7 +30,8 @@
 								<input disabled  type="hidden" name="edit_pk" id="edit_pk"  value="<?php echo $r->pk; ?>"/>
 								
 								<div class="panel panel-default">
-									
+										<div class ="panel-heading">
+
 										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>View Activity Program </b></h3>
 									</div><!-- panel-heading -->
 									

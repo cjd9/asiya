@@ -223,7 +223,7 @@ class Appointment_schedule extends MY_Controller
 					$msg = $html;
 
 					// send email to patient, function defined below -
-					//$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+					$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
 
 				}
 			}

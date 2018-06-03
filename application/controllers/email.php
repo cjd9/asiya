@@ -9,7 +9,7 @@
 */
 class Email extends MY_Controller
 {
-	function Email()
+	function __construct()
 	{
 		parent::__construct();
 	}

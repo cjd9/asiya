@@ -60,8 +60,8 @@
 									<thead class="">
 										<tr>
 											<th><div align="center">#</div></th>
+											<th>Title</th>
 											<th> File</th>
-											<th><div align="center">Comment</div></th>
 											<th><div align="center">Action</div></th>
 										</tr>
 									</thead>
@@ -72,17 +72,15 @@
 											<td align="center"><?php echo ++$cnt; ?></td>
 											<!-- <td><?php echo wordwrap($row->education_program_desc, 80,"<br>\n",TRUE); ?></td> -->
 											<td>
+												<?php echo $row->title; ?>
+
+											</td>
+											<td>
 												<a href="<?php echo base_url().'./education_program_file/'.$row->education_program_file; ?>" target="_blank">
 													<?php echo $row->education_program_file; ?>
 												</a>
 											</td>
-											<td>
-												<div align="center">
-													<a href="<?php print base_url(); ?>education_program/comment_box/<?php echo $row->pk; ?>"  class="btn btn-sm btn-bordered btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
-												  	<i class="fa fa-comments"></i> Comment
-													</a>
-												</div>
-											</td>
+											
 											<td>
 												<div align="center">
 													<a href="<?php print base_url(); ?>education_program/edit/<?php echo $row->pk; ?>" class="btn btn-info btn-sm">

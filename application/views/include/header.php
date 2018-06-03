@@ -77,11 +77,11 @@
 								<?php
 									if($r->s_work_shift == 'M')
 									{
-										echo '<button class="btn btn-xs btn-info btn-rounded" id="staff_work_shift" data-id="'.$r->s_work_shift.'"><b>Shift - Morning</b></button>';
+										echo '<button class="btn btn-xs btn-info btn-rounded" style=" background: #fff; color: green;" id="staff_work_shift" data-id="'.$r->s_work_shift.'"><b>Shift - Morning</b></button>';
 									}
 									else
 									{
-										echo '<button class="btn btn-xs btn-default btn-rounded" id="staff_work_shift" data-id="'.$r->s_work_shift.'"><b>Shift - Evening</b></button>';
+										echo '<button class="btn btn-xs btn-default btn-rounded" style=" background: #fff; color: green; " id="staff_work_shift" data-id="'.$r->s_work_shift.'"><b>Shift - Evening</b></button>';
 									}
 								?>
 							</div>

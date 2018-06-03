@@ -40,6 +40,12 @@
 
 									<div class="panel-body">
 										<div class="row">
+												<div class="form-group">
+												<label class="col-md-2 control-label">Title<span class="asterisk">*</span></label>
+												<div class="col-sm-9">
+													<input type="text" name="title" id="title" class="form-control validate[required]" value="<?php echo $r->title; ?>">
+												</div>
+											</div><!-- form-group -->
 
 											<div class="form-group">
 												<label class="col-md-2 control-label"> Description</label>
@@ -49,8 +55,8 @@
 											</div><!-- form-group -->
 											<div class="form-group">
 
-													<label class="col-md-1 control-label"> Date<span class="asterisk">*</span></label>
-													<div class="col-sm-6">
+													<label class="col-md-2 control-label"> Date<span class="asterisk">*</span></label>
+													<div class="col-sm-9">
 													<input type="text" class="form-control validate[required]" name="samvaad_date" id="samvaad_date" value="<?php echo date('d-m-Y')?>">
 													</div>
 											</div>
@@ -141,6 +147,11 @@
 			//$("#add_education_program_form").validationEngine({promptPosition: "topRight: -100"});
 		});
 	</script>
+<style>
+    .panel-heading .btn-group {
+    	margin-bottom: 0 !important;
+    }
+</style>
 
     </body>
 </html>

@@ -1,8 +1,8 @@
 <?php $this->load->view('include/header'); ?>
 
 <?php $this->load->view('include/left'); ?>
-<link href="<?php print base_url(); ?>exercise.css" rel="stylesheet">
-
+<!-- <link href="<?php print base_url(); ?>css/exercise.css" rel="stylesheet">
+ -->
 			<div class="mainpanel">
 					<div class="pageheader">
 						<div class="media">

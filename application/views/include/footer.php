@@ -98,7 +98,8 @@
 			jQuery('#basicTable').DataTable(
 			{
 				responsive: true,
-				"autoWidth": false
+				"autoWidth": false,
+				 aaSorting: [[5, 'asc']]
 			});
 
 			jQuery('#basicTable1').DataTable(

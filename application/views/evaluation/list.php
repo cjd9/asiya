@@ -43,7 +43,7 @@
 
                    <div class="contentpanel">
                       	 <a href="<?php print base_url(); ?>evaluation/add">
-					  	 	<button class="btn btn-primary <?php echo $this->session->userdata('user_type') == 'S'? '' : 'hide' ?>"><i class="fa fa-pencil"></i> Add Evaluation</button>
+					  	 	<button class="btn btn-primary <?php echo $this->session->userdata('user_type') == 'S'? '' : '' ?>"><i class="fa fa-pencil"></i> Add Evaluation</button>
 						 </a>
 					   <br /><br />
 

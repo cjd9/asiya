@@ -9,7 +9,7 @@
 */
 class Evaluation extends MY_Controller
 {
-	function Evaluation()
+	function __construct()
 	{
 		parent::__construct();
 	}
@@ -23,7 +23,16 @@ class Evaluation extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		// get evaluation details of those patient assign to login staff -
+		
+		if($this->session->userdata('user_type')=='A')
+			{
+		$data['rsevaluation'] = $this->db->query("SELECT * FROM patient_evaluation WHERE is_deleted = 0");
+
+			}
+			else{
 		$data['rsevaluation'] = $this->db->query("SELECT * FROM patient_evaluation WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+
+			}
 		$this->load->view('evaluation/list',$data);
 	}
 
@@ -39,7 +48,17 @@ class Evaluation extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		// get evaluation details of those patient assign to login staff -
-		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+
+		if($this->session->userdata('user_type')=='A')
+			{
+			$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE    is_deleted = 0");
+
+			}
+			else{
+				$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+
+			}
+
 
 		$this->load->view('evaluation/add',$data);
 	}

@@ -9,6 +9,7 @@
 								<i class="fa fa-edit"></i>
 							</div>
 							<div class="media-body">
+								
 								<ul class="breadcrumb">
 									<li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
 									<li><a href="#">Activity Program</a></li>
@@ -33,7 +34,8 @@
 								<input type="hidden" name="edit_pk" id="edit_pk"  value="<?php echo $r->pk; ?>"/>
 								
 								<div class="panel panel-default">
-									
+									<div class ="panel-heading">
+
 										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Activity Program </b></h3>
 									</div><!-- panel-heading -->
 									

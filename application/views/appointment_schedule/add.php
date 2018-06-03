@@ -43,7 +43,7 @@
 												<div class="col-sm-7">
 													<div class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-														<input type="text" class="form-control validate[required]" name="schedule_date" id="datepicker" value="">
+														<input type="text" class="form-control  validate[required]" autocomplete="off" name="schedule_date" id="datepicker" value="">
 													</div><!-- input-group -->
 												</div>
 											</div>
@@ -719,7 +719,7 @@
 		var data =
 		<?php
 			// get patient fname form table -
-			$rsfname = $this->db->query("SELECT pk,CONCAT(p_fname, ' ', p_lname)  as label, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
+			$rsfname = $this->db->query("SELECT pk,CONCAT_WS(' ',p_fname, p_mname, p_lname)  as label, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
 			echo json_encode($rsfname->result());
 
 		?>

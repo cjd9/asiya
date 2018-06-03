@@ -50,8 +50,9 @@ class Dashboard extends MY_Controller
 		$arr2['name']= '"Total fee(in thousands)"';
 		$arr2['data']= '['.str_replace('"', '', implode(",",$fee)).']';
 				// echo json_encode($arr); die;
+		//		$data['json'] = json_encode($arr1).','.json_encode($arr2);
 
-		$data['json'] = json_encode($arr1).','.json_encode($arr2);
+		$data['json'] = json_encode($arr2);
 		$data['json'] = str_replace('"', '', $data['json']);
 		$data['json'] = str_replace("", '"', $data['json']);
 		$data['json'] =  preg_replace('/\\\\/', '"', $data['json']);

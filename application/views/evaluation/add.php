@@ -28,7 +28,7 @@
                                 <p class="mb20"></p>
 
                                 <!-- BASIC WIZARD -->
-                                <form method="post" action="<?php echo $saveaction; ?>" id="valWizard" class="form-horizontal" enctype="multipart/form-data">
+                                <form method="post" action="<?php echo $saveaction; ?>" id="valWizard" class="form-horizontal panel-wizard" enctype="multipart/form-data">
                                   <div id="rootwizard">
                                     <ul class="nav nav-justified nav-wizard nav-disabled-click">
                                         <li><a href="#tab1-4" data-toggle="tab"><strong>Step 1:</strong> Patient Basic Information</a></li>
@@ -42,7 +42,7 @@
 
 											<div class="form-group"><!-- Start form-group -->
 												<div class="col-sm-6">
-													<label class="col-sm-4">Patient Name</label>
+													<label class="col-sm-4">Patient Name*</label>
 													<div class="col-sm-8">
 														<select id="patient_id" name="patient_id" data-placeholder="Choose Paitent " class="select2-container width100p">
 															<option value=""> </option>
@@ -215,7 +215,7 @@
 													<div class="col-sm-2">
 														<div class="ckbox ckbox-default">
 															<input value="1" id="checkboxDefault5" type="checkbox" name="p_diet_mix">
-															<label for="checkboxDefault5">Mix</label>
+															<label for="checkboxDefault5">Both</label>
 														</div>
 													</div>
 												</div>
@@ -333,7 +333,7 @@
 												<div class="col-sm-8" id="x-ray">
 													<label class="col-sm-2">Upload Report</label>
 													<div class="col-sm-6" id="xray_upload">
-														<input type="file" name="p_xray_report[]" />
+														<input type="file" accept=".jpg,.jpeg,.png, docx,.doc,.pdf" name="p_xray_report[]" />
 													</div>
                                             	</div>
 
@@ -376,7 +376,7 @@
 												<div class="col-sm-6">
 													<label class="col-sm-4">Upload Report</label>
 													<div class="col-sm-8">
-														<input type="file" name="blood_investigation_report" id="blood_investigation_report"  />
+														<input type="file" accept=".jpg,.jpeg,.png, docx,.doc,.pdf" name="blood_investigation_report" id="blood_investigation_report"  />
 													</div>
 												</div>
 
@@ -635,7 +635,9 @@
 	<script>
 
 	jQuery(document).ready(function() {
-
+		$(document).on('click', 'input[type="checkbox"]', function() {      
+		    $('input[type="checkbox"]').not(this).prop('checked', false);      
+		});
 		// This will empty first option in select to enable placeholder
 		jQuery('select option:first-child').text('');
 
@@ -763,7 +765,7 @@
 				//max input box allowed
 				x++; //text box increment
 
-				$(wrapper).append('<span style="display:inline;"><input type="file" name="p_xray_report[]" style="display:inline" />&nbsp;<span style="display:inline" class="glyphicon glyphicon-remove remove_field"></span></span>'); //add input box
+				$(wrapper).append('<span style="display:inline;"><input type="file" accept=".jpg,.jpeg,.png, docx,.doc,.pdf" name="p_xray_report[]" style="display:inline" />&nbsp;<span style="display:inline" class="glyphicon glyphicon-remove remove_field"></span></span>'); //add input box
 			}
 		});
 

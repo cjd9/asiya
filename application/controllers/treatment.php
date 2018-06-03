@@ -35,8 +35,15 @@ class Treatment extends MY_Controller
 		// get current login user -
 		$current_staff_id = $this->session->userdata("userid");
 
+		if($this->session->userdata('user_type')=='A')
+			{
+		$data['rspatient'] = $this->db->query("SELECT DISTINCT(patient_id) FROM treatment WHERE  is_deleted = 0 ORDER BY patient_id");
+
+			}
+			else{
 		$data['rspatient'] = $this->db->query("SELECT DISTINCT(patient_id) FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id");
 
+			}
 		$this->load->view('treatment/list',$data);
 	}
 
@@ -51,8 +58,15 @@ class Treatment extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		// get data from table -
+		if($this->session->userdata('user_type')=='A')
+			{
+		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE  is_deleted = 0");	// order by patient_id
+
+			}
+			else{
 		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
 
+			}
 		$this->load->view('treatment/add',$data);
 	}
 

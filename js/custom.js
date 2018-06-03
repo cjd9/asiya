@@ -142,17 +142,23 @@ jQuery(document).ready(function() {
          //$("#search_patient_form").validationEngine({promptPosition: "topRight: -100"});
 
          // show staff field to share -
-         $('.btn_share1').on('click', function() {
+         // $('.btn_share1').on('click', function() {
 
-            $(this).hide();
+         //    $(this).hide();
+
+         //    $(this).next(".staff_field").show();
+         //    $(this).next(".staff_field").next(".btn_share2").show();
+         //    $(this).next(".staff_field").next().next(".btn_share3").show();
+         // });
+         $('#basicTable tbody').on('click', '.btn_share1', function () {
+              $(this).hide();
 
             $(this).next(".staff_field").show();
             $(this).next(".staff_field").next(".btn_share2").show();
             $(this).next(".staff_field").next().next(".btn_share3").show();
-         });
-
+          });
          // share selected patient with selected staff -
-         $('.btn_share2').on('click', function() {
+          $('#basicTable tbody').on('click', '.btn_share2', function () {
 
             var assign_staff_id = $(this).parent("td").find("select.assign_staff_id").val();
 
@@ -163,46 +169,56 @@ jQuery(document).ready(function() {
             }
             else
             {
-               var ans = confirm("You Want to Share this Patient?");
 
-               if(ans)
-               {
-                  var patient_id =  $(this).parent("td").find(".patient_id").val();
+         bootbox.confirm({
+                title: "Share Patient?",
+                message: "You Want to Share this Patient??.",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
+                    }
+                },
+                callback: function (result) {
+                    if(result)
+                  {
+                        var patient_id =  $(this).parent("td").find(".patient_id").val();
 
                   //alert(assign_staff_id);
                   //alert(patient_id);
 
-                  // get patient's contact no. using ajax -
-                  $.ajax({
-                        url: "/contact_list/share_patient",
-                        type: "post",
-                        async:false,
-                        cache:false,
-                        //dataType:'json',
-                        data:{ assign_staff_id:assign_staff_id, patient_id:patient_id },
-                        success: function (res)
-                        {
-                           // check if patient successfully shared -
-                           if(res != 0)
-                           {
-                              alert("Patient Shared Successfully.");
+                      // get patient's contact no. using ajax -
+                      $.ajax({
+                            url: "/contact_list/share_patient",
+                            type: "post",
+                            async:false,
+                            cache:false,
+                            //dataType:'json',
+                            data:{ assign_staff_id:assign_staff_id, patient_id:patient_id },
+                            success: function (res)
+                            {
+                               // check if patient successfully shared -
+                               if(res != 0)
+                               {
+                                  alert("Patient Shared Successfully.");
 
-                              // submit hidden form to load same page with staff patient list -
-                              window.location = "/contact_list";
-                           }
-                        }
-                  });
-               }
-               else
-               {
-                  return false;
-               }
+                                  // submit hidden form to load same page with staff patient list -
+                                  window.location = "/contact_list";
+                               }
+                            }
+                      });
+                     }
+                    }
+                });
+               
             }
 
          });
 
          // hide sharing field -
-         $('.btn_share3').on('click', function() {
+          $('#basicTable tbody').on('click', '.btn_share3', function () {
 
             $(this).parent("td").find(".staff_field").hide();
             $(this).parent("td").find(".btn_share2").hide();

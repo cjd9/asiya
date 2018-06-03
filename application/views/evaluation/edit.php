@@ -217,7 +217,7 @@
 													<div class="col-sm-2">
 														<div class="ckbox ckbox-default">
 															<input id="checkboxDefault5" type="checkbox" name="p_diet_mix" <?php if($r->p_diet_mix== 1) { echo ' checked="checked"'; } ?> value="1">
-															<label for="checkboxDefault5">Mix</label>
+															<label for="checkboxDefault5">Both</label>
 														</div>
 													</div>
 												</div>
@@ -414,7 +414,7 @@
 												<div class="col-sm-8">
 													<label class="col-sm-2">File</label>
 													<div class="col-sm-8" id="xray_upload">
-														<input type="file" name="p_xray_report[]" />
+														<input type="file" accept=".jpg,.jpeg,.png, docx,.doc,.pdf" name="p_xray_report[]" />
 													</div>
                                             	</div>
                                             
@@ -454,7 +454,7 @@
 													<div class="col-sm-8">
 														<a href="<?php echo base_url().'./patient_report/blood_investigation_report/'.$r->blood_investigation_report; ?>" target="_blank">
 															<b><?php echo $r->blood_investigation_report; ?></b></a>
-															<input type="file" class="form-control" name="blood_investigation_report" id="blood_investigation_report"/>
+															<input type="file" accept=".jpg,.jpeg,.png, docx,.doc,.pdf"  class="form-control" name="blood_investigation_report" id="blood_investigation_report"/>
 													</div>
 												</div>
                                             
@@ -802,7 +802,11 @@
 	<script>
 	
 	$(document).ready(function() 
-	{
+	{	
+		$(document).on('click', 'input[type="checkbox"]', function() {      
+		    $('input[type="checkbox"]').not(this).prop('checked', false);      
+		});
+
 		var max_fields      = 10; //maximum input boxes allowed
 		var wrapper         = $("#xray_upload"); //Fields wrapper
 		var add_button      = $("#add_more"); //Add button ID
@@ -819,7 +823,7 @@
 				//max input box allowed
 				x++; //text box increment
 				
-				$(wrapper).append('<span style="display:inline;"><input type="file" name="p_xray_report[]" style="display:inline" />&nbsp;<span style="display:inline" class="glyphicon glyphicon-remove remove_field"></span></span>')
+				$(wrapper).append('<span style="display:inline;"><input type="file" accept=".jpg,.jpeg,.png, docx,.doc,.pdf" name="p_xray_report[]" style="display:inline" />&nbsp;<span style="display:inline" class="glyphicon glyphicon-remove remove_field"></span></span>')
 			}
 		});
 	   

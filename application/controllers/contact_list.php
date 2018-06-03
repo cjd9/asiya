@@ -343,7 +343,7 @@ class Contact_list extends MY_Controller
 
 					$msg = $html;
 
-					//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+					$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
 				}
 
 				/****************** Send Email *************************/
