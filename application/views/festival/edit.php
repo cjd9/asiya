@@ -1,4 +1,4 @@
-<?php $this->load->view('include/header'); ?>
+<?php  $this->load->view('include/header'); ?>
 
 <?php $this->load->view('include/left'); ?>
 
@@ -12,10 +12,10 @@
 
 								<ul class="breadcrumb">
 									<li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
-									<li><a href="#">Activity Program</a></li>
+									<li><a href="#">Festival</a></li>
 
 								</ul>
-								<h4>Edit Activity Program </h4>
+								<h4>Edit Festival </h4>
 							</div>
 						</div><!-- media -->
 					</div><!-- pageheader -->
@@ -25,30 +25,68 @@
 						<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 						<?php
-							$r = $rsactivity_program->row();
+							$r = $rsfestival->row();
 						 ?>
 
 						<div class="row">
 							<div class="col-md-12">
-								<form id="edit_activity_program_form" action="<?php echo $editaction; ?>" method="post" enctype="multipart/form-data" onSubmit="return validate()">
-								<input type="hidden" name="edit_pk" id="edit_pk"  value="<?php echo $r->pk; ?>"/>
+								<form id="edit_festival_form" action="<?php echo $editaction; ?>" method="post" enctype="multipart/form-data" onSubmit="return validate()">
+								<input type="hidden" name="edit_pk" id="edit_pk"  value="<?php echo $r->festival_id; ?>"/>
 
 								<div class="panel panel-default">
 									<div class ="panel-heading">
 
-										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Activity Program </b></h3>
+										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Festival </b></h3>
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">
 										<div class="row">
-											<input type="hidden" id="activity_id" name="activity_id" class="form-control validate[required]" value="<?php echo $r->activity_id; ?>" />
+											<input type="hidden" id="festival_id" name="festival_id" class="form-control validate[required]" value="<?php echo $r->festival_id; ?>" />
+                      <?php
+												$sql = "SELECT festival_id FROM religious_festivals WHERE is_deleted = 0 ORDER BY festival_id DESC LIMIT 1";
 
+												$rs = $this->db->query($sql);
+
+												if($rs->num_rows() > 0)
+												{
+													$x = $rs->row()->festival_id;
+
+													$x = $this->mastermodel->get_auto_no($x);
+												}
+												else
+												{
+													$x = 'ACT0001';
+												}
+											?>
+                      <div class="form-group">
+                       <label class="col-sm-2 control-label">Festival Name<span class="asterisk">*</span></label>
+                       <div class="col-sm-6">
+                         <input type="text" name="festival_name" value = "<?php echo $r->festival_name; ?>" id="festival_name" class="form-control validate[required]">
+                       </div>
+                     </div>
+                     <div class="form-group">
+
+                         <label class="col-sm-2 control-label">Religion Name<span class="asterisk">*</span></label>
+                         <div class="col-sm-5">
+                           <select id="religion_id" multiple="multiple" name="religion_id[]" data-placeholder="Choose Religion " class="select2-container width100p">
+                             <option value=""></option>
+                             <?php
+                               foreach ($religion_list->result() as $rl)
+                               {
+                                 echo "<option value='".$rl->pk."'>".$rl->religion."</option>";
+                               }
+                             ?>
+                           </select>
+                           <span id="msg1" class="" style="color:#FF0000"></span>
+                         </div>
+
+                     </div><!-- form-group -->
 											<div class="form-group">
-												<label class="col-sm-2 control-label">Date of Upload</label>
+												<label class="col-sm-2 control-label">Date</label>
 												<div class="col-sm-3">
 													<div class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-														<input type="text" class="form-control datepicker" name="date_of_upload" value="<?php echo date("d-m-Y",strtotime($r->date_of_upload)); ?>">
+														<input type="text" class="form-control datepicker" name="date" value="<?php echo date("d-m-Y",strtotime($r->date)); ?>">
 													</div><!-- input-group -->
 												</div>
 
@@ -57,62 +95,13 @@
 											<div class="form-group">
 												<label class="col-md-2 control-label">Description </label>
 												<div class="col-sm-10">
-													<textarea rows="10" name="activity_program" id="activity_program" class="form-control validate[required]"><?php echo $r->activity_program; ?></textarea> </textarea>
+													<textarea rows="10" name="message" id="message" class="form-control validate[required]"><?php echo $r->message; ?></textarea> </textarea>
 												</div>
 											</div><!-- form-group -->
 
-											<div class="form-group">
-												<div class="col-sm-12">
-												<label class="col-md-2 control-label">File Expiry Date </label>
-													<div class="col-sm-3">
-														<div class="input-group">
-															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="expiry_date" id="expiry_date" value="<?php echo date("d-m-Y",strtotime($r->expiry_date)); ?>">
-														</div><!-- input-group -->
-													</div>
-												</div>
-											</div><!-- form-group -->
 
-											<div class="form-group"><!-- Start form-group -->
-												<div class="col-sm-8">
-													<label class="col-sm-3">Uploaded Files</label>
-													<div class="col-sm-8 table-responsive">
-														<table class="table table-striped table-bordered">
-															<tr style="text-align:center">
-																<th>File Name</th>
-																<th>Action</th>
-															</tr>
-															<?php foreach($rsactivity_program->result() as $r2) { ?>
-															<tr>
-																<td>
-																	<a href="<?php echo base_url().'activity_program_file/'.$r2->activity_program_file; ?>" target="_blank">
-																		<?php echo $r2->activity_program_file; ?>
-																	</a>
-																</td>
-																<td>
-																	<a href="javascript:void(0)" data-value="<?php echo $r2->pk; ?>" class="btn-delete">Delete</a>
-																</td>
-															</tr>
-															<?php } ?>
-														</table>
-													</div>
-                                            	</div>
-                                            </div><!-- End form-group -->
 
-											<div class="form-group"><!-- Start form-group -->
-												<div class="col-sm-8">
-													<label class="col-sm-3">File</label>
-													<div class="col-sm-8" id="file_upload">
-														<input type="file" id="activity_program_file" name="activity_program_file[]" class=""/>
-													</div>
-                                            	</div>
 
-												<div class="col-sm-2">
-													<button type="button" class="btn btn-primary btn-sm" id="add_more">
-														 <span class="glyphicon glyphicon-plus"> <b>Upload More</b></span>
-													</button>
-												</div>
-                                            </div><!-- End form-group -->
 
 										</div><!-- row -->
 									</div><!-- panel-body -->
@@ -121,7 +110,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>activity_program" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>festival" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
@@ -147,9 +136,11 @@
 	</script>
 
 	<script>
-
+  var datasel =<?php echo json_encode(explode(',',$rsfestival->result_array()[0]['religion_id'])) ?>;
 	$(document).ready(function()
 	{
+  
+    $('#religion_id').select2({}).select2('val', datasel);
 		var max_fields      = 10; //maximum input boxes allowed
 		var wrapper         = $("#file_upload"); //Fields wrapper
 		var add_button      = $("#add_more"); //Add button ID

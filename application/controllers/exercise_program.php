@@ -125,7 +125,7 @@ class Exercise_program extends MY_Controller
 									 <div class="video-overlay"></div>
 
 									 <a href="'. $vid["vid_link"].'"> LINK</a><br><br>
-									 
+
 									 <video id="player" class="img-thumbnail" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
 							 </div>
 								 <div class = "form-control">
@@ -409,29 +409,32 @@ class Exercise_program extends MY_Controller
 	 }
 		 function fetchVideoByTag()
 		 {	$html='';
-			 $tag=$_POST['tag'];
-			 $data['video_list'] = $this->db->query("SELECT * FROM exercise_video_master where tag = '".$tag."'");
-			 foreach($data['video_list']->result_array() as $vid){
-			 $html .= '<div class="col-xs-12 col-sm-12 col-md-3  " style="margin-top: 15px;">
+			// print_r($_POST); die;
 
-					 <div class="outer-container img-thumbnail">
-							 <div class="inner-container" >
-									 <div class="video-overlay"><strong>'. $vid["title"].'</strong></div>
-									 <input type="checkbox" name="video['.$vid["id"].'][check]"  value="'.$vid["id"].'" checked/> Select Video<br>
-									 <video id="player"  class="img-thumbnail" class="img-thumbnail" src="/exercise_program_file/'. $vid["name"].'"  width="300" height="250"></video>
-							 </div>
-								 <div class = "form-control">
-								 <label class="control-label" for="">Start Date:</label> <input type="text" class="required-field form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
-									<label class="control-label" for="">End Date:</label> <input type="text" class="required-field form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
+			 foreach($_POST['tag'] as $tag){
+				 $data['video_list'] = $this->db->query("SELECT * FROM exercise_video_master where tag = '".$tag."'");
+				 foreach($data['video_list']->result_array() as $vid){
+				 $html .= '<div class="col-xs-12 col-sm-12 col-md-3  " style="margin-top: 15px;">
 
-									 <label class="control-label" for="">No of Reps:</label>  <input type="number" name="video['.$vid["id"].'][reps]" class= "form-control" placeholder="No Of reps">
-									 <label class="control-label" for="">No of Sets:</label>     <input type="number" name="video['.$vid["id"].'][sets]" class= "form-control" placeholder="No Of sets">
-									 <label class="control-label" for="">Hold Time:</label>     <input type="number" name="video['.$vid["id"].'][hold_time]" class= "form-control" placeholder="Hold Time">
-								 	 <input type = "hidden" name ="video['.$vid["id"].'][vid_name]" value="'.$vid["name"].'">
+						 <div class="outer-container img-thumbnail">
+								 <div class="inner-container" >
+										 <div class="video-overlay"><strong>'. $vid["title"].'</strong></div>
+										 <input type="checkbox" name="video['.$vid["id"].'][check]"  value="'.$vid["id"].'" checked/> Select Video<br>
+										 <video id="player"  class="img-thumbnail" class="img-thumbnail" src="/exercise_program_file/'. $vid["name"].'"  width="300" height="250"></video>
 								 </div>
-						 </div>
-				 </div>';
-		    }
+									 <div class = "form-control">
+									 <label class="control-label" for="">Start Date:</label> <input type="text" class="required-field form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
+										<label class="control-label" for="">End Date:</label> <input type="text" class="required-field form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
+
+										 <label class="control-label" for="">No of Reps:</label>  <input type="number" name="video['.$vid["id"].'][reps]" class= "form-control" placeholder="No Of reps">
+										 <label class="control-label" for="">No of Sets:</label>     <input type="number" name="video['.$vid["id"].'][sets]" class= "form-control" placeholder="No Of sets">
+										 <label class="control-label" for="">Hold Time:</label>     <input type="number" name="video['.$vid["id"].'][hold_time]" class= "form-control" placeholder="Hold Time">
+									 	 <input type = "hidden" name ="video['.$vid["id"].'][vid_name]" value="'.$vid["name"].'">
+									 </div>
+							 </div>
+					 </div>';
+			    }
+				}
 		 	 echo $html;
 
 		 }

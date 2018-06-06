@@ -26,8 +26,8 @@
 
                             <div class="col-md-12">
                             	<a href="<?php echo base_url().'evaluation'; ?>" type="button" class="btn btn-default btn-sm">
-								          <span class="glyphicon glyphicon-arrow-left"></span> Back
-						        </a>
+								          			<span class="glyphicon glyphicon-arrow-left"></span> Back
+						                 </a>
                                 <h5 class="lg-title text-center"><b>Patient Evaluation</b></h5>
                                 <p class="mb20"></p>
 

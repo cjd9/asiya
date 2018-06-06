@@ -28,7 +28,7 @@
 
 						<div class="panel panel-default">
 								<div class="panel-heading">
-									
+
 									<h3 class="panel-title"><span class="glyphicon glyphicon-export"></span> <b>Export Appointment Schedule</b></h3>
 								</div><!-- panel-heading -->
 
@@ -79,7 +79,7 @@
 
 							<div class="panel panel-default">
 								<div class="panel-heading">
-								
+
 									<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Appointment Schedule</b></h3>
 								</div><!-- panel-heading -->
 
@@ -94,7 +94,7 @@
 												<div class="col-sm-7">
 													<div class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-														<input type="text" class="form-control validate[required]" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
+														<input type="text" autocomplete="off" class="form-control validate[required]" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
 													</div><!-- input-group -->
 												</div>
 											</div>

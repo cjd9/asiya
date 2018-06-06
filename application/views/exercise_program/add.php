@@ -30,7 +30,7 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										
+
 										<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Exercise Program </b></h3>
 									</div><!-- panel-heading -->
 
@@ -117,13 +117,13 @@
 														</button>
 													</div>
 												</div>
-											</div><!-- form-group --> 
+											</div><!-- form-group -->
 
 											<div class="form-group">
 												<div class="col-sm-12">
 													<label class="col-md-2 control-label">Choose Tag<span class="asterisk">*</span></label>
 													<div class="col-sm-6">
-														  <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p">
+														  <select id="tag" name="tag" multiple ="multiple" data-placeholder="Choose One" class="select2-container width100p">
 															<option value=""></option>
 									<?php foreach($video_list as $vid){?>
 																<option value="<?php echo $vid['tag']?>"><?php echo $vid['tag']?></option>
@@ -202,7 +202,7 @@
 		{
 			// user click on remove text
 			e.preventDefault();
-			var tag = $('#tag').val();
+			var tag = $("#tag").val();
 			$.ajax({
 								 url: '/exercise_program/fetchVideoByTag',
 								 type: 'POST',
