@@ -1,7 +1,7 @@
 <?php $this->load->view('include/header'); ?>
 
 	<?php $this->load->view('include/left'); ?>
-                
+
                 <div class="mainpanel">
                     <div class="pageheader">
                       <div class="media">
@@ -17,7 +17,7 @@
                             </div>
                         </div><!-- media -->
                     </div><!-- pageheader -->
-					
+
 					<!-- Modal -->
 					<div class="modal fade" id="myModal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -40,21 +40,26 @@
 						<!-- /.modal-dialog -->
 					</div>
 					<!-- /.modal -->
-                    
+
                    <div class="contentpanel">
                       	 <a href="<?php print base_url(); ?>exercise_program/add">
-					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Exercise</button>
-						 </a>
+					  	 				 <button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Exercise</button>
+						 			 			</a>
+
+												<a class="<?php echo ($this->session->userdata('user_type')=='S') ? 'hide' : '';?>"
+													href="<?php print base_url(); ?>exercise_program/displayVideo">
+											<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Video</button>
+											 </a>
 					   <br /><br />
-							
+
                         <div class="panel panel-primary-head">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><b>Exercise Program</b></h4>
                             </div><!-- panel-heading -->
                            <br />
-						    
+
 							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-														
+
                             <div class="table-responsive">
 								<table id="basicTable" class="table table-striped table-bordered">
 									<thead class="">
@@ -68,7 +73,7 @@
 											<th><div align="center">Action</div></th>
 										</tr>
 									</thead>
-									
+
 									<tbody>
 									<?php $cnt = 0; foreach($rsexercise_program->result() as $row) : ?>
 										<tr>
@@ -85,13 +90,13 @@
 													<a href="<?php print base_url(); ?>exercise_program/view/<?php echo $row->exercise_id; ?>" class="btn btn-success btn-sm mr5">
 														<i class="fa fa-search"></i> View
 													</a>
-													
+
 													<a href="<?php print base_url(); ?>exercise_program/edit/<?php echo $row->exercise_id; ?>" class="btn btn-info btn-sm">
-														<i class="fa fa-edit"></i> Edit									        
+														<i class="fa fa-edit"></i> Edit
 													</a>
-													
+
 													<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_delete" onclick="delete_1('<?php echo $row->exercise_id; ?>')">
-														<i class="fa fa-trash-o"></i> Delete									         
+														<i class="fa fa-trash-o"></i> Delete
 													</button>
 												</div>
 											</td>
@@ -100,25 +105,25 @@
 									</tbody>
 								</table>
 							</div>
-							
+
 							<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
             					<div class="modal-dialog modal-lg">
 									<div class="modal-content">
-									 
+
 									</div>
-								</div>    
+								</div>
 							</div>
-							
+
                         </div><!-- panel -->
-      
+
                     </div><!-- contentpanel -->
-                    
+
                 </div><!-- mainpanel -->
             </div><!-- mainwrapper -->
         </section>
 
 	<?php $this->load->view('include/footer'); ?>
-	
+
 	 <script>
 		// assign delete id to hidden field
 		function delete_1(id)
@@ -129,10 +134,10 @@
 		function delete_2()
 		{
 			var id = $('#delete_pk').val();
-			
+
 			window.location = "<?php echo $deleteaction; ?>/"+id;
 		}
 	</script>
-	
+
     </body>
 </html>

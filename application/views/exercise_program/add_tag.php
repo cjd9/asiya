@@ -14,7 +14,7 @@
 									<li><a href="#">Video</a></li>
 
 								</ul>
-								<h4>Add Video </h4>
+								<h4>Add Category </h4>
 							</div>
 						</div><!-- media -->
 					</div><!-- pageheader -->
@@ -25,56 +25,26 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<form id="add_clinical_meetings_form" action="/exercise_program/addVideoDetails" method="post" enctype="multipart/form-data" onSubmit="return validate()">
+								<form id="add_clinical_meetings_form" action="/exercise_program/addTagDetails" method="post" enctype="multipart/form-data" onSubmit="return validate()">
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
 
-										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Add Video </b></h3>
-										<a class="btn btn-primary" href="<?php print base_url(); ?>exercise_program/displayCategory">
-									     Add Category
-									  </a>
+										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Add Caetgory </b></h3>
+
+											<a style="margin-top: -37px;" href="<?php echo base_url().'exercise_program/displayVideo'; ?>" type="button" class="btn btn-default btn-sm">
+												<span class="glyphicon glyphicon-arrow-left"></span> Back
+										 </a>
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">
 										<div class="row">
                      				 <div class="form-group">
-												<label class="col-md-3 control-label">Exercise Name<span class="asterisk">*</span></label>
+												<label class="col-md-3 control-label">Category Name<span class="asterisk">*</span></label>
 												<div class="col-sm-9">
-													<input type="text" name="title" id="title" class="form-control validate[required]">
+													<input type="text" name="tag" id="tag" class="form-control validate[required]">
 												</div>
 									</div><!-- form-group -->
-                   				   <div class="form-group">
-                      				<div class="form-group">
-												<label class="col-md-3 control-label"> Exercise Description<span class="asterisk">*</span></label>
-												<div class="col-sm-9">
-													<textarea name="description" id="description" class="form-control validate[required]"></textarea>
-												</div>
-									</div><!-- form-group -->
-												<label class="col-md-3 control-label">Category<span class="asterisk">*</span></label>
-												<div class="col-sm-9">
-						                          <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p">
-																				<option value=""></option>
-																<?php foreach($tag_master as $tag){
-																	echo '<option value="'.$tag['tag'].'">'.$tag['tag'].'</option>';
-																       }
-																?>
-
-
-						                        </select>
-												</div>
-											</div><!-- form-group -->
-
-
-											<div class="form-group">
-												<label class="col-md-3 control-label"> Upload Video<span class="asterisk">*</span></label>
-												<div class="col-sm-9">
-													<input type="file" id="video_file" name="video_file" class="form-control" />
-												</div>
-											</div><!-- form-group -->
-
-										</div><!-- row -->
-									</div><!-- panel-body -->
 
 									<div class="panel-footer">
 									  <div class="row">

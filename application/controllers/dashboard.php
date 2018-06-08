@@ -62,6 +62,7 @@ class Dashboard extends MY_Controller
 		$bday = date('m-d');
 		$tomorrow = date("Y-m-d", strtotime("+1 day"));
 		$data['birthday_today'] = $this->db->query("SELECT * FROM contact_list WHERE DATE_FORMAT(p_dob, '%m-%d') = '$bday' and is_deleted = 0")->result_array();
+		$data['festival_today'] = $this->db->query("SELECT * FROM religious_festivals WHERE date= '$today' and is_deleted = 0")->result_array();
 
 		$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
 		$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();

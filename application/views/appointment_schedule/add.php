@@ -55,6 +55,7 @@
 														<option value=""></option>
 														<option value="M">Morning</option>
 														<option value="E">Evening</option>
+														<option value="M">Full Day</option>
 													</select>
 													<span id="msg3" style="color:#FF0000"></span>
 												</div>

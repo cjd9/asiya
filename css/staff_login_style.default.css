@@ -1072,7 +1072,7 @@ a:focus {
 }
 
 .btn-sm.btn-bordered {
-    padding: 4px 10px; 
+    padding: 4px 10px;
 }
 
 .btn-xs.btn-bordered {
@@ -1451,7 +1451,7 @@ a:focus {
     border-radius: 2px;
 }
 
-.jqstooltip { 
+.jqstooltip {
     min-height: 25px;
     border: 0;
     min-width: 30px;
@@ -1568,7 +1568,7 @@ a:focus {
 .panel-danger-head .panel-heading p,
 .panel-info-head .panel-heading p,
 .panel-dark-head .panel-heading p {
-    opacity: 0.75;    
+    opacity: 0.75;
 }
 
 .panel-primary-head .panel-body,
@@ -1608,7 +1608,7 @@ a:focus {
 }
 
 .panel-info-head .panel-heading {
-    background-color: #5bc0de;   
+    background-color: #5bc0de;
 }
 
 .panel-dark-head .panel-heading {
@@ -1697,7 +1697,7 @@ a:focus {
 }
 
 .widget-slider .carousel-control:hover {
-    opacity: 1;    
+    opacity: 1;
 }
 
 .widget-slider .carousel-control.left {
@@ -1708,7 +1708,7 @@ a:focus {
 
 .widget-slider .carousel-control.right {
     right: -5px;
-    padding: 1px 8px 3px 10px;    
+    padding: 1px 8px 3px 10px;
 }
 
 .widget-slider .carousel-control span {
@@ -2388,7 +2388,7 @@ a:focus {
 }
 
 .notfoundpanel .btn {
-    padding: 9px 20px 10px 20px;    
+    padding: 9px 20px 10px 20px;
 }
 
 
@@ -2952,7 +2952,7 @@ table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
 
 .nav-file-type > li.active > a,
 .nav-file-type > li.active > a:hover {
-    background-color: #4e5154;    
+    background-color: #4e5154;
 }
 
 .nav-file-type > li.active > a > i {
@@ -2988,8 +2988,8 @@ table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
 
 body.signin {
     /*background-color: #8cac35;*/
-    background-image:url(../images/login/11.jpg);
-    background-repeat:no-repeat;	
+    background-image:url(../images/back.jpg);
+    background-repeat:no-repeat;
 	background-size: 1440px 1000px;
 	}
 
@@ -3070,7 +3070,7 @@ body.signin {
 /*****************************************/
 
 .flotLegend {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 .flotLegend table tr td {
     padding-right: 5px;
@@ -3198,7 +3198,7 @@ body.signin {
 }
 
 .mainwrapper.collapsed .nav {
-    margin-top: 20px;    
+    margin-top: 20px;
 }
 
 .mainwrapper.collapsed .nav > li > a {
@@ -3325,23 +3325,23 @@ body.signin {
 
 
 @media screen and (max-width: 1024px) {
-    
+
     body {
         width: 100%;
         overflow-x: hidden;
     }
-    
+
     /* indicator that page is 1024 */
     .logo {
         position: relative;
     }
-    
+
     /* dashboard */
     .row-dashboard .col-md-6 {
         float: none;
         width: auto;
     }
-    
+
     /* wizard */
     .contentpanel-wizard .row .col-md-6 {
         float: none;
@@ -3350,7 +3350,7 @@ body.signin {
 }
 
 @media screen and (max-width: 768px) {
-    
+
     body {
         position: relative;
     }
@@ -3358,49 +3358,49 @@ body.signin {
     .logo {
         position: static;
     }
-    
+
     .headerwrapper .header-left,
     .headerwrapper .header-right {
         position: relative;
     }
-    
+
     .headerwrapper .header-left {
         z-index: 3000;
         margin-left: -168px;
     }
-    
+
     .headerwrapper .header-right {
         width: 100%;
         margin-left: 0;
     }
-    
+
     .leftpanel,
     .mainwrapper:before {
         display: none;
     }
-    
+
     .mainpanel {
         width: 100%;
         margin-left: 0;
     }
-    
+
     .show-left .headerwrapper .header-left {
         margin-left: 0;
     }
-    
+
     .show-left .headerwrapper .header-right {
         margin-left: 230px;
     }
-    
+
     .show-left .mainwrapper {
         overflow: hidden;
     }
-    
+
     .show-left .leftpanel,
     .show-left .mainwrapper:before {
         display: block;
     }
-    
+
     .show-left .leftpanel {
         position: fixed;
         top: 0;
@@ -3408,15 +3408,15 @@ body.signin {
         height: 100%;
         overflow-y: auto;
     }
-    
+
     .show-left .leftpanel .profile-left {
         margin-top: 60px;
     }
-    
+
     .show-left .mainpanel {
         margin-left: 230px;
     }
-    
+
 }
 
 @media screen and (max-width: 640px) {
@@ -3427,51 +3427,51 @@ body.signin {
         float: none !important;
         width: auto !important;
     }
-    
+
     .media-options div.pull-left {
         margin-bottom: 20px !important;
     }
-    
+
     .contentpanel-mediamanager .col-sm-9,
     .contentpanel-mediamanager .col-sm-3 {
         float: none;
         width: auto;
     }
-    
+
     .media-manager-sidebar {
         padding-left: 0;
     }
-    
+
     /* table */
     .dataTables_wrapper .row .col-xs-6 {
         float: none;
         width: auto;
         text-align: center;
     }
-    
+
     div.dataTables_paginate {
         float: none !important;
         margin-top: 10px !important;
     }
-    
+
     .panel-signin {
         margin: 20px auto;
     }
-    
+
     .panel-signup {
         margin: 20px;
         width: auto;
     }
-    
+
     /* wizard */
     .nav-wizard {
-        background: none;    
+        background: none;
     }
-    
+
     .nav-wizard > li {
         margin: 0 !important;
     }
-    
+
     .nav-wizard > li > a,
     .nav-wizard > li:first-child > a,
     .nav-wizard > li:last-child > a {
@@ -3479,7 +3479,7 @@ body.signin {
         -webkit-border-radius: 3px;
         border-radius: 3px;
     }
-    
+
     .nav-wizard > li > a:before,
     .nav-wizard > li > a:after {
         display: none;
@@ -3493,198 +3493,195 @@ body.signin {
     .btn-group-notification .dropdown-menu {
         margin-right: -62px;
     }
-    
+
     .headerwrapper .header-right .btn-group-notification .dropdown-menu:after {
         right: 75px;
     }
-    
+
     .notfoundpanel {
         width: auto;
     }
-    
+
     .notfoundpanel h3 {
         font-size: 18px;
     }
-    
+
     .leftpanel .profile-left {
         min-height: 0;
         height: 70px;
         padding: 10px;
     }
-    
+
     .leftpanel .profile-left .profile-thumb img {
         width: 40px;
     }
-    
+
     .leftpanel .profile-left .media-heading {
         margin-top: 7px;
     }
-    
+
     .pageheader {
         padding: 10px;
         height: 70px;
     }
-    
+
     .contentpanel {
         padding: 10px;
     }
 }
 
 @media screen and (max-width: 360px) {
-    
+
     .pageheader h4 {
         font-size: 24px;
     }
-    
+
     .form-search {
         position: relative;
     }
-    
+
     .headerwrapper .header-right .form-search {
         display: none;
     }
-    
+
     .leftpanel .form-search {
         margin: 10px 10px 10px 10px;
     }
-    
+
     .headerwrapper .header-right .btn-group-notification .dropdown-menu {
         min-width: 340px;
         margin-right: -103px;
     }
-    
+
     .headerwrapper .header-right .btn-group-messages .dropdown-menu {
         min-width: 340px;
         margin-right: -41px;
     }
-    
+
     .headerwrapper .header-right .btn-group-notification .dropdown-menu:after {
         right: 115px;
     }
-    
+
     .headerwrapper .header-right .btn-group-messages .dropdown-menu:after {
         right: 50px;
     }
-    
+
     /* messages */
     .msg-list > li .sender {
         line-height: normal;
     }
-    
+
     /* notfound */
     .notfoundpanel {
         margin: 20px;
     }
-    
+
     .notfoundpanel h1 {
         font-size: 150px;
         line-height: 150px;
     }
-    
+
     .notfoundpanel h3 {
         font-size: 16px;
     }
-    
+
     .notfoundpanel p {
         font-size: 13px !important;
     }
-    
+
     .notfoundpanel .form-control {
         width: 200;
         float: none;
         margin: auto;
     }
-    
+
     .notfoundpanel .btn {
         margin-top: 5px;
         width: 250px;
     }
-    
+
     .media-options .btn-group {
         margin-bottom: 10px;
     }
-    
+
     .btn-invoice .btn {
         width: 100%;
         margin-bottom: 10px;
     }
-    
+
     .fc-header tr td {
         display: table-row;
         width: 100%;
     }
-    
+
     .fc-header-center {
         text-align: left !important;
     }
-    
+
     .fc-header-title {
         text-align: left;
         margin-bottom: 10px;
     }
-    
+
     .panel-signin {
         width: auto;
         margin: 20px;
     }
-    
+
     .panel-signin .panel-footer {
         padding-left: 20px;
         padding-right: 20px;
     }
-    
+
     .panel-signin .panel-footer .btn {
         font-size: 13px;
     }
-    
+
     .panel-signup .pull-left,
     .panel-signup .pull-right {
         float: none !important;
     }
-    
+
     .panel-signup .btn.btn-success {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 320px) {
-    
+
     .pageheader h4 {
         font-size: 20px;
     }
-    
+
     .pageheader .breadcrumb {
         margin-top: 5px;
     }
-    
+
     .headerwrapper .header-right .btn-group-notification .dropdown-menu {
         min-width: 300px;
         margin-right: -103px;
     }
-    
+
     .headerwrapper .header-right .btn-group-messages .dropdown-menu {
         min-width: 300px;
         margin-right: -41px;
     }
-    
+
     .headerwrapper .header-right .btn-group-notification .dropdown-menu:after {
         right: 115px;
     }
-    
+
     .headerwrapper .header-right .btn-group-messages .dropdown-menu:after {
         right: 50px;
     }
-    
+
     .panel-signin .panel-footer .btn {
         font-size: 11px;
     }
-    
+
     .panel-signin .panel-body,
     .panel-signup .panel-body {
         padding: 30px 20px;
     }
 
 }
-
-
-

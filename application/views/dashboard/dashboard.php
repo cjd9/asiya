@@ -38,7 +38,7 @@
 				<!-- 			<h1><b>WELCOME</b></h1>
 							<h4><b>To</b></h4>
 							<h1><b>Asiya Center of Physiotherapy & Rehabilitation</b></h1> -->
-						</div>      
+						</div>
 
                 <div class="row festival-bday">
                           <div class = "col-sm-6">
@@ -48,26 +48,26 @@
                            foreach($birthday_today as $today){ ?>
                             <div class="card col-md-3" >
                               <img src="/patient_upload_data/<?php echo $today['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
-                            
+
                                 <h6 class="text-center"><b><?php echo $today['p_fname'].' '.$today['p_lname'];;  ?></b></h6>
                               </div>
 
-                           
+
                       <?php  }
                     }else{ ?>
                       <p><strong>No Birthdays Today</strong></p>
                     <?php }  ?>
                         </div>
-                  
+
                    <div class = "col-sm-6">
                        <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Festivals Today</h4>
-                       <?php if(!empty($tomorrow_appointment)) {
-                         foreach($tomorrow_appointment as $tomorrow){ ?>
+                       <?php if(!empty($festival_today)) {
+                         foreach($festival_today as $today){ ?>
                          <div class="card col-md-3" >
-                           <img src="/patient_upload_data/<?php echo $tomorrow['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
-                         
-                             <h6 class="text-center"><b><?php echo 'Diwali' ; ?></b></h6>
-                         
+                           <img src="/images/festival.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
+
+                             <h6 class="text-center"><b><?php echo $today['festival_name']; ?></b></h6>
+
                         </div>
                       <?php  }
                     }else{ ?>
@@ -83,10 +83,10 @@
                            foreach($today_appointment as $today){ ?>
                             <div class="card col-md-3" >
                               <img src="/patient_upload_data/<?php echo $today['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
-                              
+
                                 <h6 class="text-center"><b><?php echo $today['p_fname'];  ?></b></h6>
                                 <p style ="font-size:11px"><?php echo $today['time_slot'];  ?></p>
-                              
+
 
                             </div>
                       <?php  }
@@ -94,7 +94,7 @@
                       <p><strong>No Appointments for Today</strong></p>
                     <?php }  ?>
                         </div>
-                  
+
                    <div class = "col-sm-6">
                        <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Tomorrows's Appointments</h4>
                        <?php if(!empty($tomorrow_appointment)) {
@@ -103,7 +103,7 @@
                            <img src="/patient_upload_data/<?php echo $tomorrow['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
                              <h6 class="text-center"><b><?php echo $tomorrow['p_fname'];  ?></b></h6>
                              <p style ="font-size:11px"><?php echo $tomorrow['time_slot'];  ?></p>
-                         
+
                         </div>
                       <?php  }
                     }else{ ?>

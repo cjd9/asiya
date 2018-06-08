@@ -1,3 +1,4 @@
 .htaccess
 /admin
 /exercise_program_file
+application/config/database.php

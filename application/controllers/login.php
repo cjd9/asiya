@@ -31,7 +31,7 @@ class Login extends CI_Controller
 		{
 			redirect(base_url('/dashboard'));
 		}
-		$this->load->view('login/home');
+		$this->load->view('login/staff');
     }
 
 	//Call Staff Login
@@ -43,7 +43,7 @@ class Login extends CI_Controller
 	//Call Patient Login
     function patient()
     {
-		$this->load->view('login/patient');
+		$this->load->view('login/staff');
     }
 /*-----------------------------------------------------Start Staff Login--------------------------------------------------*/
 	//Staff Login Process
@@ -128,7 +128,7 @@ class Login extends CI_Controller
 		{
 			$this->session->set_flashdata( 'message', array( 'title' => 'Login Error', 'content' =>'Invalid Username or Password.', 'type' => 'e' ));
 
-			$this->load->view('login/patient');
+			$this->load->view('login/staff');
 		}
  	}
 

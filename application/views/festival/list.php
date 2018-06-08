@@ -11,9 +11,9 @@
                             <div class="media-body">
                                 <ul class="breadcrumb">
                                     <li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
-                                    <li>Festival Program</li>
+                                    <li>Festival</li>
                                 </ul>
-                                <h4>Festival Program</h4>
+                                <h4>Festival</h4>
                             </div>
                         </div><!-- media -->
                     </div><!-- pageheader -->
@@ -24,7 +24,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-									<h4 class="modal-title" id="myModalLabel">Delete Activity Program details</h4>
+									<h4 class="modal-title" id="myModalLabel">Delete Activity details</h4>
 								</div>
 								<div class="modal-body">
 									You want to delete this record ?
@@ -60,9 +60,9 @@
 									<thead class="">
 										<tr>
 											<th><div align="center">#</div></th>
-											<th>Upload Date</th>
-											<th>Activity</th>
-											<th>Expiry Date</th>
+											<th>Festival Name</th>
+											<th>Message</th>
+											<th>Date</th>
 											<th><div align="center">Action</div></th>
 										</tr>
 									</thead>
@@ -72,7 +72,7 @@
 									<?php if(!in_array($row->festival_id,$unique)){ $unique[] =$row->festival_id ; ?>
 										<tr>
 											<td align="center"><?php echo ++$cnt; ?></td>
-											<td><?php echo date("d-m-Y",strtotime($row->date)); ?></td>
+											<td><?php echo $row->festival_name; ?></td>
 											<td><?php echo wordwrap($row->message,100,"<br>\n",TRUE); ?></td>
 											<td><?php echo date("d-m-Y",strtotime($row->date)); ?></td>
 											<td>

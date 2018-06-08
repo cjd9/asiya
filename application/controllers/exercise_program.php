@@ -43,7 +43,15 @@ class Exercise_program extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		$data['rsexercise_program'] = $this->db->query("SELECT DISTINCT(exercise_id), patient_id, date_of_upload, expiry_date FROM exercise_program WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+		$data['tag_master'] = $this->db->query("SELECT * from tag_master")->result_array();	// order by patient_id
 		$this->load->view('exercise_program/add_video',$data);
+	}
+	function displayCategory()
+	{
+		$current_staff_id = $this->session->userdata("userid");
+
+		$data['rsexercise_program'] = $this->db->query("SELECT DISTINCT(exercise_id), patient_id, date_of_upload, expiry_date FROM exercise_program WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
+		$this->load->view('exercise_program/add_tag',$data);
 	}
 
 	 function addVideoDetails()
@@ -52,7 +60,6 @@ class Exercise_program extends MY_Controller
 
 
 		 //$data['video_file'] = '';
-		// print_r($_FILES); die;
 
 		 if(!empty($_FILES['video_file']['name']))
 		 {
@@ -69,6 +76,19 @@ class Exercise_program extends MY_Controller
 		 }
 		// print_r($data); die;
 		 $result = $this->mastermodel->add_data('exercise_video_master', $data);
+
+ 		// function used to redirect -
+ 		$this->mastermodel->redirect(TRUE, 'exercise_program', 'exercise_program', 'Added');
+ 	}
+
+	 function addTagDetails()
+	 {
+		 $data = $_POST;
+
+
+		 //$data['video_file'] = '';
+
+		 $result = $this->mastermodel->add_data('tag_master', $data);
 
  		// function used to redirect -
  		$this->mastermodel->redirect(TRUE, 'exercise_program', 'exercise_program', 'Added');
@@ -178,8 +198,8 @@ class Exercise_program extends MY_Controller
 									 <video id="player" class="img-thumbnail" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
 							 </div>
 								 <div class = "form-control">
-								 	<label class="control-label" for="">Start Date:</label> <input type="text" class="form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
-									<label class="control-label" for="">End Date:</label> <input type="text" class="form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
+								 	<label class="control-label" for="">Start Date:</label> <input type="text" disabled value="'.$vid["exercise_start_date"].'" class="form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
+									<label class="control-label" for="">End Date:</label> <input type="text" disabled value="'.$vid["exercise_end_date"].'" class="form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
 
 									 <label class="control-label" for="">No of Reps:</label>  <input type="number" disabled name="edit_video['.$vid["id"].'][reps]" value="'.$vid["reps"].'" class= "form-control" placeholder="No Of reps">
 									 <label class="control-label" for="">No of Sets:</label>     <input type="number" disabled name="edit_video['.$vid["id"].'][sets]" value="'.$vid["sets"].'" class= "form-control" placeholder="No Of sets">

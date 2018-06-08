@@ -1,7 +1,7 @@
 <?php $this->load->view('p_include/header'); ?>
 
 	<?php $this->load->view('p_include/left'); ?>
-                
+
                 <div class="mainpanel">
                     <div class="pageheader">
                       <div class="media">
@@ -17,24 +17,24 @@
                             </div>
                         </div><!-- media -->
                     </div><!-- pageheader -->
-					
-					<?php 
+
+					<?php
 						if($rsexercise_program->num_rows() > 0)
 						{
 					?>
-                    
+
                    <div class="contentpanel">
-                      	
+
 					   <br /><br />
-							
+
                         <div class="panel panel-primary-head">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><b>Exercise Program</b></h4>
                             </div><!-- panel-heading -->
                            <br />
-						    
+
 							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-														
+
                             <div class="table-responsive">
 								<table id="basicTable" class="table table-striped table-bordered">
 									<thead class="">
@@ -48,7 +48,7 @@
 											<th><div align="center">Action</div></th>
 										</tr>
 									</thead>
-									
+
 									<tbody>
 									<?php $cnt = 0; foreach($rsexercise_program->result() as $row) : ?>
 										<tr>
@@ -62,10 +62,10 @@
 											<td><?php echo date("d-m-Y",strtotime($row->expiry_date)); ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>exercise_program/view/<?php echo $row->exercise_id; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+													<a href="<?php print base_url(); ?>p_exercise_program/view/<?php echo $row->exercise_id; ?>" class="btn btn-success btn-sm mr5" >
 														<i class="fa fa-search"></i> View Details
 													</a>
-													
+
 												</div>
 											</td>
 										</tr>
@@ -73,20 +73,20 @@
 									</tbody>
 								</table>
 							</div>
-							
+
 							<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
             					<div class="modal-dialog modal-lg">
 									<div class="modal-content">
-									 
+
 									</div>
-								</div>    
+								</div>
 							</div>
-							
+
                         </div><!-- panel -->
       					<?php
 							}
 							else
-							{	
+							{
 						?>
 							<div class="horizontally">
 								<div class="inner">
@@ -100,12 +100,12 @@
 							}
 						?>
                     </div><!-- contentpanel -->
-                    
+
                 </div><!-- mainpanel -->
             </div><!-- mainwrapper -->
         </section>
 
 	<?php $this->load->view('p_include/footer'); ?>
-	
+
     </body>
 </html>

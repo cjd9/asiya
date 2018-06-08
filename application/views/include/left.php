@@ -106,6 +106,13 @@
 			<a href="<?php echo base_url().'patient_enquiry'; ?>"><i class="fa fa-comments"></i> <span>Patient Enquiry</span></a>
 		</li>
 
+		<?php 	if($this->session->userdata('user_type')=='A'){?>
+
+			<li <?php if(current_url() == base_url().'festival' || current_url() == base_url().'festival' || strpos(current_url(), base_url().'staff_list/edit/') !== false) {?> class="active" <?php } ?>>
+				<a href="<?php echo base_url().'festival'; ?>"><i class="fa fa-user-md"></i> <span>Festival</span></a>
+			</li>
+		<?php }?>
+
 	</ul>
 
 </div><!-- leftpanel -->

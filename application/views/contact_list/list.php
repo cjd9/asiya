@@ -130,7 +130,7 @@
 							<table id="basicTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+
 										<th>Patient ID</th>
 										<th>Patient Password</th>
                                         <th>Patient Name</th>
@@ -144,7 +144,7 @@
                                 <tbody>
 								<?php $cnt = 0; foreach($rscontact_list->result() as $row) : ?>
 								   <tr>
-										<td align="center"><?php echo ++$cnt; ?></td>
+										
                                         <td><?php echo $row->patient_id; ?></td>
 										<td><?php echo $row->p_password; ?></td>
                                         <td><?php echo ucwords($row->p_fname.' '.$row->p_mname.' '.$row->p_lname); ?></td>
