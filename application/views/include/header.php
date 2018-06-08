@@ -43,8 +43,7 @@
     </head>
 
     <body>
-        <div id="watermark" class="responsive" align=""><img src="<?php echo base_url(); ?>images/logo-1.jpg" style="" width="370px;" class="center-block"/></div>
-        <header>
+    	<header>
             <div class="headerwrapper">
                 <div class="header-left">
                    <!-- <a href="#" class="logo">
