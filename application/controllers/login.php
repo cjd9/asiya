@@ -6,7 +6,7 @@
 */
 class Login extends CI_Controller
 {
-	function Login()
+	function __construct()
     {
     	parent::__construct();
 
@@ -21,6 +21,7 @@ class Login extends CI_Controller
 		$this->load->library('session');
 
   		$this->load->model('loginmodel');
+  		$this->load->model('mastermodel');
     }
 /*-----------------------------------------------------Start Login--------------------------------------------------*/
 	//Call Staff and Patient Home Page
@@ -111,6 +112,78 @@ class Login extends CI_Controller
 
 			redirect('dashboard');
 		}
+	}
+
+	function forgot_password()
+	{
+				$this->load->view('login/forgotpassword');
+
+	}
+
+
+	function forgot_password_reset()
+	{	
+		$message = $this->session->flashdata('message');
+			if (isset($message)) {
+			 $this->session->unset_userdata('message');
+			}
+		$username= $this->input->post('email_mobile');
+
+		$user_type = $this->input->post('user_type');
+		if(!empty($username)){
+
+
+
+				if($user_type == 'P'){
+						$result = $this->db->query("SELECT * FROM contact_list WHERE ( p_contact_no='$username' OR p_email_id = '$username') AND is_deleted = '0' ")->row_array();
+					    if(empty($result)) {
+					      $this->session->set_flashdata( 'message', array( 'title' => 'Login Error', 'content' =>'Account not found this mobile no.', 'type' => 'e' ));
+					      redirect(base_url('login/forgot_password'));
+
+					    }
+					    else{
+					       $this->db->query("UPDATE `contact_list` SET p_password = ".$result['p_contact_no']."  WHERE  pk = ".$result['pk']);
+					       $this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' =>'Password reset successfully', 'type' => 's' ));
+					       
+					       	$r = $this->db->get_where('contact_list', array('patient_id' => $result['patient_id']))->row();
+							$patient_name = ucwords($r->p_fname.' '.$r->p_lname);
+							$to_email = $r->p_email_id;
+							$mobile = $r->p_contact_no;
+							$to_name = $patient_name;
+							$sub = "Password Reset";
+							$msg = "Your Password has been Reset to ".$result['p_contact_no']." successfully";
+							if(!empty($to_email)){
+								//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg);
+
+							}
+							  $res = $this->mastermodel->send_sms($mobile, $patient_name, $msg);
+
+
+					       	redirect(base_url());
+
+					    }
+
+				}
+				else{
+						$result = $this->db->query("SELECT * FROM staff_details WHERE ( s_contact_no='$username' OR s_email_id = '$username') AND is_deleted = '0' ")->row_array();
+				    	if(empty($result)) {
+				           $this->session->set_flashdata( 'message', array( 'title' => 'Login Error', 'content' =>'Account not found this mobile no.', 'type' => 'e' ));
+				           redirect(base_url('login/forgot_password'));
+
+					    }
+					    else{
+					    	$this->db->query("UPDATE `contact_list` SET s_password = ".$result['s_contact_no']."  WHERE  pk = ".$result['pk']);
+					        $this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' =>'Password reset successfully', 'type' => 's' ));
+					       	redirect(base_url());
+
+					    }
+
+				}
+		}
+				
+				$this->load->view('login/forgotpassword');
+
+		
 	}
 /*-----------------------------------------------------End Staff Login--------------------------------------------------*/
 

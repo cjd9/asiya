@@ -32,7 +32,7 @@
 
 										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Add Caetgory </b></h3>
 
-											<a style="margin-top: -37px;" href="<?php echo base_url().'exercise_program/displayVideo'; ?>" type="button" class="btn btn-default btn-sm">
+											<a style="margin-top: -37px;" href="<?php echo base_url().'exercise_program/add_video'; ?>" type="button" class="btn btn-default btn-sm">
 												<span class="glyphicon glyphicon-arrow-left"></span> Back
 										 </a>
 									</div><!-- panel-heading -->

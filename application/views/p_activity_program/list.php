@@ -45,20 +45,20 @@
 									</thead>
 									
 									<tbody>
-									<?php $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
-										<tr>
+									<?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
+									<?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>										<tr>
 											<td align="center"><?php echo ++$cnt; ?></td>
 											<td><?php echo wordwrap($row->activity_program,200,"<br>\n",TRUE); ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" data-toggle="modal" data-target=".bs-example-modal-lg">
+													<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" >
 														<i class="fa fa-search"></i> View Details
 													</a>
 													
 												</div>
 											</td>
 										</tr>
-									<?php endforeach ; ?>
+									<?php } endforeach ; ?>
 									</tbody>
 								</table>
 							</div>

@@ -76,6 +76,12 @@
 													</div>
 												</div>
 											</div><!-- form-group -->
+											<div class="form-group">
+												<label class="col-md-2 control-label"> Thumbnail<span class="asterisk"></span></label>
+												<div class="col-sm-6">
+													<input type="file" id="thumbnail" accept=".jpg,.png" name="thumbnail" class="form-control" />
+												</div>
+											</div><!-- form-group -->
 
 										</div><!-- row -->
 									</div><!-- panel-body -->

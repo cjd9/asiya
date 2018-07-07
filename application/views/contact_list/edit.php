@@ -179,11 +179,20 @@
 
 											<div class="form-group">
 												<div class="col-sm-6">
+													<label class="col-sm-3 control-label">Referred By</label>
+													<div class="col-sm-9">
+														<div class="input-group">
+															<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+															<input type="text"  id="referred_by" name="referred_by" class="form-control" value="<?php echo $r->referred_by; ?>" placeholder="Referred By"/>
 
+														</div><!-- input-group -->
+						        	                      <span id="referred_by" class="err" style="color:#FF0000"></span>
+
+													</div>
 												</div>
 
 												<div class="col-sm-6">
-													<label class="col-sm-4 control-label">Contact No.</label>
+													<label class="col-sm-4 control-label">Mobile No.</label>
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>

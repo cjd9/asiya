@@ -73,11 +73,11 @@
 					<td width="43%"><b>:</b> <?php echo $r->p_email_id; ?></td>
 				</tr>
 				<tr>
-					<td width="19%"><b>Phone No.</b></td>
+					<td width="19%"><b>Landline No.</b></td>
 					<td width="43%"><b>:</b> <?php echo $r->p_phone_no; ?></td>
 				</tr>
 				<tr>
-					<td width="19%"><b>Contact No.</b></td>
+					<td width="19%"><b>Mobile No.</b></td>
 					<td width="43%"><b>:</b> <?php echo $r->p_contact_no; ?></td>
 				</tr>
 			
@@ -104,7 +104,7 @@
 				<tr>
 					<td width="15%"><b>Name</b></td>
 					<td width="40%"><b>:</b><?php echo ucwords($r->p_emergency_name); ?></td>
-					<td width="20%"><b>Contact No.</b></td>
+					<td width="20%"><b>Mobile No.</b></td>
 					<td width="20%"><b>:</b> <?php echo $r->p_emergency_contact; ?></td>
 				</tr>
 			</table>

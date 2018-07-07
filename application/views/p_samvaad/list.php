@@ -31,39 +31,23 @@
 						    
 							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 														
-                            <div class="table-responsive">
-								<table id="basicTable" class="table table-striped table-bordered">
-									<thead class="">
-										<tr>
-											<th><div align="center">#</div></th>
-											<th width="">Program Description</th>
-											<th>Program File</th>
-											<th><div align="center">Comment</div></th>
-										</tr>
-									</thead>
+                            
 							 
-									<tbody>
 									<?php $cnt = 0; foreach($rseducation_program->result() as $row) : ?>
-									   <tr>
-											<td align="center"><?php echo ++$cnt; ?></td>
-											<td><?php echo wordwrap($row->education_program_desc,80,"<br>\n",TRUE); ?></td>
-											<td>
-												<a href="<?php echo base_url().'education_program_file/'.$row->education_program_file; ?>" target="_blank">
-													<?php echo $row->education_program_file; ?>												
-												</a>											
-											</td>
-											<td>
-												<div align="center">
-													<a href="<?php print base_url(); ?>p_samvaad/comment_box/<?php echo $row->pk; ?>"  class="btn btn-sm btn-bordered btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">
-												  	<i class="fa fa-comments"></i> Comment
-													</a>										        
-												</div>
-											</td>
-									  </tr>
+									 <div class="card col-md-4" >
+									 	<div class="col-sm-6" >
+			                              <img src="/patient_upload_data/<?php echo $row->education_program_file;  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
+			                            </div>
+			                            <div class="col-sm-6" >
+			                            	<h6 class=""><b><?php echo $row->title; ?></b></h6>
+
+											<p class=""><?php echo substr(strip_tags($row->education_program_desc), 0, 100);  ?></p>
+											<a href="/p_samvaad/view/<?php echo $row->pk; ?>">Read more>>> </a>
+			                            </div>
+			                              </div>
+									  
 									<?php endforeach ; ?>
-									</tbody>
-								</table>
-							</div>
+								
 							
 							<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
             					<div class="modal-dialog modal-lg">

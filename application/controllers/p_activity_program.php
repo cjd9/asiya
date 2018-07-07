@@ -17,7 +17,7 @@ class P_activity_program extends MY_Controller
 		// get current date -
 		$current_date = date("Y-m-d");
 		
-		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE expiry_date >= '$current_date' AND is_deleted = 0 GROUP BY activity_id");
+		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 group by activity_id,pk");
 		
 		$this->load->view('p_activity_program/list',$data);
 	}
@@ -31,7 +31,7 @@ class P_activity_program extends MY_Controller
 		// get data from table -
 		$data['rsactivity_program'] = $this->mastermodel->get_data('*', 'activity_program', $where, NULL, NULL, 0, NULL);
 		
-		$this->load->view('p_activity_program/view',$data);
+		$this->load->view('p_activity_program/edit_new',$data);
 	}
 /*-----------------------------------------------------End Patient Activity Program--------------------------------------------------*/
 }

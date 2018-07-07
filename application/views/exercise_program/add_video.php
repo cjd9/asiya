@@ -29,7 +29,9 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-
+										<a style="margin-top: -7px;" href="<?php echo base_url().'exercise_program'?>" type="button" class="btn btn-default btn-sm">
+												<span class="glyphicon glyphicon-arrow-left"></span> Back
+										 </a>
 										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Add Video </b></h3>
 										<a class="btn btn-primary" href="<?php print base_url(); ?>exercise_program/displayCategory">
 									     Add Category

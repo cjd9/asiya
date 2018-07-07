@@ -88,8 +88,7 @@
 				changeMonth: true,
 				changeYear: true,
 				yearRange: '1945:2050',
-				dateFormat: 'dd-mm-yy',
-				minDate: 0
+				dateFormat: 'dd-mm-yy'
 				//minDate: 0	// disable all previous dates
 			});
 

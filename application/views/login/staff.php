@@ -33,7 +33,8 @@ select {
 		<section>
 			<div align="left">
 				<b><h5>
-						<a href="<?php print base_url(); ?>" ><b>&nbsp;&nbsp;&nbsp;<span class="fa fa-home"></span> HOME</b></a>
+						<a class="btn btn-primary mr5" href="http://asiya.co.in/" ><b>&nbsp;&nbsp;&nbsp;<span class="fa fa-home"></span> HOME</b></a>
+
 				</h5></b>
 			</div>
 			<div align="center" style="margin-top:3%">
@@ -44,7 +45,7 @@ select {
 				<div class="panel panel-signin">
 					<div class="panel-body">
 						<div class="logo text-center" style="margin-top:-110px">
-							<img src="<?php print base_url(); ?>images/sp_logo.png">
+							<img src="<?php print base_url(); ?>images/logo-new.png">
 							<h3><b><span class="fa fa-user-md"></span>LOGIN</b></h3>
 						</div>
 
@@ -79,6 +80,10 @@ select {
 							<div class="clearfix">
 								<div class="pull-right">
 									 <button type="submit" class="btn btn-success btn-metro"><b>SIGN IN</b> <i class="fa fa-unlock ml5"></i></button>
+								</div>
+								<div class="pull-left">
+									<a class="" href="/login/forgot_password" ><b><span class="fa fa-anchor"></span> <font color="black">Forgot Password?</font>
+</b></a>
 								</div>
 							</div>
 						</form>

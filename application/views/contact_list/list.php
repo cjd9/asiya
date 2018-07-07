@@ -88,7 +88,7 @@
                                    		<th>Patient ID</th>
                                         <th>Patient Name</th>
 										<th>Patient Gender</th>
-										<th>Contact No.</th>
+										<th>Mobile No.</th>
 										<th><div align="center">Status</div></th>
 										<th>Cur. Shared With Staff</th>
 										<th><div align="center">Action</div></th>
@@ -113,6 +113,7 @@
 												echo $r->s_fname.' '.$r->s_lname;
 											?>
 										</td>
+
 										<td align="center">
 											<div class="form-group">
 												<button class="btn btn-info btn-bordered btn-sm btn_follow"> <i class="fa fa-share-square-o"></i> <b> Follow </b> </button>
@@ -132,11 +133,12 @@
                                     <tr>
 
 										<th>Patient ID</th>
-										<th>Patient Password</th>
                                         <th>Patient Name</th>
-										<th>Contact No.</th>
+										<th>Mobile No.</th>
 										<th><div align="center">Status</div></th>
 										<th><div align="center">Share</div></th>
+										<th>Referred By</th>
+
 										<th><div align="center">Action</div></th>
                                     </tr>
                                 </thead>
@@ -146,7 +148,6 @@
 								   <tr>
 										
                                         <td><?php echo $row->patient_id; ?></td>
-										<td><?php echo $row->p_password; ?></td>
                                         <td><?php echo ucwords($row->p_fname.' '.$row->p_mname.' '.$row->p_lname); ?></td>
 										<td><?php echo $row->p_contact_no; ?></td>
 										<td class="text-center"><?php if($row->p_status == 'A') { echo '<span class="label label-success status" id="'.$row->pk.'">Active</span>'; } else { echo '<span class="label label-danger status" id="'.$row->pk.'">Inactive</span>'; } ?></td>
@@ -173,6 +174,8 @@
 
 											<input type="hidden" name="patient_id" id="" class="patient_id" value="<?php echo $row->patient_id; ?>" />
 									 	</td>
+										<td><?php echo $row->referred_by; ?></td>
+
                                         <td align="center">
 
 										   	<a href="<?php print base_url(); ?>contact_list/view/<?php echo $row->pk; ?>" class="btn btn-success btn-sm mr5" >

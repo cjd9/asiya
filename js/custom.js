@@ -161,6 +161,7 @@ jQuery(document).ready(function() {
           $('#basicTable tbody').on('click', '.btn_share2', function () {
 
             var assign_staff_id = $(this).parent("td").find("select.assign_staff_id").val();
+            var patient_id =  $(this).parent("td").find(".patient_id").val();
 
             if(assign_staff_id == '' || assign_staff_id == null)
             {
@@ -184,7 +185,7 @@ jQuery(document).ready(function() {
                 callback: function (result) {
                     if(result)
                   {
-                        var patient_id =  $(this).parent("td").find(".patient_id").val();
+
 
                   //alert(assign_staff_id);
                   //alert(patient_id);

@@ -164,6 +164,12 @@
 														<input type="text" id="p_occupation" name="p_occupation" class="form-control validate[required]" placeholder="Ex.-Farmer,Dr,Police"/>
 													</div>
 												</div>
+												<div class="col-sm-6">
+													<label class="col-sm-4 control-label">Age</label>
+													<div class="col-sm-6">
+														<input type="text" id="p_age" class="form-control validate[required]" readonly/>
+													</div>
+												</div>
 
 
 											</div><!-- form-group -->
@@ -186,7 +192,7 @@
 												</div>
 
 												<div class="col-sm-6">
-													<label class="col-sm-4 control-label">Phone No.<span class="asterisk"></span></label>
+													<label class="col-sm-4 control-label">Landline No.<span class="asterisk"></span></label>
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
@@ -199,11 +205,20 @@
 
 											<div class="form-group">
 												<div class="col-sm-6">
+													<label class="col-sm-3 control-label">Referred By</label>
+													<div class="col-sm-9">
+														<div class="input-group">
+															<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+															<input type="text"  id="referred_by" name="referred_by" class="form-control" placeholder="Referred By"/>
 
+														</div><!-- input-group -->
+						        	                      <span id="referred_by" class="err" style="color:#FF0000"></span>
+
+													</div>
 												</div>
 
 												<div class="col-sm-6">
-													<label class="col-sm-4 control-label">Contact No.<span class="asterisk">*</span></label>
+													<label class="col-sm-4 control-label">Mobile No.<span class="asterisk">*</span></label>
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
@@ -341,7 +356,13 @@
 			/*$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy' });
 			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy'});*/
 
-			// select box validations -
+			$('#p_dob').on('change', function() {
+			   dob = new Date($(this).val());
+				var today = new Date();
+				var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+				$('#p_age').val(age);
+			})
+						// select box validations -
 			$('#add_patient_form').on('submit', function()
 			{
 				$valid = true;

@@ -183,7 +183,24 @@ class Treatment extends MY_Controller
 		$data = $_POST;
 		//print_r($data); die;
 		unset($_POST['treatment']);
-	
+
+		if(!empty($_FILES['treatment_image']['name']))
+		{
+			// config array for file -
+			$config['upload_path']		= './treatment_image/';	// folder name to store files -
+			$config['allowed_types'] 	= '*';							// file type to be supported
+			$config['max_size']			= '50000';						// maximum file size to upload
+
+			// function to upload multiple files -
+			$result = $this->mastermodel->upload_file('treatment_image', $_FILES, $config);
+			$treatment_image = $result[0][0];
+
+			$_POST['treatment_image'] = $treatment_image;
+		}
+		else{
+			$_POST['treatment_image'] = '';
+		}
+
 		// convert date format in form data -
 		//$data = $this->mastermodel->date_format($data);
 		$last_id = $this->mastermodel->add_data('treatment', $_POST);
@@ -192,6 +209,7 @@ class Treatment extends MY_Controller
 				$result = true;
 			}
 		//$data['date{_of_treatment'] = $this->mastermodel->date_convert($data['date_of_treatment'],'ymd');
+
 		$insert_treatment_meta= array();
 		//if (!isset($data['treatment'][0]['therapy'])) {
 					 foreach ($data['treatment'] as $value) {

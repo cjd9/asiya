@@ -275,7 +275,14 @@ class Staff_list extends MY_Controller
 		$result = $this->mastermodel->update_data('staff_details', $where, $data);
 
 		// function used to redirect -
+		if($this->session->userdata('user_type') == 'A'){
 		$this->mastermodel->redirect($result, 'staff_list', 'staff_list', 'Updated');
+	   }
+	   else{
+	   		$this->mastermodel->redirect($result, 'dashboard', 'dashboard', 'Updated');
+
+	   }
+
     }
 
 	// update staff status -

@@ -54,6 +54,19 @@ class P_samvaad extends MY_Controller
 		// function used to redirect -
 		$this->mastermodel->redirect($result, 'p_samvaad', 'p_samvaad', 'Added');
     }
+    function view($pk)
+    {
+		$data['commentaction'] =base_url().'p_samvaad/comment';
+		
+		
+		// WHERE condition -
+		$where = array('pk' => $pk);
+				
+		// get data from table -
+		$data['view'] = $this->mastermodel->get_data('*', 'education_program', $where, NULL, NULL, 0, NULL)->row_array();
+		
+		$this->load->view('p_samvaad/view',$data);
+    }
 /*-----------------------------------------------------End Samvaad Program--------------------------------------------------*/
 }
 ?>

@@ -1,3 +1,6 @@
+<?php if($this->session->userdata('user_type') != "P"){
+	header('Location: '.base_url('dashboard'));
+} ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

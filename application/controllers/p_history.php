@@ -17,7 +17,7 @@ class P_history extends MY_Controller
 		$current_patient_id = $this->session->userdata("userid");
 		
 		// get evaluation details of those patient assign to login staff -
-		$data['rstreatment'] = $this->db->query("SELECT * FROM treatment WHERE patient_id IN (SELECT patient_id FROM contact_list WHERE pk = $current_patient_id) AND is_deleted = 0");
+		$data['rstreatment'] = $this->db->query("SELECT * FROM treatment WHERE patient_id IN (SELECT patient_id FROM contact_list WHERE pk = $current_patient_id) AND is_deleted = 0 order by date_of_treatment desc");
 		
 		$this->load->view('p_history/list',$data);
 	}

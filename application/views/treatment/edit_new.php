@@ -121,6 +121,27 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 								</div><!-- form-group -->
 
 								<hr />
+								<div class="form-group"><!-- Start form-group -->
+												<div class="col-sm-8">
+													<label class="col-sm-3">Uploaded Files</label>
+													<div class="col-sm-8 table-responsive">
+														<table class="table table-striped table-bordered">
+															<tr style="text-align:center">
+																<th>File Name</th>
+															</tr>
+															<tr>
+																<td>
+																	<a href="<?php echo base_url().'treatment_image/'.$r->treatment_image; ?>" target="_blank">
+																		<?php echo $r->treatment_image; ?>
+																	</a>
+																</td>
+																
+															</tr>
+													
+														</table>
+													</div>
+                                            	</div>
+                                            </div>
 								<h4><u><b>Plan of Care</b></u></h4>
 
 								<div class="form-group">

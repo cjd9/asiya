@@ -37,11 +37,10 @@
 							
 							<div class="table-responsive">
 								
-								<table id="basicTable1" class="table table-striped table-bordered">
+								<table id="treatmenthistory" class="table table-striped table-bordered">
 									<thead class="">
 										<tr>
 											<!--<th class="text-center"><input type="checkbox" name="select_all" id="select_all" class="topic" value="1" onclick="sub_c(this.checked);" /></th>-->
-											<th class="text-center">#</th>
 											<th><div align="center">Treatment ID</div></th>
 											<th><div align="center">Treatment Date</div></th>
 											<th><div align="center">Fees</div></th>
@@ -57,7 +56,6 @@
 										?>
 									   <tr>
 											<!--<td class="text-center"><input type="checkbox" name="treatment_id[]" id="" value="<?php echo $row->pk; ?>" class="treatment_id" /></td>-->
-											<td style="text-align:center"><?php echo ++$cnt; ?></td>
 											<td><?php echo $row->treatment_id; ?></td>
 											<td><?php echo date("d-m-Y",strtotime($row->date_of_treatment)); ?></td>
 											<td>Rs. <?php echo $row->treatment_fees; ?></td>
@@ -151,6 +149,14 @@
 				}
 				
 			});	
+
+			jQuery('#treatmenthistory').DataTable(
+					{
+						responsive: true,
+						"autoWidth": false,
+						"aaSorting": []
+
+			});
 		
 		}); 
 	 

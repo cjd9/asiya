@@ -713,6 +713,10 @@
 		    patient_id: {
 		      required: true
 
+		    },
+		     p_present_complaint: {
+		      required: true
+
 		    }
 		  }
 		});

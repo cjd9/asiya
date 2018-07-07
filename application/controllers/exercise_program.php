@@ -38,7 +38,7 @@ class Exercise_program extends MY_Controller
 		$this->load->view('exercise_program/list',$data);
 	}
 
-	function displayVideo()
+	function add_video()
 	{
 		$current_staff_id = $this->session->userdata("userid");
 
@@ -183,7 +183,7 @@ class Exercise_program extends MY_Controller
 					 $data['video_list'] = $this->db->query("SELECT DISTINCT tag FROM exercise_video_master ")->result_array();
 
 		$html='';
-			$selected_vids = $this->db->query("SELECT * FROM exercise_meta where exercise_id = '".$exercise_id."'");
+			$selected_vids = $this->db->query("SELECT * FROM exercise_meta where exercise_id = '".$exercise_id."' and (CURDATE() BETWEEN exercise_start_date AND exercise_end_date)");
 
 			foreach($selected_vids->result_array() as $vid){
 			 $html .= '<div class="col-xs-12 col-sm-12 col-md-3 " style="margin-top: 15px;">

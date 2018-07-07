@@ -88,9 +88,41 @@
 											<span id="msg1" class="" style="color:#FF0000"></span>
 										</div>
 									</div>
+									<div class="col-sm-6">
+										<label class="col-sm-4 control-label">Fees<span class="asterisk">*</span></label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control validate[required]" name="treatment_fees" id="treatment_fees" />
+										</div>
+									</div>
 								</div><!-- form-group -->
 
-								<hr />
+								<hr>
+								<div class="form-group">
+									<div class="col-sm-3">
+									</div>
+
+										<div class="col-sm-4">
+												<label class="col-sm-3 control-label">Form Type<span class="asterisk">*</span></label>
+												<div class="col-sm-8">
+													<select id="form_type" name="form_type" data-placeholder="Choose Patient " class="select2-container width100p">
+														<option value="image">Image</option>
+														<option value="manual">Manual</option>
+														
+													</select>
+													<span id="msg1" class="" style="color:#FF0000"></span>
+												</div>
+										</div>
+										<div class="col-sm-3">
+									   </div> 
+								</div>
+								<hr>
+								<div class="form-group image">
+									<label class="col-md-3 control-label"> Treatment Image<span class="asterisk">*</span></label>
+									<div class="col-sm-6">
+										<input type="file" id="treatment_image" name="treatment_image" class="form-control" />
+									</div>
+								</div><!-- form-group image -->
+							  <div class = "no-image hide">	
 								<h4><u><b>Plan of Care</b></u></h4>
 
 								<div class="form-group">
@@ -118,15 +150,10 @@
 										</div>
 									</div>
 
-									<div class="col-sm-6">
-										<label class="col-sm-4 control-label">Fees<span class="asterisk">*</span></label>
-										<div class="col-sm-3">
-											<input type="text" class="form-control validate[required]" name="treatment_fees" id="treatment_fees" />
-										</div>
-									</div>
 								</div><!-- form-group -->
 
 								<hr />
+
 								<h4><b><u>Treatment Therapy </u></b></h4>
 
 								<div class="form-group responsive add-row" id="">
@@ -155,7 +182,7 @@
 									</div>
 
 								</div>
-
+							 </div><!--  no image class -->
 							</div><!-- row -->
 						</div><!-- panel-body -->
 
@@ -258,6 +285,10 @@ function addRow(){
 				short_term_goal:{
 		      required: true
 
+		    },
+				patient_id:{
+		      required: true
+
 		    }
 		  }
 		});
@@ -271,6 +302,17 @@ function deleteRow(){
 				e.preventDefault();
 				console.log($(this).closest("table").parent('div'));
 				$(this).closest("table").parent('div').remove();
+		});
+
+	$('#form_type').on("change",function(e){
+				if($(this).val() == 'image'){
+					$('.no-image').addClass('hide')
+					$('image').removeClass('hide')
+
+				}else{
+					$('.no-image').removeClass('hide')
+					$('image').addClass('hide')
+				}
 		});
 }
 </script>

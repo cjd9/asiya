@@ -47,7 +47,7 @@
 						 			 			</a>
 
 												<a class="<?php echo ($this->session->userdata('user_type')=='S') ? 'hide' : '';?>"
-													href="<?php print base_url(); ?>exercise_program/displayVideo">
+													href="<?php print base_url(); ?>exercise_program/add_video">
 											<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Video</button>
 											 </a>
 					   <br /><br />

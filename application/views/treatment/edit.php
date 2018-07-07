@@ -118,9 +118,56 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 											<span id="msg1" class="" style="color:#FF0000"></span>
 										</div>
 									</div>
+									<div class="col-sm-6">
+										<label class="col-sm-4 control-label">Fees<span class="asterisk">*</span></label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" name="treatment_fees" id="treatment_fees" value="<?php echo $r->treatment_fees; ?>" />
+										</div>
+									</div>
 								</div><!-- form-group -->
 
-								<hr />
+								<hr>
+								<div class="form-group">
+									<div class="col-sm-3">
+									</div>
+<!-- 
+										<div class="col-sm-4">
+												<label class="col-sm-3 control-label">Form Type<span class="asterisk">*</span></label>
+												<div class="col-sm-8">
+													<select id="form_type" name="form_type" data-placeholder="Choose Patient " class="select2-container width100p">
+														<option value="Image">Image</option>
+														<option value="Manual">Manual</option>
+														
+													</select>
+													<span id="msg1" class="" style="color:#FF0000"></span>
+												</div>
+										</div> -->
+										<div class="col-sm-3">
+									   </div> 
+								</div>
+								<hr>
+								<div class="form-group"><!-- Start form-group -->
+												<div class="col-sm-8">
+													<label class="col-sm-3">Uploaded Files</label>
+													<div class="col-sm-8 table-responsive">
+														<table class="table table-striped table-bordered">
+															<tr style="text-align:center">
+																<th>File Name</th>
+															</tr>
+															<tr>
+																<td>
+																	<a href="<?php echo base_url().'treatment_image/'.$r->treatment_image; ?>" target="_blank">
+																		<?php echo $r->treatment_image; ?>
+																	</a>
+																</td>
+																
+															</tr>
+													
+														</table>
+													</div>
+                                            	</div>
+                                            </div><!-- End form-group -->
+                               <div class = "no-image <?php  echo ($r->form_type == 'manual') ? '' : ''; ?> ">	
 								<h4><u><b>Plan of Care</b></u></h4>
 
 								<div class="form-group">
@@ -148,12 +195,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 										</div>
 									</div>
 
-									<div class="col-sm-6">
-										<label class="col-sm-4 control-label">Fees<span class="asterisk">*</span></label>
-										<div class="col-sm-3">
-											<input type="text" class="form-control" name="treatment_fees" id="treatment_fees" value="<?php echo $r->treatment_fees; ?>" />
-										</div>
-									</div>
+									
 								</div><!-- form-group -->
 
 								<hr />
@@ -164,7 +206,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 								<?php echo $edit_treatment_html;?>
 									</div>
 								</div>
-
+							</div> <!-- no image -->
 							</div><!-- row -->
 						</div><!-- panel-body -->
 
@@ -213,7 +255,18 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 
   <script>
   	$(document).ready(function()
-  	{ var count = <?php  echo $count-1; ?>;
+  	{ 
+  		$('#form_type').on("change",function(e){
+				if($(this).val() == 'image'){
+					$('.no-image').addClass('hide')
+					$('image').removeClass('hide')
+
+				}else{
+					$('.no-image').removeClass('hide')
+					$('image').addClass('hide')
+				}
+		});
+  		var count = <?php  echo $count-1; ?>;
 
   		for (i = 0; i < count; i++) {
 

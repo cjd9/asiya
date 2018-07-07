@@ -161,20 +161,16 @@ class Appointment_schedule extends MY_Controller
 	}
 
 	// function to send SMS/Email to patient -
-	function send_sms_email($app_id = '')
+	function send_sms_email($id = '')
 	{
 		// get appointment id -
-		if(isset( $_REQUEST['appointment_id'])){
-			$appointment_id 	= $_REQUEST['appointment_id'];
-		}else{
-		$appointment_id 	= $app_id;
-	}
+		
 		/********** send Email **************/
 
 		$res = FALSE;
 
 		// check if existing patient appointment -
-		$rsappointment = $this->db->query("SELECT * FROM appointment_schedule WHERE pk = $appointment_id");
+		$rsappointment = $this->db->query("SELECT * FROM appointment_schedule WHERE pk = $id");
 
 		if($rsappointment->num_rows() > 0)
 		{

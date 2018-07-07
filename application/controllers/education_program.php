@@ -133,7 +133,7 @@ class Education_program extends MY_Controller
 		$data = $_POST;
 
 
-		$data['education_program_file'] = '';
+		$data['education_program_file'] = $data['thumbnail'] = '';
 
 		if(!empty($_FILES['education_program_file']['name']))
 		{
@@ -149,6 +149,22 @@ class Education_program extends MY_Controller
 
 			$data['education_program_file'] = $education_program_file;
 		}
+
+		if(!empty($_FILES['thumbnail']['name']))
+		{
+			// config array for file -
+			$config['upload_path']		= './education_thumbnail/';	// folder name to store files -
+			$config['allowed_types'] 	= '*';					// file type to be supported
+			$config['max_size']			= '500000';				// maximum file size to upload
+
+			// function to upload multiple files -
+			$result = $this->mastermodel->upload_file('thumbnail', $_FILES, $config);
+
+			$thumbnail = $result[0][0];
+
+			$data['thumbnail'] = $thumbnail;
+		}
+
 		$data['samvaad_date'] = $this->mastermodel->date_convert($data['samvaad_date'],'ymd');
 		$result = $this->mastermodel->add_data('education_program', $data);
 
@@ -162,7 +178,7 @@ class Education_program extends MY_Controller
 		// get form data -
 		$data = $_POST;
 
-		//print_r($_FILES);
+		print_r($_FILES); 
 
 		if(!empty($_FILES['education_program_file']['name']))
 		{
@@ -178,13 +194,29 @@ class Education_program extends MY_Controller
 
 			$data['education_program_file'] = $education_program_file;
 		}
+			if(!empty($_FILES['thumbnail']['name']))
+		{
+			// config array for file -
+			$config['upload_path']		= './education_thumbnail/';	// folder name to store files -
+			$config['allowed_types'] 	= '*';					// file type to be supported
+			$config['max_size']			= '500000';				// maximum file size to upload
+
+			// function to upload multiple files -
+			$result = $this->mastermodel->upload_file('thumbnail', $_FILES, $config);
+
+			$thumbnail = $result[0][0];
+
+
+			$data['thumbnail'] = $thumbnail;
+		}
+				$data['samvaad_date'] = $this->mastermodel->date_convert($data['samvaad_date'],'ymd');
+
 
 		// WHERE condition -
 		$where = array('pk' => $data['edit_pk']);	// give name for edit record id field on form as 'edit_pk'
 
 		// remove edit id from array -
 		unset($data['edit_pk']);
-
 		$result = $this->mastermodel->update_data('education_program', $where, $data);
 
 		// function used to redirect -

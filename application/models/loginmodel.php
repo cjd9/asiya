@@ -115,7 +115,7 @@ class Loginmodel extends CI_Model
 							'first_name'	=> $row->p_fname,
 							'last_name'		=> $row->p_lname,
 							//'user_photo'	=> $row->staff_photo,
-							//'user_type' 	=> $row->user_type,
+							'user_type' 	=> 'P',
 
 							'logged_in' 	=> TRUE
                     );

@@ -1,3 +1,8 @@
+<?php if($this->session->userdata('user_type') == "P"){
+		header('Location: '.base_url('p_dashboard'));
+
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -99,7 +104,7 @@
                               <i class="fa fa-caret-down"></i>
                             </button>
                             <ul class="dropdown-menu pull-right" role="menu">
-								<li><a href="" data-toggle="modal" data-target="#myModal_profile"><i class="glyphicon glyphicon-user"></i>My Profile</a></li>
+								<li><a href="/staff_list/edit/<?php echo $this->session->userdata('userid'); ?>" ><i class="glyphicon glyphicon-user"></i>My Profile</a></li>
                               	<li><a href="" data-toggle="modal" data-target="#myModal_pass"><i class="glyphicon glyphicon-wrench"></i>Change Pasword</a></li>
                               	<li class="divider"></li>
                               	<li><a href="<?php echo base_url().'login/logout'; ?>"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
