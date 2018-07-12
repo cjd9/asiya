@@ -83,7 +83,7 @@ class patient_enquiry extends MY_Controller
 
 		$data['added_by_user'] 		= $this->session->userdata("userid");
 		$data['date_added'] 		= date("Y-m-d h:i:s");
-
+		
 		// insert into table -
 		$res = $this->db->insert('appointment_schedule', $data);
 

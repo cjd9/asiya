@@ -74,7 +74,63 @@
 
 						</div><!-- row -->
 					</div><!-- panel-body -->
+					<div class="col-sm-12 table-responsive" align="center">
+												<table class="table table-bordered table-striped mb30 responsive" id="">
+													<thead>
+														<tr>
+																														<th colspan="5"><div align="center">Add Quick Appointment</div></th>
+														</tr>
+														<tr>
+															<th><div align="center">Date</div></th>
+															<th><div align="center">Time Slots</div></th>
+															<th><div align="center">Patient Name</div></th>
+															<th><div align="center">Patient Contact No.</div></th>
+															<th><div align="center">Action</div></th>
+														</tr>
+													</thead>
 
+													<tbody>
+
+
+														<tr>
+															<input type="hidden" name="appointment_id" class="appointment_id" value="">
+															<td>
+															<input type="text" autocomplete="off" class="form-control validate[required]" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
+                             </td>
+
+															<td align="center"><select id="" name="time_slot_id" data-placeholder="Choose Time Slot" class="time_slot_id form-control width100p">
+																<option value=""> </option>
+																<?php foreach ($fulltime_slots->result() as $row)  { ?>
+																	<option value="<?php echo $row->pk; ?>"> <?php echo $row->time_slot; ?> </option>
+																<?php } ?>
+															</select> </td>
+															<td>
+																<div class="col-sm-6">
+																	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_fname ui-autocomplete-input" name="p_fname" value="" placeholder="Full Name" autocomplete="off">
+																</div>
+																<div class="col-sm-6">
+																	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_lname ui-autocomplete-input" name="p_lname" value="" placeholder="Patient ID" autocomplete="off">
+																</div>
+															</td>
+															<td><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_contact_no ui-autocomplete-input" name="p_contact_no" value="" placeholder="Contact No." autocomplete="off"></td>
+															<td>
+																<div align="center">
+																	<button class="btn btn-primary btn-xs btn-confirm">Confirm</button>
+																	<button class="btn btn-success btn-xs btn-edit disabled">Edit</button>
+																	<button class="btn btn-warning btn-xs btn-cancel disabled">Cancel</button>
+																	<button class="btn btn-danger btn-xs btn-sms-email disabled">SMS/EMail</button>
+																</div>
+															</td>
+														</tr>
+
+
+
+
+
+
+													</tbody>
+												</table>
+											</div>
 					<div class="row">
 					<div class="col-md-12">
 
@@ -167,60 +223,103 @@
 
 														<?php
 															if($rsappointment_schedule->num_rows() > 0)	// if minimum 1 appointment is booked -
-															{
+															{ $timeslot = '';
 																foreach($rsappointment_schedule->result() as $r)
 																{
 																	// check if appointment booking is already exists -
 																	if($row->pk == $r->time_slot_id)
 																	{
 																		$appointment_id = $r->pk;
+																		$timeslot = $row->pk;
 
 																		$p_fname = $r->p_fname;
 																		$p_lname = $r->p_lname;
 																		$p_contact_no = $r->p_contact_no;
+																			?>
+																			<tr>
+																				<td align="center"><?php echo $row->time_slot; ?>
+																					<input type="hidden" name="time_slot_id" class="time_slot_id" value="<?php echo $row->pk; ?>" />
+																				</td>
 
-																		break; // will leave the foreach loop and also "break" the if statement
+																				<td>
+																					<input type="hidden" name="appointment_id" class="appointment_id" value="<?php echo $appointment_id; ?>" />
+
+																					<div class="col-sm-6">
+																						<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="<?php echo $p_fname; ?>" placeholder="Full Name" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																					</div>
+																					<div class="col-sm-6">
+																						<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="<?php echo $p_lname; ?>" placeholder="Patient ID" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																					</div>
+																				</td>
+																				<td>
+																					<div class="col-sm-12">
+																						<input type="text" class="form-control validate[required] p_contact_no" name="p_contact_no" value="<?php echo $p_contact_no; ?>" placeholder="Contact No." <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																					</div>
+																				</td>
+																				<td>
+																					<div align="center">
+																						<button class="btn btn-primary btn-xs btn-confirm <?php if($appointment_id != '') { ?>disabled<?php } ?>">Confirm</button>
+																						<button class="btn btn-success btn-xs btn-edit <?php if($appointment_id == '') { ?>disabled<?php } ?>">Edit</button>
+																						<button class="btn btn-warning btn-xs btn-cancel <?php if($appointment_id == '') { ?>disabled<?php } ?>">Cancel</button>
+																						<button class="btn btn-danger btn-xs btn-sms-email <?php if($appointment_id == '') { ?>disabled<?php } ?>">SMS/EMail</button>
+																					</div>
+																				</td>
+																			</tr>
+																			<?php
+																		//break; // will leave the foreach loop and also "break" the if statement
 																	}
 																	else
 																	{
+																		if($timeslot != $row->pk)
+																	{
+																		$timeslot = $row->pk;
+
 																		$appointment_id = '';
 
 																		$p_fname = '';
 																		$p_lname = '';
 																		$p_contact_no = '';
+																			?>
+																		<tr>
+																			<td align="center"><?php echo $row->time_slot; ?>
+																				<input type="hidden" name="time_slot_id" class="time_slot_id" value="<?php echo $row->pk; ?>" />
+																			</td>
+
+																			<td>
+																				<input type="hidden" name="appointment_id" class="appointment_id" value="<?php echo $appointment_id; ?>" />
+
+																				<div class="col-sm-6">
+																					<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="<?php echo $p_fname; ?>" placeholder="Full Name" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																				</div>
+																				<div class="col-sm-6">
+																					<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="<?php echo $p_lname; ?>" placeholder="Patient ID" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																				</div>
+																			</td>
+																			<td>
+																				<div class="col-sm-12">
+																					<input type="text" class="form-control validate[required] p_contact_no" name="p_contact_no" value="<?php echo $p_contact_no; ?>" placeholder="Contact No." <?php if($appointment_id != '') { ?>disabled<?php } ?> />
+																				</div>
+																			</td>
+																			<td>
+																				<div align="center">
+																					<button class="btn btn-primary btn-xs btn-confirm <?php if($appointment_id != '') { ?>disabled<?php } ?>">Confirm</button>
+																					<button class="btn btn-success btn-xs btn-edit <?php if($appointment_id == '') { ?>disabled<?php } ?>">Edit</button>
+																					<button class="btn btn-warning btn-xs btn-cancel <?php if($appointment_id == '') { ?>disabled<?php } ?>">Cancel</button>
+																					<button class="btn btn-danger btn-xs btn-sms-email <?php if($appointment_id == '') { ?>disabled<?php } ?>">SMS/EMail</button>
+																				</div>
+																			</td>
+																		</tr>
+																		<?php // break;
+																	 }
 																	}
+
+																	?>
+
+																	<?php
 																}
 														?>
 
-														<tr>
-															<td align="center"><?php echo $row->time_slot; ?>
-																<input type="hidden" name="time_slot_id" class="time_slot_id" value="<?php echo $row->pk; ?>" />
-															</td>
 
-															<td>
-																<input type="hidden" name="appointment_id" class="appointment_id" value="<?php echo $appointment_id; ?>" />
-
-																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="<?php echo $p_fname; ?>" placeholder="Full Name" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
-																</div>
-																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="<?php echo $p_lname; ?>" placeholder="Patient ID" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
-																</div>
-															</td>
-															<td>
-																<div class="col-sm-12">
-																	<input type="text" class="form-control validate[required] p_contact_no" name="p_contact_no" value="<?php echo $p_contact_no; ?>" placeholder="Contact No." <?php if($appointment_id != '') { ?>disabled<?php } ?> />
-																</div>
-															</td>
-															<td>
-																<div align="center">
-																	<button class="btn btn-primary btn-xs btn-confirm <?php if($appointment_id != '') { ?>disabled<?php } ?>">Confirm</button>
-																	<button class="btn btn-success btn-xs btn-edit <?php if($appointment_id == '') { ?>disabled<?php } ?>">Edit</button>
-																	<button class="btn btn-warning btn-xs btn-cancel <?php if($appointment_id == '') { ?>disabled<?php } ?>">Cancel</button>
-																	<button class="btn btn-danger btn-xs btn-sms-email <?php if($appointment_id == '') { ?>disabled<?php } ?>">SMS/EMail</button>
-																</div>
-															</td>
-														</tr>
 
 														<?php
 															}
@@ -332,7 +431,7 @@
 			$('.btn-confirm').live('click', function()
 			{
 				var confirm_btn = $(this);
-
+				console.log(confirm_btn.closest('tr'))
 				// get booking details -
 				var date_of_appointment = $("#date_of_appointment").val();
 				var staff_id = $("#staff_id").val();
@@ -345,7 +444,9 @@
 				var p_fname = confirm_btn.closest('tr').find('.p_fname').val();
 				var p_lname = confirm_btn.closest('tr').find('.p_lname').val();
 				var p_contact_no = confirm_btn.closest('tr').find('.p_contact_no').val();
-
+         console.log(p_fname);
+         console.log(p_lname);
+         console.log(time_slot_id);
 				// remove error validate from field if its not empty -
 				confirm_btn.closest('tr').find('div').removeClass('has-error');
 

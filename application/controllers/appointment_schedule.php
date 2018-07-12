@@ -27,6 +27,8 @@ class Appointment_schedule extends MY_Controller
 		else{
 			$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type = "S" AND pk = '.$this->session->userdata('userid').'', NULL, NULL, 0, NULL);
 		}
+		$data['fulltime_slots'] = $this->db->query("SELECT * FROM time_slot_master");
+
 		if(isset($_POST['staff_id']))
 		{
 			//$data['form_data'] = $_POST;
@@ -46,6 +48,7 @@ class Appointment_schedule extends MY_Controller
 			// get time slots for selected user gender and work shift -
 			$data['rstime_slots'] = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = '$user_gender' AND user_shift = '$work_shift'");
 
+			//print_r($data['fulltime_slots']->result_array()); die;
 			$data['date_of_appointment']	= $_POST['date_of_appointment'];
 			$data['staff_id'] 				= $_POST['staff_id'];
 			$data['work_shift'] 			= $_POST['work_shift'];
@@ -164,7 +167,7 @@ class Appointment_schedule extends MY_Controller
 	function send_sms_email($id = '')
 	{
 		// get appointment id -
-		
+
 		/********** send Email **************/
 
 		$res = FALSE;
