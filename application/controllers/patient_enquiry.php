@@ -22,6 +22,16 @@ class patient_enquiry extends MY_Controller
 
 		// get data from table -
 		$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE shift = '$work_shift' AND is_deleted = 0");
+		$fulltime_slots = $this->db->query("SELECT * FROM time_slot_master")->result_array();
+		$count = 0;
+		foreach($fulltime_slots as $slot){
+
+			$arr[$count]['text'] = $slot['time_slot'];
+			$arr[$count]['value'] = $slot['pk'];
+			$count = $count + 1;
+		}
+		$data['timeslot'] = json_encode($arr);
+
 
 		$this->load->view('patient_enquiry/list', $data);
 	}
@@ -39,7 +49,7 @@ class patient_enquiry extends MY_Controller
 	}
 
 	// function to update status of appointment -
-	function update_appt_status()
+	function update_appt_status($check='')
 	{
 		$pk = $this->input->post("pk");
 		$status = $this->input->post("status");
@@ -48,7 +58,16 @@ class patient_enquiry extends MY_Controller
 		{
 			$data['confirm_by_staff'] = $this->session->userdata("userid");
 			$data['confirm_on'] = date("Y-m-d h:i:s");
-			$this->addtoAppointmentSchedule($pk);
+
+			$this->addtoAppointmentSchedule($pk,$check);
+		}
+		else if($status == 'RE')
+		{
+			$data['confirm_by_staff'] = $this->session->userdata("userid");
+			$data['confirm_on'] = date("Y-m-d h:i:s");
+			$timeslot = $this->input->post("timeslot");
+
+			$this->addtoAppointmentSchedule($pk,$check,$timeslot);
 		}
 		else
 		{
@@ -60,10 +79,14 @@ class patient_enquiry extends MY_Controller
 
 		$result = $this->mastermodel->update_data('patient_appointment_enquiry', 'pk = '.$pk, $data);
 		// function used to redirect -
-		$this->mastermodel->redirect($result, 'patient_enquiry', 'patient_enquiry', 'Updated');
+		if($result){
+			echo json_encode(array('status'=>'success'));
+		}else{
+			echo json_encode(array('status'=>'fail'));
+		}
 	}
 
-	function addtoAppointmentSchedule($pk)
+	function addtoAppointmentSchedule($pk,$check,$timeslot='')
 	{
 		$datares = $this->db->query("SELECT * FROM patient_appointment_enquiry where pk = '$pk' AND is_deleted = 0")->row_array();
 		$data['date_of_appointment']= $this->mastermodel->date_convert($datares['appointment_date'], 'ymd');
@@ -71,8 +94,13 @@ class patient_enquiry extends MY_Controller
 		$data['work_shift'] 		= $datares['shift'];
 
 		//data['appointment_id'] 	= $_POST['appointment_id'];
+		if($timeslot != ''){
+			$data['time_slot_id'] = $timeslot;
+		}
+		else{
+			$data['time_slot_id'] 		= $datares['appointment_time'];
 
-		$data['time_slot_id'] 		= $datares['appointment_time'];
+		}
 
 
 	  $data['is_exist'] 			= '1';	// mark as existing patient or not
@@ -83,18 +111,28 @@ class patient_enquiry extends MY_Controller
 
 		$data['added_by_user'] 		= $this->session->userdata("userid");
 		$data['date_added'] 		= date("Y-m-d h:i:s");
-		
-		// insert into table -
-		$res = $this->db->insert('appointment_schedule', $data);
+		if($check == ''){
+			$check = $this->db->query('SELECT * FROM appointment_schedule where date_of_appointment = "'.$data['date_of_appointment'].'" AND time_slot_id = '.$data['time_slot_id'].' AND is_deleted = 0')->row_array();
+			if(!empty($check)){
+				echo json_encode(array('status'=>'error','msg' => json_encode($check)));exit;
+			}
+		}
 
+		// insert into table -
+
+		$res = $this->db->insert('appointment_schedule', $data);
+		$aid = $this->db->insert_id(); die;
 		if($res)
 		{
+			$this->send_sms_email()$aid);
+			return true;
 			//echo $this->db->insert_id();	// send insert id as response
 			//$this->send_sms_email($this->db->insert_id());
 		}
 		else
 		{
-			echo 0;
+
+		 return false;
 		}
 	}
 /*-----------------------------------------------------End appointment schedule--------------------------------------------------*/

@@ -64,10 +64,12 @@
 												<div class="input-group">
 												<form id="update_appt_status_form" name="update_appt_status_form" action="<?php echo base_url(); ?>patient_enquiry/update_appt_status" method="post">
 													<input type="hidden" name="pk" id="pk" value="<?php echo $row->pk; ?>" />
-													<select id="status" name="status" data-placeholder="Choose Shift " class="select2-container width100p" onchange="this.form.submit()">
+													<select id="status" name="status" pk ="<?php echo $row->pk; ?>" data-placeholder="Choose Shift " class="select2-container width100p status" >
 														<?php if($row->status == 'PE') { ?><option value="PE" selected="selected">Pending</option><?php } ?>
 														<?php if($row->status != 'CA') { ?><option value="CO" <?php if($row->status == 'CO') { ?> selected="selected"<?php } ?>>Confirm</option><?php } ?>
 														<?php if($row->status != 'CO') { ?><option value="CA" <?php if($row->status == 'CA') { ?> selected="selected"<?php } ?>>Cancel</option><?php } ?>
+														<?php if($row->status == 'PE') { ?><option value="RE">Reschedule</option><?php } ?>
+
 													</select>
 												</form>
 												</div>
@@ -103,6 +105,7 @@
 	<?php $this->load->view('include/footer'); ?>
 
 	<script>
+	$(document).ready(function(){
 		// function for cancel confirmation -
 		function confirmation()
 		{
@@ -117,6 +120,106 @@
 				return false;
 			}
 		}
+
+		$("body").on("change", ".status", function ()
+ {
+
+			var status= $(this).val();
+			var pk= $(this).attr('pk');
+			if(status == 'RE'){
+				bootbox.prompt({
+				    title: "Select a time Slot!",
+				    inputType: 'select',
+				    inputOptions: <?php echo $timeslot; ?>,
+				    callback: function (result) {
+				        console.log(result);
+								$.ajax({
+											type: "post",
+											url: '/patient_enquiry/update_appt_status/nocheck',
+											dataType: "json",
+											data: {
+											 status: status,
+											 pk: pk,
+											 timeslot:result
+										 },
+											success: function(responseData) {
+												if(responseData.status == 'success'){
+													bootbox.alert({
+																message: "Action was successful",
+																size: 'small'
+														});
+												}
+											}
+
+								 });
+				    }
+				});
+			}
+			else{
+				$.ajax({
+							type: "post",
+							url: '/patient_enquiry/update_appt_status',
+							dataType: "json",
+							data: {
+								status: $(this).val(),
+								pk: $(this).attr('pk')
+							},
+							success: function(responseData) {
+								console.log( responseData.status);
+								if(responseData.status == 'success'){
+									bootbox.alert({
+												message: "Action was successful",
+												size: 'small'
+										});
+								}
+								if(responseData.status == 'error'){
+									bootbox.confirm({
+												 title: "Appointment Already Exists",
+												 message: "Do You want to continue to the same time slot?",
+												 buttons: {
+														 cancel: {
+																 label: '<i class="fa fa-times"></i> Cancel'
+														 },
+														 confirm: {
+																 label: '<i class="fa fa-check"></i> Confirm'
+														 }
+												 },
+												 callback: function (result) {
+															 if(result)
+														 {
+															 $.ajax({
+																		 type: "post",
+																		 url: '/patient_enquiry/update_appt_status/nocheck',
+																		 dataType: "json",
+																		 data: {
+																			status: status,
+																			pk: pk
+																		},
+																		 success: function(responseData) {
+																			if(responseData.status == 'success'){
+																				bootbox.alert({
+																					    message: "Action was successful",
+																					    size: 'small'
+																					});
+																			}
+																		 }
+
+																});
+
+														 }
+												}
+										 });
+								}
+
+							},
+							error: function(errorThrown) {
+									console.log(errorThrown);
+							}
+					});
+			}
+
+		});
+	});
 	</script>
 
     </body>
