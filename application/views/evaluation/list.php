@@ -56,7 +56,7 @@
 							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 							<div class="table-responsive">
-								<table id="basicTable" class="table table-striped table-bordered">
+								<table id="basicTableEval" class="table table-striped table-bordered">
 									<thead class="">
 										<tr>
 											<th></th>

@@ -136,7 +136,7 @@
 										<br />
 
 										<?php if(isset($staff_id) && isset($work_shift) && isset($user_gender)) { ?>
-										<div class="col-sm-12 table-responsive quick" align="center">
+										<div class="col-sm-12 table-responsive quick hide" align="center">
 												<table class="table table-bordered table-striped mb30 responsive" id="">
 													<thead>
 														<tr>
@@ -385,7 +385,7 @@
 			$("#export_appointment_schedule_form").validationEngine({promptPosition: "topRight: -100"});
 
 			// Show datepicker with previous dates hidden -
-			$('#datepicker,#date_of_appointment').datepicker(
+			$('#date_of_appointment').datepicker(
 			{
 				changeMonth: true,
 				changeYear: true,
@@ -395,6 +395,27 @@
 				 onSelect: function (dateText, inst) {
 			         $('.date_of_appointment2').val(dateText)
 			     }
+				//minDate: 0	// disable all previous dates
+			});
+
+				$('.date_of_appointment2').datepicker(
+							{
+								changeMonth: true,
+								changeYear: true,
+								yearRange: '1945:2050',
+								dateFormat: 'dd-mm-yy',
+								minDate: 0,
+								 onSelect: function (dateText, inst) {
+							         $('.date_of_appointment2').val(dateText)
+							     }
+								//minDate: 0	// disable all previous dates
+							});
+			$('#datepicker').datepicker(
+			{
+				changeMonth: true,
+				changeYear: true,
+				yearRange: '1945:2050',
+				dateFormat: 'dd-mm-yy'
 				//minDate: 0	// disable all previous dates
 			});
 
@@ -432,7 +453,7 @@
 
 			// function to confirm appointment -
 			$('.btn-confirm').live('click', function()
-			{ alert()
+			{ 
 				var confirm_btn = $(this);
 				console.log(confirm_btn.closest('tr'))
 				// get booking details -
@@ -645,7 +666,7 @@
 								// check if appointment is successfully update -
 								if(res != 0)
 								{
-									alert('Appointment Updated Successfully.');
+									bootbox.alert('Appointment Updated Successfully.');
 
 									// change update button label to Edit after successful update -
 									update_btn.text('Edit');
@@ -766,7 +787,7 @@
 									// hide loader -
 									//hideProgress();
 
-									alert('SMS/Email Sent Successfully.');
+									bootbox.alert('SMS/Email Sent Successfully.');
 
 								}
 							}

@@ -48,8 +48,8 @@
 											<div class="form-group">
 												<div class="col-sm-4">
 													<label class="col-md-4 control-label">Patient Name </label>
-													<div class="col-sm-4">
-													<b>: <?php $r1 = $this->db->get_where('contact_list', array('patient_id' => $r->patient_id))->row(); echo $r1->p_fname.' '.$r1->p_lname; ?></b>
+													<div class="col-sm-6">
+													<input type="text" class="form-control" disabled value=" <?php $r1 = $this->db->get_where('contact_list', array('patient_id' => $r->patient_id))->row(); echo $r1->p_fname.' '.$r1->p_lname; ?>">
 														<input type="hidden" disabled name="patient_id" id="patient_id" value="<?php echo $r->patient_id; ?>" />
 													</div>
 												</div>

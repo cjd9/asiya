@@ -91,7 +91,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="date_of_registration" id="date_of_registration" value="<?php echo date('d-m-Y')?>">
+															<input type="text" class="form-control" name="date_of_registration" id="date_of_registration" value="<?php echo date('d-m-Y')?>">
 														</div><!-- input-group -->
 													</div>
 												</div>
@@ -120,7 +120,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="p_dob" placeholder="dd-mm-yyyy" id="p_dob">
+															<input type="text" class="form-control" name="p_dob" placeholder="dd-mm-yyyy" id="p_dob">
 														</div><!-- input-group -->
 													</div>
 												</div>
@@ -196,7 +196,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-															<input type="text" id="p_phone_no" name="p_phone_no" class="form-control" placeholder="Landline No." maxlength = "12"/>
+															<input type="numbertext" id="p_phone_no" name="p_phone_no" class="form-control" placeholder="Landline No." maxlength = "12"/>
 
 														</div><!-- input-group -->
 													</div>
@@ -302,7 +302,7 @@
 														<div class="col-sm-6">
 															<div class="input-group">
 																<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-																<input type="text" id="p_emergency_contact" name="p_emergency_contact" class="form-control" placeholder="Type Contact No." maxlength = "10"/>
+																<input type="number" id="p_emergency_contact" name="p_emergency_contact" class="form-control" placeholder="Type Contact No." maxlength = "10"/>
 															</div><!-- input-group -->
 														</div>
 													</div><!-- form-group -->
@@ -353,8 +353,10 @@
 		{
 			//$("#add_patient_form").validationEngine({promptPosition: "topRight: -100"});
 
-			/*$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy' });
-			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy'});*/
+			$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy',maxDate:0 ,changeMonth: true,
+				changeYear: true}); 
+			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy',maxDate:0,changeMonth: true,
+				changeYear: true});
 
 			$('#p_dob').on('change', function() {
 			   dob = new Date($(this).val());

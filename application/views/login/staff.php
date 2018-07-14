@@ -33,19 +33,18 @@ select {
 		<section>
 			<div align="left">
 				<b><h5>
-						<a class="btn btn-primary mr5" href="http://asiya.co.in/" ><b>&nbsp;&nbsp;&nbsp;<span class="fa fa-home"></span> HOME</b></a>
 
 				</h5></b>
 			</div>
 			<div align="center" style="margin-top:3%">
 <!-- 				<h1 class="style1" style="text-transform:uppercase"> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
  -->			</div>
-			<div class="panel panel-signin" style="border:15px solid rgba(150, 150, 146, 0.24)" />
+		<div class="panel panel-signin" style="border:15px solid rgba(150, 150, 146, 0.24);background-color: white;width: 425px;">
 
 				<div class="panel panel-signin">
 					<div class="panel-body">
 						<div class="logo text-center" style="margin-top:-110px">
-							<img src="<?php print base_url(); ?>images/logo-new.png">
+							<img src="<?php print base_url(); ?>images/Asiya.png">
 							<h3><b><span class="fa fa-user-md"></span>LOGIN</b></h3>
 						</div>
 
@@ -76,16 +75,22 @@ select {
                     <option value="<?php echo base_url().'login/validatelogin'; ?>">Staff</option>
                  </select>
 							</div><!-- input-group -->
-
-							<div class="clearfix">
-								<div class="pull-right">
-									 <button type="submit" class="btn btn-success btn-metro"><b>SIGN IN</b> <i class="fa fa-unlock ml5"></i></button>
+						<div class="clearfix mb15">
+							<div class="pull-right">
+									<button type="submit" class="btn btn-success btn-metro"><b>SIGN IN</b> <i class="fa fa-unlock ml5"></i></button>
 								</div>
 								<div class="pull-left">
-									<a class="btn btn-primary" href="/login/forgot_password" ><b><span class="fa fa-anchor"></span> <font color="black">Forgot Password?</font>
-</b></a>
+									<a class="btn btn-primary btn-metro" href="/login/forgot_password" style="color: black;"><b><span class="fa fa-anchor"></span>Forgot Password?</b></a>
 								</div>
+						</div>
+
+						<div class="clearfix">
+							<div class="Pull-right">
+							  <a class="btn btn-primary btn-metro" href="http://asiya.co.in/" style="color: black"><b><span class="fa fa-home"></span> HOME</b></a>
 							</div>
+						</div>
+
+
 						</form>
 					</div><!-- panel-body -->
 				</div><!-- panel -->

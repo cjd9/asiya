@@ -203,7 +203,7 @@ jQuery(document).ready(function() {
                                // check if patient successfully shared -
                                if(res != 0)
                                {
-                                  alert("Patient Shared Successfully.");
+                                  bootbox.alert("Patient Shared Successfully.");
 
                                   // submit hidden form to load same page with staff patient list -
                                   window.location = "/contact_list";

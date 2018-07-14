@@ -77,7 +77,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="date_of_registration" id="date_of_registration" value="<?php echo date("d-m-Y",strtotime($r->date_of_registration)); ?>" />
+															<input type="text" class="form-control datepicker" readonly name="date_of_registration" id="date_of_registration" value="<?php echo date("d-m-Y",strtotime($r->date_of_registration)); ?>" />
 														</div><!-- input-group -->
 													</div>
 												</div>
@@ -144,7 +144,7 @@
 												<div class="col-sm-6">
 													<label class="col-md-3 control-label">Occupation</label>
 													<div class="col-sm-6">
-														<input type="text" id="" name="p_occupation" class="form-control validate[required]" value="<?php echo $r->p_occupation; ?>"/>
+														<input type="text" id="" name="p_occupation" class="form-control" value="<?php echo $r->p_occupation; ?>"/>
 													</div>
 												</div>
 
@@ -167,7 +167,7 @@
 												</div>
 
 												<div class="col-sm-6">
-													<label class="col-sm-4 control-label">Phone No.</label>
+													<label class="col-sm-4 control-label">Landline No.</label>
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
@@ -243,7 +243,7 @@
 													<div class="form-group">
 														<label class="col-sm-4 control-label">Zip</label>
 														<div class="col-sm-6">
-															<input type="text" id="p_zip" name="p_zip" class="form-control" maxlength="7" value="<?php echo $r->p_zip; ?>"/>
+															<input type="text" id="p_zip" name="p_zip" class="form-control" maxlength="6" value="<?php echo $r->p_zip; ?>"/>
 														</div>
 													</div><!-- form-group -->
 												</div>

@@ -107,7 +107,7 @@
                       <p><strong>No Homework yet</strong></p>
                     <?php }  ?>
                     </div>
-                </div>
+                
                 <div class ="row chart">
 
                   <div class="col-sm-6">

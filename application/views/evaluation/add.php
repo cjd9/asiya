@@ -60,7 +60,7 @@
 
                                            <div class="form-group"><!-- Start form-group -->
 												<div class="col-sm-6">
-													<label class="col-sm-4">Present Complaints</label>
+													<label class="col-sm-4">Present Complaints*</label>
 													<div class="col-sm-8">
 														<textarea class="form-control" rows="1" name="p_present_complaint" id="p_present_complaint"></textarea>
 													</div>

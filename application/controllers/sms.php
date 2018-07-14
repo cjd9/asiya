@@ -245,10 +245,10 @@ class Sms extends MY_Controller
 	// Exercise Program Delete Data to the DB
 	function delete($pk)
 	{
-		$result = $this->mastermodel->delete_data('email', 'pk = '.$pk);
+		$result = $this->mastermodel->delete_data('sms', 'pk = '.$pk);
 
 		// function used to redirect -
-		$this->mastermodel->redirect($result, 'email', 'email', 'Deleted');
+		$this->mastermodel->redirect($result, 'sms', 'sms', 'Deleted');
 	}
 
 	// function to check sms status on api -

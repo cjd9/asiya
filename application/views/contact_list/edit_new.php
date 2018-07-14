@@ -180,7 +180,7 @@
 													<div class="col-sm-9">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-															<input type="text"  id="referred_by" value="<?php echo $r->referred_by; ?>"  name="referred_by" class="form-control" placeholder="Referred By"/>
+															<input type="text"  disabled id="referred_by" value="<?php echo $r->referred_by; ?>"  name="referred_by" class="form-control" placeholder="Referred By"/>
 
 														</div><!-- input-group -->
 						        	                      <span id="referred_by" class="err" style="color:#FF0000"></span>
