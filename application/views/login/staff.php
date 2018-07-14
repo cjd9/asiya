@@ -38,8 +38,8 @@ select {
 				</h5></b>
 			</div>
 			<div align="center" style="margin-top:3%">
-				<h1 class="style1" style="text-transform:uppercase"> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
-			</div>
+<!-- 				<h1 class="style1" style="text-transform:uppercase"> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
+ -->			</div>
 			<div class="panel panel-signin" style="border:15px solid rgba(150, 150, 146, 0.24)" />
 
 				<div class="panel panel-signin">
@@ -82,7 +82,7 @@ select {
 									 <button type="submit" class="btn btn-success btn-metro"><b>SIGN IN</b> <i class="fa fa-unlock ml5"></i></button>
 								</div>
 								<div class="pull-left">
-									<a class="" href="/login/forgot_password" ><b><span class="fa fa-anchor"></span> <font color="black">Forgot Password?</font>
+									<a class="btn btn-primary" href="/login/forgot_password" ><b><span class="fa fa-anchor"></span> <font color="black">Forgot Password?</font>
 </b></a>
 								</div>
 							</div>

@@ -29,16 +29,26 @@
 
 
                     <div class="contentpanel">
+                      <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
+                  <?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>  
+                      <div class="alert alert-success">
+                        <strong>Activity <?php echo $row->activity_id  ?></strong>   <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >>></a>
+
+                      </div>
+                   <?php } endforeach ; ?>
 
                      <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 
                         <div align="center">
-							<!--<p><img src="<?php echo base_url(); ?>images/logo-1.jpg" height="50" width="60"/></p>-->
-				<!-- 			<h1><b>WELCOME</b></h1>
-							<h4><b>To</b></h4>
-							<h1><b>Asiya Center of Physiotherapy & Rehabilitation</b></h1> -->
-						</div>
+                          <?php if($rspatient_enquiry['count'] != 0) 
+                          { ?>
+							             <div class="alert alert-info">
+                        <strong>New Patient Inquiry </strong>   <br>You have <?php echo $rspatient_enquiry['count']?> new inquiry from your patient....<a href="<?php print base_url(); ?>patient_enquiry" >Inqury page</a>
+
+                      </div>
+                      <?php } ?>
+						     </div>
 
                 <div class="row festival-bday">
                           <div class = "col-sm-6">
@@ -77,12 +87,12 @@
                 </div>
                         <div class="row appointments">
                           <div class = "col-sm-6">
-                              <h4 class ="text-center panel-heading" style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Today's Appointments</h4>
+                              <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Today's Appointments </h4>
 
                       <?php if(!empty($today_appointment)) {
                            foreach($today_appointment as $today){ ?>
-                            <div class="card col-md-3" >
-                              <img src="/patient_upload_data/<?php echo $today['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
+                            <div class="card col-md-3" id="today_appiontments">
+                              <img src="/patient_upload_data/<?php echo $today['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
 
                                 <h6 class="text-center"><b><?php echo $today['p_fname'];  ?></b></h6>
                                 <p style ="font-size:11px"><?php echo $today['time_slot'];  ?></p>
@@ -100,7 +110,7 @@
                        <?php if(!empty($tomorrow_appointment)) {
                          foreach($tomorrow_appointment as $tomorrow){ ?>
                          <div class="card col-md-3" >
-                           <img src="/patient_upload_data/<?php echo $tomorrow['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
+                           <img src="/patient_upload_data/<?php echo $tomorrow['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
                              <h6 class="text-center"><b><?php echo $tomorrow['p_fname'];  ?></b></h6>
                              <p style ="font-size:11px"><?php echo $tomorrow['time_slot'];  ?></p>
 
@@ -114,15 +124,25 @@
                 <div class ="row chart">
 
                   <div class="col-sm-6">
-                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Monthly Appointments</h4>
+                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Patients per month<button class="bg-green pull-right" data-toggle="collapse" data-target="#line-chart-patient" ><i class="fa fa-minus"></i></button></h4>
+                    <div id="line-chart-patient" class="collapse" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
                  </div>
                   <div class="col-sm-6">
-                     <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Fees Collected</h4>
+                     <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Fees Collected <button class="bg-green pull-right" data-toggle="collapse" data-target="#line-chart" ><i class="fa fa-minus"></i></button></h4>
 
-                      <div id="line-chart" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                      <div id="line-chart" class="collapse" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
                   </div>
+                </div>
+                <div class ="row chart">
+
+                  <div class="col-sm-12">
+                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Treatment Patient Footfall <button class="bg-green pull-right" data-toggle="collapse" data-target="#areachart" ><i class="fa fa-minus"></i></button></h4>
+                     <div class="collapse" id="areachart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
+
+                 </div>
+                  
                 </div>
                     </div><!-- contentpanel -->
 
@@ -190,4 +210,103 @@ Highcharts.chart('line-chart', {
     enabled: false
   },
   series: [<?php echo $json;?>]
-});</script>
+});
+
+Highcharts.chart('line-chart-patient', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: ''
+  },
+  subtitle: {
+    text: 'Monthly Report'
+  },
+  xAxis: {
+    categories: ['Jan', 'Feb', 'March', 'April', 'May' ,'June' ,'July' ,'Aug' ,'Sep' ,'Oct' ,'Nov' ,'Dec'],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: '',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  // tooltip: {
+  //   valueSuffix: ' thousand'
+  // },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+  series: [<?php echo $json3;?>]
+});
+
+
+
+Highcharts.chart('areachart', {
+  chart: {
+    type: 'area'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: ['Jan', 'Feb', 'March', 'April', 'May' ,'June' ,'July' ,'Aug' ,'Sep' ,'Oct' ,'Nov' ,'Dec'],
+    tickmarkPlacement: 'on',
+    title: {
+      enabled: false
+    }
+  },
+  yAxis: {
+    title: {
+      text: 'Total'
+    },
+    labels: {
+      formatter: function () {
+        return this.value
+      }
+    }
+  },
+  tooltip: {
+    split: true,
+    valueSuffix: ''
+  },
+  plotOptions: {
+    area: {
+      stacking: 'normal',
+      lineColor: '#666666',
+      lineWidth: 1,
+      marker: {
+        lineWidth: 1,
+        lineColor: '#666666'
+      }
+    }
+  },
+  series: [<?php echo $json2.','.$json3;?>]
+});
+
+</script>

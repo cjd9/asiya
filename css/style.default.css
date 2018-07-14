@@ -4731,5 +4731,7 @@ label.error {
     .panel-signup .panel-body {
         padding: 30px 20px;
     }
-
+    .bg-green{
+         background-color: #8cac35 !important;
+    }
 }

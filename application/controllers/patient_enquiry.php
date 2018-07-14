@@ -89,8 +89,9 @@ class patient_enquiry extends MY_Controller
 	function addtoAppointmentSchedule($pk,$check,$timeslot='')
 	{
 		$datares = $this->db->query("SELECT * FROM patient_appointment_enquiry where pk = '$pk' AND is_deleted = 0")->row_array();
+		$staff = $datares['added_by_user'];
 		$data['date_of_appointment']= $this->mastermodel->date_convert($datares['appointment_date'], 'ymd');
-		$data['staff_id'] 			= $this->session->userdata("userid");
+		$data['staff_id'] 			= $this->db->query("SELECT current_assign_staff_id FROM staff_patient_master join contact_list on staff_patient_master.patient_id = contact_list.patient_id where contact_list.pk = '$staff' ")->row_array()['current_assign_staff_id'];
 		$data['work_shift'] 		= $datares['shift'];
 
 		//data['appointment_id'] 	= $_POST['appointment_id'];
@@ -121,13 +122,14 @@ class patient_enquiry extends MY_Controller
 		// insert into table -
 
 		$res = $this->db->insert('appointment_schedule', $data);
-		$aid = $this->db->insert_id(); die;
+		
 		if($res)
 		{
-			$this->send_sms_email()$aid);
-			return true;
+			//$this->send_sms_email($aid);
+			
 			//echo $this->db->insert_id();	// send insert id as response
-			//$this->send_sms_email($this->db->insert_id());
+			$this->send_sms_email($this->db->insert_id());
+			return true;
 		}
 		else
 		{

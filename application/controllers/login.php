@@ -172,7 +172,7 @@ class Login extends CI_Controller
 
 					    }
 					    else{
-					    	$this->db->query("UPDATE `contact_list` SET s_password = ".$result['s_contact_no']."  WHERE  pk = ".$result['pk']);
+					    	$this->db->query("UPDATE `staff_details` SET s_password = ".$result['s_contact_no']."  WHERE  pk = ".$result['pk']);
 					        $this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' =>'Password reset successfully', 'type' => 's' ));
 					       	redirect(base_url());
 

@@ -114,6 +114,9 @@ class Loginmodel extends CI_Model
 							'username' 		=> $row->p_username,
 							'first_name'	=> $row->p_fname,
 							'last_name'		=> $row->p_lname,
+							'patient_id'		=> $row->patient_id,
+							'mobile'		=> $row->p_contact_no,
+
 							//'user_photo'	=> $row->staff_photo,
 							'user_type' 	=> 'P',
 

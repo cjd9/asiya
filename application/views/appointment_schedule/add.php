@@ -74,63 +74,7 @@
 
 						</div><!-- row -->
 					</div><!-- panel-body -->
-					<div class="col-sm-12 table-responsive" align="center">
-												<table class="table table-bordered table-striped mb30 responsive" id="">
-													<thead>
-														<tr>
-																														<th colspan="5"><div align="center">Add Quick Appointment</div></th>
-														</tr>
-														<tr>
-															<th><div align="center">Date</div></th>
-															<th><div align="center">Time Slots</div></th>
-															<th><div align="center">Patient Name</div></th>
-															<th><div align="center">Patient Contact No.</div></th>
-															<th><div align="center">Action</div></th>
-														</tr>
-													</thead>
-
-													<tbody>
-
-
-														<tr>
-															<input type="hidden" name="appointment_id" class="appointment_id" value="">
-															<td>
-															<input type="text" autocomplete="off" class="form-control validate[required]" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
-                             </td>
-
-															<td align="center"><select id="" name="time_slot_id" data-placeholder="Choose Time Slot" class="time_slot_id form-control width100p">
-																<option value=""> </option>
-																<?php foreach ($fulltime_slots->result() as $row)  { ?>
-																	<option value="<?php echo $row->pk; ?>"> <?php echo $row->time_slot; ?> </option>
-																<?php } ?>
-															</select> </td>
-															<td>
-																<div class="col-sm-6">
-																	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_fname ui-autocomplete-input" name="p_fname" value="" placeholder="Full Name" autocomplete="off">
-																</div>
-																<div class="col-sm-6">
-																	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_lname ui-autocomplete-input" name="p_lname" value="" placeholder="Patient ID" autocomplete="off">
-																</div>
-															</td>
-															<td><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_contact_no ui-autocomplete-input" name="p_contact_no" value="" placeholder="Contact No." autocomplete="off"></td>
-															<td>
-																<div align="center">
-																	<button class="btn btn-primary btn-xs btn-confirm">Confirm</button>
-																	<button class="btn btn-success btn-xs btn-edit disabled">Edit</button>
-																	<button class="btn btn-warning btn-xs btn-cancel disabled">Cancel</button>
-																	<button class="btn btn-danger btn-xs btn-sms-email disabled">SMS/EMail</button>
-																</div>
-															</td>
-														</tr>
-
-
-
-
-
-
-													</tbody>
-												</table>
-											</div>
+					
 					<div class="row">
 					<div class="col-md-12">
 
@@ -151,7 +95,7 @@
 												<div class="col-sm-7">
 													<div class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-														<input type="text" autocomplete="off" class="form-control validate[required]" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
+														<input type="text" autocomplete="off" class="form-control validate[required] date_of_appointment2" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
 													</div><!-- input-group -->
 												</div>
 											</div>
@@ -192,7 +136,63 @@
 										<br />
 
 										<?php if(isset($staff_id) && isset($work_shift) && isset($user_gender)) { ?>
+										<div class="col-sm-12 table-responsive quick" align="center">
+												<table class="table table-bordered table-striped mb30 responsive" id="">
+													<thead>
+														<tr>
+										   <th colspan="5"><div align="center">Add Quick Appointment</div></th>
+														</tr>
+														<tr>
+															<th><div align="center">Date</div></th>
+															<th><div align="center">Time Slots</div></th>
+															<th><div align="center">Patient Name</div></th>
+															<th><div align="center">Patient Contact No.</div></th>
+															<th><div align="center">Action</div></th>
+														</tr>
+													</thead>
 
+													<tbody>
+
+
+														<tr>
+															<input type="hidden" name="appointment_id" class="appointment_id" value="">
+															<td>
+															<input type="text" autocomplete="off" class="form-control validate[required] date_of_appointment2" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
+                             </td>
+
+															<td align="center"><select id="" name="time_slot_id" data-placeholder="Choose Time Slot" class="time_slot_id form-control width100p">
+																<option value=""> </option>
+																<?php foreach ($fulltime_slots->result() as $row)  { ?>
+																	<option value="<?php echo $row->pk; ?>"> <?php echo $row->time_slot; ?> </option>
+																<?php } ?>
+															</select> </td>
+															<td>
+																<div class="col-sm-6">
+																	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_fname ui-autocomplete-input" name="p_fname" value="" placeholder="Full Name" autocomplete="off">
+																</div>
+																<div class="col-sm-6">
+																	<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_lname ui-autocomplete-input" name="p_lname" value="" placeholder="Patient ID" autocomplete="off">
+																</div>
+															</td>
+															<td><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_contact_no ui-autocomplete-input" name="p_contact_no" value="" placeholder="Contact No." autocomplete="off"></td>
+															<td>
+																<div align="center">
+																	<button class="btn btn-primary btn-xs btn-confirm">Confirm</button>
+																	<button class="btn btn-success btn-xs btn-edit disabled">Edit</button>
+																	<button class="btn btn-warning btn-xs btn-cancel disabled">Cancel</button>
+																	<button class="btn btn-danger btn-xs btn-sms-email disabled">SMS/EMail</button>
+																</div>
+															</td>
+														</tr>
+
+
+
+
+
+
+													</tbody>
+												</table>
+											</div>
 										<div class="form-group responsive">
 											<div class="col-sm-12 table-responsive" align="center">
 												<table class="table table-bordered table-striped mb30 responsive" id="">
@@ -391,7 +391,10 @@
 				changeYear: true,
 				yearRange: '1945:2050',
 				dateFormat: 'dd-mm-yy',
-				minDate: 0
+				minDate: 0,
+				 onSelect: function (dateText, inst) {
+			         $('.date_of_appointment2').val(dateText)
+			     }
 				//minDate: 0	// disable all previous dates
 			});
 
@@ -429,7 +432,7 @@
 
 			// function to confirm appointment -
 			$('.btn-confirm').live('click', function()
-			{
+			{ alert()
 				var confirm_btn = $(this);
 				console.log(confirm_btn.closest('tr'))
 				// get booking details -

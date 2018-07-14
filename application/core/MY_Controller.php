@@ -147,7 +147,9 @@ class MY_Controller extends CI_Controller
 		/********** send Email **************/
 
 		$res = FALSE;
-
+		if($id == ''){
+			$id = $this->input->post('appointment_id');
+		}
 		// check if existing patient appointment -
 		$rsappointment = $this->db->query("SELECT * FROM appointment_schedule WHERE pk = $id");
 
@@ -227,7 +229,7 @@ class MY_Controller extends CI_Controller
 
 		if($res_email || $res_sms)
 		{
-			echo $appointment_id;	// send appointment id as response
+			echo $id;	// send appointment id as response
 		}
 		else
 		{

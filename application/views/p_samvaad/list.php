@@ -36,7 +36,7 @@
 									<?php $cnt = 0; foreach($rseducation_program->result() as $row) : ?>
 									 <div class="card col-md-4" >
 									 	<div class="col-sm-6" >
-			                              <img src="/patient_upload_data/<?php echo $row->education_program_file;  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
+			                              <img src="/education_thumbnail/<?php echo $row->thumbnail;  ?>" onerror="this.src='/images/logo-new.png';" alt="Avatar" style="width: 100%">
 			                            </div>
 			                            <div class="col-sm-6" >
 			                            	<h6 class=""><b><?php echo $row->title; ?></b></h6>
