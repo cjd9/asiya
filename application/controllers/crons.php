@@ -25,10 +25,18 @@ class Crons extends CI_Controller
 
 	//Call Staff and Patient Home Page
     function index()
-    {
-    	redirect(base_url())	;
-		$this->load->view('login/home');
-    }
+	{
+		$data['deleteaction'] =base_url().'clinical_meetings/delete';
+
+		// WHERE condition -
+		$where = array();
+
+		// get data from table -
+		$data['logs'] = $this->mastermodel->get_data('*', 'cron_log', $where, NULL, NULL, 0, NULL);
+
+		$this->load->view('cron/list',$data);
+	}
+    
 
 
 	function sendAppointmentReminder()
@@ -39,9 +47,17 @@ class Crons extends CI_Controller
 		$where = array('date_of_appointment' => $tomorrow);
 
 		$data = $this->mastermodel->get_data('*', 'appointment_schedule', $where, NULL, NULL, 0, NULL)->result_array();
-		print_r($data);
-		if(!empty($result))
-		{
+		print_r($data); 
+		$sub = 'CONFIRMATION OF YOUR APPOINTMENT.';
+
+		if(!empty($data))
+		{    
+			$insert = array('title'=>$sub 
+							);
+
+		    $res = $this->db->insert('cron_log', $insert);
+			$insert_id =  $this->db->insert_id(); 
+			
 			foreach($data as $row)
 			{
 					$appointment_id 	= $row['pk'];
@@ -52,6 +68,8 @@ class Crons extends CI_Controller
 
 				// check if existing patient appointment -
 				$rsappointment = $this->db->query("SELECT * FROM appointment_schedule WHERE pk = $appointment_id");
+				$sub = 'CONFIRMATION OF YOUR APPOINTMENT.';
+				
 
 				if($rsappointment->num_rows() > 0)
 				{
@@ -87,7 +105,6 @@ class Crons extends CI_Controller
 
 							$patient_name = $to_name;
 
-							$sub = 'CONFIRMATION OF YOUR APPOINTMENT.';
 
 							//$msg = 'Hello, <br><br> Your Appointement Booked Successfully. <br><br> Thanks, - Clinic Management System.';
 
@@ -98,10 +115,17 @@ class Crons extends CI_Controller
 							$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION <br> 101-B ANJALI BUILDING <br> FRENCH BRIDGE, OPERA HOUSE <br> MUMBAI-400007';
 
 							$msg = $html;
+						
+							
 
 							// send email to patient, function defined below -
 							//$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
-
+							if($res_email)
+							{
+								$update = array('email'=>$msg, 'mail_sent'=>'1','patient_name'=>$patient_name);
+								$this->db->where('pk', $insert_id);
+		                        $this->db->update('cron_log', $update);
+							}
 						}
 					}
 
@@ -120,6 +144,13 @@ class Crons extends CI_Controller
 						$msg = "Hello ".$patient_name.", A Reminder, Your Appointment today  at ".$appointment_time." is scheduled.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
 
 						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
+						if($res_sms)
+						{
+							$update = array('sms'=>$msg, 'sms_sent'=>'1','patient_name'=>$patient_name);
+							$this->db->where('pk', $insert_id);
+	                        $this->db->update('cron_log', $update);
+						}
+						
 					}
 
 					/************************* send SMS *********************/

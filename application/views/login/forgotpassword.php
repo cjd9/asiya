@@ -33,19 +33,18 @@ select {
 		<section>
 			<div align="left">
 				<b><h5>
-						<a href="<?php print base_url(); ?>" ><b>&nbsp;&nbsp;&nbsp;<span class="fa fa-home"></span> HOME</b></a>
+					 <a class="btn btn-primary btn-metro" href="http://asiya.co.in/" style="color: white"><b><span class="fa fa-home"></span> HOME</b></a>
 				</h5></b>
 			</div>
 			<div align="center" style="margin-top:3%">
-				<h1 class="style1" style="text-transform:uppercase"> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
 			</div>
-			<div class="panel panel-signin" style="border:15px solid rgba(150, 150, 146, 0.24)" />
+			<div class="panel panel-signin" style="background-color: white;width: 425px;" />
 
 				<div class="panel panel-signin">
 					<div class="panel-body">
 						<div class="logo text-center" style="margin-top:-110px">
-							<img src="<?php print base_url(); ?>images/sp_logo.png">
-							<h4><b>Enter your Email ID or Mobile No</b></h4>
+							<img src="<?php print base_url(); ?>images/Asiya.png">
+							<h3 class="text-left" style="font-weight:500">Forgot Password</h3>
 						</div>
 
 						<?php if($this->session->flashdata('message') != '' )
@@ -61,7 +60,7 @@ select {
 						<form action="<?php echo base_url().'login/forgot_password_reset'; ?>" id="main_form" method="post">
 							<div class="input-group mb15">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" name="email_mobile" id="email_mobile" class="form-control" placeholder="Email or Mobile">
+								<input type="text" name="email_mobile" id="email_mobile" class="form-control" placeholder="Mobile No">
 							</div><!-- input-group -->
 
 							
@@ -75,7 +74,7 @@ select {
 
 							<div class="clearfix">
 								<div class="pull-right">
-									 <button type="submit" class="btn btn-success btn-metro"><b>SUBMIT</b> <i class="fa fa-unlock ml5"></i></button>
+									 <button type="submit" class="btn btn-success btn-metro" style="color: white;"> <b>SUBMIT</b></i></button>
 								</div>
 							</div>
 						</form>

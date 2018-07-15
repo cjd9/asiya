@@ -31,6 +31,8 @@
 		<!--<script src="<?php echo base_url();?>assets/validation/js/jquery-1.8.2.min.js"></script>-->
 		<script src="<?php echo base_url();?>js/my_js/validation/languages/jquery.validationEngine-en.js"></script>
 		<script src="<?php echo base_url();?>js/my_js/validation/jquery.validationEngine.js"></script>
+				<script src="<?php echo base_url();?>js/bootbox.min.js"></script>
+
 		
 		<script src="<?php echo base_url();?>js/my_js/master.js"></script>
 	<!-- End Validation JS---->	

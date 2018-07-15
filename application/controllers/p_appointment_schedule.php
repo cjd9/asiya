@@ -26,7 +26,16 @@ class p_appointment_schedule extends MY_Controller
 		$where = array('added_by_user' => $user_id, 'is_deleted' => 0);
 
 		// get data from table -
-		$data['rsappointment'] = $this->mastermodel->get_data('*', 'patient_appointment_enquiry', $where, NULL, NULL, 0, NULL);
+		$data['rsappointment'] = $this->db->query('SELECT patient_appointment_enquiry.pk,p_fname,p_lname,p_contact_no,p_gender,problem,appointment_date,appointment_time,shift,booked_on,confirm_by_staff,confirm_on,cancelled_by_staff,status,added_by_user,date_added,date_edited,is_deleted,time_slot,user_gender,user_shift FROM (`patient_appointment_enquiry`) JOIN `time_slot_master` ON patient_appointment_enquiry.appointment_time = time_slot_master.pk WHERE `added_by_user` = '.$user_id.' AND `is_deleted` = 0 ORDER BY `patient_appointment_enquiry`.`appointment_time` = time_slot_master.pk');
+		$fulltime_slots = $this->db->query("SELECT * FROM time_slot_master")->result_array();
+		$count = 0;
+		foreach($fulltime_slots as $slot){
+
+			$arr[$count]['text'] = $slot['time_slot'];
+			$arr[$count]['value'] = $slot['pk'];
+			$count = $count + 1;
+		}
+		$data['timeslot'] = json_encode($arr);
 
 		$this->load->view('p_appointment_schedule/list', $data);
 	}
@@ -85,7 +94,17 @@ class p_appointment_schedule extends MY_Controller
 		$current_date = date("Y-m-d");
 
 		// get records from appointment schedular for this patient details -
-		$data['rsappointment'] = $this->db->query("SELECT * FROM appointment_schedule WHERE p_fname = '$patient_fname' AND p_lname = '$patient_lname' AND p_contact_no = '$patient_contact_no' AND is_exist = 1 AND date_of_appointment >= '$current_date' AND is_deleted = 0");
+		$data['rsappointment'] = $this->db->query("SELECT * FROM appointment_schedule WHERE  p_contact_no = '$patient_contact_no' AND is_exist = 1 AND date_of_appointment >= '$current_date' AND is_deleted = 0");
+		$fulltime_slots = $this->db->query("SELECT * FROM time_slot_master")->result_array();
+		$count = 0;
+		foreach($fulltime_slots as $slot){
+
+			$arr[$count]['text'] = $slot['time_slot'];
+			$arr[$count]['value'] = $slot['pk'];
+			$count = $count + 1;
+		}
+		$data['timeslot'] = json_encode($arr);
+
 
 		$this->load->view('p_appointment_schedule/view_next_appt', $data);
 	}
@@ -158,9 +177,9 @@ class p_appointment_schedule extends MY_Controller
 		$shift = $_POST['shift'];
 		 $user_id = $this->session->userdata("userid");
 		// print_r($this->session->userdata); die;
-		$patient_id = $this->db->query("SELECT patient_id FROM contact_list WHERE pk = '$user_id' AND is_deleted = 0")->row_array()['patient_id'];
-		$row = $this->db->query("SELECT * FROM staff_patient_master join staff_details ON staff_patient_master.current_assign_staff_id = staff_details.pk  WHERE patient_id = '$patient_id' AND staff_patient_master.is_deleted = 0")->row_array();
-		$time_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_shift = '$shift' and user_gender = '".$row['s_gender']."'")->result_array();
+		//$patient_id = $this->db->query("SELECT patient_id FROM contact_list WHERE pk = '$user_id' AND is_deleted = 0")->row_array()['patient_id'];
+		//$row = $this->db->query("SELECT * FROM staff_patient_master join staff_details ON staff_patient_master.current_assign_staff_id = staff_details.pk  WHERE patient_id = '$patient_id' AND staff_patient_master.is_deleted = 0")->row_array();
+		$time_slots = $this->db->query("SELECT * FROM time_slot_master WHERE user_shift = '$shift'")->result_array();
 		$html = '<option value =""></option>';
 		foreach($time_slots as $time){
 			$html .= '<option value ="'.$time['pk'].'">'.$time['time_slot'].'</option>';
@@ -245,33 +264,21 @@ class p_appointment_schedule extends MY_Controller
 
 	// function to cancel appointment booking from appointment schedular -
 	function cancel_appt($pk)
-	{
-		// send email request to staff for appointment cancel -
+	{	
+		$staff = $this->session->userdata('userid');
+		$staff	= $this->db->query("SELECT current_assign_staff_id FROM staff_patient_master join contact_list on staff_patient_master.patient_id = contact_list.patient_id where contact_list.pk = '$staff' ")->row_array()['current_assign_staff_id'];
 
-		// get appointment details -
-		$r = $this->db->query("SELECT * FROM appointment_schedule WHERE pk = $pk")->row();
+		$update = array('is_deleted'=>'1');
+		$this->db->where('pk', $pk);
+        $p = $this->db->update('appointment_schedule', $update);
+       
+        $staff = $this->session->userdata('userid');
+		$staff	= $this->db->query("SELECT current_assign_staff_id FROM staff_patient_master join contact_list on staff_patient_master.patient_id = contact_list.patient_id where contact_list.pk = '$staff' ")->row_array()['current_assign_staff_id'];
 
-		$work_shift = $r->work_shift;
-		$patient_name = $r->p_fname.' '.$r->p_lname;
-		$patient_contact_no = $r->p_contact_no;
-
-		$appointment_date = $r->date_of_appointment;
-		$appontment_time = $this->db->get_where('time_slot_master', array('pk' => $r->time_slot_id))->row()->time_slot;
-
-		if($work_shift == 'M')
-		{
-			$shift = 'Morning';
-		}
-		else
-		{
-			$shift = 'Evening';
-		}
-
-		// get all staff's email id from selected work shift -
-		$rsstaff = $this->db->query("SELECT * FROM staff_details WHERE s_work_shift = '$work_shift' AND is_deleted = 0");
+		$rsstaff = $this->db->query("SELECT * FROM staff_details WHERE pk = ".$staff." AND is_deleted = 0");
 
 		foreach($rsstaff->result() as $row)
-		{
+		{ 
 			$staff_email = $row->s_email_id;
 			$staff_name = $row->s_fname.' '.$row->s_lname;
 
@@ -280,9 +287,9 @@ class p_appointment_schedule extends MY_Controller
 			$to_email = $staff_email;
 			$to_name = $staff_name;
 
-			$sub = 'Appointment Cancel Request.';
+			$sub = 'Appointment Cancelled by Patient.';
 
-			$msg = 'Appointment Enquiry Details - <br><br>';
+			$msg = 'Appointment  Details  that has been cancelled- <br><br>';
 			$msg .= '<b>Patient Name : </b> '.$patient_name.' <br>';
 			$msg .= '<b>Contact No. : </b> '.$patient_contact_no.' <br>';
 			$msg .= '<b>Appointment Date : </b> '.$appointment_date.' <br>';
@@ -296,7 +303,14 @@ class p_appointment_schedule extends MY_Controller
 		}
 
 		// function used to redirect -
-		$this->mastermodel->redirect($result, 'p_appointment_schedule/view_next_appt', 'p_appointment_schedule/view_next_appt', 'Updated');
+		$this->mastermodel->redirect(TRUE, 'p_appointment_schedule/view_next_appt', 'p_appointment_schedule/view_next_appt', 'Updated');
+	}
+
+	function update_appt_status($check='')
+	{
+		$update = array('time_slot_id'=>$this->input->post('timeslot'));
+		$this->db->where('pk', $this->input->post('pk'));
+        $this->db->update('appointment_schedule', $update);
 	}
 /*-----------------------------------------------------End appointment schedule--------------------------------------------------*/
 }

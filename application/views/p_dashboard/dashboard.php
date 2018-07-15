@@ -34,13 +34,16 @@
 
 
                     <div class="contentpanel">
+                      <div class="alert alert-success">
+                        <strong>Activity </strong> 
                        <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
                   <?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>  
-                      <div class="alert alert-success">
-                        <strong>Activity <?php echo $row->activity_id  ?></strong>   <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >>></a>
+                      
+                          <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >></a>
 
-                      </div>
+                       
                    <?php } endforeach ; ?>
+                   </div>
            
                      <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
@@ -52,7 +55,7 @@
                             <h1><b>Asiya Center of Physiotherapy & Rehabilitation</b></h1> -->
                         </div>
 
-              
+                   
                         <div class="row appointments">
                           <div class = "col-sm-6">
                               <h4 class ="text-center panel-heading" style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Upcoming Appointments</h4>
@@ -84,8 +87,9 @@
 
                    <div class = "col-sm-6">
                        <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Your Homework</h4>
-                  <table class="table table- table-responsive">
-                           <?php if(!empty($rsexercise_program)) { ?>
+                   <?php if(!empty($rsexercise_program)) { ?>
+
+                      <table class="table table- table-responsive">
 
                                   <thead>
                                     <tr>
@@ -96,42 +100,28 @@
                                   <tbody>
                              <?php foreach($rsexercise_program as $today){ ?>
                                   <tr>
-                            <td><?php echo substr($today['exercise_program'], 0, 100) ?> ....<a href="<?php print base_url(); ?>p_exercise_program/view/<?php echo $today['exercise_id']; ?>" >Go To Homework</a> </td>
-                            <td><?php echo $today['expiry_date'];  ?></td>
+                                    <td><?php echo substr($today['exercise_program'], 0, 100) ?> ....<a href="<?php print base_url(); ?>p_exercise_program/view/<?php echo $today['exercise_id']; ?>" >Go To Homework</a> </td>
+                                    <td><?php echo $today['expiry_date'];  ?></td>
                                   </tr>
                              <?php } ?>
                                   </tbody>
-                            </table>
+                      </table>
                      
                    <?php }else{ ?>
                       <p><strong>No Homework yet</strong></p>
                     <?php }  ?>
                     </div>
-                
-                <div class ="row chart">
-
-                  <div class="col-sm-6">
-                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Monthly Treatments</h4>
-                     <div id="line-chart-treatment" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-
                  </div>
-                  <div class="col-sm-6">
-                     <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Monthly Billing</h4>
 
-                      <div id="line-chart" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-
-                  </div>
-                </div>
-                
-                <div class ="row chart">
+                 <div class ="row chart">
 
                   <div class="col-sm-12">
-             <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Samvaad Program</h4>
+                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Samvaad Program</h4>
 
                      <?php $cnt = 0; foreach($rseducation_program->result() as $row) : ?>
                    <div class="card col-md-4" >
                     <div class="col-sm-6" >
-                                    <img src="/education_thumbnail/<?php echo $row->thumbnail;  ?>" onerror="this.src='/images/logo-new.png';" alt="Avatar" style="width: 100%">
+                                    <img src="/education_thumbnail/<?php echo $row->thumbnail;  ?>" onerror="this.src='/images/Asiya.png';" alt="Avatar" style="width: 100%">
                                   </div>
                                   <div class="col-sm-6" >
                                     <h6 class=""><b><?php echo $row->title; ?></b></h6>
@@ -144,6 +134,22 @@
                   <?php endforeach ; ?>
                   </div>
                 </div>
+                <div class ="row chart">
+
+                  <div class="col-sm-6">
+                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Monthly Treatments</h4>
+                     <div id="line-chart-treatment" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                     <h5 class="text-center"> Your Total treatments till date: <b><?php echo $total_t_date['count'];?></b></h5>
+                 </div>
+                  <div class="col-sm-6">
+                     <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Monthly Billing</h4>
+
+                      <div id="line-chart" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                      <h5 class="text-center"> Your Total Fee till date: Rs.<b><?php echo $total_f_date['fee']?></b></h5>
+                  </div>
+                </div>
+                
+
                     </div><!-- contentpanel -->
 
                 </div><!-- mainpanel -->

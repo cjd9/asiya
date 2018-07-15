@@ -544,10 +544,7 @@
 								{	
 								?>
 									<div class="horizontally">
-										<div class="inner">
-											<img src="<?php print base_url(); ?>images/bee.gif" height="200px"/>
-											<!--<img src="http://www.html.am/images/html-codes/marquees/bee.gif" alt="Buzzy bee">-->
-										</div>
+										
 									</div>
 
 									<h1 align="center"><b>No Evaluation Record Found.</b></h1>';

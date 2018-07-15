@@ -47,26 +47,13 @@
 													</div><!-- input-group -->
 												</div>
 											</div>
-
-											<div class="col-sm-4">
-												<label class="col-sm-4 control-label">Work Shift<span class="asterisk">*</span></label>
-												<div class="col-sm-6">
-													<select id="schedule_work_shift" name="schedule_work_shift" data-placeholder="Choose Shift " class="select2-container width100p">
-														<option value=""></option>
-														<option value="M">Morning</option>
-														<option value="E">Evening</option>
-														<option value="M">Full Day</option>
-													</select>
-													<span id="msg3" style="color:#FF0000"></span>
-												</div>
-
-												<div class="col-sm-2">
+											<div class="col-sm-2">
 													<button class="btn btn-success btn-bordered" name="export_schedule" id="export_schedule">
 														<span class="glyphicon glyphicon-export"></span> Export Schedule
 													</button>
-												</div>
-
 											</div>
+
+											
 										</div><!-- form-group -->
 
 									</form>
@@ -74,69 +61,7 @@
 
 						</div><!-- row -->
 					</div><!-- panel-body -->
-					
-					<div class="row">
-					<div class="col-md-12">
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-
-									<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Appointment Schedule</b></h3>
-								</div><!-- panel-heading -->
-
-								<div class="panel-body">
-									<div class="row">
-
-									<form id="add_appointment_schedule_form" action="<?php echo $saveaction; ?>" method="post">
-
-										<div class="form-group">
-											<div class="col-sm-4">
-												<label class="col-sm-5 control-label">Appointment Date<span class="asterisk">*</span> </label>
-												<div class="col-sm-7">
-													<div class="input-group">
-														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-														<input type="text" autocomplete="off" class="form-control validate[required] date_of_appointment2" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
-													</div><!-- input-group -->
-												</div>
-											</div>
-
-											<div class="col-sm-4">
-												<label class="col-sm-3 control-label">Staff Name<span class="asterisk">*</span></label>
-												<div class="col-sm-8">
-													<select id="staff_id" name="staff_id" data-placeholder="Choose Staff" class="select2-container width100p">
-														<option value=""> </option>
-														<?php foreach ($rsstaff_list->result() as $r) { ?>
-															<option value="<?php echo $r->pk; ?>" <?php if(isset($staff_id) && $staff_id == $r->pk) { ?> selected="selected"<?php } ?>><?php echo $r->s_fname.' '.$r->s_mname.' '.$r->s_lname; ?></option>
-														<?php } ?>
-													</select>
-													<span id="msg1" style="color:#FF0000"></span>
-												</div>
-											</div>
-
-											<div class="col-sm-4">
-												<label class="col-sm-3 control-label">Work Shift<span class="asterisk">*</span></label>
-												<div class="col-sm-5">
-													<select id="work_shift" name="work_shift" data-placeholder="Choose Shift " class="select2-container width100p">
-														<option value=""></option>
-														<option value="M" <?php if(isset($work_shift) && $work_shift == "M") { ?> selected="selected"<?php } ?>>Morning</option>
-														<option value="E" <?php if(isset($work_shift) && $work_shift == "E") { ?> selected="selected"<?php } ?>>Evening</option>
-													</select>
-													<span id="msg2" style="color:#FF0000"></span>
-												</div>
-
-												<div class="col-sm-2">
-													<button class="btn btn-primary" name="get_schedule" id="get_schedule">Get Schedule</button>
-												</div>
-
-											</div>
-										</div><!-- form-group -->
-
-									</form>
-
-										<br />
-
-										<?php if(isset($staff_id) && isset($work_shift) && isset($user_gender)) { ?>
-										<div class="col-sm-12 table-responsive quick hide" align="center">
+					<div class="col-sm-12 table-responsive quick" align="center">
 												<table class="table table-bordered table-striped mb30 responsive" id="">
 													<thead>
 														<tr>
@@ -177,11 +102,7 @@
 															<td><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" class="form-control validate[required] p_contact_no ui-autocomplete-input" name="p_contact_no" value="" placeholder="Contact No." autocomplete="off"></td>
 															<td>
 																<div align="center">
-																	<button class="btn btn-primary btn-xs btn-confirm">Confirm</button>
-																	<button class="btn btn-success btn-xs btn-edit disabled">Edit</button>
-																	<button class="btn btn-warning btn-xs btn-cancel disabled">Cancel</button>
-																	<button class="btn btn-danger btn-xs btn-sms-email disabled">SMS/EMail</button>
-																</div>
+																	<button class="btn btn-primary btn-xs btn-confirm">Confirm</button>																</div>
 															</td>
 														</tr>
 
@@ -193,22 +114,66 @@
 													</tbody>
 												</table>
 											</div>
+					
+					<div class="row">
+					<div class="col-md-12">
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+
+									<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Add Appointment Schedule</b></h3>
+								</div><!-- panel-heading -->
+
+								<div class="panel-body">
+									<div class="row">
+
+									<form id="add_appointment_schedule_form" action="<?php echo $saveaction; ?>" method="post">
+
+										<div class="form-group">
+											<div class="col-sm-4">
+												<label class="col-sm-5 control-label">Appointment Date<span class="asterisk">*</span> </label>
+												<div class="col-sm-7">
+													<div class="input-group">
+														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+														<input type="text" autocomplete="off" class="form-control validate[required] date_of_appointment2" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
+													</div><!-- input-group -->
+												</div>
+											</div>
+
+											<div class="col-sm-4">
+												<label class="col-sm-3 control-label">Staff Name<span class="asterisk">*</span></label>
+												<div class="col-sm-8">
+													<select id="staff_id" name="staff_id" data-placeholder="Choose Staff" class="select2-container width100p">
+														
+														<?php foreach ($rsstaff_list->result() as $r) { ?>
+															<option value="<?php echo $r->pk; ?>" <?php if(isset($staff_id) && $staff_id == $r->pk) { ?> selected="selected"<?php } ?>><?php echo $r->s_fname.' '.$r->s_mname.' '.$r->s_lname; ?></option>
+														<?php } ?>
+													</select>
+													<span id="msg1" style="color:#FF0000"></span>
+												</div>
+											</div>
+											<div class="col-sm-2">
+													<button class="btn btn-primary" name="get_schedule" id="get_schedule">Get Schedule</button>
+											</div>
+
+											
+										</div><!-- form-group -->
+
+									</form>
+
+										<br />
+
+
+
+										<?php if(isset($staff_id)  && isset($user_gender)) { ?>
+										
 										<div class="form-group responsive">
 											<div class="col-sm-12 table-responsive" align="center">
 												<table class="table table-bordered table-striped mb30 responsive" id="">
 													<thead>
 														<tr>
-															<?php
-																if($work_shift == 'M')
-																{
-																	$work_shift = 'Morning';
-																}
-																else
-																{
-																	$work_shift = 'Evening';
-																}
-															?>
-															<th colspan="5"><div align="center">Appointment Schedule (<?php echo $user_gender; ?>) - <?php echo $work_shift; ?></div></th>
+															
+															<th colspan="5"><div align="center">Appointment Schedule (<?php echo $user_gender; ?>) </div></th>
 														</tr>
 														<tr>
 															<th><div align="center">Time Slots</div></th>
@@ -219,16 +184,16 @@
 													</thead>
 
 													<tbody>
-														<?php foreach($rstime_slots->result() as $row) { ?>
+														<?php  foreach($rstime_slots->result() as  $row) { ?>
 
 														<?php
 															if($rsappointment_schedule->num_rows() > 0)	// if minimum 1 appointment is booked -
 															{ $timeslot = '';
 																foreach($rsappointment_schedule->result() as $r)
-																{
+																{ 
 																	// check if appointment booking is already exists -
 																	if($row->pk == $r->time_slot_id)
-																	{
+																	{ 
 																		$appointment_id = $r->pk;
 																		$timeslot = $row->pk;
 
@@ -237,8 +202,14 @@
 																		$p_contact_no = $r->p_contact_no;
 																			?>
 																			<tr>
-																				<td align="center"><?php echo $row->time_slot; ?>
-																					<input type="hidden" name="time_slot_id" class="time_slot_id" value="<?php echo $row->pk; ?>" />
+																				
+																				<td align="center"><select id=""  <?php  if($appointment_id != '') { ?>disabled<?php } ?>  name="time_slot_id" data-placeholder="Choose Time Slot" class="time_slot_id form-control width100p">
+																						<option value=""> </option>
+																						<?php foreach ($fulltime_slots->result() as $roww)  { ?>
+																							<option value="<?php echo $roww->pk; ?>" <?php if( $roww->pk == $r->time_slot_id) { ?> selected="selected" <?php } 
+																							?> > <?php echo $roww->time_slot; ?> </option>
+																						<?php } ?>
+																					</select> 
 																				</td>
 
 																				<td>
@@ -268,50 +239,7 @@
 																			<?php
 																		//break; // will leave the foreach loop and also "break" the if statement
 																	}
-																	else
-																	{
-																		if($timeslot != $row->pk)
-																	{
-																		$timeslot = $row->pk;
-
-																		$appointment_id = '';
-
-																		$p_fname = '';
-																		$p_lname = '';
-																		$p_contact_no = '';
-																			?>
-																		<tr>
-																			<td align="center"><?php echo $row->time_slot; ?>
-																				<input type="hidden" name="time_slot_id" class="time_slot_id" value="<?php echo $row->pk; ?>" />
-																			</td>
-
-																			<td>
-																				<input type="hidden" name="appointment_id" class="appointment_id" value="<?php echo $appointment_id; ?>" />
-
-																				<div class="col-sm-6">
-																					<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="<?php echo $p_fname; ?>" placeholder="Full Name" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
-																				</div>
-																				<div class="col-sm-6">
-																					<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="<?php echo $p_lname; ?>" placeholder="Patient ID" <?php if($appointment_id != '') { ?>disabled<?php } ?> />
-																				</div>
-																			</td>
-																			<td>
-																				<div class="col-sm-12">
-																					<input type="text" class="form-control validate[required] p_contact_no" name="p_contact_no" value="<?php echo $p_contact_no; ?>" placeholder="Contact No." <?php if($appointment_id != '') { ?>disabled<?php } ?> />
-																				</div>
-																			</td>
-																			<td>
-																				<div align="center">
-																					<button class="btn btn-primary btn-xs btn-confirm <?php if($appointment_id != '') { ?>disabled<?php } ?>">Confirm</button>
-																					<button class="btn btn-success btn-xs btn-edit <?php if($appointment_id == '') { ?>disabled<?php } ?>">Edit</button>
-																					<button class="btn btn-warning btn-xs btn-cancel <?php if($appointment_id == '') { ?>disabled<?php } ?>">Cancel</button>
-																					<button class="btn btn-danger btn-xs btn-sms-email <?php if($appointment_id == '') { ?>disabled<?php } ?>">SMS/EMail</button>
-																				</div>
-																			</td>
-																		</tr>
-																		<?php // break;
-																	 }
-																	}
+																
 
 																	?>
 
@@ -323,35 +251,13 @@
 
 														<?php
 															}
-															else	// if minimum 1 appointment is not booked -
-															{
+															
 														?>
 
-														<tr>
-															<input type="hidden" name="appointment_id" class="appointment_id" value="" />
-
-															<td align="center"><?php echo $row->time_slot; ?> <input type="hidden" name="time_slot_id" class="time_slot_id" value="<?php echo $row->pk; ?>" /> </td>
-															<td>
-																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_fname" name="p_fname" value="" placeholder="Full Name" />
-																</div>
-																<div class="col-sm-6">
-																	<input type="text" class="form-control validate[required] p_lname" name="p_lname" value="" placeholder="Patient ID" />
-																</div>
-															</td>
-															<td><input type="text" class="form-control validate[required] p_contact_no" name="p_contact_no" value="" placeholder="Contact No." /></td>
-															<td>
-																<div align="center">
-																	<button class="btn btn-primary btn-xs btn-confirm">Confirm</button>
-																	<button class="btn btn-success btn-xs btn-edit disabled">Edit</button>
-																	<button class="btn btn-warning btn-xs btn-cancel disabled">Cancel</button>
-																	<button class="btn btn-danger btn-xs btn-sms-email disabled">SMS/EMail</button>
-																</div>
-															</td>
-														</tr>
+														
 
 														<?php
-															}
+															
 														}
 														?>
 
@@ -432,11 +338,7 @@
 
 				$('#msg2').text('');
 
-				if($('#work_shift').val() == '' || $('#work_shift').val() == null)
-				{
-					$('#msg2').text('This field is required');
-					return false;
-				}
+				
 			});
 
 			// select box validations -
@@ -444,7 +346,7 @@
 			{
 				$('#msg3').text('');
 
-				if($('#schedule_work_shift').val() == '' || $('#schedule_work_shift').val() == null)
+				if( $('#schedule_work_shift').val() == null)
 				{
 					$('#msg3').text('This field is required');
 					return false;
@@ -459,7 +361,6 @@
 				// get booking details -
 				var date_of_appointment = $("#date_of_appointment").val();
 				var staff_id = $("#staff_id").val();
-				var work_shift = $("#work_shift").val();
 
 				//var appointment_id = $(this).closest('tr').find('.appointment_id').val();
 
@@ -475,7 +376,8 @@
 				confirm_btn.closest('tr').find('div').removeClass('has-error');
 
 				// validate fields -
-				if(date_of_appointment == '' || staff_id == '' || work_shift == '')
+				
+				if(date_of_appointment == '' )
 				{
 					return false;
 				}
@@ -519,7 +421,7 @@
 							async:false,
 							cache:false,
 							//dataType:'json',
-							data:{ date_of_appointment:date_of_appointment, staff_id:staff_id, work_shift:work_shift, time_slot_id:time_slot_id, p_fname:p_fname, p_lname:p_lname, p_contact_no:p_contact_no },
+							data:{ date_of_appointment:date_of_appointment, staff_id:staff_id, work_shift:'M', time_slot_id:time_slot_id, p_fname:p_fname, p_lname:p_lname, p_contact_no:p_contact_no },
 							success: function (res)
 							{
 								//alert(res);
@@ -579,6 +481,7 @@
 				edit_btn.closest('tr').find('.p_fname').removeAttr('disabled');
 				edit_btn.closest('tr').find('.p_lname').removeAttr('disabled');
 				edit_btn.closest('tr').find('.p_contact_no').removeAttr('disabled');
+				edit_btn.closest('tr').find('.time_slot_id').removeAttr('disabled');
 
 				// change the class of Edit button -
 				edit_btn.removeClass('btn-edit');
@@ -593,7 +496,6 @@
 				// get booking details -
 				var date_of_appointment = $("#date_of_appointment").val();
 				var staff_id = $("#staff_id").val();
-				var work_shift = $("#work_shift").val();
 
 				var appointment_id = update_btn.closest('tr').find('.appointment_id').val();
 
@@ -607,7 +509,7 @@
 				update_btn.closest('tr').find('div').removeClass('has-error');
 
 				// validate fields -
-				if(date_of_appointment == '' || staff_id == '' || work_shift == '')
+				if(date_of_appointment == '' || staff_id == '' )
 				{
 					return false;
 				}
@@ -635,7 +537,6 @@
 
 				/*alert(date_of_appointment);
 				alert(staff_id);
-				alert(work_shift);
 
 				alert(appointment_id);
 
@@ -658,7 +559,7 @@
 							async:false,
 							cache:false,
 							//dataType:'json',
-							data:{ date_of_appointment:date_of_appointment, staff_id:staff_id, work_shift:work_shift, appointment_id:appointment_id, time_slot_id:time_slot_id, p_fname:p_fname, p_lname:p_lname, p_contact_no:p_contact_no },
+							data:{ date_of_appointment:date_of_appointment, staff_id:staff_id, work_shift:'M', appointment_id:appointment_id, time_slot_id:time_slot_id, p_fname:p_fname, p_lname:p_lname, p_contact_no:p_contact_no },
 							success: function (res)
 							{
 								//alert(res);
@@ -679,6 +580,8 @@
 									update_btn.closest('tr').find('.p_fname').attr('disabled', 'disabled');
 									update_btn.closest('tr').find('.p_lname').attr('disabled', 'disabled');
 									update_btn.closest('tr').find('.p_contact_no').attr('disabled', 'disabled');
+									update_btn.closest('tr').find('.time_slot_id').attr('disabled', 'disabled');
+
 								}
 							}
 					});

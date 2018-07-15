@@ -16,7 +16,8 @@ class P_dashboard extends MY_Controller
 	{	
 		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 group by activity_id,pk");
 		$paient_id = $this->db->query("SELECT * FROM contact_list WHERE pk = ".$this->session->userdata('userid'))->row_array()['patient_id'];
-
+		$data['total_t_date'] = $this->db->query("SELECT count(patient_id) as count  from treatment where  patient_id ='".$this->session->userdata('patient_id')." 'and is_deleted = 0 ")->row_array();
+		$data['total_f_date'] = $this->db->query("SELECT sum(treatment_fees) as fee from treatment where  patient_id ='".$this->session->userdata('patient_id')."' and  is_deleted = 0 ")->row_array();
 		$treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id ='".$paient_id."' AND is_deleted = 0 ")->result_array();
 		//print_r($data['rspatient']->result_array()); die;
 		$fee_total  = 0;

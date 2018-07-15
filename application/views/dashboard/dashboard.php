@@ -44,7 +44,7 @@
                           <?php if($rspatient_enquiry['count'] != 0) 
                           { ?>
 							             <div class="alert alert-info">
-                        <strong>New Patient Inquiry </strong>   <br>You have <?php echo $rspatient_enquiry['count']?> new inquiry from your patient....<a href="<?php print base_url(); ?>patient_enquiry" >Inqury page</a>
+                        <strong>New Patient Inquiry </strong>   <br>You have <?php echo $rspatient_enquiry['count']?> pending inquiry from your patient....<a href="<?php print base_url(); ?>patient_enquiry" >Inqury page</a>
 
                       </div>
                       <?php } ?>
@@ -137,11 +137,26 @@
                 </div>
                 <div class ="row chart">
 
-                  <div class="col-sm-12">
-                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Treatment Patient Footfall <button class="bg-green pull-right" data-toggle="collapse" data-target="#areachart" ><i class="fa fa-minus"></i></button></h4>
+                  <div class="col-sm-6">
+                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Treatments vs Distinct Patients <button class="bg-green pull-right" data-toggle="collapse" data-target="#areachart" ><i class="fa fa-minus"></i></button></h4>
                      <div class="collapse" id="areachart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
 
                  </div>
+                  <div class="col-sm-6">
+                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Working Days <button class="bg-green pull-right" data-toggle="collapse" data-target="#areachart" ><i class="fa fa-minus"></i></button></h4>
+                     <div class="collapse" id="areachart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
+
+                 </div>
+                  
+                </div>
+                <div class ="row chart">
+
+                  <div class="col-sm-12">
+                    <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Weekly Fee Collection <button class="bg-green pull-right" data-toggle="collapse" data-target="#line-chart-week" ><i class="fa fa-minus"></i></button></h4>
+                      <div id="line-chart-week" class="collapse" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+                 </div>
+                  
                   
                 </div>
                     </div><!-- contentpanel -->
@@ -266,6 +281,114 @@ Highcharts.chart('line-chart-patient', {
 });
 
 
+Highcharts.chart('line-chart-week', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: ''
+  },
+  subtitle: {
+    text: 'Monthly Report'
+  },
+  xAxis: {
+    categories: [ '1', '2', '3', '4' ,'5' ,'6' ,'7' ,'8' ,'9' ,'10' ,'11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52'
+],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: '',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  // tooltip: {
+  //   valueSuffix: ' thousand'
+  // },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+  series: [<?php echo $json5;?>]
+});
+
+Highcharts.chart('line-chart-patient', {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: ''
+  },
+  subtitle: {
+    text: 'Monthly Report'
+  },
+  xAxis: {
+    categories: ['Jan', 'Feb', 'March', 'April', 'May' ,'June' ,'July' ,'Aug' ,'Sep' ,'Oct' ,'Nov' ,'Dec'],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: '',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  // tooltip: {
+  //   valueSuffix: ' thousand'
+  // },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+  series: [<?php echo $json3;?>]
+});
+
+
 
 Highcharts.chart('areachart', {
   chart: {
@@ -306,7 +429,7 @@ Highcharts.chart('areachart', {
       }
     }
   },
-  series: [<?php echo $json2.','.$json3;?>]
+  series: [<?php echo $json2.','.$json6;?>]
 });
 
 </script>

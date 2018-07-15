@@ -57,6 +57,100 @@ class Dashboard extends MY_Controller
 		$data['json2'] = str_replace('"', '', $data['json2']);
 		$data['json2'] = str_replace("", '"', $data['json2']);
 		$data['json2'] =  preg_replace('/\\\\/', '"', $data['json2']);
+
+//unique patients for treatment
+		$unique = $this->db->query("SELECT MONTH(date_of_treatment) as month , treatment.patient_id
+							FROM contact_list
+							join staff_patient_master
+							on staff_patient_master.patient_id = contact_list.patient_id
+                            join treatment
+							on treatment.patient_id = contact_list.patient_id
+							WHERE date_of_registration >= NOW() - INTERVAL 1 YEAR
+							AND current_assign_staff_id = $current_staff_id
+							GROUP BY MONTH(date_of_treatment), treatment.patient_id")->result_array();
+		//print_r($data['rspatient']->result_array()); die;
+		$fee_total  = 0;
+		$treatment_total = '';
+		for($i=1; $i<=12; $i++){
+			$count = 0;
+			$fee_total  = 0;
+
+			$tt[$i] = $count;
+			$fee[$i] = $fee_total;
+			foreach($unique as $row){
+				 if($row['month'] == $i){
+				 	$count = $count + 1;
+
+				 	$treatment_total = $count;
+				 	$tt[$i] = $count;
+				 	$fee[$i]= $treatment_total;
+
+				 }
+
+			}
+		}
+
+		
+
+
+		$arr14['name']= '"Total unqiue patients"';
+		$arr14['data']= '['.str_replace('"', '', implode(",",$tt)).']';
+
+
+				// echo json_encode($arr); die;
+		//		$data['json'] = json_encode($arr1).','.json_encode($arr2);
+
+		$data['json6'] = json_encode($arr14);
+		$data['json6'] = str_replace('"', '', $data['json6']);
+		$data['json6'] = str_replace("", '"', $data['json6']);
+		$data['json6'] =  preg_replace('/\\\\/', '"', $data['json6']);
+
+		//52 week colln
+		$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+		$fee_total  = 0;
+		$treatment_total = '';
+		for($i=1; $i<=53; $i++){
+			$count = 0;
+			$fee_total_week  = 0;
+			$fee_week[$i] = 0;
+
+			
+			foreach($total_treatment_week as $roww){
+
+
+				
+				 if($roww['month'] == $i){
+				 	
+				 	
+
+				 	$fee_total_week += $roww['treatment_fees'];
+				 	$treatment_total = $fee_total_week;
+				 	
+				 	$fee_week[$i]= $treatment_total;
+
+
+
+
+
+				 }
+
+
+			}
+		}
+
+
+
+		
+
+		$arr25['name']= '"Weekely Fee"';
+		$arr25['data']= '['.str_replace('"', '', implode(",",$fee_week)).']';
+				// echo json_encode($arr); die;
+		//		$data['json'] = json_encode($arr1).','.json_encode($arr2);
+
+		$data['json5'] = json_encode($arr25);
+		$data['json5'] = str_replace('"', '', $data['json5']);
+		$data['json5'] = str_replace("", '"', $data['json5']);
+		$data['json5'] =  preg_replace('/\\\\/', '"', $data['json5']);
 		//print_r($data['json2']); die;
 		 //monthly patient
 
@@ -148,7 +242,7 @@ class Dashboard extends MY_Controller
 		$pk = $this->session->userdata("userid");
 
 		$work_shift = $this->db->query("SELECT s_work_shift FROM staff_details WHERE pk = $pk")->row()->s_work_shift;
-	    $data['rspatient_enquiry'] = $this->db->query("SELECT count(p_fname) as count FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE shift = '$work_shift' AND status='PE' ")->row_array();
+	    $data['rspatient_enquiry'] = $this->db->query("SELECT count(p_fname) as count FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  where  status='PE' ")->row_array();
 	    $data['json4'][0] =$data['json3'];
 	    $data['json4'][1] =$data['json2'];
 	    $data['json4'] =json_encode($data['json4']);

@@ -46,7 +46,6 @@
 											<th>Problem</th>
 											<th>Date</th>
 											<th>Time</th>
-											<th>Shift</th>
 											<th><div align="center">Status</div></th>
 											<th><div align="center">Action</div></th>
 										</tr>
@@ -61,8 +60,7 @@
 											<td><?php echo $row->problem; ?></td>
 											<td><?php echo date("d-m-Y", strtotime($row->appointment_date)); ?></td>
 											<!--<td><?php //echo $this->db->get_where('time_slot_master', array('pk' => $row->appointment_time))->row()->time_slot; ?></td>-->
-											<td><?php echo $row->appointment_time; ?></td>
-											<td><?php if($row->shift == 'M') { echo 'Morning'; } else { echo 'Evening'; } ?></td>
+											<td><?php echo $row->time_slot; ?></td>
 											<td class="text-center"><?php if($row->status == 'PE') { echo '<span class="label label-warning status" id="'.$row->pk.'">Pending</span>'; } else if($row->status == 'CA') { echo '<span class="label label-danger status" id="'.$row->pk.'">Cancel</span>'; } else { echo '<span class="label label-success status" id="'.$row->pk.'">Confirm</span>'; } ?></td>
 											<td>
 												<div align="center">
@@ -76,6 +74,9 @@
 
 													</a>
 												<?php } ?>
+												
+													
+
 												</div>
 											</td>
 									  </tr>
@@ -149,6 +150,40 @@
 				}
 				
 			});
+
+				$("body").on("click", "#reschedule", function ()
+					 {	var cancel_btn = $(this);
+					
+					  var id = cancel_btn.attr("data-id"); 
+					 	bootbox.prompt({
+						    title: "Select a time Slot!",
+						    inputType: 'select',
+						    inputOptions: <?php echo $timeslot; ?>,
+						    callback: function (result) {
+						        console.log(result);
+										$.ajax({
+													type: "post",
+													url: '/patient_enquiry/update_appt_status/nocheck',
+													dataType: "json",
+													data: {
+													 status: "RE",
+													 pk: id,
+													 timeslot:result
+												 },
+													success: function(responseData) {
+														if(responseData.status == 'success'){
+															bootbox.alert({
+																		message: "Action was successful",
+																		size: 'small'
+																});
+														}
+													}
+
+										 });
+						    }
+						});
+
+					});
 		});
 	</script>
 	

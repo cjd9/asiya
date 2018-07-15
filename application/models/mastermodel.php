@@ -70,7 +70,7 @@ class Mastermodel extends MY_Model
 		{
 		  echo 'Message could not be sent.';
 		   echo 'Mailer Error: ' . $mail->ErrorInfo;
-		   exit;
+		   
 
 		   return false;
 		}

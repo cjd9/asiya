@@ -73,11 +73,11 @@
 										<tr>
 											<td align="center"><?php echo ++$cnt; ?></td>
 											<td><?php echo date("d-m-Y",strtotime($row->date_of_upload)); ?></td>
-											<td><?php echo wordwrap($row->activity_program,100,"<br>\n",TRUE); ?></td>
+											<td><?php echo substr(wordwrap($row->activity_program,100,"<br>\n",TRUE), 0, 200) ; ?></td>
 											<td><?php echo date("d-m-Y",strtotime($row->expiry_date)); ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" >
+													<a href="<?php print base_url(); ?>activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success bg-navy btn-sm mr5" >
 														<i class="fa fa-search"></i> View
 													</a>
 													
@@ -85,8 +85,14 @@
 														<i class="fa fa-edit"></i> Edit									        
 													</a>
 													
-													<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_delete" onclick="delete_1('<?php echo $row->activity_id; ?>')">
+													<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal_delete" onclick="delete_1('<?php echo $row->activity_id; ?>')">
 														<i class="fa fa-trash-o"></i> Delete									         
+													</button>
+													<button class="btn btn-warning btn-sm"  onclick="sms("<?php $row->activity_id?>",sms)">
+														<i class="fa fa-send-o"></i> Sms
+													</button>
+													<button class="btn btn-primary btn-sm" onclick="mail("<?php $row->activity_id?>",sms)">
+														<i class="fa fa-forward"></i> Email
 													</button>
 												</div>
 											</td>
@@ -117,6 +123,7 @@
 	
 	 <script>
 		// assign delete id to hidden field
+		var id=type='';
 		function delete_1(id)
 		{
 			$('#delete_pk').val(id);
@@ -127,6 +134,35 @@
 			var id = $('#delete_pk').val();
 			
 			window.location = "<?php echo $deleteaction; ?>/"+id;
+		}
+
+		function sms(id,type)
+		{
+			$.ajax({
+						url: "<?php print base_url(); ?>activity_program/send_sms_email_activity/"+id+"/"+type,
+						type: "post",
+						
+						dataType:'html',
+						success: function (res) 
+						{
+							
+						  bootbox.alert('sms sent to all patients successfully')
+						}
+				});
+		}
+		function email(id,type)
+		{
+			$.ajax({
+						url: "<?php print base_url(); ?>activity_program/send_sms_email_activity/"+id+"/"+type,
+						type: "post",
+						
+						dataType:'html',
+						success: function (res) 
+						{
+							
+						  bootbox.alert('email sent to all patients successfully')
+						}
+				});
 		}
 	</script>
 	

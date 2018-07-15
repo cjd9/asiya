@@ -237,6 +237,70 @@ class Activity_program extends MY_Controller
 		$this->mastermodel->redirect($result, 'activity_program', 'activity_program', 'Deleted');
 
 	}
+
+	// function to send SMS/Email to patient -
+	function send_sms_email_activity($id = '',$type)
+	{
+		// get appointment id -
+
+		/********** send Email **************/
+
+		$res = FALSE;
+		if($id == ''){
+			$id = $this->input->post('activity_id');
+		}
+		// check if existing patient appointment -
+		$activity = $this->db->query("SELECT * FROM activity_program  WHERE activity_id = $id")->row_array();
+		$rspatient = $this->db->query("SELECT * FROM contact_list where is_deleted = 0")->result_array();
+		
+		 foreach($rspatient as $patient){
+
+		   	$email = $patient['p_email_id'];
+		   	$mobile = $patient['p_contact_no'];
+		   	$fullname = $patient['p_fname'].' '.$patient['p_lname'];
+		   	$patient_id = $patient['patient_id'];
+			if(!empty($email) && ($type=='email' || $type=='both'))		// check if existing patient, then take email id to send mail
+			{
+				
+					$sub = 'New Activity Program.';
+
+					//$msg = 'Hello, <br><br> Your Appointement Booked Successfully. <br><br> Thanks, - Clinic Management System.';
+
+					$html = 'RESPECTED '.$fullname.'<br><br>';
+					$html .= 'A New Activity Program has been posted. Kindly login to asiya.co.in to find details for the program<br><br>';
+					$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION <br> 101-B ANJALI BUILDING <br> FRENCH BRIDGE, OPERA HOUSE <br> MUMBAI-400007';
+
+					$msg = $html;
+
+					// send email to patient, function defined below -
+					$res_email = $this->mastermodel->send_mail($email, $fullname, $sub, $msg, '', '');
+
+				
+			}
+
+			if(!empty($mobile)  && ($type=='sms' || $type=='both'))		
+			{
+				
+					$sub = 'New Activity Program.';
+
+					//$msg = 'Hello, <br><br> Your Appointement Booked Successfully. <br><br> Thanks, - Clinic Management System.';
+
+					$html = 'RESPECTED '.$fullname;
+					$html .= 'A New Activity Program has been posted. Kindly login to asiya.co.in to find details for the program';
+
+					$msg = $html;
+
+					// send sms to patient, function defined below -
+				    $res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
+
+				
+			}
+
+
+		 }	
+
+			
+	}
 /*-----------------------------------------------------End Activity Program--------------------------------------------------*/
 }
 ?>

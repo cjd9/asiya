@@ -35,7 +35,7 @@ class Appointment_schedule extends MY_Controller
 
 			$date_of_appointment	= $this->mastermodel->date_convert($_POST['date_of_appointment'], 'ymd');
 			$staff_id 				= $_POST['staff_id'];
-			$work_shift 			= $_POST['work_shift'];
+			//$work_shift 			= $_POST['work_shift'];
 
 			// get whether selected user is Male or Female -
 			$user_gender = $this->db->get_where('staff_details', array('pk' => $staff_id))->row()->s_gender;
@@ -43,15 +43,15 @@ class Appointment_schedule extends MY_Controller
 			$data['user_gender'] = $user_gender;
 
 			// get date wise, user wise and work shift wise appointment schedule -
-			$data['rsappointment_schedule'] = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$date_of_appointment' AND staff_id = $staff_id AND work_shift = '$work_shift' AND is_deleted = 0");
-
+			$data['rsappointment_schedule'] = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$date_of_appointment' AND staff_id = $staff_id   AND is_deleted = 0");
+			//print_r($data['rsappointment_schedule']->result_array()); die;
 			// get time slots for selected user gender and work shift -
-			$data['rstime_slots'] = $this->db->query("SELECT * FROM time_slot_master WHERE user_gender = '$user_gender' AND user_shift = '$work_shift'");
+			$data['rstime_slots'] = $this->db->query("SELECT * FROM time_slot_master");
 
 			//print_r($data['fulltime_slots']->result_array()); die;
 			$data['date_of_appointment']	= $_POST['date_of_appointment'];
 			$data['staff_id'] 				= $_POST['staff_id'];
-			$data['work_shift'] 			= $_POST['work_shift'];
+			//$data['work_shift'] 			= $_POST['work_shift'];
 		}
 
 		$this->load->view('appointment_schedule/add',$data);
@@ -63,7 +63,7 @@ class Appointment_schedule extends MY_Controller
 		// get data -
 		$data['date_of_appointment']= $this->mastermodel->date_convert($_POST['date_of_appointment'], 'ymd');
 		$data['staff_id'] 			= $_POST['staff_id'];
-		$data['work_shift'] 		= $_POST['work_shift'];
+		//$data['work_shift'] 		= $_POST['work_shift'];
 
 		//data['appointment_id'] 	= $_POST['appointment_id'];
 
@@ -116,7 +116,7 @@ class Appointment_schedule extends MY_Controller
 
 		//data['appointment_id'] 	= $_POST['appointment_id'];
 
-		//$data['time_slot_id'] 		= $_POST['time_slot_id'];
+		$data['time_slot_id'] 		= $_POST['time_slot_id'];
 
 		$data['p_fname'] 			= $_POST['p_fname'];
 		$data['p_lname'] 			= $_POST['p_lname'];

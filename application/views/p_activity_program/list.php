@@ -48,7 +48,7 @@
 									<?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
 									<?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>										<tr>
 											<td align="center"><?php echo ++$cnt; ?></td>
-											<td><?php echo wordwrap($row->activity_program,200,"<br>\n",TRUE); ?></td>
+											<td><?php echo substr(wordwrap($row->activity_program,100,"<br>\n",TRUE), 0, 200) ; ?></td>
 											<td>
 												<div align="center">
 													<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" class="btn btn-success btn-sm mr5" >
@@ -78,10 +78,7 @@
 							{	
 						?>
 							<div class="horizontally">
-								<div class="inner">
-									<img src="<?php print base_url(); ?>images/bee.gif" height="200px"/>
-									<!--<img src="http://www.html.am/images/html-codes/marquees/bee.gif" alt="Buzzy bee">-->
-								</div>
+								
 							</div>
 
 							<h1 align="center"><b>No Activity Record Found.</b></h1>';

@@ -33,19 +33,20 @@ select {
 		<section>
 			<div align="left">
 				<b><h5>
+					 <a class="btn btn-primary btn-metro" href="http://asiya.co.in/" style="color: white"><b><span class="fa fa-home"></span> HOME</b></a>
 
 				</h5></b>
 			</div>
 			<div align="center" style="margin-top:3%">
 <!-- 				<h1 class="style1" style="text-transform:uppercase"> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
  -->			</div>
-		<div class="panel panel-signin" style="border:15px solid rgba(150, 150, 146, 0.24);background-color: white;width: 425px;">
+		<div class="panel panel-signin" style="background-color: white;width: 425px;">
 
 				<div class="panel panel-signin">
 					<div class="panel-body">
 						<div class="logo text-center" style="margin-top:-110px">
 							<img src="<?php print base_url(); ?>images/Asiya.png">
-							<h3><b><span class="fa fa-user-md"></span>LOGIN</b></h3>
+							<h3 class="text-left" style="font-weight:500">Login</h3>
 						</div>
 
 						<?php if($this->session->flashdata('message') != '' )
@@ -77,18 +78,14 @@ select {
 							</div><!-- input-group -->
 						<div class="clearfix mb15">
 							<div class="pull-right">
-									<button type="submit" class="btn btn-success btn-metro"><b>SIGN IN</b> <i class="fa fa-unlock ml5"></i></button>
+									<button type="submit" class="btn btn-success btn-metro" style="color: white;"><b>SIGN IN</b></button>
 								</div>
 								<div class="pull-left">
-									<a class="btn btn-primary btn-metro" href="/login/forgot_password" style="color: black;"><b><span class="fa fa-anchor"></span>Forgot Password?</b></a>
+									<a class="btn btn-metro" href="/login/forgot_password" style="color: black;"><b>Forgot Password?</b></a>
 								</div>
 						</div>
 
-						<div class="clearfix">
-							<div class="Pull-right">
-							  <a class="btn btn-primary btn-metro" href="http://asiya.co.in/" style="color: black"><b><span class="fa fa-home"></span> HOME</b></a>
-							</div>
-						</div>
+						
 
 
 						</form>
@@ -111,6 +108,9 @@ select {
   <script>
 
     $('body').on('click','#select_form',function(){
+       $('#main_form').attr('action',$(this).val())
+});
+    $('body').on('tabs','#select_form',function(){ alert()
        $('#main_form').attr('action',$(this).val())
 });
   </script>

@@ -45,7 +45,6 @@
 											<th>Contact No.</th>
 											<th>date_of_appointment</th>
 											<th>Time</th>
-											<th>Shift</th>
 											<th><div align="center">Action</div></th>
 										</tr>
 									</thead>
@@ -58,13 +57,17 @@
 											<td><?php echo $row->p_contact_no; ?></td>
 											<td><?php echo date("d-m-Y", strtotime($row->date_of_appointment)); ?></td>
 											<td><?php echo $this->db->get_where('time_slot_master', array('pk' => $row->time_slot_id))->row()->time_slot; ?></td>
-											<td><?php if($row->work_shift == 'M') { echo 'Morning'; } else { echo 'Evening'; } ?></td>
 											<td>
 												<div align="center">
 													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel_appt/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs" onclick="return confirmation()">
 														 <i class="fa fa-trash-o"></i> Cancel									        
 													</a>
+													<button class="btn btn-info btn-xs reschedule" data-id="<?php echo $row->pk; ?>" id="">
+														 <i class="fa fa-send-o"></i> Reschedule									        
+													</button>
 												</div>
+
+
 											</td>
 									  </tr>
 									<?php endforeach ; ?>
@@ -84,6 +87,7 @@
 	
 	<script>
 		// function for cancel confirmation -
+
 		function confirmation()
 		{
 			var res = confirm("You want to cancel this Appointment?");
@@ -97,6 +101,44 @@
 				return false;
 			}
 		}
+		$(document).ready(function()
+		{
+		
+
+			$("body").on("click", ".reschedule", function ()
+					 {	var cancel_btn = $(this);
+					
+					  var id = cancel_btn.attr("data-id"); 
+					 	bootbox.prompt({
+						    title: "Select a time Slot!",
+						    inputType: 'select',
+						    inputOptions: <?php echo $timeslot; ?>,
+						    callback: function (result) {
+						        console.log(result);
+										$.ajax({
+													type: "post",
+													url: '/p_appointment_schedule/update_appt_status/nocheck',
+													dataType: "json",
+													data: {
+													 status: "RE",
+													 pk: id,
+													 timeslot:result
+												 },
+													success: function(responseData) {
+														bootbox.alert({
+																		message: "Action was successful",
+																		size: 'small'
+																});
+														location.reload();
+
+													}
+
+										 });
+						    }
+						});
+
+					});
+		});
 	</script>
 	
     </body>

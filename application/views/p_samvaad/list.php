@@ -1,7 +1,19 @@
 <?php $this->load->view('p_include/header'); ?>
 
 	<?php $this->load->view('p_include/left'); ?>
-                
+         <style>
+               .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px; /* 5px rounded corners */
+            height: 175px;
+        }
+
+        /* Add rounded corners to the top left and the top right corner of the image */
+        img {
+            border-radius: 5px 5px 0 0;
+        }
+       </style>
                 <div class="mainpanel">
                     <div class="pageheader">
                       <div class="media">
@@ -36,15 +48,15 @@
 									<?php $cnt = 0; foreach($rseducation_program->result() as $row) : ?>
 									 <div class="card col-md-4" >
 									 	<div class="col-sm-6" >
-			                              <img src="/education_thumbnail/<?php echo $row->thumbnail;  ?>" onerror="this.src='/images/logo-new.png';" alt="Avatar" style="width: 100%">
+			                              <img src="/education_thumbnail/<?php echo $row->thumbnail;  ?>" onerror="this.src='/images/Asiya.png';" alt="Avatar" style="width: 100%">
 			                            </div>
 			                            <div class="col-sm-6" >
 			                            	<h6 class=""><b><?php echo $row->title; ?></b></h6>
 
 											<p class=""><?php echo substr(strip_tags($row->education_program_desc), 0, 100);  ?></p>
-											<a href="/p_samvaad/view/<?php echo $row->pk; ?>">Read more>>> </a>
+											<a class="btn btn-primary" href="/p_samvaad/view/<?php echo $row->pk; ?>">Read more>> </a>
 			                            </div>
-			                              </div>
+			                         </div>
 									  
 									<?php endforeach ; ?>
 								

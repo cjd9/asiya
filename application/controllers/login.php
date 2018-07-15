@@ -142,7 +142,7 @@ class Login extends CI_Controller
 
 					    }
 					    else{
-					       $this->db->query("UPDATE `contact_list` SET p_password = ".$result['p_contact_no']."  WHERE  pk = ".$result['pk']);
+					       $this->db->query("UPDATE `contact_list` SET p_password = ".$result['patient_id']."  WHERE  pk = ".$result['pk']);
 					       $this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' =>'Password reset successfully', 'type' => 's' ));
 					       
 					       	$r = $this->db->get_where('contact_list', array('patient_id' => $result['patient_id']))->row();
@@ -151,7 +151,7 @@ class Login extends CI_Controller
 							$mobile = $r->p_contact_no;
 							$to_name = $patient_name;
 							$sub = "Password Reset";
-							$msg = "Your Password has been Reset to ".$result['p_contact_no']." successfully";
+							$msg = "Your Password has been Reset to ".$result['patient_id']." successfully";
 							if(!empty($to_email)){
 								//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg);
 
