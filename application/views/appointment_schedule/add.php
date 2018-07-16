@@ -47,13 +47,24 @@
 													</div><!-- input-group -->
 												</div>
 											</div>
+											<div class="col-sm-4">
+												<label class="col-sm-3 control-label">Staff Name<span class="asterisk">*</span></label>
+												<div class="col-sm-8">
+													<select id="" name="staff_id_export" data-placeholder="Choose Staff" class="select2-container width100p">
+
+														<?php foreach ($rsstaff_list->result() as $r) { ?>
+															<option value="<?php echo $r->pk; ?>" <?php if(isset($staff_id) && $staff_id == $r->pk) { ?> selected="selected"<?php } ?>><?php echo $r->s_fname.' '.$r->s_mname.' '.$r->s_lname; ?></option>
+														<?php } ?>
+													</select>
+													<span id="msg1" style="color:#FF0000"></span>
+												</div>
+											</div>
 											<div class="col-sm-2">
-													<button class="btn btn-success btn-bordered" name="export_schedule" id="export_schedule">
-														<span class="glyphicon glyphicon-export"></span> Export Schedule
-													</button>
+													<input type="submit" class="btn btn-success btn-bordered" name="" id="">
+													</input>
 											</div>
 
-											
+
 										</div><!-- form-group -->
 
 									</form>
@@ -114,7 +125,7 @@
 													</tbody>
 												</table>
 											</div>
-					
+
 					<div class="row">
 					<div class="col-md-12">
 
@@ -144,7 +155,7 @@
 												<label class="col-sm-3 control-label">Staff Name<span class="asterisk">*</span></label>
 												<div class="col-sm-8">
 													<select id="staff_id" name="staff_id" data-placeholder="Choose Staff" class="select2-container width100p">
-														
+
 														<?php foreach ($rsstaff_list->result() as $r) { ?>
 															<option value="<?php echo $r->pk; ?>" <?php if(isset($staff_id) && $staff_id == $r->pk) { ?> selected="selected"<?php } ?>><?php echo $r->s_fname.' '.$r->s_mname.' '.$r->s_lname; ?></option>
 														<?php } ?>
@@ -156,7 +167,7 @@
 													<button class="btn btn-primary" name="get_schedule" id="get_schedule">Get Schedule</button>
 											</div>
 
-											
+
 										</div><!-- form-group -->
 
 									</form>
@@ -166,13 +177,13 @@
 
 
 										<?php if(isset($staff_id)  && isset($user_gender)) { ?>
-										
+
 										<div class="form-group responsive">
 											<div class="col-sm-12 table-responsive" align="center">
 												<table class="table table-bordered table-striped mb30 responsive" id="">
 													<thead>
 														<tr>
-															
+
 															<th colspan="5"><div align="center">Appointment Schedule (<?php echo $user_gender; ?>) </div></th>
 														</tr>
 														<tr>
@@ -190,10 +201,10 @@
 															if($rsappointment_schedule->num_rows() > 0)	// if minimum 1 appointment is booked -
 															{ $timeslot = '';
 																foreach($rsappointment_schedule->result() as $r)
-																{ 
+																{
 																	// check if appointment booking is already exists -
 																	if($row->pk == $r->time_slot_id)
-																	{ 
+																	{
 																		$appointment_id = $r->pk;
 																		$timeslot = $row->pk;
 
@@ -202,14 +213,14 @@
 																		$p_contact_no = $r->p_contact_no;
 																			?>
 																			<tr>
-																				
+
 																				<td align="center"><select id=""  <?php  if($appointment_id != '') { ?>disabled<?php } ?>  name="time_slot_id" data-placeholder="Choose Time Slot" class="time_slot_id form-control width100p">
 																						<option value=""> </option>
 																						<?php foreach ($fulltime_slots->result() as $roww)  { ?>
-																							<option value="<?php echo $roww->pk; ?>" <?php if( $roww->pk == $r->time_slot_id) { ?> selected="selected" <?php } 
+																							<option value="<?php echo $roww->pk; ?>" <?php if( $roww->pk == $r->time_slot_id) { ?> selected="selected" <?php }
 																							?> > <?php echo $roww->time_slot; ?> </option>
 																						<?php } ?>
-																					</select> 
+																					</select>
 																				</td>
 
 																				<td>
@@ -239,7 +250,7 @@
 																			<?php
 																		//break; // will leave the foreach loop and also "break" the if statement
 																	}
-																
+
 
 																	?>
 
@@ -251,13 +262,13 @@
 
 														<?php
 															}
-															
+
 														?>
 
-														
+
 
 														<?php
-															
+
 														}
 														?>
 
@@ -288,7 +299,6 @@
 			// form Validation
 			$("#add_appointment_schedule_form").validationEngine({promptPosition: "topRight: -100"});
 
-			$("#export_appointment_schedule_form").validationEngine({promptPosition: "topRight: -100"});
 
 			// Show datepicker with previous dates hidden -
 			$('#date_of_appointment').datepicker(
@@ -338,24 +348,25 @@
 
 				$('#msg2').text('');
 
-				
+
 			});
 
 			// select box validations -
-			$('#export_appointment_schedule_form').on('submit', function()
-			{
-				$('#msg3').text('');
-
-				if( $('#schedule_work_shift').val() == null)
-				{
-					$('#msg3').text('This field is required');
-					return false;
-				}
-			});
+			// $('#export_appointment_schedule_form').on('submit', function()
+			// {
+			// 	$('#msg3').text('');
+      //
+			// 	if( $('#schedule_work_shift').val() == null)
+			// 	{
+			// 		$('#msg3').text('This field is required');
+			// 		return false;
+			// 	}
+			// 	$('#export_appointment_schedule_form').submit();
+			// });
 
 			// function to confirm appointment -
 			$('.btn-confirm').live('click', function()
-			{ 
+			{
 				var confirm_btn = $(this);
 				console.log(confirm_btn.closest('tr'))
 				// get booking details -
@@ -376,7 +387,7 @@
 				confirm_btn.closest('tr').find('div').removeClass('has-error');
 
 				// validate fields -
-				
+
 				if(date_of_appointment == '' )
 				{
 					return false;

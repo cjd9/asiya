@@ -65,7 +65,7 @@ class Dashboard extends MY_Controller
 							on staff_patient_master.patient_id = contact_list.patient_id
                             join treatment
 							on treatment.patient_id = contact_list.patient_id
-							WHERE date_of_registration >= NOW() - INTERVAL 1 YEAR
+							WHERE date_of_treatment >= NOW() - INTERVAL 1 YEAR
 							AND current_assign_staff_id = $current_staff_id
 							GROUP BY MONTH(date_of_treatment), treatment.patient_id")->result_array();
 		//print_r($data['rspatient']->result_array()); die;
@@ -90,7 +90,7 @@ class Dashboard extends MY_Controller
 			}
 		}
 
-		
+
 
 
 		$arr14['name']= '"Total unqiue patients"';
@@ -114,18 +114,18 @@ class Dashboard extends MY_Controller
 			$fee_total_week  = 0;
 			$fee_week[$i] = 0;
 
-			
+
 			foreach($total_treatment_week as $roww){
 
 
-				
+
 				 if($roww['month'] == $i){
-				 	
-				 	
+
+
 
 				 	$fee_total_week += $roww['treatment_fees'];
 				 	$treatment_total = $fee_total_week;
-				 	
+
 				 	$fee_week[$i]= $treatment_total;
 
 
@@ -140,7 +140,7 @@ class Dashboard extends MY_Controller
 
 
 
-		
+
 
 		$arr25['name']= '"Weekely Fee"';
 		$arr25['data']= '['.str_replace('"', '', implode(",",$fee_week)).']';
@@ -168,7 +168,7 @@ class Dashboard extends MY_Controller
 			$total[$i]=0;
 			foreach($patients as $row){
 				 if($row['month'] == $i){
-				 	
+
 				 	$total[$i] = $row['count'];
 
 				 }
@@ -242,7 +242,18 @@ class Dashboard extends MY_Controller
 		$pk = $this->session->userdata("userid");
 
 		$work_shift = $this->db->query("SELECT s_work_shift FROM staff_details WHERE pk = $pk")->row()->s_work_shift;
-	    $data['rspatient_enquiry'] = $this->db->query("SELECT count(p_fname) as count FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  where  status='PE' ")->row_array();
+	    $data['rspatient_enquiry'] = $this->db->query("SELECT count(p_fname) as count ,added_by_user  FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  where  status='PE' group by added_by_user ")->result_array();
+			$patients = $this->db->query("SELECT DISTINCT(patient_id) FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+      $patients = array_unique(array_map(function ($i) { return $i['patient_id']; }, $patients)) ;
+			$kount =0;
+			foreach($data['rspatient_enquiry'] as $val)
+			{
+				$pid = $this->getPatientId($val['added_by_user']);
+				if(in_array($pid,$patients)){
+					$kount = $kount + 1;
+				}
+			}
+			$data['rspatient_enquiry']['count'] = $kount;
 	    $data['json4'][0] =$data['json3'];
 	    $data['json4'][1] =$data['json2'];
 	    $data['json4'] =json_encode($data['json4']);

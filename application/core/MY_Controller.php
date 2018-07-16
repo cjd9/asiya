@@ -236,4 +236,10 @@ class MY_Controller extends CI_Controller
 			//echo 0;
 		}
 	}
+
+	function getPatientId($user_id)
+	{
+		$rspatient = $this->db->query("SELECT patient_id FROM contact_list WHERE pk = '$user_id' and  is_deleted = 0")->row_array();
+		return $rspatient['patient_id'];
+	}
 }
