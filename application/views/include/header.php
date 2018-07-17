@@ -140,7 +140,6 @@
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label"></label>
-								<label class="col-sm-10 control-label"><b>(Password should be Alphanumeric & Special Characters.)</b></label>
 							</div>
 
 							<div class="form-group">

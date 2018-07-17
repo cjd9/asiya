@@ -122,7 +122,7 @@ class Login extends CI_Controller
 
 
 	function forgot_password_reset()
-	{	
+	{
 		$message = $this->session->flashdata('message');
 			if (isset($message)) {
 			 $this->session->unset_userdata('message');
@@ -142,9 +142,9 @@ class Login extends CI_Controller
 
 					    }
 					    else{
-					       $this->db->query("UPDATE `contact_list` SET p_password = ".$result['patient_id']."  WHERE  pk = ".$result['pk']);
+					       $this->db->query("UPDATE `contact_list` SET p_password = '".$result['patient_id']."'  WHERE  pk = ".$result['pk']);
 					       $this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' =>'Password reset successfully', 'type' => 's' ));
-					       
+
 					       	$r = $this->db->get_where('contact_list', array('patient_id' => $result['patient_id']))->row();
 							$patient_name = ucwords($r->p_fname.' '.$r->p_lname);
 							$to_email = $r->p_email_id;
@@ -172,7 +172,7 @@ class Login extends CI_Controller
 
 					    }
 					    else{
-					    	$this->db->query("UPDATE `staff_details` SET s_password = ".$result['s_contact_no']."  WHERE  pk = ".$result['pk']);
+					    	$this->db->query("UPDATE `staff_details` SET s_password = '".$result['s_contact_no']."'  WHERE  pk = ".$result['pk']);
 					        $this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' =>'Password reset successfully', 'type' => 's' ));
 					       	redirect(base_url());
 
@@ -180,10 +180,10 @@ class Login extends CI_Controller
 
 				}
 		}
-				
+
 				$this->load->view('login/forgotpassword');
 
-		
+
 	}
 /*-----------------------------------------------------End Staff Login--------------------------------------------------*/
 

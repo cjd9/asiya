@@ -485,7 +485,7 @@
 
 				var edit_btn = $(this);
 
-				// change Edit button label to Update -
+				// change Edit button label to Upapp-
 				edit_btn.text('Update');
 
 				// enable input fields for update -

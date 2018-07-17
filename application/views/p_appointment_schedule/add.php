@@ -30,7 +30,7 @@
 									<div class="panel-heading">
 								<a href="<?php echo base_url().'p_appointment_schedule'; ?>" type="button" class="btn btn-default btn-sm">
 								          <span class="glyphicon glyphicon-arrow-left"></span> Back
-								        </a>	
+								        </a>
 										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Take New Appointment </b></h3>
 									</div><!-- panel-heading -->
 
@@ -50,7 +50,7 @@
 											<div class="form-group">
 												<label class="col-md-3 control-label"> Contact No.<span class="asterisk">*</span></label>
 												<div class="col-sm-3">
-													<input type="text" name="p_contact_no" id="p_contact_no" data-placeholder="Enter Contact No." class="form-control validate[required]">
+													<input type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength = "10"  name="p_contact_no" id="p_contact_no" data-placeholder="Enter Contact No." class="form-control validate[required]">
 												</div>
 											</div><!-- form-group -->
 
@@ -80,7 +80,7 @@
 														<span class="input-group-addon">
 															<i class="glyphicon glyphicon-calendar"></i>
 														</span>
-														<input type="text" class="form-control validate[required] datepicker" name="appointment_date" placeholder="dd-mm-yyyy" id="appointment_date">
+														<input type="text" class="form-control validate[required] " name="appointment_date" placeholder="dd-mm-yyyy" id="appointment_date">
 													</div>
 												</div>
 											</div>
@@ -115,7 +115,7 @@
 
         										<label class="col-md-2 control-label">Apointment Time<span class="asterisk">*</span></label>
         										<div class="col-sm-3">
-        											<select id="appointment_time"  name="appointment_time" data-placeholder="Choose Time" class="select2-container width100p">
+        											<select id="appointment_time"  name="appointment_time" data-placeholder="Choose Time" class=" select2-container width100p">
 
 
         											</select>
@@ -154,6 +154,17 @@
 		{
 			$("#appointment_booking_form").validationEngine({promptPosition: "topRight: -100"});
 
+
+			$('#appointment_date').datepicker(
+						{
+							changeMonth: true,
+							changeYear: true,
+							yearRange: '1945:2050',
+							dateFormat: 'dd-mm-yy',
+							minDate: 0,
+
+							//minDate: 0	// disable all previous dates
+						});
 
 
          $("body").on('change', '#shift', function () {
@@ -228,12 +239,18 @@
 			$("#appointment_booking_form").submit( function() {
 
 				var gender = $('#p_gender');
+				var atime = $('#appointment_time');
 
 				gender.next("span").text('');
 
 				if(gender.val() == '' || gender.val() == null)
 				{
 					gender.next("span").text('This field is required');
+					return false;
+				}
+				if(atime.val() == '' || atime.val() == null)
+				{
+					atime.next("span").text('This field is required');
 					return false;
 				}
 

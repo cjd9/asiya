@@ -113,12 +113,12 @@
 			</li>
 		<?php }?>
 
-		<?php 	if($this->session->userdata('user_type')=='A'){?>
+		
 
 			<li <?php if(current_url() == base_url().'festival' || current_url() == base_url().'crons' || strpos(current_url(), base_url().'staff_list/edit/') !== false) {?> class="active" <?php } ?>>
 				<a href="<?php echo base_url().'crons'; ?>"><i class="fa fa-user-md"></i> <span>Logs</span></a>
 			</li>
-		<?php }?>
+	
 
 	</ul>
 

@@ -1,8 +1,8 @@
 <?php $this->load->view('p_include/header'); ?>
-        
+
 	<?php $this->load->view('p_include/left'); ?>
-                
-                
+
+
        <style>
                .card {
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -34,18 +34,19 @@
 
 
                     <div class="contentpanel">
+                      <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
+
                       <div class="alert alert-success">
-                        <strong>Activity </strong> 
+                        <strong>Activity </strong>
                        <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
-                  <?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>  
-                      
+                  <?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>
+
                           <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >></a>
 
-                       
+
                    <?php } endforeach ; ?>
                    </div>
-           
-                     <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
+
 
 
                         <div align="center">
@@ -55,13 +56,13 @@
                             <h1><b>Asiya Center of Physiotherapy & Rehabilitation</b></h1> -->
                         </div>
 
-                   
+
                         <div class="row appointments">
                           <div class = "col-sm-6">
                               <h4 class ="text-center panel-heading" style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Upcoming Appointments</h4>
 
                       <?php if(!empty($today_appointment)) { ?>
-                            
+
                               <table class="table table- table-responsive">
                                   <thead>
                                     <tr>
@@ -79,7 +80,7 @@
                                   </tbody>
                             </table>
 
-                      <?php  
+                      <?php
                     }else{ ?>
                       <p><strong>No Appointments yet</strong></p>
                     <?php }  ?>
@@ -106,7 +107,7 @@
                              <?php } ?>
                                   </tbody>
                       </table>
-                     
+
                    <?php }else{ ?>
                       <p><strong>No Homework yet</strong></p>
                     <?php }  ?>
@@ -130,7 +131,7 @@
                       <a href="/p_samvaad/view/<?php echo $row->pk; ?>">Read more>>> </a>
                                   </div>
                     </div>
-                    
+
                   <?php endforeach ; ?>
                   </div>
                 </div>
@@ -148,7 +149,7 @@
                       <h5 class="text-center"> Your Total Fee till date: Rs.<b><?php echo $total_f_date['fee']?></b></h5>
                   </div>
                 </div>
-                
+
 
                     </div><!-- contentpanel -->
 
@@ -328,6 +329,6 @@ Highcharts.chart('areachart', {
 
 
 	<?php $this->load->view('p_include/footer'); ?>
-	
+
     </body>
 </html>

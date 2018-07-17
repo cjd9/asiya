@@ -264,21 +264,21 @@ class p_appointment_schedule extends MY_Controller
 
 	// function to cancel appointment booking from appointment schedular -
 	function cancel_appt($pk)
-	{	
+	{
 		$staff = $this->session->userdata('userid');
 		$staff	= $this->db->query("SELECT current_assign_staff_id FROM staff_patient_master join contact_list on staff_patient_master.patient_id = contact_list.patient_id where contact_list.pk = '$staff' ")->row_array()['current_assign_staff_id'];
 
 		$update = array('is_deleted'=>'1');
 		$this->db->where('pk', $pk);
         $p = $this->db->update('appointment_schedule', $update);
-       
+
         $staff = $this->session->userdata('userid');
 		$staff	= $this->db->query("SELECT current_assign_staff_id FROM staff_patient_master join contact_list on staff_patient_master.patient_id = contact_list.patient_id where contact_list.pk = '$staff' ")->row_array()['current_assign_staff_id'];
 
 		$rsstaff = $this->db->query("SELECT * FROM staff_details WHERE pk = ".$staff." AND is_deleted = 0");
 
 		foreach($rsstaff->result() as $row)
-		{ 
+		{
 			$staff_email = $row->s_email_id;
 			$staff_name = $row->s_fname.' '.$row->s_lname;
 
@@ -310,7 +310,8 @@ class p_appointment_schedule extends MY_Controller
 	{
 		$update = array('time_slot_id'=>$this->input->post('timeslot'));
 		$this->db->where('pk', $this->input->post('pk'));
-        $this->db->update('appointment_schedule', $update);
+    $this->db->update('appointment_schedule', $update);
+		
 	}
 /*-----------------------------------------------------End appointment schedule--------------------------------------------------*/
 }
