@@ -242,7 +242,7 @@ class Dashboard extends MY_Controller
 		$pk = $this->session->userdata("userid");
 
 		$work_shift = $this->db->query("SELECT s_work_shift FROM staff_details WHERE pk = $pk")->row()->s_work_shift;
-	    $data['rspatient_enquiry'] = $this->db->query("SELECT count(p_fname) as count ,added_by_user  FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  where  status='PE' group by added_by_user ")->result_array();
+	    $data['rspatient_enquiry'] = $this->db->query("SELECT count(p_fname) as count ,added_by_user  FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  where  status='PE' and patient_appointment_enquiry.is_deleted = 0 group by added_by_user ")->result_array();
 			$patients = $this->db->query("SELECT DISTINCT(patient_id) FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
       $patients = array_unique(array_map(function ($i) { return $i['patient_id']; }, $patients)) ;
 			$kount =0;

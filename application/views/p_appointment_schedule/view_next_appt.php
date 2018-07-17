@@ -59,7 +59,8 @@
 											<td><?php echo $this->db->get_where('time_slot_master', array('pk' => $row->time_slot_id))->row()->time_slot; ?></td>
 											<td>
 												<div align="center">
-													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel_appt/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs" onclick="return confirmation()">
+													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel_appt/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs <?php echo (strtotime($row->date_of_appointment) >  time() + 86400) ? '' : 'hide';
+ ?>" onclick="return confirmation()">
 														 <i class="fa fa-trash-o"></i> Cancel									        
 													</a>
 													<button class="btn btn-info btn-xs reschedule" data-id="<?php echo $row->pk; ?>" id="">

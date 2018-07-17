@@ -28,8 +28,10 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-
-										<h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> <b>Take New Appointment </b></h3>
+								<a href="<?php echo base_url().'p_appointment_schedule'; ?>" type="button" class="btn btn-default btn-sm">
+								          <span class="glyphicon glyphicon-arrow-left"></span> Back
+								        </a>	
+										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Take New Appointment </b></h3>
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">

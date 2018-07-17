@@ -61,14 +61,10 @@
 											<td><?php echo date("d-m-Y", strtotime($row->appointment_date)); ?></td>
 											<!--<td><?php //echo $this->db->get_where('time_slot_master', array('pk' => $row->appointment_time))->row()->time_slot; ?></td>-->
 											<td><?php echo $row->time_slot; ?></td>
-											<td class="text-center"><?php if($row->status == 'PE') { echo '<span class="label label-warning status" id="'.$row->pk.'">Pending</span>'; } else if($row->status == 'CA') { echo '<span class="label label-danger status" id="'.$row->pk.'">Cancel</span>'; } else { echo '<span class="label label-success status" id="'.$row->pk.'">Confirm</span>'; } ?></td>
+											<td class="text-center"><?php if($row->status == 'PE') { echo '<span class="label label-warning" id="'.$row->pk.'">Pending</span>'; } else if($row->status == 'CA') { echo '<span class="label label-danger" id="'.$row->pk.'">Cancel</span>'; } else { echo '<span class="label label-success" id="'.$row->pk.'">Confirm</span>'; } ?></td>
 											<td>
 												<div align="center">
-												<?php if($row->status == 'CO') { ?>
-													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs">
-														 <i class="fa fa-trash-o"></i> Cancel									        
-													</a>
-												<?php } else if($row->status == 'PE') { ?>
+												<?php if($row->status == 'PE') { ?>
 													<a href="<?php print base_url(); ?>p_appointment_schedule/cancel_appointment/<?php echo $row->pk; ?>" class="btn btn-warning btn-xs" onclick="return confirmation()">
 														 <i class="fa fa-trash-o"></i> Cancel									        
 
