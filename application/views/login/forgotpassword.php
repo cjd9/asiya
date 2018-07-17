@@ -38,11 +38,11 @@ select {
 			</div>
 			<div align="center" style="margin-top:3%">
 			</div>
-			<div class="panel panel-signin" style="background-color: white;width: 425px;" />
+			<div class="panel panel-signin" style="background-color: white; max-width: 425px;" />
 
-				<div class="panel panel-signin">
+				<div class="panel panel-signin fgp">
 					<div class="panel-body">
-						<div class="logo text-center" style="margin-top:-110px">
+						<div class="logo text-center">
 							<img src="<?php print base_url(); ?>images/Asiya.png">
 							<h3 class="text-left" style="font-weight:500">Forgot Password</h3>
 						</div>

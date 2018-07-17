@@ -62,7 +62,6 @@
                                         <th></th>
 										<th><div align="center">Staff Photo</div></th>
 										<th>Staff ID</th>
-										<th>Password</th>
                                         <th>Staff Name</th>
                                         <th>Staff Gender</th>
 										<th>Contact No.</th>
@@ -86,7 +85,6 @@
 											</div>
 										</td>
 										<td><?php echo $row->staff_id; ?></td>
-										<td><?php echo decrypt($row->s_password); ?></td>
                                         <td><?php echo $row->s_fname.' '.$row->s_mname.' '.$row->s_lname; ?></td>
                                         <td><?php echo $row->s_gender; ?></td>
 										<td><?php echo $row->s_contact_no; ?></td>

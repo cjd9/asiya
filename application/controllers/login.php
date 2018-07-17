@@ -151,7 +151,8 @@ class Login extends CI_Controller
 							$mobile = $r->p_contact_no;
 							$to_name = $patient_name;
 							$sub = "Password Reset";
-							$msg = "Your Password has been Reset to ".$result['patient_id']." successfully";
+							$msg = "Dear ".$patient_name."\nYour Password has been Reset to ".$result['patient_id']." successfully \nRegards,
+Asiya Centre of Physiotherapy and Rehabilitation";
 							if(!empty($to_email)){
 								//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg);
 

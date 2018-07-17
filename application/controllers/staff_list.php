@@ -103,7 +103,7 @@ class Staff_list extends MY_Controller
 		$data['s_username'] = $data['staff_id'];
 		//$data['s_password'] = md5($data['staff_id']);
 
-		$data['s_password'] = $data['staff_id'];
+		$data['s_password'] = $data['s_contact_no'];
 
 		$data['user_type'] = 'S';	// default user type Staff
 		$data['user_status'] = 'A';	// default user Status Active
@@ -194,7 +194,7 @@ class Staff_list extends MY_Controller
 
 				$msg = $html;
 
-			//	$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+				$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
 			}
 
 			/****************** Send Email *************************/
@@ -206,7 +206,7 @@ class Staff_list extends MY_Controller
 			{
 				$patient_contact_no = $data['s_contact_no'];
 
-				$msg = 'Hello '.$staff_name.', Your Registration is Successful. Login Details : Username - '.$data['staff_id'].', Password : '.$data['staff_id'].'. Thanks, - Clinic Management System.';
+				$msg = 'Hello '.$staff_name.', Your Registration is Successful. Login Details : Username - '.$data['staff_id'].', Password : '.$data['s_contact_no'].'. Thanks, - Clinic Management System.';
 
 				$res = $this->mastermodel->send_sms($patient_contact_no, $staff_name, $msg);
 			}

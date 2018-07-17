@@ -34,8 +34,10 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										
-										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Exercise Program </b></h3>
+										<a href="<?php echo base_url().'exercise_program'; ?>" type="button" class="btn btn-default btn-sm">
+								          <span class="glyphicon glyphicon-arrow-left "></span> Back
+								        </a>
+										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-edit"></i> <b>Edit Exercise Program </b></h3>
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">
@@ -43,25 +45,34 @@
 											<input type="hidden" id="exercise_id" name="exercise_id" class="form-control validate[required]" value="<?php echo $r->exercise_id; ?>" />
 
 											<div class="form-group">
-												<div class="col-sm-7">
+												<div class="col-sm-4">
 													<label class="col-md-4 control-label">Patient Name </label>
-													<div class="col-sm-7">
+													<div class="col-sm-6">
 													<input type="text" class="form-control" disabled value=" <?php $r1 = $this->db->get_where('contact_list', array('patient_id' => $r->patient_id))->row(); echo $r1->p_fname.' '.$r1->p_lname; ?>">
 														<input type="hidden" name="patient_id" id="patient_id" value="<?php echo $r->patient_id; ?>" />
 													</div>
 												</div>
 
-												<div class="col-sm-5">
-													<label class="col-sm-4 control-label">Date of Upload</label>
-													<div class="col-sm-5">
+												<div class="col-sm-4">
+													<label class="col-sm-4 control-label">Start Date</label>
+													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 															<input type="text" class="form-control datepicker" name="date_of_upload" value="<?php echo date("d-m-Y",strtotime($r->date_of_upload)); ?>">
 														</div><!-- input-group -->
 													</div>
 												</div>
+											
+												<div class="col-sm-4">
+												<label class="col-sm-4 control-label">File Expiry Date </label>
+													<div class="col-sm-6">
+														<div class="input-group">
+															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+															<input type="text" class="form-control datepicker" name="expiry_date" id="expiry_date" value="<?php echo date("d-m-Y",strtotime($r->expiry_date)); ?>">
+														</div><!-- input-group -->
+													</div>
+												</div>
 											</div><!-- form-group -->
-
 											<hr />
 											<h4><b><u>Exercise Program </u></b></h4>
 
@@ -74,17 +85,7 @@
 												</div>
 											</div><!-- form-group -->
 
-											<div class="form-group">
-												<div class="col-sm-12">
-												<label class="col-md-2 control-label">File Expiry Date </label>
-													<div class="col-sm-4">
-														<div class="input-group">
-															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="expiry_date" id="expiry_date" value="<?php echo date("d-m-Y",strtotime($r->expiry_date)); ?>">
-														</div><!-- input-group -->
-													</div>
-												</div>
-											</div><!-- form-group -->
+											
 
 
 

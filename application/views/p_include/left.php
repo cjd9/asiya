@@ -3,7 +3,10 @@
 		<div class="leftpanel">
 			<div class="media profile-left">
 				<a class="pull-left profile-thumb" href="#">
-					<img class="img-circle" src="<?php print base_url(); ?>images/men.png"/>
+                                           <div class="overflow-hidden profile-pic-preview-wrapper border-radius-50 teel">
+     
+                  <img class="profile-pic" <?php echo $this->session->userdata('user_type') ? 'has-profile-pic' : '' ?> src="<?php echo $this->session->userdata('userid') ? base_url(PROFILE_PIC_UPLOAD_PATH . $this->session->userdata('patient_id') . '.jpg') : base_url('public/images/avatar2.png') ?>" old-src="<?php echo $this->session->userdata('userid') ? base_url(PROFILE_PIC_UPLOAD_PATH . $this->session->userdata('userid') . '.jpg') : base_url('public/images/avatar2.png') ?>" onerror="this.src='/images/default_man_photo.jpg';"/>
+              </div>
 				</a>
 				<div class="media-body">
 					<h4 class="media-heading"><b><?php echo $this->session->userdata('first_name').' '.$this->session->userdata('last_name'); ?></b></h4>

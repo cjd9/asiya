@@ -29,15 +29,19 @@
 
 
                     <div class="contentpanel">
-                      <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
-                  <?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>  
-                      <div class="alert alert-success">
-                        <strong>Activity <?php echo $row->activity_id  ?></strong>   <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>activity_program/view/<?php echo $row->activity_id; ?>" >Read more >>></a>
+                        <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
-                      </div>
+                     <div class="alert alert-success">
+                        <strong>Activity </strong>
+                       <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
+                  <?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>
+
+                          <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >></a>
+
+
                    <?php } endforeach ; ?>
+                   </div>
 
-                     <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 
                         <div align="center">

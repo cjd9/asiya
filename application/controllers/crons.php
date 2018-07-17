@@ -37,6 +37,15 @@ class Crons extends CI_Controller
 		$this->load->view('cron/list',$data);
 	}
 
+	function testCron(){
+		$insert = array('title'=>'Test cron'
+							);
+
+		    $res = $this->db->insert('cron_log', $insert);
+			$insert_id =  $this->db->insert_id();
+
+	}
+
 
 
 	function sendAppointmentReminder()
@@ -48,15 +57,11 @@ class Crons extends CI_Controller
 
 		$data = $this->mastermodel->get_data('*', 'appointment_schedule', $where, NULL, NULL, 0, NULL)->result_array();
 		print_r($data);
-		$sub = 'CONFIRMATION OF YOUR APPOINTMENT.';
+	
 
 		if(!empty($data))
 		{
-			$insert = array('title'=>$sub
-							);
-
-		    $res = $this->db->insert('cron_log', $insert);
-			$insert_id =  $this->db->insert_id();
+			
 
 			foreach($data as $row)
 			{
@@ -65,6 +70,13 @@ class Crons extends CI_Controller
 				/********** send Email **************/
 
 				$res = FALSE;
+
+					$sub = 'CONFIRMATION OF YOUR APPOINTMENT.';
+		    $insert = array('title'=>$sub
+							);
+
+		    $res = $this->db->insert('cron_log', $insert);
+			$insert_id =  $this->db->insert_id();
 
 				// check if existing patient appointment -
 				$rsappointment = $this->db->query("SELECT * FROM appointment_schedule WHERE pk = $appointment_id");
@@ -108,9 +120,8 @@ class Crons extends CI_Controller
 
 							//$msg = 'Hello, <br><br> Your Appointement Booked Successfully. <br><br> Thanks, - Clinic Management System.';
 
-							$html = 'RESPECTED '.$patient_name.'<br><br>';
+							$html = 'DEAR '.$patient_name.'<br><br>';
 							$html .= 'YOUR  PHYSIOTHERAPY APPOINTMENT WITH US DATED ON '.$appointment_date.' AT '.$appointment_time.' IS CONFIRMED. <br><br>';
-							$html .= 'YOU CAN ALSO VIEW YOUR NEXT SCHEDULED APPOINTMENTS AND CANCEL YOUR OWN APPOINMENT BY LOGGIN INTO OUR WEBSITE ASIYA.CO.IN BY CLICKING ON APPOINTMENTS. <br> KINDLY DO THIS BEFORE END OF WORKING HOURS OF THE PREVIOUS DAY SO AS TO HELP US PLAN OUR APPOINTMENTS ACCORDINGLY. <br><br>';
 							$html .= 'FOR ANY QUERIES OR CANCELLATION PLEASE CALL US ON 40067272 OR VIST OUR WEBSITE ASIYA.CO.IN <br><br><br><br>';
 							$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION <br> 101-B ANJALI BUILDING <br> FRENCH BRIDGE, OPERA HOUSE <br> MUMBAI-400007';
 
@@ -141,7 +152,7 @@ class Crons extends CI_Controller
 
 						//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Centre of Physiotherapy and Rehabilitation.';
 
-						$msg = "Hello ".$patient_name.", A Reminder, Your Appointment today  at ".$appointment_time." is scheduled.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
+						$msg = "Dear ".$patient_name.", \nYou have an Upcoming Appointment for tomorrow  at ".$appointment_time." is scheduled.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
 
 						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 						if($res_sms)
@@ -182,20 +193,20 @@ class Crons extends CI_Controller
 
 		$result = $this->mastermodel->get_data('*', 'contact_list', $where, NULL, NULL, 0, NULL)->result_array();
 
-		$sub = 'Birthday Greetings.';
-
-		$insert = array('title'=>$sub
-						);
-
-		$rep = $this->db->insert('cron_log', $insert);
-		$insert_id =  $this->db->insert_id();
+		
 
 
 		if(!empty($result))
 		{
 				foreach($result as $data)
 			{
+					$sub = 'Birthday Greetings.';
 
+					$insert = array('title'=>$sub
+									);
+
+					$rep = $this->db->insert('cron_log', $insert);
+					$insert_id =  $this->db->insert_id();
 					/****************** Send Email *************************/
 
 					$patient_name = $data['p_fname'].' '.$data['p_lname'];
@@ -242,7 +253,7 @@ class Crons extends CI_Controller
 					{
 						$patient_contact_no = $data['p_contact_no'];
 
-						$msg = 'Hello '.$patient_name.',From all of us here we would like to wish you A VERY HAPPY BIRTHDAY.  - Asiya Clinic Management System.';
+						$msg = 'Dear '.$patient_name.',\nWish you many many happy returns of the day!  - \nRegards, \nDr Dhairav Shah, \nAsiya Centre of Physiotherapy and Rehabilitation.';
 
 						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 						if($res_sms)
@@ -261,42 +272,58 @@ class Crons extends CI_Controller
 	function sendFestivalGreeting()
 	{
 		$today = date('Y-m-d');
-		$today = '2018-12-25';
 
 		$where = array("date" =>  $today );
 //    public function get_data($fields = '*', $table, $conditions = NULL, $joins = NULL, $order = NULL, $start = 0, $limit = NULL)
 		$joins = "'religion', 'religion.pk = religious_festivals.id'";
 
-		$result = $this->db->query("SELECT * FROM (`religious_festivals`)
-			JOIN religion ON religion.pk = religious_festivals.religion_id
-			left JOIN contact_list ON contact_list.p_religion_id = religious_festivals.religion_id
+		// $result = $this->db->query("SELECT * FROM (`religious_festivals`)
+		// 	JOIN religion ON religion.pk = religious_festivals.religion_id
+		// 	left JOIN contact_list ON contact_list.p_religion_id = religious_festivals.religion_id
 
+		// 	 WHERE `date` ='".$today."'")->result_array();
+
+		$result = $this->db->query("SELECT * FROM (`religious_festivals`) 
 			 WHERE `date` ='".$today."'")->result_array();
 
-			 $sub = 'Religion Greetings.';
-
-			 $insert = array('title'=>$sub
-			 				);
-
-			 $rep = $this->db->insert('cron_log', $insert);
-			 $insert_id =  $this->db->insert_id();
+			 ;
 			 
 		if(!empty($result))
 		{
 				foreach($result as $data)
-			{
+			{			
+				$id_arr = explode(",",$data['religion_id']);
+				foreach($id_arr as $rid){
+					if($data['religion_id'] == '10'){
+						$list_data = $this->db->query("SELECT * FROM (`contact_list`)
+							JOIN religion ON religion.pk = contact_list.p_religion_id
+						where is_deleted = 0")->result_array();
+					}
+					else{
+						$list_data = $this->db->query("SELECT * FROM (`contact_list`)
+							JOIN religion ON religion.pk = contact_list.p_religion_id
+						where is_deleted = 0 and p_religion_id =  $rid")->result_array();
+					}
 
-					/****************** Send Email *************************/
+					 	foreach($list_data as $list){
+					 	/****************** Send Email *************************/
+					 	$sub = 'Religion Greetings.';
 
-					$patient_name = $data['p_fname'].' '.$data['p_lname'];
+						 $insert = array('title'=>$sub
+						 				);
+
+						 $rep = $this->db->insert('cron_log', $insert);
+						 $insert_id =  $this->db->insert_id();
+
+					 		$patient_name = $list['p_fname'].' '.$list['p_lname'];
 
 					// check patient's email is present -
-					if($data['p_email_id'] != '')
+					if($list['p_email_id'] != '')
 					{
-						$to_email = $data['p_email_id'];
+						$to_email = $list['p_email_id'];
 						$to_name = $patient_name;
 
-						$sub = $data['religion'].' Greetings.';
+						$sub = $list['religion'].' Greetings.';
 
 						/*$msg = 'Hello <b>'.$patient_name.'</b>, <br><br>';
 						$msg .= 'Your Registration is successful. <br><br>';
@@ -312,7 +339,13 @@ class Crons extends CI_Controller
 
 						$msg = $html;
 
-						//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+						$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+						if($res_email)
+						{
+							$update = array('email'=>$msg, 'mail_sent'=>'1','patient_name'=>$to_name);
+							$this->db->where('pk', $insert_id);
+							$this->db->update('cron_log', $update);
+						}
 					}
 
 					/****************** Send Email *************************/
@@ -320,15 +353,25 @@ class Crons extends CI_Controller
 					/************************* send SMS *********************/
 
 					// check if patient's contact no. is present -
-					if($data['p_contact_no'] != '')
+					if($list['p_contact_no'] != '')
 					{
-						$patient_contact_no = $data['p_contact_no'];
+						$patient_contact_no = $list['p_contact_no'];
 
-						$msg = 'Hello '.$patient_name.' '.$data['message'].'  - Asiya Clinic Management System.';
+						$msg = 'Dear '.$patient_name.'\n '.$data['message'].'  - Asiya Clinic Management System.';
 
-						$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
-						print_r( $res);
+						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
+						if($res_sms)
+						{
+								$update = array('sms'=>$msg, 'sms_sent'=>'1','patient_name'=>$patient_name);
+								$this->db->where('pk', $insert_id);
+								$this->db->update('cron_log', $update);
+						}
 					}
+					 	}
+					
+				}
+					
+
 			}
 		}
 

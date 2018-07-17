@@ -355,7 +355,7 @@ class Contact_list extends MY_Controller
 				{
 					$patient_contact_no = $data['p_contact_no'];
 
-					$msg = 'Hello '.$patient_name.', Your Registration is Successful. Login Details : Username - '.$data['p_contact_no'].', Password : '.$patient_id.'. Thanks, - Clinic Management System.';
+					$msg = 'Hello '.$patient_name.', Your Registration is Successful. \nLogin Details : \nUsername - '.$data['p_contact_no'].', \nPassword : '.$patient_id.'.\nLink: http://clinic.asiya.co.in \n Thanks, - Clinic Management System.';
 
 					$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 				}

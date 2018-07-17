@@ -24,7 +24,6 @@ select {
     -moz-appearance: none;
     appearance: none;
     padding: 5px;
-
     width: 156.8px;
 }
 
@@ -40,11 +39,11 @@ select {
 			<div align="center" style="margin-top:3%">
 <!-- 				<h1 class="style1" style="text-transform:uppercase"> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
  -->			</div>
-		<div class="panel panel-signin" style="background-color: white;width: 425px;">
+		<div class="panel panel-signin" style="background-color: white; max-width: 425px;">
 
 				<div class="panel panel-signin">
 					<div class="panel-body">
-						<div class="logo text-center" style="margin-top:-110px">
+						<div class="logo text-center">
 							<img src="<?php print base_url(); ?>images/Asiya.png">
 							<h3 class="text-left" style="font-weight:500">Login</h3>
 						</div>

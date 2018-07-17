@@ -62,7 +62,7 @@ URL: http://themepixels.com/
 body {
     font-size: 13px;
     /*color: #636E7B;*/
-	color:#000000;
+    color:#000000;
     background-color: #fff;
 }
 
@@ -418,8 +418,8 @@ a:focus {
 
 .leftpanel {
     width: 230px;
-    position: fixed;	/* Position changes from absolute to fixed. Change by - Bhagwan Sahane, Date - 19-03-2015 */
-    top: 50;			/* changes from 0 to 50. Change by - Bhagwan Sahane, Date - 19-03-2015 */
+    position: fixed;    /* Position changes from absolute to fixed. Change by - Bhagwan Sahane, Date - 19-03-2015 */
+    top: 50;            /* changes from 0 to 50. Change by - Bhagwan Sahane, Date - 19-03-2015 */
     left: 0;
 }
 
@@ -1128,6 +1128,7 @@ a:focus {
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0;
+    margin-bottom: 15px;
 }
 
 .btn-group .btn.btn-bordered + .btn.btn-bordered,
@@ -2987,19 +2988,21 @@ table.dataTable.dtr-inline.collapsed tbody th:first-child:before {
 /***** 9.7 SIGN IN/UP PAGE *****/
 
 body.signin {
-    /*background-color: #8cac35;*/
-    background-image:url(../images/fpaswd.jpg);
-    background-repeat:no-repeat;
-	background-size: 100%;
-	}
+  background: url(../images/fpaswd.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden
+}
 
 .panel-signin,
 .panel-signup {
-    margin: 80px auto 0 auto;
+    margin: 0 auto 0 auto;
 }
-
 .panel-signin {
-    width: 400px;
+    max-width: 400px;
 }
 
 .panel-signup {
@@ -3008,7 +3011,8 @@ body.signin {
 
 .panel-signin .panel-body,
 .panel-signup .panel-body {
-    padding: 40px;
+    /*padding: 40px;*/
+    padding: 40px 15px 7px 15px;
 }
 
 .panel-signin .panel-footer,
@@ -3645,6 +3649,12 @@ body.signin {
     .panel-signup .btn.btn-success {
         width: 100%;
     }
+}
+@media only screen and (max-width: 767px) {
+    /* phones */
+    /*.signin {*/
+    /*    display:none;*/
+    /*}*/
 }
 
 @media screen and (max-width: 320px) {
