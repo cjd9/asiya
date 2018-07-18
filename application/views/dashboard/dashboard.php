@@ -30,7 +30,7 @@
 
                     <div class="contentpanel">
                         <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-
+                  <?php if(!empty($rsactivity_program)){ ?>
                      <div class="alert alert-success">
                         <strong>Activity </strong>
                        <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
@@ -39,13 +39,14 @@
                           <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >></a>
 
 
-                   <?php } endforeach ; ?>
+                   <?php } endforeach ;  ?>
+
                    </div>
 
-
+                 <?php } ?>
 
                         <div align="center">
-                          <?php if($rspatient_enquiry['count'] != 0) 
+                          <?php if($rspatient_enquiry['count'] != 0)
                           { ?>
 							             <div class="alert alert-info">
                         <strong>New Patient Inquiry </strong>   <br>You have <?php echo $rspatient_enquiry['count']?> pending inquiry from your patient....<a href="<?php print base_url(); ?>patient_enquiry" >Inqury page</a>
@@ -95,11 +96,11 @@
 
                       <?php if(!empty($today_appointment)) {
                            foreach($today_appointment as $today){ ?>
-                            <div class="card col-md-3" id="today_appiontments">
+                            <div class="card col-md-4" id="today_appiontments">
                               <img src="/patient_upload_data/<?php echo $today['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
 
                                 <h6 class="text-center"><b><?php echo $today['p_fname'];  ?></b></h6>
-                                <p style ="font-size:11px"><?php echo $today['time_slot'];  ?></p>
+                                <p class= "text-center" style ="font-size:11px"><?php echo $today['time_slot'];  ?></p>
 
 
                             </div>
@@ -113,10 +114,10 @@
                        <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Tomorrows's Appointments</h4>
                        <?php if(!empty($tomorrow_appointment)) {
                          foreach($tomorrow_appointment as $tomorrow){ ?>
-                         <div class="card col-md-3" >
+                         <div class="card col-md-4" >
                            <img src="/patient_upload_data/<?php echo $tomorrow['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
                              <h6 class="text-center"><b><?php echo $tomorrow['p_fname'];  ?></b></h6>
-                             <p style ="font-size:11px"><?php echo $tomorrow['time_slot'];  ?></p>
+                             <p class= "text-center" style ="font-size:11px"><?php echo $tomorrow['time_slot'];  ?></p>
 
                         </div>
                       <?php  }
@@ -143,25 +144,25 @@
 
                   <div class="col-sm-6">
                     <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Treatments vs Distinct Patients <button class="bg-green pull-right" data-toggle="collapse" data-target="#areachart" ><i class="fa fa-minus"></i></button></h4>
-                     <div class="collapse" id="areachart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
+                     <div class="collapse" id="areachart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
                  </div>
                   <div class="col-sm-6">
                     <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Working Days <button class="bg-green pull-right" data-toggle="collapse" data-target="#areachart" ><i class="fa fa-minus"></i></button></h4>
-                     <div class="collapse" id="areachart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
+                     <div class="collapse" id="areachart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
                  </div>
-                  
+
                 </div>
                 <div class ="row chart">
 
                   <div class="col-sm-12">
                     <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Weekly Fee Collection <button class="bg-green pull-right" data-toggle="collapse" data-target="#line-chart-week" ><i class="fa fa-minus"></i></button></h4>
-                      <div id="line-chart-week" class="collapse" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+                      <div id="line-chart-week" class="collapse" style="min-width: 310px; max-width: 100%; height: 400px; margin: 0 auto"></div>
 
                  </div>
-                  
-                  
+
+
                 </div>
                     </div><!-- contentpanel -->
 
@@ -294,6 +295,9 @@ Highcharts.chart('line-chart-week', {
   },
   subtitle: {
     text: 'Monthly Report'
+  },
+  credits: {
+    enabled: false
   },
   xAxis: {
     categories: [ '1', '2', '3', '4' ,'5' ,'6' ,'7' ,'8' ,'9' ,'10' ,'11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52'

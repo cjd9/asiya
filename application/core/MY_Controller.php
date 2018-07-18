@@ -242,4 +242,34 @@ class MY_Controller extends CI_Controller
 		$rspatient = $this->db->query("SELECT patient_id FROM contact_list WHERE pk = '$user_id' and  is_deleted = 0")->row_array();
 		return $rspatient['patient_id'];
 	}
+	function getPatientIdFromMobile($mobile)
+	{
+		$rspatient = $this->db->query("SELECT patient_id FROM contact_list WHERE p_contact_no = '$mobile' and  is_deleted = 0")->row_array();
+		if(!empty($rspatient)){
+			return $rspatient['patient_id'];
+		}else{
+			return '';
+		}
+
+	}
+
+	function get_content_by_curl($url, $data) {
+			 $userAgent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0';
+			 $process = curl_init($url);
+			 curl_setopt($process, CURLOPT_TIMEOUT, 0);
+			 curl_setopt($process, CURLOPT_CONNECTTIMEOUT, 10);
+			 curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
+			 curl_setopt($process, CURLOPT_FOLLOWLOCATION, 1);
+
+			 if (!empty($data)) {
+					 curl_setopt($process, CURLOPT_POST, true);
+					 curl_setopt($process, CURLOPT_POSTFIELDS, $data);
+			 }
+			 curl_setopt($process, CURLOPT_USERAGENT, $userAgent);
+			 $contents = curl_exec($process);
+			// var_dump(curl_error($process));die;
+			 curl_close($process);
+
+			 return $contents;
+	 }
 }

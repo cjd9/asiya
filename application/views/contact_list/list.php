@@ -146,7 +146,7 @@
                                 <tbody>
 								<?php $cnt = 0; foreach($rscontact_list->result() as $row) : ?>
 								   <tr>
-										
+
                                         <td><?php echo $row->patient_id; ?></td>
                                         <td><?php echo ucwords($row->p_fname.' '.$row->p_mname.' '.$row->p_lname); ?></td>
 										<td><?php echo $row->p_contact_no; ?></td>
@@ -226,7 +226,69 @@
 
 
 	 <script>
+   $(document).ready(function()
+   {
+   // function to update the patient status -
+   $("span.status").click( function () {
 
+      var status_field = $(this);
+
+      var patient_status = status_field.text();
+      var id = status_field.attr("id");
+
+      //alert(patient_status);
+      //alert(id);
+
+
+      bootbox.confirm({
+             title: "Update Patient?",
+             message: "You want to Update Status of this Patient?.",
+             buttons: {
+                 cancel: {
+                     label: '<i class="fa fa-times"></i> Cancel'
+                 },
+                 confirm: {
+                     label: '<i class="fa fa-check"></i> Confirm'
+                 }
+             },
+             callback: function (result) {
+                 if(result)
+               {
+                     $.ajax({
+                           url: "/contact_list/update_status",
+                           type: "post",
+                           async:false,
+                           cache:false,
+                           //dataType:'json',
+                           data:{ id:id, patient_status:patient_status },
+                           success: function (res)
+                           {
+                              //alert(res);
+
+                              // check if user status is successfully updated -
+                              if(res != 0)
+                              {
+                                 // change the label of status updated -
+                                 if(patient_status == 'Active')
+                                 {
+                                    status_field.text('Inactive').removeClass('label-success').addClass('label-danger');
+                                 }
+                                 else
+                                 {
+                                    status_field.text('Active').removeClass('label-danger').addClass('label-success');
+                                 }
+                              }
+                           }
+                     });
+              }
+             }
+         });
+
+
+
+   });
+
+ });
 	</script>
 
     </body>

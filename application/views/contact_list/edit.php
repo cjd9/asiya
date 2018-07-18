@@ -102,7 +102,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="p_dob" id="p_dob" value="<?php echo date("d-m-Y",strtotime($r->p_dob)); ?>">
+															<input type="text" class="form-control" name="p_dob" id="p_dob" value="<?php echo date("d-m-Y",strtotime($r->p_dob)); ?>">
 														</div><!-- input-group -->
 													</div>
 												</div>
@@ -145,6 +145,12 @@
 													<label class="col-md-3 control-label">Occupation</label>
 													<div class="col-sm-6">
 														<input type="text" id="" name="p_occupation" class="form-control" value="<?php echo $r->p_occupation; ?>"/>
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<label class="col-sm-4 control-label">Age</label>
+													<div class="col-sm-6">
+														<input type="text" id="p_age" class="form-control validate[required]" readonly/>
 													</div>
 												</div>
 
@@ -316,10 +322,24 @@
 					}
 			});
 
-			
+
 			});
 			/*$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy' });
 			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy'});*/
+
+			$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy',maxDate:0 ,changeMonth: true,
+				changeYear: true,yearRange: "-100:+0"});
+				$('#p_dob').on('change', function() {
+							   dob = new Date($(this).val());
+								 birth_date = new Date(dob);
+								 birth_year = birth_date.getFullYear();
+								 birth_month = birth_date.getMonth();
+								 birth_day = birth_date.getDate();
+								var age = calculate_age(birth_date,birth_month,birth_year)
+								setTimeout(function(){
+									$('#p_age').val(age);
+				        }, 1000);
+							})
 
 			// select box validations -
 			$('#add_patient_form').on('submit', function() {

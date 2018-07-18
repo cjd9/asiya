@@ -77,14 +77,14 @@ select {
 							</div><!-- input-group -->
 						<div class="clearfix mb15">
 							<div class="pull-right">
-									<button type="submit" class="btn btn-success btn-metro" style="color: white;"><b>SIGN IN</b></button>
+									<button  id="btn_submit" class="btn btn-success btn-metro" style="color: white;"><b>SIGN IN</b></button>
 								</div>
 								<div class="pull-left">
 									<a class="btn btn-metro" href="/login/forgot_password" style="color: black;"><b>Forgot Password?</b></a>
 								</div>
 						</div>
 
-						
+
 
 
 						</form>
@@ -106,12 +106,18 @@ select {
 	<script src="<?php print base_url(); ?>js/custom.js"></script>
   <script>
 
-    $('body').on('click','#select_form',function(){
-       $('#main_form').attr('action',$(this).val())
-});
-    $('body').on('tabs','#select_form',function(){ alert()
-       $('#main_form').attr('action',$(this).val())
-});
+
+
+
+    $('body').on('click','#btn_submit',function(e){
+
+      $('#main_form').attr('action',$('#select_form').val());
+      $('#main_form').submit();
+
+      e.preventDefault();
+
+
+    });
   </script>
 
 	</body>

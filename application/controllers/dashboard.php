@@ -235,10 +235,16 @@ class Dashboard extends MY_Controller
 		$tomorrow = date("Y-m-d", strtotime("+1 day"));
 		$data['birthday_today'] = $this->db->query("SELECT * FROM contact_list WHERE DATE_FORMAT(p_dob, '%m-%d') = '$bday' and is_deleted = 0")->result_array();
 		$data['festival_today'] = $this->db->query("SELECT * FROM religious_festivals WHERE date= '$today' and is_deleted = 0")->result_array();
+		if($this->session->userdata('user_type')=='S'){
+			$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
+			$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
+		}else{
+			$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today'  AND is_deleted = 0")->result_array();
 
-		$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
-		$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
-		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 group by activity_id,pk");
+			$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow'  AND is_deleted = 0")->result_array();
+
+		}
+		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 and CURDATE() <= expiry_date  group by activity_id,pk ");
 		$pk = $this->session->userdata("userid");
 
 		$work_shift = $this->db->query("SELECT s_work_shift FROM staff_details WHERE pk = $pk")->row()->s_work_shift;
@@ -264,6 +270,16 @@ class Dashboard extends MY_Controller
 		 $this->load->view('include/footer');
 
 	}
+
+	  function getSmsBalance()
+		{
+			$res = $this->get_content_by_curl('http://sms6.routesms.com:8080/CreditCheck/checkcredits?username=asiyac&password=asi65yac','');
+			$ex = explode(":",$res);
+			$data['sms_bal'] = round($ex[1] / 0.15);
+			$this->load->view('include/header');
+	$this->load->view('include/left');
+			$this->load->view('dashboard/smsbalance',$data);
+		}
 /*-----------------------------------------------------Start Dashboard--------------------------------------------------*/
 }
 ?>

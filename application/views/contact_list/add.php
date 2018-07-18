@@ -354,15 +354,20 @@
 			//$("#add_patient_form").validationEngine({promptPosition: "topRight: -100"});
 
 			$("#p_dob").datepicker({ dateFormat: 'dd-mm-yy',maxDate:0 ,changeMonth: true,
-				changeYear: true}); 
+				changeYear: true,yearRange: "-100:+0"});
 			$("#date_of_registration").datepicker({dateFormat:'dd-mm-yy',maxDate:0,changeMonth: true,
 				changeYear: true});
 
 			$('#p_dob').on('change', function() {
 			   dob = new Date($(this).val());
-				var today = new Date();
-				var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
-				$('#p_age').val(age);
+				 birth_date = new Date(dob);
+				 birth_year = birth_date.getFullYear();
+				 birth_month = birth_date.getMonth();
+				 birth_day = birth_date.getDate();
+				var age = calculate_age(birth_date,birth_month,birth_year)
+				setTimeout(function(){
+					$('#p_age').val(age);
+        }, 1000);
 			})
 						// select box validations -
 			$('#add_patient_form').on('submit', function()
@@ -449,7 +454,24 @@
 
 			});
 
+			function calculate_age(birth_day,birth_month,birth_year)
+				{
+					today_date = new Date();
+			    today_year = today_date.getFullYear();
+			    today_month = today_date.getMonth();
+			    today_day = today_date.getDate();
+			    age = today_year - birth_year;
 
+			    if ( today_month < (birth_month - 1))
+			    {
+			        age--;
+			    }
+			    if (((birth_month - 1) == today_month) && (today_day < birth_day))
+			    {
+			        age--;
+			    }
+			    return age
+				}
 
 
 		});
