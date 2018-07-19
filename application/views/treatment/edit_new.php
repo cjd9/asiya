@@ -103,18 +103,8 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 									<div class="col-sm-6">
 										<label class="col-sm-3 control-label">Patient Name<span class="asterisk">*</span></label>
 										<div class="col-sm-8">
-											<select id="patient_id" disabled name="patient_id" data-placeholder="Choose Patient " class="select2-container width100p">
-												<option value=""></option>
-												<?php foreach ($rscontact_list->result() as $r1)
-													{
-												?>
-												<option value="<?php echo $r1->patient_id; ?>" <?php if($r1->patient_id == $r->patient_id) { ?> selected="selected" <?php } ?>>
-													<?php echo $r1->p_fname.' '.$r1->p_mname.' '.$r1->p_lname; ?>
-												</option>
-												<?php
-													}
-												?>
-											</select>
+										    <input type="text" class="form-control" disabled value=" <?php $r1 = $this->db->get_where('contact_list', array('patient_id' => $r->patient_id))->row(); echo $r1->p_fname.' '.$r1->p_lname; ?>">
+
 											<span id="msg1" class="" style="color:#FF0000"></span>
 										</div>
 									</div>

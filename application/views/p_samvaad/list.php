@@ -53,7 +53,7 @@
 			                            <div class="col-sm-6" >
 			                            	<h6 class=""><b><?php echo $row->title; ?></b></h6>
 
-											<p class=""><?php echo substr(strip_tags($row->education_program_desc), 0, 100);  ?></p>
+											<p class=""><?php echo substr(strip_tags($row->education_program_desc), 0, 50);  ?></p>
 											<a class="btn btn-primary" href="/p_samvaad/view/<?php echo $row->pk; ?>">Read more>> </a>
 			                            </div>
 			                         </div>
