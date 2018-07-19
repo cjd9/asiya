@@ -245,6 +245,7 @@ class Dashboard extends MY_Controller
 
 		}
 		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 and CURDATE() <= expiry_date  group by activity_id,pk ");
+	//	print_r($data['rsactivity_program']->result_array()); die;
 		$pk = $this->session->userdata("userid");
 
 		$work_shift = $this->db->query("SELECT s_work_shift FROM staff_details WHERE pk = $pk")->row()->s_work_shift;

@@ -31,17 +31,16 @@ class Contact_list extends MY_Controller
 			{
 				$where = array('contact_list.is_deleted' => 0);
 
-				$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', $where, NULL, NULL, 0, NULL);
+				$data['rscontact_list'] = $this->mastermodel->get_data('*,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age ', 'contact_list', $where, NULL, NULL, 0, NULL);
 				$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type= "S"', NULL, NULL, 0, NULL);
 
 			}
 			elseif($this->session->userdata('user_type')=='S'){
-				$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+				$data['rscontact_list'] = $this->db->query("SELECT *,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
 
 				// get active staff list -
 				$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type= "S"', NULL, NULL, 0, NULL);
 	   }
-
 
 
 		 $this->load->view('include/header');
@@ -71,7 +70,7 @@ class Contact_list extends MY_Controller
 		$where = array('pk' => $pk);
 
 		// get data from table -
-		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', $where, NULL, NULL, 0, NULL);
+		$data['rscontact_list'] = $this->mastermodel->get_data('*,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age ', 'contact_list', $where, NULL, NULL, 0, NULL);
 
 		$data['rsreligion'] = $this->mastermodel->get_data('*', 'religion', NULL, NULL, NULL, 0, NULL);
 
@@ -87,7 +86,7 @@ class Contact_list extends MY_Controller
 		$where = array('pk' => $pk);
 
 		// get data from table -
-		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', $where, NULL, NULL, 0, NULL);
+		$data['rscontact_list'] = $this->mastermodel->get_data('*,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age ', 'contact_list', $where, NULL, NULL, 0, NULL);
 
 		$data['rsreligion'] = $this->mastermodel->get_data('*', 'religion', NULL, NULL, NULL, 0, NULL);$this->load->view('contact_list/edit_new',$data);
 	}

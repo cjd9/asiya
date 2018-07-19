@@ -53,7 +53,7 @@ class Crons extends CI_Controller
 		$today = date('Y-m-d');
 		$tomorrow = date("Y-m-d", strtotime("+1 day"));
 
-		$where = array('date_of_appointment' => $tomorrow,'is_delted' =>0);
+		$where = array('date_of_appointment' => $tomorrow,'is_deleted' =>0);
 
 		$data = $this->mastermodel->get_data('*', 'appointment_schedule', $where, NULL, NULL, 0, NULL)->result_array();
 		print_r($data);
@@ -108,11 +108,12 @@ class Crons extends CI_Controller
 						$appointment_time = $time_arr[0];
 
 						// get patient email id from contact list -
-						$rspatient = $this->db->query("SELECT * FROM contact_list WHERE p_fname = '$p_fname' AND p_lname = '$p_lname' AND p_contact_no = '$p_contact_no' AND is_deleted = 0");
-							//print_r($rspatient->row());
+						$rspatient = $this->db->query("SELECT * FROM contact_list WHERE  p_contact_no = '$p_contact_no' AND is_deleted = 0");
+					
 						if($rspatient->num_rows() > 0)
 						{
 							$to_email = $rspatient->row()->p_email_id;
+							
 
 							$to_name = $p_fname.' '.$p_lname;
 
@@ -129,14 +130,14 @@ class Crons extends CI_Controller
 							$msg = $html;
 
 
-
+    
 							// send email to patient, function defined below -
-							//$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
+							$res_email = $this->mastermodel->send_mail($to_email, $p_fname, $sub, $msg, '', '');
 							if($res_email)
 							{
-								$update = array('email'=>$msg, 'mail_sent'=>'1','patient_name'=>$patient_name,'patient_id'=>$patient_id);
+								$update = array('email'=>$msg, 'email_sent'=>'1','patient_name'=>$patient_name,'patient_id'=>$patient_id);
 								$this->db->where('pk', $insert_id);
-		             $this->db->update('cron_log', $update);
+		                        $this->db->update('cron_log', $update);
 							}
 						}
 					}
@@ -237,7 +238,7 @@ class Crons extends CI_Controller
 						$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
 						if($res_email)
 						{
-							$update = array('email'=>$msg, 'mail_sent'=>'1','patient_name'=>$to_name);
+							$update = array('email'=>$msg, 'email_sent'=>'1','patient_name'=>$to_name);
 							$this->db->where('pk', $insert_id);
 							$this->db->update('cron_log', $update);
 						}
@@ -343,7 +344,7 @@ class Crons extends CI_Controller
 						$res_email = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', '');
 						if($res_email)
 						{
-							$update = array('email'=>$msg, 'mail_sent'=>'1','patient_name'=>$to_name);
+							$update = array('email'=>$msg, 'email_sent'=>'1','patient_name'=>$to_name);
 							$this->db->where('pk', $insert_id);
 							$this->db->update('cron_log', $update);
 						}
@@ -374,6 +375,17 @@ class Crons extends CI_Controller
 
 
 			}
+		}
+
+	}
+
+	function getPatientIdFromMobile($mobile)
+	{
+		$rspatient = $this->db->query("SELECT patient_id FROM contact_list WHERE p_contact_no = '$mobile' and  is_deleted = 0")->row_array();
+		if(!empty($rspatient)){
+			return $rspatient['patient_id'];
+		}else{
+			return '';
 		}
 
 	}

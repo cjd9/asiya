@@ -35,7 +35,7 @@
 
                     <div class="contentpanel">
                       <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-
+                      <?php if(!empty($rsactivity_program->result_array())){ ?>
                       <div class="alert alert-success">
                         <strong>Activity </strong>
                        <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
@@ -44,7 +44,10 @@
                           <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >></a>
 
 
-                   <?php } endforeach ; ?>
+                    <?php } endforeach ; ?>
+
+                   <?php } ?>
+
                    </div>
 
 

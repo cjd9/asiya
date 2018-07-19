@@ -272,4 +272,14 @@ class MY_Controller extends CI_Controller
 
 			 return $contents;
 	 }
+
+	 public function getAge($date='')
+	 {	
+	 	$date = $this->input->post('date');
+	 	$from = new DateTime($date);
+		$to   = new DateTime('today');
+
+		# procedural
+		echo json_encode( array('date'=>date_diff(date_create($date), date_create('today'))->y));
+	 }
 }

@@ -30,7 +30,7 @@
 
                     <div class="contentpanel">
                         <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-                  <?php if(!empty($rsactivity_program)){ ?>
+                  <?php if($rsactivity_program->num_rows() > 0){ ?>
                      <div class="alert alert-success">
                         <strong>Activity </strong>
                        <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
@@ -48,12 +48,12 @@
                         <div align="center">
                           <?php if($rspatient_enquiry['count'] != 0)
                           { ?>
-							             <div class="alert alert-info">
+                           <div class="alert alert-info">
                         <strong>New Patient Inquiry </strong>   <br>You have <?php echo $rspatient_enquiry['count']?> pending inquiry from your patient....<a href="<?php print base_url(); ?>patient_enquiry" >Inqury page</a>
 
                       </div>
                       <?php } ?>
-						     </div>
+                 </div>
 
                 <div class="row festival-bday">
                           <div class = "col-sm-6">

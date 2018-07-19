@@ -360,14 +360,20 @@
 
 			$('#p_dob').on('change', function() {
 			   dob = new Date($(this).val());
-				 birth_date = new Date(dob);
-				 birth_year = birth_date.getFullYear();
-				 birth_month = birth_date.getMonth();
-				 birth_day = birth_date.getDate();
-				var age = calculate_age(birth_date,birth_month,birth_year)
-				setTimeout(function(){
-					$('#p_age').val(age);
-        }, 1000);
+				 
+				  $.ajax({
+                            url: "/contact_list/getAge",
+                            type: "post",
+                           
+                            dataType:'json',
+                            data:{ date:$(this).val() },
+                            success: function (res)
+                            {
+                              	$('#p_age').val(res.date);
+
+                            }
+                      });
+				
 			})
 						// select box validations -
 			$('#add_patient_form').on('submit', function()

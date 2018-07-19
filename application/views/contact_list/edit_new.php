@@ -144,6 +144,12 @@
 														<input type="text" id="" disabled name="p_occupation" class="form-control validate[required]" value="<?php echo $r->p_occupation; ?>"/>
 													</div>
 												</div>
+												<div class="col-sm-6">
+													<label class="col-sm-4 control-label">Age</label>
+													<div class="col-sm-6">
+														<input type="text" id="p_age" value= "<?php echo $r->age; ?>" class="form-control validate[required]" readonly/>
+													</div>
+												</div>
 
 												
 											</div><!-- form-group -->
