@@ -1,10 +1,67 @@
 
        <style>
-               .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            border-radius: 5px; /* 5px rounded corners */
-        }
+       @media (min-width: 768px) {
+/* show 3 items */
+            .carousel-inner .active,
+            .carousel-inner .active + .item,
+            .carousel-inner .active + .item + .item {
+            display: block;
+            }
+
+            .carousel-inner .item.active:not(.item-right):not(.item-left),
+            .carousel-inner .item.active:not(.item-right):not(.item-left) + .item,
+            .carousel-inner .item.active:not(.item-right):not(.item-left) + .item + .item {
+            transition: none;
+            }
+
+            .carousel-inner .item-next,
+            .carousel-inner .item-prev {
+            position: relative;
+            transform: translate3d(0, 0, 0);
+            }
+
+            .carousel-inner .active.item + .item + .item + .item {
+            position: absolute;
+            top: 0;
+            right: -33.3333%;
+            z-index: -1;
+            display: block;
+            visibility: visible;
+            }
+
+            /* left or forward direction */
+            .active.item-left + .item-next.item-left,
+            .item-next.item-left + .item,
+            .item-next.item-left + .item + .item,
+            .item-next.item-left + .item + .item + .item {
+            position: relative;
+            transform: translate3d(-100%, 0, 0);
+            visibility: visible;
+            }
+
+            /* farthest right hidden item must be abso position for animations */
+            .carousel-inner .item-prev.item-right {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            display: block;
+            visibility: visible;
+            }
+
+            /* right or prev direction */
+            .active.item-right + .item-prev.item-right,
+            .item-prev.item-right + .item,
+            .item-prev.item-right + .item + .item,
+            .item-prev.item-right + .item + .item + .item {
+            position: relative;
+            transform: translate3d(100%, 0, 0);
+            visibility: visible;
+            display: block;
+            visibility: visible;
+            }
+      }
+
 
         /* Add rounded corners to the top left and the top right corner of the image */
         img {
@@ -29,14 +86,13 @@
 
 
                     <div class="contentpanel">
-                        <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
                   <?php if($rsactivity_program->num_rows() > 0){ ?>
                      <div class="alert alert-success">
                         <strong>Activity </strong>
                        <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
                   <?php if(!in_array($row->activity_id,$unique)){ $unique[] =$row->activity_id ; ?>
 
-                          <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>p_activity_program/view/<?php echo $row->activity_id; ?>" >Read more >></a>
+                          <br><?php echo substr($row->activity_program, 0, 100) ?> ....<a href="<?php print base_url(); ?>activity_program/view/<?php echo $row->activity_id; ?>" >Read more >></a>
 
 
                    <?php } endforeach ;  ?>
@@ -56,75 +112,202 @@
                  </div>
 
                 <div class="row festival-bday">
-                          <div class = "col-sm-6">
-                              <h4 class ="text-center panel-heading" style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Birthday's today</h4>
+                  <div class = "col-sm-6 container-fluid">
+                        <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Today's Birthday </h4>
 
-                      <?php if(!empty($birthday_today)) {
-                           foreach($birthday_today as $today){ ?>
-                            <div class="card col-md-3" >
-                              <img src="/patient_upload_data/<?php echo $today['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
+                <?php if(!empty($birthday_today)) {
+                  $count = 1; ?>
+                  <div id="myCarouselBirthday" class="carousel slide" data-ride="carousel">
+                   <div class="carousel-inner row w-100 mx-auto">
+                      <div class="item col-md-4 active">
 
-                                <h6 class="text-center"><b><?php echo $today['p_fname'].' '.$today['p_lname'];;  ?></b></h6>
-                              </div>
+                         <div class="card text-center" id="">
+                           <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $birthday_today[0]['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                               <div class="card-body">
+                                 <h6 class="card-title"><b>><?php echo $birthday_today[0]['p_fname'];  ?></b></h6>
+                             </div>
+                         </div>
+                       </div>
+                  <?php   unset($birthday_today[0]); foreach($birthday_today as $today){ ?>
+                    <div class="item col-md-4">
 
-
-                      <?php  }
-                    }else{ ?>
-                      <p><strong>No Birthdays Today</strong></p>
-                    <?php }  ?>
-                        </div>
-
-                   <div class = "col-sm-6">
-                       <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Festivals Today</h4>
-                       <?php if(!empty($festival_today)) {
-                         foreach($festival_today as $today){ ?>
-                         <div class="card col-md-3" >
-                           <img src="/images/festival.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
-
-                             <h6 class="text-center"><b><?php echo $today['festival_name']; ?></b></h6>
-
-                        </div>
-                      <?php  }
-                    }else{ ?>
-                      <p><strong>No Festivals Today</strong></p>
-                    <?php }  ?>
+                      <div class="card text-center" id="">
+                            <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $today['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                            <div class="card-body">
+                              <h6 class="card-title"><b><?php echo $today['p_fname'];  ?></b></h6>
+                          </div>
+                      </div>
                     </div>
+                        <?php
+                         $count++; ?>
+
+                <?php  } ?>
+
+
+                     </div>
+                     <a class="carousel-control-prev btn btn-primary" href="#myCarouselBirthday" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next btn btn-primary pull-right" href="#myCarouselBirthday" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+
+              <?php }else{ ?>
+                <p><strong>No Birthdays for Today</strong></p>
+              <?php }  ?>
+                  </div>
+
+                  <div class = "col-sm-6 container-fluid">
+                        <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Today's Festival </h4>
+
+                <?php if(!empty($festival_today)) {
+                  $count = 1; ?>
+                  <div id="myCarouselFestival" class="carousel slide" data-ride="carousel">
+                   <div class="carousel-inner row w-100 mx-auto">
+                      <div class="item col-md-4 active">
+
+                         <div class="card text-center" id="">
+                           <img class="card-img-top img-fluid" src="images/festival.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                               <div class="card-body">
+                                 <h6 class="card-title"><b>><?php echo $festival_today[0]['festival_name'];  ?></b></h6>
+                             </div>
+                         </div>
+                       </div>
+                  <?php   unset($festival_today[0]); foreach($festival_today as $today){ ?>
+                    <div class="item col-md-4">
+
+                      <div class="card text-center" id="">
+                        <img class="card-img-top img-fluid" src="images/festival.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                            <div class="card-body">
+                              <h6 class="card-title"><b><?php echo $today['festival_name'];  ?></b></h6>
+                          </div>
+                      </div>
+                    </div>
+                        <?php
+                         $count++; ?>
+
+                <?php  } ?>
+
+
+                     </div>
+                     <a class="carousel-control-prev btn btn-primary" href="#myCarouselFestival" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next btn btn-primary pull-right" href="#myCarouselFestival" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+
+              <?php }else{ ?>
+                <p><strong>No Festivals for Today</strong></p>
+              <?php }  ?>
+                  </div>
                 </div>
-                        <div class="row appointments">
-                          <div class = "col-sm-6">
+                  <div class="row appointments" >
+                        <div class = "col-sm-6 container-fluid">
                               <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Today's Appointments </h4>
 
                       <?php if(!empty($today_appointment)) {
-                           foreach($today_appointment as $today){ ?>
-                            <div class="card col-md-4" id="today_appiontments">
-                              <img src="/patient_upload_data/<?php echo $today['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
+                        $count = 1; ?>
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                         <div class="carousel-inner row w-100 mx-auto">
+                            <div class="item col-md-4 active">
 
-                                <h6 class="text-center"><b><?php echo $today['p_fname'];  ?></b></h6>
-                                <p class= "text-center" style ="font-size:11px"><?php echo $today['time_slot'];  ?></p>
+                               <div class="card text-center" id="today_appiontments">
+                                 <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $today_appointment[0]['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                                     <div class="card-body">
+                                       <h6 class="card-title"><b>><?php echo $today_appointment[0]['p_fname'];  ?></b></h6>
+                                       <p class=" card-text" style="font-size:11px"><?php echo $today_appointment[0]['time_slot'];  ?></p>
+                                   </div>
+                               </div>
+                             </div>
+                        <?php   unset($today_appointment[0]); foreach($today_appointment as $today){ ?>
+                          <div class="item col-md-4">
 
-
+                            <div class="card text-center" id="today_appiontments">
+                                  <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $today['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                                  <div class="card-body">
+                                    <h6 class="card-title"><b><?php echo $today['p_fname'];  ?></b></h6>
+                                    <p class= " card-text" style ="font-size:11px"><?php echo $today['time_slot'];  ?></p>
+                                </div>
                             </div>
-                      <?php  }
-                    }else{ ?>
+                          </div>
+                              <?php
+                               $count++; ?>
+
+                      <?php  } ?>
+
+
+                           </div>
+                           <a class="carousel-control-prev btn btn-primary" href="#myCarousel" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next btn btn-primary pull-right" href="#myCarousel" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+
+                    <?php }else{ ?>
                       <p><strong>No Appointments for Today</strong></p>
                     <?php }  ?>
                         </div>
 
-                   <div class = "col-sm-6">
-                       <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Tomorrows's Appointments</h4>
-                       <?php if(!empty($tomorrow_appointment)) {
-                         foreach($tomorrow_appointment as $tomorrow){ ?>
-                         <div class="card col-md-4" >
-                           <img src="/patient_upload_data/<?php echo $tomorrow['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="width: 100%">
-                             <h6 class="text-center"><b><?php echo $tomorrow['p_fname'];  ?></b></h6>
-                             <p class= "text-center" style ="font-size:11px"><?php echo $tomorrow['time_slot'];  ?></p>
+                    <div class = "col-sm-6 container-fluid">
+                              <h4 class ="text-center panel-heading"  style="background-color: #8cac35;color: white; padding-bottom: 10px; padding-top: 5px;">Tomorrow's Appointments </h4>
 
-                        </div>
-                      <?php  }
-                    }else{ ?>
+                      <?php if(!empty($tomorrow_appointment)) {
+                        $count = 1; ?>
+                        <div id="myCarouselTomorrow" class="carousel slide" data-ride="carousel">
+                         <div class="carousel-inner row w-100 mx-auto">
+                            <div class="item col-md-4 active">
+
+                               <div class="card text-center" id="tomorrow_appiontments">
+                                 <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $tomorrow_appointment[0]['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                                     <div class="card-body">
+                                       <h6 class="card-title"><b>><?php echo $tomorrow_appointment[0]['p_fname'];  ?></b></h6>
+                                       <p class=" card-text" style="font-size:11px"><?php echo $tomorrow_appointment[0]['time_slot'];  ?></p>
+                                   </div>
+                               </div>
+                             </div>
+                        <?php   unset($tomorrow_appointment[0]); foreach($tomorrow_appointment as $tomorrow){ ?>
+                          <div class="item col-md-4">
+
+                            <div class="card text-center" id="tomorrow_appiontments">
+                                  <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $tomorrow['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                                  <div class="card-body">
+                                    <h6 class="card-title"><b> <?php echo $tomorrow['p_fname'];  ?></b></h6>
+                                    <p class= " card-text" style ="font-size:11px"><?php echo $tomorrow['time_slot'];  ?></p>
+                                </div>
+                            </div>
+                          </div>
+                              <?php
+                               $count++; ?>
+
+                      <?php  } ?>
+
+
+                           </div>
+                           <a class="carousel-control-prev btn btn-primary" href="#myCarouselTomorrow" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next btn btn-primary pull-right" href="#myCarouselTomorrow" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </div>
+
+                    <?php }else{ ?>
                       <p><strong>No Appointments for Tomorrow</strong></p>
                     <?php }  ?>
-                    </div>
+                        </div>
                 </div>
                 <div class ="row chart">
 
@@ -178,7 +361,31 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script>
+$(document).ready(function()
+{
+  $("#myCarousel",'#myCarouselTomorrow','#myCarouselBirthday','#myCarouselFestival').on("slide.bs.carousel", function(e) {
+    var $e = $(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 3;
+    var totalItems = $(".item").length;
 
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i = 0; i < it; i++) {
+        // append slides to end
+        if (e.direction == "left") {
+          $(".item")
+            .eq(i)
+            .appendTo(".carousel-inner");
+        } else {
+          $(".item")
+            .eq(0)
+            .appendTo($(this).find(".carousel-inner"));
+        }
+      }
+    }
+  });
+});
 Highcharts.chart('line-chart', {
   chart: {
     type: 'column'
@@ -428,7 +635,6 @@ Highcharts.chart('areachart', {
   },
   plotOptions: {
     area: {
-      stacking: 'normal',
       lineColor: '#666666',
       lineWidth: 1,
       marker: {

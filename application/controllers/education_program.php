@@ -108,6 +108,7 @@ class Education_program extends MY_Controller
 		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
 
 		$this->load->view('education_program/email',$data);
+
 	}
 
 	// Samvaad Program Comment
@@ -178,7 +179,7 @@ class Education_program extends MY_Controller
 		// get form data -
 		$data = $_POST;
 
-		print_r($_FILES); 
+		print_r($_FILES);
 
 		if(!empty($_FILES['education_program_file']['name']))
 		{
@@ -367,7 +368,7 @@ class Education_program extends MY_Controller
 		{
 			$result = TRUE;
 		}
-
+		die;
 		// function used to redirect -
 		$this->mastermodel->redirect($result, 'education_program', 'education_program/email/'.$education_program_pk, 'Added');
 	}

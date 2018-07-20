@@ -47,6 +47,12 @@ class Crons extends CI_Controller
 	}
 
 
+		function testMAil(){
+			$this->load->library('Php_mailer');
+    $this->php_mailer->sendMail_test();
+		}
+
+
 
 	function sendAppointmentReminder()
 	{
@@ -109,11 +115,11 @@ class Crons extends CI_Controller
 
 						// get patient email id from contact list -
 						$rspatient = $this->db->query("SELECT * FROM contact_list WHERE  p_contact_no = '$p_contact_no' AND is_deleted = 0");
-					
+
 						if($rspatient->num_rows() > 0)
 						{
 							$to_email = $rspatient->row()->p_email_id;
-							
+
 
 							$to_name = $p_fname.' '.$p_lname;
 
@@ -130,7 +136,7 @@ class Crons extends CI_Controller
 							$msg = $html;
 
 
-    
+
 							// send email to patient, function defined below -
 							$res_email = $this->mastermodel->send_mail($to_email, $p_fname, $sub, $msg, '', '');
 							if($res_email)

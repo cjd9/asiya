@@ -5,7 +5,7 @@
 <?php
 $edit_treatment_html = '';
 $edit_treatment_html .= ' <div class="col-sm-12 table-responsive">
-   
+
         <table class="table table-dark mb30 responsive">
       <thead>
         <tr>
@@ -19,7 +19,7 @@ $edit_treatment_html .= ' <div class="col-sm-12 table-responsive">
       </thead>
       <tbody>';
       $count = 0;
-foreach($rstreatment->result_array() as $treatment_meta) { 
+foreach($rstreatment->result_array() as $treatment_meta) {
 
 	$edit_treatment_html .= '<tr>
           <td><input class="form-control" placeholder="Therapy Name" name="edit_treatment['.$treatment_meta["id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
@@ -28,7 +28,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
           <input type="hidden" name = "edit_treatment['.$treatment_meta["id"].'][id]" value = "'.$treatment_meta['id'].'"</td>
           <td><button href= "" class="form-control add-btn" id="add-btn-'.$count.'" style="z-index:0"><i class ="fa fa-plus"></i></button></td>
-          
+
 
         </tr>
       ';
@@ -73,7 +73,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							
+
 							<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Treatment</b></h3>
 						</div><!-- panel-heading -->
 
@@ -120,20 +120,20 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 								<div class="form-group">
 									<div class="col-sm-3">
 									</div>
-<!-- 
+<!--
 										<div class="col-sm-4">
 												<label class="col-sm-3 control-label">Form Type<span class="asterisk">*</span></label>
 												<div class="col-sm-8">
 													<select id="form_type" name="form_type" data-placeholder="Choose Patient " class="select2-container width100p">
 														<option value="Image">Image</option>
 														<option value="Manual">Manual</option>
-														
+
 													</select>
 													<span id="msg1" class="" style="color:#FF0000"></span>
 												</div>
 										</div> -->
 										<div class="col-sm-3">
-									   </div> 
+									   </div>
 								</div>
 								<hr>
 								<div class="form-group"><!-- Start form-group -->
@@ -150,14 +150,14 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 																		<?php echo $r->treatment_image; ?>
 																	</a>
 																</td>
-																
+
 															</tr>
-													
+
 														</table>
 													</div>
                                             	</div>
                                             </div><!-- End form-group -->
-                               <div class = "no-image <?php  echo ($r->form_type == 'manual') ? '' : ''; ?> ">	
+                               <div class = "no-image <?php  echo ($r->form_type == 'manual') ? '' : ''; ?> ">
 								<h4><u><b>Plan of Care</b></u></h4>
 
 								<div class="form-group">
@@ -185,7 +185,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 										</div>
 									</div>
 
-									
+
 								</div><!-- form-group -->
 
 								<hr />
@@ -245,7 +245,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 
   <script>
   	$(document).ready(function()
-  	{ 
+  	{
   		$('#form_type').on("change",function(e){
 				if($(this).val() == 'image'){
 					$('.no-image').addClass('hide')

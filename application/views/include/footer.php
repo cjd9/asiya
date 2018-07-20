@@ -34,6 +34,7 @@
 		<script src="<?php echo base_url();?>js/my_js/validation/languages/jquery.validationEngine-en.js"></script>
 		<script src="<?php echo base_url();?>js/my_js/validation/jquery.validationEngine.js"></script>
 		<script src="<?php echo base_url();?>js/bootbox.min.js"></script>
+		<script src="<?php echo base_url();?>js/jquery.diyslider.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js" integrity="sha256-59IZ5dbLyByZgSsRE3Z0TjDuX7e1AiqW5bZ8Bg50dsU=" crossorigin="anonymous"></script>
 		<script src="<?php print base_url(); ?>js/custom.js"></script>
 

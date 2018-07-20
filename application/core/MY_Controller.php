@@ -30,6 +30,11 @@ class MY_Controller extends CI_Controller
 
 		// load master model -
 		$this->load->model('mastermodel');
+
+		$message = $this->session->flashdata('message');
+			if (isset($message)) {
+			 $this->session->unset_userdata('message');
+			}
 	}
 
 	// function to check already exist in database using ajax - Date : 16-03-2015
@@ -274,7 +279,7 @@ class MY_Controller extends CI_Controller
 	 }
 
 	 public function getAge($date='')
-	 {	
+	 {
 	 	$date = $this->input->post('date');
 	 	$from = new DateTime($date);
 		$to   = new DateTime('today');

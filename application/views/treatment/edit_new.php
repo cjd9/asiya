@@ -12,6 +12,7 @@ $edit_treatment_html = '';
           <th><div align="center">Repetitions</div></th>
           <th><div align="center">Sets</div></th>
           <th><div align="center">Hold Time</div></th>
+
           <th><div align="center">Add</div></th>
         </tr>
       </thead>';
@@ -20,9 +21,10 @@ foreach($rstreatment->result_array() as $treatment_meta) {
       <tbody>
         <tr>
           <td><input class="form-control" placeholder="Therapy Name" disabled name="edit_treatment['.$treatment_meta["treatment_id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
+          <td><input type="number" disabled name = "edit_treatment['.$treatment_meta["treatment_id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
+
           <td><input type="number" disabled name = "edit_treatment['.$treatment_meta["treatment_id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
           <td><input type="number" disabled name = "edit_treatment['.$treatment_meta["treatment_id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>
-          <td><input type="number" disabled name = "edit_treatment['.$treatment_meta["treatment_id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
           <input type="hidden" value = '.$treatment_meta['id'].'</td>
           <td><button href= "" class="form-control add-btn" id="" style="z-index:0">+</button></td>
 
@@ -125,9 +127,9 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 																		<?php echo $r->treatment_image; ?>
 																	</a>
 																</td>
-																
+
 															</tr>
-													
+
 														</table>
 													</div>
                                             	</div>
@@ -181,7 +183,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 
 						<div class="panel-footer">
 						  <div class="row">
-							
+
 						  </div>
 						</div><!-- panel-footer -->
 					</div><!-- panel -->
@@ -243,7 +245,7 @@ foreach($rstreatment->result_array() as $treatment_meta) {
 
         count= count+1;
          e.preventDefault();
-   
+
   }); }
   	});
   </script>

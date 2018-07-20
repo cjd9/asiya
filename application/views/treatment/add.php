@@ -107,13 +107,13 @@
 													<select id="form_type" name="form_type" data-placeholder="Choose Patient " class="select2-container width100p">
 														<option value="image">Image</option>
 														<option value="manual">Manual</option>
-														
+
 													</select>
 													<span id="msg1" class="" style="color:#FF0000"></span>
 												</div>
 										</div>
 										<div class="col-sm-3">
-									   </div> 
+									   </div>
 								</div>
 								<hr>
 								<div class="form-group image">
@@ -122,7 +122,7 @@
 										<input type="file" id="treatment_image" name="treatment_image" class="form-control" />
 									</div>
 								</div><!-- form-group image -->
-							  <div class = "no-image hide">	
+							  <div class = "no-image hide">
 								<h4><u><b>Plan of Care</b></u></h4>
 
 								<div class="form-group">
@@ -279,7 +279,8 @@ function addRow(){
 	$("#add_treatment_form").validate({
 		  rules: {
 		    treatment_fees: {
-		      required: true
+		      required: true,
+					 number: true
 
 		    },
 				short_term_goal:{

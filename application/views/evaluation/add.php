@@ -635,15 +635,13 @@
 	<script>
 
 	jQuery(document).ready(function() {
-		$(document).on('click', 'input[type="checkbox"]', function() {      
-		    $('input[type="checkbox"]').not(this).prop('checked', false);      
+		$(document).on('click', 'input[type="checkbox"]', function() {
+		    $('input[type="checkbox"]').not(this).prop('checked', false);
 		});
 		// This will empty first option in select to enable placeholder
-		jQuery('select option:first-child').text('');
 
 		// Select2
 		jQuery("select").select2({
-			minimumResultsForSearch: -1
 		});
 
 		// Wizard With Form Validation
@@ -731,7 +729,7 @@
     //           return false;
     //         }
     //       },
-    //       'onTabClick': function(activeTab, navigation, currentIndex, nextIndex) { 
+    //       'onTabClick': function(activeTab, navigation, currentIndex, nextIndex) {
     //         if (nextIndex <= currentIndex) {
     //           return;
     //         }
