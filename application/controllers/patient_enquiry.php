@@ -21,7 +21,14 @@ class patient_enquiry extends MY_Controller
 		$work_shift = $this->db->query("SELECT s_work_shift FROM staff_details WHERE pk = $pk")->row()->s_work_shift;
 
 		// get data from table -
-		$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE  is_deleted = 0");
+		if($this->session->userdata('user_type')=='S'){
+
+		$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry  JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE added_by_user in (SELECT DISTINCT(pk) FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $pk) AND is_deleted = 0 ORDER BY patient_id) and patient_appointment_enquiry.is_deleted = 0");
+
+		}else{
+			$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE  is_deleted = 0");
+
+		}
 		$fulltime_slots = $this->db->query("SELECT * FROM time_slot_master")->result_array();
 		$count = 0;
 		foreach($fulltime_slots as $slot){
@@ -128,7 +135,7 @@ class patient_enquiry extends MY_Controller
 			//$this->send_sms_email($aid);
 			
 			//echo $this->db->insert_id();	// send insert id as response
-			$this->send_sms_email($this->db->insert_id());
+			//$this->send_sms_email($this->db->insert_id());
 			return true;
 		}
 		else

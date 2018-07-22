@@ -329,30 +329,25 @@ class MY_Model extends CI_Model
 	// Download Database Backup
 	function db_backup($file_name = 'DB_Backup', $format = 'zip')
    	{
-		// Load the DB utility class
 		$this->load->dbutil();
 
-		// Set Prefrences For Download File.
-		$prefs = array(
-			'format'      => $format,       // gzip, zip, txt
-			'filename'    => $file_name,	// File name - NEEDED ONLY WITH ZIP FILES
-			'add_drop'    => TRUE,          // Whether to add DROP TABLE statements to backup file
-			'add_insert'  => TRUE,          // Whether to add INSERT data to backup file
-			'newline'     => "\n"        	// Newline character used in backup file
-		);
+$prefs = array(     
+    'format'      => 'zip',             
+    'filename'    => 'my_db_backup.sql'
+    );
 
-		// Backup your entire database and assign it to a variable
-		$backup =& $this->dbutil->backup($prefs);
 
-		// Load the file helper and write the file to your server
-		//$this->load->helper('file');
-		//write_file('/path/to/mybackup.gz', $backup);
+$backup =& $this->dbutil->backup($prefs); 
 
-		// Load the download helper and send the file to your desktop
-		$this->load->helper('download');
+$db_name = 'backup-on-'. date("Y-m-d-H-i-s") .'.zip';
+$save = 'pathtobkfolder/'.$db_name;
 
-		// download file in zip format
-		force_download($file_name.'_'.date("d-m-Y").'.'.$format, $backup);
+$this->load->helper('file');
+write_file($save, $backup); 
+
+
+$this->load->helper('download');
+force_download($db_name, $backup);
 	}
 
 	// Restore Database Backup

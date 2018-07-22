@@ -126,6 +126,13 @@
 				</li>
 			<?php }?>
 
+			<?php 	if($this->session->userdata('user_type')=='A'){?>
+
+
+			<li <?php if(current_url() == base_url().'index.php/dashboard/backup_restore') {?> class="active" <?php } ?>>
+			  <a href="<?php echo base_url().'index.php/dashboard/backup_restore'; ?>"><i class="glyphicon glyphicon-download"></i> <span> Backup & Restore </span></a>
+		    </li>
+		    <?php }?>
 
 	</ul>
 

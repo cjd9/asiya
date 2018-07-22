@@ -19,7 +19,14 @@ class Dashboard extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		 //total treatments done
-		$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+		if($this->session->userdata('user_type')=='S'){
+			$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE is_deleted = 0 ORDER BY patient_id")->result_array();
+
+		}
+		else{
+			$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+
+		}
 		//print_r($data['rspatient']->result_array()); die;
 		$fee_total  = 0;
 		$treatment_total = '';
@@ -59,6 +66,7 @@ class Dashboard extends MY_Controller
 		$data['json2'] =  preg_replace('/\\\\/', '"', $data['json2']);
 
 //unique patients for treatment
+		if($this->session->userdata('user_type')=='S'){
 		$unique = $this->db->query("SELECT MONTH(date_of_treatment) as month , treatment.patient_id
 							FROM contact_list
 							join staff_patient_master
@@ -68,6 +76,17 @@ class Dashboard extends MY_Controller
 							WHERE date_of_treatment >= NOW() - INTERVAL 1 YEAR
 							AND current_assign_staff_id = $current_staff_id
 							GROUP BY MONTH(date_of_treatment), treatment.patient_id")->result_array();
+	}
+	else{
+			$unique = $this->db->query("SELECT MONTH(date_of_treatment) as month , treatment.patient_id
+							FROM contact_list
+							join staff_patient_master
+							on staff_patient_master.patient_id = contact_list.patient_id
+                            join treatment
+							on treatment.patient_id = contact_list.patient_id
+							WHERE date_of_treatment >= NOW() - INTERVAL 1 YEAR
+							GROUP BY MONTH(date_of_treatment), treatment.patient_id")->result_array();
+	}
 		//print_r($data['rspatient']->result_array()); die;
 		$fee_total  = 0;
 		$treatment_total = '';
@@ -106,7 +125,13 @@ class Dashboard extends MY_Controller
 		$data['json6'] =  preg_replace('/\\\\/', '"', $data['json6']);
 
 		//52 week colln
-		$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+				if($this->session->userdata('user_type')=='S'){
+
+			$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+		 }else{
+		 	$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment where is_deleted = 0 ORDER BY patient_id")->result_array();
+
+		 }
 		$fee_total  = 0;
 		$treatment_total = '';
 		for($i=1; $i<=53; $i++){
@@ -153,6 +178,7 @@ class Dashboard extends MY_Controller
 		$data['json5'] =  preg_replace('/\\\\/', '"', $data['json5']);
 		//print_r($data['json2']); die;
 		 //monthly patient
+				if($this->session->userdata('user_type')=='S'){
 
 		$patients = $this->db->query("SELECT MONTH(date_of_registration) as month , COUNT(contact_list.patient_id)  as count
 							FROM contact_list
@@ -162,7 +188,15 @@ class Dashboard extends MY_Controller
 							AND current_assign_staff_id = ".$current_staff_id."
 							GROUP BY MONTH(date_of_registration)"
 						)->result_array();
-
+	}else{
+		$patients = $this->db->query("SELECT MONTH(date_of_registration) as month , COUNT(contact_list.patient_id)  as count
+							FROM contact_list
+							join staff_patient_master
+							on staff_patient_master.patient_id = contact_list.patient_id
+							WHERE date_of_registration >= NOW() - INTERVAL 1 YEAR
+							GROUP BY MONTH(date_of_registration)"
+						)->result_array();
+	}
 		$total = [];
 		for($i=1; $i<=12; $i++){
 			$total[$i]=0;
@@ -189,9 +223,12 @@ class Dashboard extends MY_Controller
 		$data['json3'] = str_replace('"', '', $data['json3']);
 		$data['json3'] = str_replace("", '"', $data['json3']);
 		$data['json3'] =  preg_replace('/\\\\/', '"', $data['json3']);
+		if($this->session->userdata('user_type')=='S'){
+          $treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+		}else{
+		   $treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE is_deleted = 0 ORDER BY patient_id")->result_array();
 
-		$treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
-		//print_r($data['rspatient']->result_array()); die;
+		}//print_r($data['rspatient']->result_array()); die;
 		$fee_total  = 0;
 		$treatment_total = '';
 		for($i=1; $i<=12; $i++){
@@ -281,6 +318,54 @@ class Dashboard extends MY_Controller
 	$this->load->view('include/left');
 			$this->load->view('dashboard/smsbalance',$data);
 		}
+
+		function backup_restore()
+	{
+		$this->load->view('backup_restore/index');
+	}
+	
+	// Download Database Backup
+	function backup()
+   	{
+		// function to get database backup as zip file -
+		$this->mastermodel->db_backup('Database_Backup', 'zip');	// format should be gzip, zip, txt
+	}
+	
+	// function to restore datbase -
+	function restore()
+	{
+		if (!empty($_FILES['db_file']['name']))
+		{
+			$sql = file_get_contents($_FILES['db_file']['tmp_name']);
+			
+			foreach (explode(";\n", $sql) as $sql) 
+			{
+				$sql = trim($sql);
+				
+				if($sql) 
+				{
+					if($this->db->query($sql))
+					{
+						$this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' => 'Database Restore Successfully.', 'type' => 's' ));
+					
+						redirect('dashboard/backup_restore');
+					}
+					else
+					{
+						$this->session->set_flashdata( 'message', array( 'title' => 'Error', 'content' => 'Database Restore Error.', 'type' => 'e' ));
+					
+						redirect('dashboard/backup_restore');
+					}
+				} 
+			}
+		}
+		else
+		{
+			$this->session->set_flashdata( 'message', array( 'title' => 'Error', 'content' => 'Database Restore Error.', 'type' => 'e' ));
+					
+			redirect('dashboard/backup_restore');		
+		}
+	}
 /*-----------------------------------------------------Start Dashboard--------------------------------------------------*/
 }
 ?>

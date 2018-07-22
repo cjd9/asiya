@@ -111,7 +111,7 @@ class p_appointment_schedule extends MY_Controller
 
 	// save appointment booking
 	function save()
-    {
+    {      		
 		// get form data -
 		$data = $_POST;
 				//print_r($data); die;
@@ -140,10 +140,9 @@ class p_appointment_schedule extends MY_Controller
 		}
 
 		// get all staff's email id from selected work shift -
-		$rsstaff = $this->db->query("SELECT * FROM staff_details WHERE s_work_shift = '$work_shift' AND is_deleted = 0");
-
+        $rsstaff = $this->db->query("SELECT * FROM staff_details join staff_patient_master on staff_patient_master.current_assign_staff_id = staff_details.pk WHERE patient_id = '".$this->session->userdata('patient_id')."' AND staff_details.is_deleted = 0");
 		foreach($rsstaff->result() as $row)
-		{
+		{ 
 			$staff_email = $row->s_email_id;
 			$staff_name = $row->s_fname.' '.$row->s_lname;
 

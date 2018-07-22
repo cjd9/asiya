@@ -98,7 +98,7 @@ class Appointment_schedule extends MY_Controller
 		if($res)
 		{
 			echo $this->db->insert_id();	// send insert id as response
-			$this->send_sms_email($this->db->insert_id());
+			//$this->send_sms_email($this->db->insert_id());
 		}
 		else
 		{
@@ -132,7 +132,7 @@ class Appointment_schedule extends MY_Controller
 		if($res)
 		{
 			echo $_POST['appointment_id'];	// send update id as response
-			$this->send_sms_email($_POST['appointment_id']);
+			//$this->send_sms_email($_POST['appointment_id']);
 		}
 		else
 		{

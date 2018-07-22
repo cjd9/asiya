@@ -261,7 +261,7 @@ class Crons extends CI_Controller
 					{
 						$patient_contact_no = $data['p_contact_no'];
 
-						$msg = 'Dear '.$patient_name.',\nWish you many many happy returns of the day!  - \nRegards, \nDr Dhairav Shah, \nAsiya Centre of Physiotherapy and Rehabilitation.';
+						$msg = "Dear ".$patient_name.",\nWish you many many happy returns of the day!  - \nRegards, \nDr Dhairav Shah, \nAsiya Centre of Physiotherapy and Rehabilitation.";
 
 						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 						if($res_sms)
