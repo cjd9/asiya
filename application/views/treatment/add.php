@@ -172,9 +172,9 @@
 											<tbody>
 												<tr>
 													<td><input class="form-control required-field" name="treatment[0][therapy]" placeholder="Therapy Name" id="maual_therapy"></input></td>
-													<td><input type="number" min="0" name = "treatment[0][reps]" class="required-field form-control positiveNumber"  placeholder="No of Reps"/></textarea></td>
-													<td><input type="number" min="0"  name = "treatment[0][sets]" class="required-field form-control positiveNumber" placeholder="No of Sets"/></textarea></td>
-													<td><input type="number" min="0"  name = "treatment[0][time]" class="required-field form-control positiveNumber" placeholder="Hold time in mins"/></textarea></td>
+													<td><input type="number" min="0" name = "treatment[0][reps]" class="form-control positiveNumber"  placeholder="No of Reps"/></textarea></td>
+													<td><input type="number" min="0"  name = "treatment[0][sets]" class="form-control positiveNumber" placeholder="No of Sets"/></textarea></td>
+													<td><input type="number" min="0"  name = "treatment[0][time]" class="form-control positiveNumber" placeholder="Hold time in mins"/></textarea></td>
 													<td><button href= "" class="form-control add-btn" id="add-btn-0" style="z-index:0"><i class ="fa fa-plus"></i></button></td>
 												</tr>
 											</tbody>
@@ -254,9 +254,9 @@ function addRow(){
           '<tbody>'+
           '<tr>'+
           '<td><input type="text" class="form-control required-field" name="treatment['+count+'][therapy]" placeholder="Therapy Name" id="maual_therapy"></input></td>'+
-          '<td><input type="number" min="0"  name = "treatment['+count+'][reps]" class="form-control required-field positiveNumber" placeholder="No of reps"/></textarea></td>'+
-          '<td><input type="number" min="0"  name = "treatment['+count+'][set]" class="form-control required-field positiveNumber" placeholder="No of sets"/></textarea></td>'+
-          '<td><input type="number" min="0"  name = "treatment['+count+'][time]" class="form-control required-field positiveNumber"  placeholder="Hold time in mins"/></textarea></td>'+
+          '<td><input type="number" min="0"  name = "treatment['+count+'][reps]" class="form-control  positiveNumber" placeholder="No of reps"/></textarea></td>'+
+          '<td><input type="number" min="0"  name = "treatment['+count+'][set]" class="form-control  positiveNumber" placeholder="No of sets"/></textarea></td>'+
+          '<td><input type="number" min="0"  name = "treatment['+count+'][time]" class="form-control  positiveNumber"  placeholder="Hold time in mins"/></textarea></td>'+
           '<td><button href= "" class="form-control add-btn" id="add-btn-'+count+'" style="z-index:0"><i class ="fa fa-plus"></i></button></td>'+
           '<td><button href= "" class="form-control delete" id="" style="z-index:0"><i class ="fa fa-times"></i></button></td>'+
           '</tr>'+
