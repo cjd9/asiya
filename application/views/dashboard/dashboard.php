@@ -124,7 +124,7 @@
                          <div class="card text-center" id="">
                            <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $birthday_today[0]['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
                                <div class="card-body">
-                                 <h6 class="card-title"><b>><?php echo $birthday_today[0]['p_fname'];  ?></b></h6>
+                                 <h6 class="card-title"><b><?php echo $birthday_today[0]['p_fname'];  ?></b></h6>
                              </div>
                          </div>
                        </div>
@@ -147,11 +147,12 @@
                      </div>
                      <a class="carousel-control-prev btn btn-primary" href="#myCarouselBirthday" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <i class="fa fa-arrow-left"></i>
+
                       </a>
                       <a class="carousel-control-next btn btn-primary pull-right" href="#myCarouselBirthday" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <i class="fa fa-arrow-right"></i>
                       </a>
                     </div>
 
@@ -172,7 +173,7 @@
                          <div class="card text-center" id="">
                            <img class="card-img-top img-fluid" src="images/festival.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
                                <div class="card-body">
-                                 <h6 class="card-title"><b>><?php echo $festival_today[0]['festival_name'];  ?></b></h6>
+                                 <h6 class="card-title"><b><?php echo $festival_today[0]['festival_name'];  ?></b></h6>
                              </div>
                          </div>
                        </div>
@@ -195,11 +196,12 @@
                      </div>
                      <a class="carousel-control-prev btn btn-primary" href="#myCarouselFestival" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <i class="fa fa-arrow-left"></i>
+
                       </a>
                       <a class="carousel-control-next btn btn-primary pull-right" href="#myCarouselFestival" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <i class="fa fa-arrow-right"></i>
                       </a>
                     </div>
 
@@ -221,7 +223,7 @@
                                <div class="card text-center" id="today_appiontments">
                                  <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $today_appointment[0]['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
                                      <div class="card-body">
-                                       <h6 class="card-title"><b>><?php echo $today_appointment[0]['p_fname'];  ?></b></h6>
+                                       <h6 class="card-title"><b><?php echo $today_appointment[0]['p_fname'];  ?></b></h6>
                                        <p class=" card-text" style="font-size:11px"><?php echo $today_appointment[0]['time_slot'];  ?></p>
                                    </div>
                                </div>
@@ -246,11 +248,11 @@
                            </div>
                            <a class="carousel-control-prev btn btn-primary" href="#myCarousel" role="button" data-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Previous</span>
+                                  <i class="fa fa-arrow-left"></i>
                             </a>
                             <a class="carousel-control-next btn btn-primary pull-right" href="#myCarousel" role="button" data-slide="next">
                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Next</span>
+                              <i class="fa fa-arrow-right"></i>
                             </a>
                           </div>
 
@@ -271,7 +273,7 @@
                                <div class="card text-center" id="tomorrow_appiontments">
                                  <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $tomorrow_appointment[0]['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
                                      <div class="card-body">
-                                       <h6 class="card-title"><b>><?php echo $tomorrow_appointment[0]['p_fname'];  ?></b></h6>
+                                       <h6 class="card-title"><b><?php echo $tomorrow_appointment[0]['p_fname'];  ?></b></h6>
                                        <p class=" card-text" style="font-size:11px"><?php echo $tomorrow_appointment[0]['time_slot'];  ?></p>
                                    </div>
                                </div>
@@ -296,11 +298,12 @@
                            </div>
                            <a class="carousel-control-prev btn btn-primary" href="#myCarouselTomorrow" role="button" data-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Previous</span>
+                              <i class="fa fa-arrow-left"></i>
+
                             </a>
                             <a class="carousel-control-next btn btn-primary pull-right" href="#myCarouselTomorrow" role="button" data-slide="next">
                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Next</span>
+                              <i class="fa fa-arrow-right"></i>
                             </a>
                           </div>
 

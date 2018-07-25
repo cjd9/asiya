@@ -22,7 +22,7 @@ $edit_treatment_html .= ' <div class="col-sm-12 table-responsive">
 foreach($rstreatment->result_array() as $treatment_meta) {
 
 	$edit_treatment_html .= '<tr>
-          <td><input class="form-control" placeholder="Therapy Name" name="edit_treatment['.$treatment_meta["id"].'][therapy]" id="maual_therapy" value='.$treatment_meta["therapy"].' ></input></td>
+          <td><input class="form-control" placeholder="Therapy Name" name="edit_treatment['.$treatment_meta["id"].'][therapy]" id="maual_therapy" value="'.$treatment_meta["therapy"].'" ></input></td>
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][reps]" class="form-control" value="'.$treatment_meta["reps"].'" placeholder="No of Reps"/></td>
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][sets]" class="form-control" value="'.$treatment_meta["sets"].'"placeholder="No of Sets"/></td>
           <td><input type="number" name = "edit_treatment['.$treatment_meta["id"].'][time]" class="form-control" value="'.$treatment_meta["time"].'"placeholder="Hold time in mins"/>

@@ -26,7 +26,7 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<form id="add_exercise_program_form" action="<?php echo $saveaction; ?>" method="post" enctype="multipart/form-data" onSubmit="return validate()">
+								<form id="add_exercise_program_form" action="<?php echo $saveaction; ?>" method="post" enctype="multipart/form-data" >
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
@@ -80,12 +80,12 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="date_of_upload" value="<?php echo date('d-m-Y')?>">
+															<input type="text" class="form-control datepicker" name="date_of_upload" id="date_of_upload" value="<?php echo date('d-m-Y')?>">
 														</div><!-- input-group -->
 													</div>
 												</div>
-											
-											
+
+
 												<div class="col-sm-4">
 												<label class="col-sm-4 control-label">Expiry Date<span class="asterisk">*</span></label>
 													<div class="col-sm-6">
@@ -107,7 +107,7 @@
 												</div>
 											</div><!-- form-group -->
 
-											
+
                       <br>
 											<!-- <div class="form-group">
 												<div class="col-sm-12">
@@ -173,6 +173,17 @@
 
 	$(document).ready(function()
 	{
+		jQuery.validator.addMethod("greaterThan",
+		function(value, element, params) {
+
+		    if (!/Invalid|NaN/.test(new Date(value))) {
+		        return new Date(value) > new Date($(params).val());
+		    }
+
+		    return isNaN(value) && isNaN($(params).val())
+		        || (Number(value) > Number($(params).val()));
+		},'Must be greater than start date.');
+
 		var max_fields      = 10; //maximum input boxes allowed
 		var wrapper         = $("#file_upload"); //Fields wrapper
 		var add_button      = $("#add_more"); //Add button ID
@@ -238,6 +249,16 @@
 		$("#add_exercise_program_form").validate({
 				  rules: {
 				    expiry_date: {
+				      required: true,
+							greaterThan: "#date_of_upload"
+
+				    },
+				    patient_id: {
+				      required: true
+
+				   
+				    },
+				    tag: {
 				      required: true
 
 				    }

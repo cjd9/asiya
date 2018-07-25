@@ -117,7 +117,7 @@ class Treatment extends MY_Controller
 
 	// Print Treatment Details
 	function print_treatment($patient_id, $treatment_id)
-    {	
+    {
 		// WHERE condition -
 		$where = array('patient_id' => $patient_id, 'treatment_id' => $treatment_id);
 
@@ -145,7 +145,7 @@ class Treatment extends MY_Controller
 
 	// Print Billing Receipt -
 	function print_receipt()
-    {	
+    {
 		$pk_list = implode(',', $_POST['id_list']);
 
 		// get data from table for all selected treatments -

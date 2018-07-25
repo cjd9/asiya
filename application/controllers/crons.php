@@ -235,7 +235,7 @@ class Crons extends CI_Controller
 
 						$html = 'Dear '.$patient_name.',<br><br>';
 
-						$html .= 'FROM ALL OF US HERE WE WISH YOU A VERY HAPPY BIRTHDAY. <br><br>';
+						$html .= 'WISH YOU A VERY VERY HAPPY BIRTHDAY. <br><br>';
 
 						$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION <br> 101-B ANJALI BUILDING <br> FRENCH BRIDGE, OPERA HOUSE <br> MUMBAI-400007';
 
