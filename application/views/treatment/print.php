@@ -2,33 +2,33 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;">
 	  	<style>
-		@page 
-		{ 
-			margin:50px; 
+		@page
+		{
+			margin:50px;
 		}
-		#header 
-		{ 
-			position: fixed; 
-			left: 0px; 
-			top: -70px; 
+		#header
+		{
+			position: fixed;
+			left: 0px;
+			top: -70px;
 			right: 0px;
-			text-align: center; 
+			text-align: center;
 		}
-	   
+
 	  </style>
 	</head>
 	<body style="border:5px double; height:120%;">
 		<div id="header">
-			<div style="=top:30px;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2><b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
+			<div style="=top:30px;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />
-		
+
 		<div>
-			<?php  
+			<?php
 			$edit_treatment_html = '';
 			 $edit_treatment_html .= '
-				    <table width="95%" cellpadding="4"  border="0" align="center" style="top: 200px;">
+				    <table width="95%" cellpadding="4"  border="1" align="center" style="top: 200px;">
 				      <thead>
 				        <tr>
 
@@ -45,7 +45,7 @@
 				          <td width="77%"><div align="center">'.$treatment_meta["therapy"].'</div></td>
 				          <td width="77%"><div align="center">'.$treatment_meta["reps"].'</div></td>
 				          <td width="77%"><div align="center">'.$treatment_meta["sets"].'</div></td>
-				          <td width="77%"><div align="center">'.$treatment_meta["time"].'mins</div></td>
+				          <td width="77%"><div align="center">'.$treatment_meta["time"].' mins</div></td>
 
 				        </tr>
 				  ';
@@ -98,7 +98,7 @@
 				<br> <br><br> <br>
 				<h3 style="text-align:center" ><b><u>PATIENT THERAPY DETAILS</u></b></h3>
 
-			
+
 				<?php echo $edit_treatment_html; ?>
 
 			</p>

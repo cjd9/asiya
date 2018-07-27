@@ -69,7 +69,9 @@
 		<li <?php if(current_url() == base_url().'appointment_schedule' || current_url() == base_url().'appointment_schedule/add' || strpos(current_url(), base_url().'appointment_schedule/edit/') !== false) {?> class="active" <?php } ?>>
 			<a href="<?php echo base_url().'appointment_schedule'; ?>"><i class="fa fa-calendar"></i> <span>Appointment Schedule</span></a>
 		</li>
-
+		<li <?php if(current_url() == base_url().'patient_enquiry' || current_url() == base_url().'patient_enquiry/add' || strpos(current_url(), base_url().'patient_enquiry/cancel/') !== false) {?> class="active" <?php } ?>>
+			<a href="<?php echo base_url().'patient_enquiry'; ?>"><i class="fa fa-comments"></i> <span>Patient Enquiry</span></a>
+		</li>
 		<li <?php if(current_url() == base_url().'exercise_program' || current_url() == base_url().'exercise_program/add' || strpos(current_url(), base_url().'exercise_program/edit/') !== false) {?> class="active" <?php } ?>>
 			<a href="<?php echo base_url().'exercise_program'; ?>"><i class="fa fa-child"></i> <span>Excercise Program</span></a>
 		</li>
@@ -102,9 +104,7 @@
 			<a href=""><i class="glyphicon glyphicon-hand-up"></i> <span>Attendance</span></a>
 		</li>
 
-		<li <?php if(current_url() == base_url().'patient_enquiry' || current_url() == base_url().'patient_enquiry/add' || strpos(current_url(), base_url().'patient_enquiry/cancel/') !== false) {?> class="active" <?php } ?>>
-			<a href="<?php echo base_url().'patient_enquiry'; ?>"><i class="fa fa-comments"></i> <span>Patient Enquiry</span></a>
-		</li>
+
 
 		<?php 	if($this->session->userdata('user_type')=='A'){?>
 
@@ -126,13 +126,7 @@
 				</li>
 			<?php }?>
 
-			<?php 	if($this->session->userdata('user_type')=='A'){?>
-
-
-			<li <?php if(current_url() == base_url().'index.php/dashboard/backup_restore') {?> class="active" <?php } ?>>
-			  <a href="<?php echo base_url().'index.php/dashboard/backup_restore'; ?>"><i class="glyphicon glyphicon-download"></i> <span> Backup & Restore </span></a>
-		    </li>
-		    <?php }?>
+		
 
 	</ul>
 

@@ -19,8 +19,8 @@
 	</head>
 	<body style="border:5px double; height:98%;">
 		<div id="header">
-			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" height="550%" width="15%"/> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
-			<hr style="margin-left:35px; margin-right:35px;" />
+			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" height="550%" width="15%"/> </h2>
+			<hr style="margin-left:35px; margin-right:35px; text-align: center;" />
 		</div>
 
 		<br /><br /><br /><br /><br /><br />
@@ -36,9 +36,9 @@
 					<td width="66%"><b>:</b> <?php echo $r->staff_id; ?></td>
 					<td width="18%" rowspan="2" valign="top">
 						<?php if($r->staff_photo) { ?>
-					  	<img src="<?php print base_url().'../staff_upload_data/staff_photo/'.$r->staff_photo; ?>" height="90" width="90" />
+					  	<img src="<?php print base_url().'/staff_upload_data/staff_photo/'.$r->staff_photo; ?>" height="90" width="90" />
 					  	<?php } else { ?>
-					 	<img alt="" src="<?php print base_url(); ?>images/men.png"  height="90" width="90" />
+					 	<img alt="" src="<?php print base_url(); ?>images/default_man_photo.jpg"  height="90" width="90" />
 					  	<?php } ?>
 					</td>
 				</tr>

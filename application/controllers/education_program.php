@@ -368,7 +368,7 @@ class Education_program extends MY_Controller
 		{
 			$result = TRUE;
 		}
-		die;
+		
 		// function used to redirect -
 		$this->mastermodel->redirect($result, 'education_program', 'education_program/email/'.$education_program_pk, 'Added');
 	}

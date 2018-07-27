@@ -21,7 +21,6 @@
 
 			<div class="contentpanel">
 
-				<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 				<div class="row">
 					<div class="col-md-12">
@@ -31,6 +30,7 @@
 
 									<h3 class="panel-title"><span class="glyphicon glyphicon-export"></span> <b>Export Appointment Schedule</b></h3>
 								</div><!-- panel-heading -->
+
 
 								<div class="panel-body">
 									<div class="row">
@@ -69,6 +69,7 @@
 
 									</form>
 							</div><!-- panel -->
+							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 						</div><!-- row -->
 					</div><!-- panel-body -->
@@ -80,7 +81,7 @@
 														</tr>
 														<tr>
 															<th><div align="center">Date</div></th>
-															<th><div align="center">Time Slots</div></th>
+															<th><div align="center">Time</div></th>
 															<th><div align="center">Patient Name</div></th>
 															<th><div align="center">Patient Contact No.</div></th>
 															<th><div align="center">Action</div></th>
@@ -97,7 +98,7 @@
                              </td>
 
 															<td align="center"><select id="" name="time_slot_id" data-placeholder="Choose Time Slot" class="time_slot_id form-control width100p">
-																<option value=""> </option>
+																<option value="">Select Time </option>
 																<?php foreach ($fulltime_slots->result() as $row)  { ?>
 																	<option value="<?php echo $row->pk; ?>"> <?php echo $row->time_slot; ?> </option>
 																<?php } ?>
@@ -141,15 +142,7 @@
 									<form id="add_appointment_schedule_form" action="<?php echo $saveaction; ?>" method="post">
 
 										<div class="form-group">
-											<div class="col-sm-4">
-												<label class="col-sm-5 control-label">Appointment Date<span class="asterisk">*</span> </label>
-												<div class="col-sm-7">
-													<div class="input-group">
-														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-														<input type="text" autocomplete="off" class="form-control validate[required] date_of_appointment2" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
-													</div><!-- input-group -->
-												</div>
-											</div>
+
 
 											<div class="col-sm-4">
 												<label class="col-sm-3 control-label">Staff Name<span class="asterisk">*</span></label>
@@ -161,6 +154,15 @@
 														<?php } ?>
 													</select>
 													<span id="msg1" style="color:#FF0000"></span>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<label class="col-sm-5 control-label">Appointment Date<span class="asterisk">*</span> </label>
+												<div class="col-sm-7">
+													<div class="input-group">
+														<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+														<input type="text" autocomplete="off" class="form-control validate[required] date_of_appointment2" name="date_of_appointment" id="date_of_appointment" value="<?php if(isset($date_of_appointment)) { echo $date_of_appointment; } ?>">
+													</div><!-- input-group -->
 												</div>
 											</div>
 											<div class="col-sm-2">
@@ -323,7 +325,12 @@
 								minDate: 0,
 								 onSelect: function (dateText, inst) {
 							         $('.date_of_appointment2').val(dateText)
-							     }
+							     },
+									 beforeShow: function() {
+					        setTimeout(function(){
+					            $('.ui-datepicker').css('z-index', 99999999999999);
+					        }, 0)
+								}
 								//minDate: 0	// disable all previous dates
 							});
 			$('#datepicker').datepicker(

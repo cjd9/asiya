@@ -32,7 +32,9 @@ class Crons extends CI_Controller
 		$where = array();
 
 		// get data from table -
-		$data['logs'] = $this->mastermodel->get_data('*', 'cron_log', $where, NULL, NULL, 0, NULL);
+		//$data['logs'] = $this->mastermodel->get_data('*', 'cron_log', $where, NULL, NULL, 0, NULL);
+		$data['logs'] = $this->db->query("SELECT `pk`, `patient_id`, `patient_name`, `title`, `sms`, `email`, `sms_sent`, `email_sent`, CONVERT_TZ(date_Created,'+00:00','+05:30') as date_created FROM cron_log WHERE  date_created >= DATE(NOW()) - INTERVAL 7 DAY");
+		$sub = 'CONFIRMATION OF YOUR APPOINTMENT.';
 
 		$this->load->view('cron/list',$data);
 	}

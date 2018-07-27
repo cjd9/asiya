@@ -45,6 +45,10 @@
                       	 <a href="<?php print base_url(); ?>festival/add">
 					  	 	<button class="btn btn-primary"><i class="fa fa-pencil"></i> Add Festival</button>
 						 </a>
+
+						 <a href="<?php print base_url(); ?>festival/import">
+							 <button class="btn btn-primary"><i class="fa fa-download"></i> Import Festival</button>
+						</a>
 					   <br /><br />
 
                         <div class="panel panel-primary-head">

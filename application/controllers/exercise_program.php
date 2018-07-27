@@ -91,7 +91,7 @@ class Exercise_program extends MY_Controller
 		 $result = $this->mastermodel->add_data('tag_master', $data);
 
  		// function used to redirect -
- 		$this->mastermodel->redirect(TRUE, 'exercise_program', 'exercise_program', 'Added');
+ 		$this->mastermodel->redirect(TRUE, 'exercise_program/add_video', 'add_video', 'Added');
  	}
 
 	// Exercise Program Add

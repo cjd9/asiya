@@ -135,34 +135,37 @@ class Login extends CI_Controller
 
 
 				if($user_type == 'P'){
-						$result = $this->db->query("SELECT * FROM contact_list WHERE ( p_contact_no='$username' OR p_email_id = '$username') AND is_deleted = '0' ")->row_array();
-					    if(empty($result)) {
+						$resultt = $this->db->query("SELECT * FROM contact_list WHERE ( p_contact_no='$username' OR p_email_id = '$username') AND is_deleted = '0' ")->result_array();
+					   if(empty($resultt)) {
 					      $this->session->set_flashdata( 'message', array( 'title' => 'Login Error', 'content' =>'Account not found this mobile no.', 'type' => 'e' ));
 					      redirect(base_url('login/forgot_password'));
 
 					    }
 					    else{
+								foreach($resultt as $result){
 					       $this->db->query("UPDATE `contact_list` SET p_password = '".$result['patient_id']."'  WHERE  pk = ".$result['pk']);
 					       $this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' =>'Password reset successfully', 'type' => 's' ));
 
 					       	$r = $this->db->get_where('contact_list', array('patient_id' => $result['patient_id']))->row();
-							$patient_name = ucwords($r->p_fname.' '.$r->p_lname);
-							$to_email = $r->p_email_id;
-							$mobile = $r->p_contact_no;
-							$to_name = $patient_name;
-							$sub = "Password Reset";
-							$msg = "Dear ".$patient_name."\nYour Password has been Reset to ".$result['patient_id']." successfully \nRegards,
-Asiya Centre of Physiotherapy and Rehabilitation";
+								$patient_name = ucwords($r->p_fname.' '.$r->p_lname);
+								$to_email = $r->p_email_id;
+								$mobile = $r->p_contact_no;
+								$to_name = $patient_name;
+								$sub = "Password Reset";
+								$msg = "Dear ".$patient_name."\nYour Password has been Reset to ".$result['patient_id']." successfully \nRegards,
+	Asiya Centre of Physiotherapy and Rehabilitation";
 							if(!empty($to_email)){
-								//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg);
+								$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg);
 
 							}
 							  $res = $this->mastermodel->send_sms($mobile, $patient_name, $msg);
 
 
-					       	redirect(base_url());
+
 
 					    }
+							redirect(base_url());
+						}
 
 				}
 				else{

@@ -21,15 +21,14 @@
 	</head>
 	<body style="border:5px double; height:160%;">
 		<div id="header">
-			<div style="=top:30px;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2><b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
+			<div style="=top:30px;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h4 style="text-align: center;  ">Staff Name: <?php echo $rsstaff['s_fname'].' '.$rsstaff['s_lname'] ?></h4>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />
 
 		<div>
       <br /><br />
-      <h3 style="text-align: center;  ">Appointment Schedule for <?php echo date('F d Y',strtotime($rsschedule[0]['date_of_appointment'])) ; ?></h3>
-        <h4>Staff Name: <?php echo $rsstaff['s_fname'].' '.$rsstaff['s_lname'] ?></h4>
+
              <div style="text-align: center; margin-left:15px; width:95%;">
                 <table cellspacing="2" class="tbl" style=" border:2px double;  width:100%;">
                 <tr>

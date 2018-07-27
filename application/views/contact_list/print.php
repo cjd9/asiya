@@ -2,34 +2,34 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;">
 	  	<style>
-		@page 
-		{ 
-			margin:50px; 
+		@page
+		{
+			margin:50px;
 		}
-		#header 
-		{ 
-			position: fixed; 
-			left: 0px; 
-			top: -40px; 
+		#header
+		{
+			position: fixed;
+			left: 0px;
+			top: -40px;
 			right: 0px;
-			text-align: center; 
+			text-align: center;
 		}
-	   
+
 	  </style>
 	</head>
 	<body style="border:5px double; height:98%;">
 		<div id="header">
-			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" height="550%" width="15%"/> <b>Asiya Center of Physiotherapy & Rehabilitation</b></h2>
-			<hr style="margin-left:35px; margin-right:35px;" />
+			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" height="550%" width="15%"/> </h2>
+			<hr style="margin-left:35px; margin-right:35px; text-align: center;" />
 		</div>
-		
+
 		<br /><br /><br /><br /><br /><br />
-		
-		<?php  
+
+		<?php
 			$r = $rscontact_list->row();
 		?>
 		<div>
-		
+
 			<table width="90%" border="0" align="center">
 				<tr>
 					<td width="19%"><b>Registration ID</b></td>
@@ -38,9 +38,9 @@
 					<td width="17%"><b>:</b> <?php echo date("d-m-Y",strtotime($r->date_of_registration)); ?></td>
 				</tr>
 			</table>
-			
+
 			<hr style="margin-left:35px; margin-right:35px;" />
-			
+
 			<table width="90%"cellpadding="4"  border="0" align="center">
 				<tr>
 					<th height="44" colspan="5"  cellspacing="10" ><b><u>PATIENT INFORMATION</u></b></th>
@@ -55,10 +55,10 @@
 					<td width="19%"><b>Gender</b></td>
 					<td width="43%"><b>:</b>
 						<?php if ($r->p_gender=="Male") { echo 'Male'; } ?>
-						<?php if ($r->p_gender=="Female") { echo 'Female'; } ?>				
+						<?php if ($r->p_gender=="Female") { echo 'Female'; } ?>
 					</td>
 					<td width="15%"><b>Age</b></td>
-					<td width="25%"><b>:</b> <?php echo $r->p_age; ?> Year</td>
+					<td width="25%"><b>:</b> <?php echo $r->age; ?> Year</td>
 				</tr>
 				<tr>
 					<td width="19%"><b>Religion</b></td>
@@ -80,23 +80,34 @@
 					<td width="19%"><b>Mobile No.</b></td>
 					<td width="43%"><b>:</b> <?php echo $r->p_contact_no; ?></td>
 				</tr>
-			
 				<tr>
-					<td width="14%" rowspan="3" valign="top"><b>Address</b></td>
-					<td width="53%" rowspan="3" valign="top"><b>:</b> <?php echo $r->p_address; ?></td>
-					<td width="10%"><b>City</b></td>
-					<td width="23%"><b>:</b> <?php echo $r->p_city; ?></td>
+					<td width="19%"><b>Referred By.</b></td>
+					<td width="43%"><b>:</b> <?php echo $r->referred_by; ?></td>
 				</tr>
+
 				<tr>
 					<td width="10%"><b>State</b></td>
-					<td width="23%"><b>:</b> <?php echo $r->p_state; ?></td>
+					<td width="25%" ><b>:</b> <?php echo $r->p_state; ?></td>
 				</tr>
+
+
 				<tr>
+					<td width="10%"><b>City</b></td>
+					<td width="15%"><b>:</b> <?php echo $r->p_city; ?></td>
+
 					<td width="10%"><b>Pin</b></td>
-					<td width="23%"><b>:</b> <?php echo $r->p_zip; ?></td>
+					<td width="15%"><b>:</b> <?php echo $r->p_zip; ?></td>
 				</tr>
-			</table>
-			
+		</table>
+		<table width="90%"cellpadding="4"  border="0" align="center">
+			<tr>
+								<td width="20% rowspan="3" valign="top"" ><b>Address</b></td>
+								<td width="80% rowspan="3" valign="top"" ><b>:</b> <?php echo wordwrap($r->p_address,70,"<br>\n"); ?></td>
+			</tr>
+
+		</table>
+
+
 			<table width="90%"cellpadding="4"  border="0" align="center">
 				<tr>
 					<th height="47" colspan="5"  cellspacing="10"><b><u><?php echo strtoupper("Emergency Contact Details"); ?></u></b></th>
@@ -108,7 +119,7 @@
 					<td width="20%"><b>:</b> <?php echo $r->p_emergency_contact; ?></td>
 				</tr>
 			</table>
-			
+
 		</div>
 	</body>
 </html>

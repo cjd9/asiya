@@ -26,6 +26,20 @@ class Festival extends MY_Controller
 		$this->load->view('festival/list',$data);
 	}
 
+	function import()
+	{
+		$data['deleteaction'] =base_url().'festival/delete';
+
+		// WHERE condition -
+		//$where = array('festival.is_deleted' => 0);
+
+		// get data from table -
+		//$data['rsfestival'] = $this->mastermodel->get_data('*', 'festival', $where, NULL, NULL, 0, NULL);
+
+		$data['rsfestival'] = $this->db->query("SELECT * from religious_festivals where is_deleted = 0");
+		$this->load->view('festival/import',$data);
+	}
+
 	// Activity Program Add
 	function add()
 	{
@@ -33,6 +47,50 @@ class Festival extends MY_Controller
     $data['religion_list'] = $this->db->query("SELECT * FROM religion where 1");	// order by patient_id
 
 		$this->load->view('festival/add',$data);
+	}
+
+	function import_cal()
+	{
+		if(!empty($_FILES['ical']['name']))
+		{
+			// config array for file -
+			$config['upload_path']		= './ical/';	// folder name to store files -
+			$config['allowed_types'] 	= '*';							// file type to be supported
+			$config['max_size']			= '50000';						// maximum file size to upload
+
+			// function to upload multiple files -
+			$result = $this->mastermodel->upload_file('ical', $_FILES, $config);
+			$file = $result[0][0];
+
+		}
+
+		include ( FCPATH.'/iCalEasyReader.php' );
+		$ical = new iCalEasyReader();
+		$file = FCPATH."/ical/".$file;
+		$lines = $ical->load( file_get_contents($file ) );
+		//print_r($lines);
+
+		foreach($lines['VEVENT'] as $hol){
+			if($hol['DTSTART']>=date('Ymd')){
+				$arr['festival_name'] = $hol['SUMMARY'];
+				$arr['date'] = date('Y-m-d', strtotime($hol['DTSTART']));
+				$res = $this->mastermodel->add_data('religious_festivals', $arr);
+				if(count($res)>0){
+					$ret = TRUE;
+				}
+				else{
+					$ret = FALSE;
+				}
+
+			}
+
+    }
+ 			$this->mastermodel->redirect($ret, 'festival', 'festival', 'Added');
+
+
+
+
+
 	}
 
 	// Activity Program Edit

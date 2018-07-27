@@ -31,12 +31,12 @@ class Contact_list extends MY_Controller
 			{
 				$where = array('contact_list.is_deleted' => 0);
 
-				$data['rscontact_list'] = $this->mastermodel->get_data('*,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age ', 'contact_list', $where, NULL, NULL, 0, NULL);
+				$data['rscontact_list'] = $this->mastermodel->get_data('*,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age ', 'contact_list', $where, NULL, 'p_status asc, patient_id asc', 0, NULL);
 				$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type= "S"', NULL, NULL, 0, NULL);
 
 			}
 			elseif($this->session->userdata('user_type')=='S'){
-				$data['rscontact_list'] = $this->db->query("SELECT *,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+				$data['rscontact_list'] = $this->db->query("SELECT *,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0  order by p_status asc, patient_id asc");
 
 				// get active staff list -
 				$data['rsstaff_list'] = $this->mastermodel->get_data('*', 'staff_details', 'is_deleted = 0 AND user_type= "S"', NULL, NULL, 0, NULL);
@@ -98,11 +98,10 @@ class Contact_list extends MY_Controller
 		$where = array('pk' => $pk);
 
 		// get data from table -
-		$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', $where, NULL, NULL, 0, NULL);
+		$data['rscontact_list'] = $this->mastermodel->get_data('*,TIMESTAMPDIFF(YEAR, p_dob, CURDATE()) AS age ', 'contact_list', $where, NULL, NULL, 0, NULL);
 
 		// get html page contents
 		$html = $this->load->view('contact_list/print', $data, true);
-
 		// define size & orientation for pdf page
 		$size 			= 'A4';		// 'legal', 'letter', 'A4'
 		$orientation 	= 'portrait';	// 'portrait' or 'landscape'
@@ -225,7 +224,7 @@ class Contact_list extends MY_Controller
     {
 		// get form data -
 		$data = $_POST;
-		
+
 		if(empty($data['p_gender'])){
 		if(file_exists($_FILES['profile_pic']['tmp_name']) || is_uploaded_file($_FILES['profile_pic']['tmp_name'])) {
 							$profile_pic = $_FILES['profile_pic']['tmp_name'];
@@ -245,7 +244,7 @@ class Contact_list extends MY_Controller
 							die;
 
 			}
-		}	
+		}
 
 		if(file_exists($_FILES['profile_pic']['tmp_name']) || is_uploaded_file($_FILES['profile_pic']['tmp_name'])) {
 							$profile_pic = $_FILES['profile_pic']['tmp_name'];
@@ -426,7 +425,7 @@ class Contact_list extends MY_Controller
 function export()
 {
 	// get data from table -
-	$query = $this->db->query("SELECT patient_id, date_of_registration, p_fname, p_mname, p_lname, p_dob, p_gender, (SELECT religion FROM religion WHERE pk = p_religion_id) AS religion, p_occupation, p_email_id, p_phone_no, p_contact_no, p_address, p_city, p_state, p_zip, p_emergency_name, p_emergency_contact FROM contact_list WHERE is_deleted = 0");
+	$query = $this->db->query("SELECT patient_id as 'Patient ID',referred_by as 'Referred By', date_of_registration as 'Registration Date', p_fname 'First Name', p_mname as 'Middle Name', p_lname as 'Last Name', p_dob as 'Date Of Birth', p_gender as 'Gender', (SELECT religion FROM religion WHERE pk = p_religion_id) AS religion, p_occupation as Occupation, p_email_id as 'Email ID', p_phone_no as 'Phone No', p_contact_no as 'Mobile No', p_address as 'Address', p_city as 'City', p_state as 'State', p_zip as 'Zip', p_emergency_name as 'Emergency Name', p_emergency_contact as 'Emergency Contact' FROM contact_list WHERE is_deleted = 0");
 
 	/*
 	You should use one of following as formate type.
