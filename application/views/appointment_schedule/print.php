@@ -21,7 +21,7 @@
 	</head>
 	<body style="border:5px double; height:160%;">
 		<div id="header">
-			<div style="text-align: center;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
+			<div style="text-align: center; margin-top:20px;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />

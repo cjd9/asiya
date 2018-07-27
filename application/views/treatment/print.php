@@ -19,7 +19,7 @@
 	</head>
 	<body style="border:5px double; height:120%;">
 		<div id="header">
-			<div style="=top:30px;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
+			<div style="=top:30px ;  margin-top:20px;""><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />
