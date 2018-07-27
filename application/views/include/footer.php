@@ -100,12 +100,13 @@
 			jQuery('#basicTable').DataTable(
 			{
 				responsive: true,
-				"autoWidth": false
+				"autoWidth": false,
+				"order": []
 			});
 			jQuery('#basicTableEval').DataTable(
 			{
 				responsive: true,
-				"autoWidth": false
+				"autoWidth": false,
 
 			});
 
