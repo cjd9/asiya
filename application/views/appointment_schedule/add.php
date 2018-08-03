@@ -766,7 +766,13 @@
 		var data =
 		<?php
 			// get patient fname form table -
-			$rsfname = $this->db->query("SELECT pk,CONCAT_WS(' ',p_fname, p_mname, p_lname)  as label, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
+			if($this->session->userdata('user_type')=='A'){
+				$rsfname = $this->db->query("SELECT pk,CONCAT_WS(' ',p_fname, p_mname, p_lname)  as label, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE   contact_list.is_deleted  = 0");
+
+			}else{
+				$rsfname = $this->db->query("SELECT pk,CONCAT_WS(' ',p_fname, p_mname, p_lname)  as label, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = ".$this->session->userdata('userid').") and contact_list.is_deleted  = 0");
+
+			}
 			echo json_encode($rsfname->result());
 
 		?>
@@ -775,15 +781,27 @@
 		var data1 =
 		<?php
 			// get patient lname form table -
+			if($this->session->userdata('user_type')=='A'){
 			$rsfname = $this->db->query("SELECT pk, CONCAT(p_fname, ' ', p_lname)  as fullname, patient_id as label FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
-			echo json_encode($rsfname->result());
+		 }
+		 else{
+			 $rsfname = $this->db->query("SELECT pk, CONCAT(p_fname, ' ', p_lname)  as fullname, patient_id as label FROM contact_list, (SELECT @a:= 0) AS a WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = ".$this->session->userdata('userid').") and contact_list.is_deleted = 0");
+
+		 }
+		 echo json_encode($rsfname->result());
 		?>
 
 		var data2 =
 		<?php
 			// get patient lname form table -
+			if($this->session->userdata('user_type')=='A'){
 			$rsfname = $this->db->query("SELECT pk,  p_contact_no as label, CONCAT(p_fname, ' ', p_lname)  as fullname, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE contact_list.is_deleted = 0");
-			echo json_encode($rsfname->result());
+		  }
+			else{
+				$rsfname = $this->db->query("SELECT pk,  p_contact_no as label, CONCAT(p_fname, ' ', p_lname)  as fullname, patient_id FROM contact_list, (SELECT @a:= 0) AS a WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = ".$this->session->userdata('userid').") and contact_list.is_deleted = 0");
+
+			}
+				echo json_encode($rsfname->result());
 		?>
 
 

@@ -20,11 +20,11 @@ class Dashboard extends MY_Controller
 
 		 //total treatments done
 		if($this->session->userdata('user_type')=='A'){
-			$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE is_deleted = 0 ORDER BY patient_id")->result_array();
+			$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE is_deleted = 0 and year(date_of_treatment) = year(NOW()) ORDER BY patient_id")->result_array();
 
 		}
 		else{
-			$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+			$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 and year(date_of_treatment) = year(NOW()) ORDER BY patient_id")->result_array();
 
 		}
 		//print_r($data['rspatient']->result_array()); die;
@@ -73,7 +73,7 @@ class Dashboard extends MY_Controller
 							on staff_patient_master.patient_id = contact_list.patient_id
                             join treatment
 							on treatment.patient_id = contact_list.patient_id
-							WHERE date_of_treatment >= NOW() - INTERVAL 1 YEAR
+							WHERE year(date_of_treatment) = year(NOW())
 							AND current_assign_staff_id = $current_staff_id
 							GROUP BY MONTH(date_of_treatment), treatment.patient_id")->result_array();
 	}
@@ -84,7 +84,7 @@ class Dashboard extends MY_Controller
 							on staff_patient_master.patient_id = contact_list.patient_id
                             join treatment
 							on treatment.patient_id = contact_list.patient_id
-							WHERE date_of_treatment >= NOW() - INTERVAL 1 YEAR
+							WHERE year(date_of_treatment) = year(NOW())
 							GROUP BY MONTH(date_of_treatment), treatment.patient_id")->result_array();
 	}
 		//print_r($data['rspatient']->result_array()); die;
@@ -125,13 +125,12 @@ class Dashboard extends MY_Controller
 		$data['json6'] =  preg_replace('/\\\\/', '"', $data['json6']);
 
 		//52 week colln
-				if($this->session->userdata('user_type')=='S'){
-
-			$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 ORDER BY patient_id")->result_array();
+		if($this->session->userdata('user_type')=='S'){
+			$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0 and year(date_of_treatment) = year(NOW()) ORDER BY patient_id")->result_array();
 		 }else{
-		 	$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment where is_deleted = 0 ORDER BY patient_id")->result_array();
-
+		 	$total_treatment_week = $this->db->query("SELECT week(date_of_treatment) as month,treatment_fees FROM treatment where is_deleted = 0 and year(date_of_treatment) = year(NOW()) ORDER BY patient_id")->result_array();
 		 }
+
 		$fee_total  = 0;
 		$treatment_total = '';
 		for($i=1; $i<=53; $i++){
@@ -184,7 +183,7 @@ class Dashboard extends MY_Controller
 							FROM contact_list
 							join staff_patient_master
 							on staff_patient_master.patient_id = contact_list.patient_id
-							WHERE date_of_registration >= NOW() - INTERVAL 1 YEAR
+							WHERE year(date_of_registration) = year(NOW())
 							AND current_assign_staff_id = ".$current_staff_id."
 							GROUP BY MONTH(date_of_registration)"
 						)->result_array();
@@ -193,7 +192,7 @@ class Dashboard extends MY_Controller
 							FROM contact_list
 							join staff_patient_master
 							on staff_patient_master.patient_id = contact_list.patient_id
-							WHERE date_of_registration >= NOW() - INTERVAL 1 YEAR
+							WHERE year(date_of_registration) = year(NOW())
 							GROUP BY MONTH(date_of_registration)"
 						)->result_array();
 	}

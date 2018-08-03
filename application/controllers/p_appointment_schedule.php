@@ -94,7 +94,7 @@ class p_appointment_schedule extends MY_Controller
 		$current_date = date("Y-m-d");
 
 		// get records from appointment schedular for this patient details -
-		$data['rsappointment'] = $this->db->query("SELECT * FROM appointment_schedule WHERE  p_contact_no = '$patient_contact_no' AND is_exist = 1 AND date_of_appointment >= '$current_date' AND is_deleted = 0");
+		$data['rsappointment'] = $this->db->query("SELECT * FROM appointment_schedule WHERE  p_contact_no = '$patient_contact_no' AND date_of_appointment >= '$current_date' AND is_deleted = 0");
 		$fulltime_slots = $this->db->query("SELECT * FROM time_slot_master")->result_array();
 		$count = 0;
 		foreach($fulltime_slots as $slot){
@@ -111,7 +111,7 @@ class p_appointment_schedule extends MY_Controller
 
 	// save appointment booking
 	function save()
-    {      		
+    {
 		// get form data -
 		$data = $_POST;
 				//print_r($data); die;
@@ -142,7 +142,7 @@ class p_appointment_schedule extends MY_Controller
 		// get all staff's email id from selected work shift -
         $rsstaff = $this->db->query("SELECT * FROM staff_details join staff_patient_master on staff_patient_master.current_assign_staff_id = staff_details.pk WHERE patient_id = '".$this->session->userdata('patient_id')."' AND staff_details.is_deleted = 0");
 		foreach($rsstaff->result() as $row)
-		{ 
+		{
 			$staff_email = $row->s_email_id;
 			$staff_name = $row->s_fname.' '.$row->s_lname;
 
@@ -310,7 +310,7 @@ class p_appointment_schedule extends MY_Controller
 		$update = array('time_slot_id'=>$this->input->post('timeslot'));
 		$this->db->where('pk', $this->input->post('pk'));
     $this->db->update('appointment_schedule', $update);
-		
+
 	}
 /*-----------------------------------------------------End appointment schedule--------------------------------------------------*/
 }
