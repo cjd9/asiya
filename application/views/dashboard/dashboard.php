@@ -124,7 +124,7 @@
                          <div class="card text-center" id="">
                            <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $birthday_today[0]['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
                                <div class="card-body">
-                                 <h6 class="card-title"><b><?php echo $birthday_today[0]['p_fname'];  ?></b></h6>
+                                 <h6 class="card-title"><b><?php echo $birthday_today[0]['p_fname'].' '.$birthday_today[0]['p_lname'];  ?></b></h6>
                              </div>
                          </div>
                        </div>
@@ -132,9 +132,9 @@
                     <div class="item col-md-4">
 
                       <div class="card text-center" id="">
-                            <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $today['p_lname'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
+                            <img class="card-img-top img-fluid" src="/patient_upload_data/<?php echo $today['patient_id'];  ?>.jpg" onerror="this.src='/images/default_man_photo.jpg';" alt="Avatar" style="">
                             <div class="card-body">
-                              <h6 class="card-title"><b><?php echo $today['p_fname'];  ?></b></h6>
+                              <h6 class="card-title"><b><?php echo $today['p_fname'] .' '.$today['p_lname'];  ?></b></h6>
                           </div>
                       </div>
                     </div>

@@ -182,7 +182,7 @@ class Staff_list extends MY_Controller
 
 				$html = 'RESPECTED '.$staff_name.',<br><br>';
 
-				$html .= 'YOU HAVE SUCCESFULY BEEN REGISTERED WITH ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION. <br><br>';
+				$html .= 'YOU HAVE SUCCESFULY BEEN REGISTERED WITH ASIYA CLINIC OF PHYSIOTHERAPY AND REHABILITATION. <br><br>';
 
 				$html .= 'YOUR REGISTRATION ID IS - '.$data["staff_id"].' <br> PASSWORD IS - '.$data["staff_id"].' <br><br>';
 
@@ -190,7 +190,7 @@ class Staff_list extends MY_Controller
 
 				$html .= 'FOR ANY QUERIES PLEASE CONTACT US ON 40067272. <br><br><br><br>';
 
-				$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION <br> 101-B ANJALI BUILDING <br> FRENCH BRIDGE, OPERA HOUSE <br> MUMBAI-400007';
+				$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CLINIC OF PHYSIOTHERAPY AND REHABILITATION <br> 112 A, 1ST FLOOR,<br> PRASAD CHAMBERS, OPERA HOUSE, BESIDES ROXY CINEMA, CHARNI ROAD,<br> MUMBAI 400004';
 
 				$msg = $html;
 

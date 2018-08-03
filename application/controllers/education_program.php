@@ -348,7 +348,7 @@ class Education_program extends MY_Controller
 
 				$html .= 'WE LOOK FORWARD FOR YOUR QUERIES AND COMMENTS FOR THE SAME. <br><br><br><br>';
 
-				$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION <br> 101-B ANJALI BUILDING <br> FRENCH BRIDGE, OPERA HOUSE <br> MUMBAI-400007';
+				$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CLINIC OF PHYSIOTHERAPY AND REHABILITATION <br> 1112 A, 1ST FLOOR,<br> PRASAD CHAMBERS, OPERA HOUSE, BESIDES ROXY CINEMA, CHARNI ROAD,<br> MUMBAI 400004';
 
 				$msg = $html;
 
@@ -368,7 +368,7 @@ class Education_program extends MY_Controller
 		{
 			$result = TRUE;
 		}
-		
+
 		// function used to redirect -
 		$this->mastermodel->redirect($result, 'education_program', 'education_program/email/'.$education_program_pk, 'Added');
 	}

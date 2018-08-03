@@ -19,7 +19,7 @@ class Dashboard extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		 //total treatments done
-		if($this->session->userdata('user_type')=='S'){
+		if($this->session->userdata('user_type')=='A'){
 			$total_treatment = $this->db->query("SELECT month(date_of_treatment) as month,treatment_fees FROM treatment WHERE is_deleted = 0 ORDER BY patient_id")->result_array();
 
 		}
@@ -273,12 +273,12 @@ class Dashboard extends MY_Controller
 		$data['birthday_today'] = $this->db->query("SELECT * FROM contact_list WHERE DATE_FORMAT(p_dob, '%m-%d') = '$bday' and is_deleted = 0")->result_array();
 		$data['festival_today'] = $this->db->query("SELECT * FROM religious_festivals WHERE date= '$today' and is_deleted = 0")->result_array();
 		if($this->session->userdata('user_type')=='S'){
-			$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
-			$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow' AND staff_id = $staff_id  AND is_deleted = 0")->result_array();
+			$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today' AND staff_id = $staff_id  AND is_deleted = 0 order by time_slot_id")->result_array();
+			$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow' AND staff_id = $staff_id  AND is_deleted = 0 order by time_slot_id")->result_array();
 		}else{
-			$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today'  AND is_deleted = 0")->result_array();
+			$data['today_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$today'  AND is_deleted = 0 order by time_slot_id")->result_array();
 
-			$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow'  AND is_deleted = 0")->result_array();
+			$data['tomorrow_appointment'] = $this->db->query("SELECT * FROM appointment_schedule JOIN time_slot_master ON time_slot_master.pk = appointment_schedule.time_slot_id WHERE date_of_appointment = '$tomorrow'  AND is_deleted = 0 order by time_slot_id")->result_array();
 
 		}
 		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 and CURDATE() <= expiry_date  group by activity_id,pk ");
@@ -323,47 +323,47 @@ class Dashboard extends MY_Controller
 	{
 		$this->load->view('backup_restore/index');
 	}
-	
+
 	// Download Database Backup
 	function backup()
    	{
 		// function to get database backup as zip file -
 		$this->mastermodel->db_backup('Database_Backup', 'zip');	// format should be gzip, zip, txt
 	}
-	
+
 	// function to restore datbase -
 	function restore()
 	{
 		if (!empty($_FILES['db_file']['name']))
 		{
 			$sql = file_get_contents($_FILES['db_file']['tmp_name']);
-			
-			foreach (explode(";\n", $sql) as $sql) 
+
+			foreach (explode(";\n", $sql) as $sql)
 			{
 				$sql = trim($sql);
-				
-				if($sql) 
+
+				if($sql)
 				{
 					if($this->db->query($sql))
 					{
 						$this->session->set_flashdata( 'message', array( 'title' => 'Success', 'content' => 'Database Restore Successfully.', 'type' => 's' ));
-					
+
 						redirect('dashboard/backup_restore');
 					}
 					else
 					{
 						$this->session->set_flashdata( 'message', array( 'title' => 'Error', 'content' => 'Database Restore Error.', 'type' => 'e' ));
-					
+
 						redirect('dashboard/backup_restore');
 					}
-				} 
+				}
 			}
 		}
 		else
 		{
 			$this->session->set_flashdata( 'message', array( 'title' => 'Error', 'content' => 'Database Restore Error.', 'type' => 'e' ));
-					
-			redirect('dashboard/backup_restore');		
+
+			redirect('dashboard/backup_restore');
 		}
 	}
 /*-----------------------------------------------------Start Dashboard--------------------------------------------------*/

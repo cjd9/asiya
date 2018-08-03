@@ -1,9 +1,9 @@
 <?php $this->load->view('p_include/header'); ?>
 
 	<?php $this->load->view('p_include/left'); ?>
-                
+
                 <div class="mainpanel">
-                  
+
 					<div class="pageheader">
                       <div class="media">
                             <div class="pageicon pull-left">
@@ -18,11 +18,12 @@
                             </div>
                         </div><!-- media -->
                     </div><!-- pageheader -->
-                    <div class="panel-heading" style="background-color: #8cac35; color: white;">
-                                <h4 class="panel-title text-center"><b><?php echo $view['title']?></b></h4>
-                            </div><!-- panel-heading -->
-					
+
+
                    <div class="contentpanel">
+										 <div class="panel-heading" style="background-color: #8cac35; color: white;">
+                                 <h4 class="panel-title text-center"><b><?php echo $view['title']?></b></h4>
+                     </div><!-- panel-heading -->
                      <div class="panel-body">
                         <div class="col-md-9">
 					   <p><?php echo $view['education_program_desc']?></p>
@@ -32,7 +33,6 @@
 
                         </div>
       				  </div>
-                    </div><!-- contentpanel -->
                         <div class="form-group"><!-- Start form-group -->
                                                 <div class="col-sm-8">
                                                     <label class="col-sm-3">Attachments</label>
@@ -48,7 +48,7 @@
                                                                         <?php echo $r2 ?>
                                                                     </a>
                                                                 </td>
-                                                                
+
                                                             </tr>
                                                             <?php } ?>
                                                         </table>
@@ -58,8 +58,10 @@
                 </div><!-- mainpanel -->
             </div><!-- mainwrapper -->
         </section>
+			</div><!-- contentpanel -->
+
 
 	<?php $this->load->view('p_include/footer'); ?>
-	
+
     </body>
 </html>

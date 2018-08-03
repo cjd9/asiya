@@ -267,7 +267,7 @@ class Activity_program extends MY_Controller
 
 					$html = 'RESPECTED '.$fullname.'<br><br>';
 					$html .= 'A New Activity Program has been posted. Kindly login to clinic.asiya.co.in to find details for the program<br><br>';
-					$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CENTER OF PHYSIOTHERAPY AND REHABILITATION <br> 101-B ANJALI BUILDING <br> FRENCH BRIDGE, OPERA HOUSE <br> MUMBAI-400007';
+					$html .= 'REGARDS, <br><br> DR DHAIRAV SHAH <br> ASIYA CLINIC OF PHYSIOTHERAPY AND REHABILITATION <br> 112 A, 1ST FLOOR,<br> PRASAD CHAMBERS, OPERA HOUSE, BESIDES ROXY CINEMA, CHARNI ROAD,<br> MUMBAI 400004';
 
 					$msg = $html;
 

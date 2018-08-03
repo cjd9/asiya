@@ -24,7 +24,7 @@
 			<div class="panel-body">
 				<div class="logo text-center" style="margin-top:5%">
 					<img src="<?php print base_url(); ?>images/logo.png">
-					<h1 class="style1" style="margin-top:7%; text-transform:uppercase"><b>Asiya Center of Physiotherapy & Rehabilitation</b></h1>
+					<h1 class="style1" style="margin-top:7%; text-transform:uppercase"><b>ASIYA CLINIC of Physiotherapy & Rehabilitation</b></h1>
 				
 					<div class="btn-list" style="margin-top:5%">
 						<a href="<?php print base_url(); ?>login/staff" class="btn btn-primary btn-rounded">

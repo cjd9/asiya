@@ -42,10 +42,10 @@ class Mastermodel extends MY_Model
 
 		// $mail->From = 'dclyde14@gmail.com';
 
-		$mail->FromName = 'Asiya Center of Physiotherapy & Rehabilitation';
+		$mail->FromName = 'ASIYA CLINIC of Physiotherapy & Rehabilitation';
 	$mail->addAddress($to_email, $to_name);
 	//$mail->addAddress('dclyde14@gmail.com', 'clyde dsouza');
-		//$mail->addReplyTo('contact@asiya.co.in', 'Asiya Center of Physiotherapy & Rehabilitation');
+		//$mail->addReplyTo('contact@asiya.co.in', 'ASIYA CLINIC of Physiotherapy & Rehabilitation');
 
 		// check if CC -
 		if($is_cc != '')

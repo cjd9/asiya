@@ -8,7 +8,6 @@
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
             border-radius: 5px; /* 5px rounded corners */
-            height: 165px;
         }
 
         /* Add rounded corners to the top left and the top right corner of the image */
@@ -35,7 +34,7 @@
 
                     <div class="contentpanel">
                       <?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-                      <?php if(!empty($rsactivity_program->result_array())){ ?>
+                      <?php if($rsactivity_program->num_rows() > 0){ ?>
                       <div class="alert alert-success">
                         <strong>Activity </strong>
                        <?php $unique=array(); $cnt = 0; foreach($rsactivity_program->result() as $row) : ?>
@@ -45,10 +44,11 @@
 
 
                     <?php } endforeach ; ?>
+										     </div>
 
                    <?php } ?>
 
-                   </div>
+
 
 
 
@@ -56,7 +56,7 @@
                             <!--<p><img src="<?php echo base_url(); ?>images/logo-1.jpg" height="50" width="60"/></p>-->
                 <!--            <h1><b>WELCOME</b></h1>
                             <h4><b>To</b></h4>
-                            <h1><b>Asiya Center of Physiotherapy & Rehabilitation</b></h1> -->
+                            <h1><b>ASIYA CLINIC of Physiotherapy & Rehabilitation</b></h1> -->
                         </div>
 
 
@@ -125,13 +125,13 @@
                      <?php $cnt = 0; foreach($rseducation_program->result() as $row) : ?>
                    <div class="card col-md-4" >
                     <div class="col-sm-6" >
-                                    <img src="/education_thumbnail/<?php echo $row->thumbnail;  ?>" onerror="this.src='/images/Asiya.png';" alt="Avatar" style="width: 100%">
+                                    <img src="/education_thumbnail/<?php echo $row->thumbnail;  ?>" onerror="this.src='/images/Asiya.png';" alt="Avatar" style="max-width: 100%">
                                   </div>
                                   <div class="col-sm-6" >
                                     <h6 class=""><b><?php echo $row->title; ?></b></h6>
 
                       <p class=""><?php echo substr(strip_tags($row->education_program_desc), 0, 80);  ?></p>
-                      <a href="/p_samvaad/view/<?php echo $row->pk; ?>">Read more>>> </a>
+                      <a href="/p_samvaad/view/<?php echo $row->pk; ?>">Read more>> </a>
                                   </div>
                     </div>
 

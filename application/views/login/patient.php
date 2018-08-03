@@ -26,7 +26,7 @@
 				</h5></b>
 			</div>
 			<div align="center" style="margin-top:3%">
-				<h1 style="text-transform:uppercase"><b> Asiya Center of Physiotherapy & Rehabilitation</b></h1>
+				<h1 style="text-transform:uppercase"><b> ASIYA CLINIC of Physiotherapy & Rehabilitation</b></h1>
 				
 			</div>
 			<div class="panel panel-signin" style="border:15px solid rgba(150, 150, 146, 0.24)" />
