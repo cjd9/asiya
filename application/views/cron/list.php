@@ -74,7 +74,7 @@
 									<tbody>
 									<?php $cnt = 0; foreach($logs->result() as $row) : ?>
 									   <tr>
-											<td><?php echo date(('d-m-Y'),strtotime($row->date_created)); ?></td>
+											<td><?php echo date(('d-m-Y H:i:s'),strtotime($row->date_created)); ?></td>
 											<td>
 												<?php echo $row->title; ?>
 											</td>
