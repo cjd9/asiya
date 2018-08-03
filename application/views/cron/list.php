@@ -2,7 +2,7 @@
 <?php $this->load->view('include/header'); ?>
 
 	<?php $this->load->view('include/left'); ?>
-                
+
                 <div class="mainpanel">
                     <div class="pageheader">
                       <div class="media">
@@ -18,7 +18,7 @@
                             </div>
                         </div><!-- media -->
                     </div><!-- pageheader -->
-					
+
 					<!-- Modal -->
 					<div class="modal fade" id="myModal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -41,24 +41,24 @@
 						<!-- /.modal-dialog -->
 					</div>
 					<!-- /.modal -->
-                    
+
                    <div class="contentpanel">
-                      	 
-					  
-							
+
+
+
                         <div class="panel panel-primary-head">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><b>Logs</b></h4>
                             </div><!-- panel-heading -->
                            <br />
-						    
+
 							<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
-							
+
                             <div class="table-responsive">
 								<table id="basicTable" class="table table-striped table-bordered">
 									<thead class="">
 										<tr>
-											
+
 											<th>Date</th>
 											<th>Title</th>
 											<th>Patient ID</th>
@@ -70,11 +70,11 @@
 
 										</tr>
 									</thead>
-							 
+
 									<tbody>
 									<?php $cnt = 0; foreach($logs->result() as $row) : ?>
 									   <tr>
-											<td><?php echo $row->date_created; ?></td>
+											<td><?php echo date(('d-m-Y'),strtotime($row->date_created)); ?></td>
 											<td>
 												<?php echo $row->title; ?>
 											</td>
@@ -101,17 +101,17 @@
 									</tbody>
 								</table>
 							</div>
-							
+
                         </div><!-- panel -->
-      
+
                     </div><!-- contentpanel -->
-                    
+
                 </div><!-- mainpanel -->
             </div><!-- mainwrapper -->
         </section>
 
 	<?php $this->load->view('include/footer'); ?>
-	
+
 	 <script>
 		// assign delete id to hidden field
 		function delete_1(id)
@@ -125,6 +125,6 @@
 			window.location = "<?php echo $deleteaction; ?>/"+id;
 		}
 	</script>
-	
+
     </body>
 </html>
