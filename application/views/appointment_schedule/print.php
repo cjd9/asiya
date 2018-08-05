@@ -20,13 +20,13 @@
 	  </style>
 	</head>
 	<body style="border:5px double; height:160%;">
-		<div id="header">
+		<div id="header" style="margin-top:75px;">
 			<div style="text-align: center; margin-top:20px;"><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />
 
-		<div>
+		<div style="margin-top:75px;">
       <br /><br />
       <h3 style="text-align: center;  margin-top:-30px; ">Appointment Schedule for <?php echo date('F d Y',strtotime($rsschedule[0]['date_of_appointment'])) ; ?></h3>
         <h4 style="text-align: center; ">Staff Name: <?php echo $rsstaff['s_fname'].' '.$rsstaff['s_lname'] ?></h4>

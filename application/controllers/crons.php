@@ -125,7 +125,7 @@ class Crons extends CI_Controller
 
 							$to_name = $p_fname.' '.$p_lname;
 
-							$patient_name = $to_name;
+							$patient_name = $p_fname;
 
 
 							//$msg = 'Hello, <br><br> Your Appointement Booked Successfully. <br><br> Thanks, - Clinic Management System.';
@@ -160,9 +160,9 @@ class Crons extends CI_Controller
 
 						//$msg = 'Hello '.$patient_name.', Your Appointement Booked Successfully. Thanks, - Clinic Management System.';
 
-						//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Centre of Physiotherapy and Rehabilitation.';
+						//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Clinic of Physiotherapy and Rehabilitation.';
 
-						$msg = "Dear ".$patient_name.", \nYou have an Upcoming Appointment for tomorrow  at ".$appointment_time.".\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
+						$msg = "Dear ".$patient_name.", \nYou have an Upcoming Appointment for tomorrow  at ".$appointment_time.".\nRegards,\nDr Dhairav Shah,\nAsiya Clinic of Physiotherapy and Rehabilitation.";
 
 						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 						if($res_sms)

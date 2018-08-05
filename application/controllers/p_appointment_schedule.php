@@ -162,7 +162,7 @@ class p_appointment_schedule extends MY_Controller
 			$msg .= '<b>Problem : </b> '.$data['problem'].' <br>';
 			$msg .= '<br><br> Thanks, <br> - Clinic Management System.';
 
-			//$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', TRUE);
+			$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', TRUE);
 
 			/****************** Send Email *************************/
 		}
@@ -307,11 +307,54 @@ class p_appointment_schedule extends MY_Controller
 
 	function update_appt_status($check='')
 	{
-		$update = array('time_slot_id'=>$this->input->post('timeslot'));
+		$update = array('is_deleted'=>'1');
+		$data = $this->db->query("SELECT p_fname,p_lname,p_contact_no,date_of_appointment FROM appointment_schedule WHERE pk = ".$this->input->post('pk'))->row_array();
 		$this->db->where('pk', $this->input->post('pk'));
-    $this->db->update('appointment_schedule', $update);
+        $this->db->update('appointment_schedule', $update);
+
+        $data['appointment_date'] = $this->mastermodel->date_convert($data['date_of_appointment'],'ymd');
+        unset($data['date_of_appointment']);
+        $data['appointment_time'] = $this->input->post('timeslot');
+		$data['booked_on'] = date("Y-m-d h:i:s");
+		$data['status'] = 'PE';	// by default status will be 'Pending', 'PE' => 'Pending', 'CO' => 'Confirm', 'CA' => 'Cancel'
+
+		$result = $this->mastermodel->add_data('patient_appointment_enquiry', $data);
+
+		// send email request to staff for appointment Booking -
+
+		$patient_name = $data['p_fname'].' '.$data['p_lname'];
+		//$appontment_time = $this->db->get_where('time_slot_master', array('pk' => $data['appointment_time']))->row()->time_slot;
+		$appontment_time = $data['appointment_time'];
+
+		
+
+		// get all staff's email id from selected work shift -
+        $rsstaff = $this->db->query("SELECT * FROM staff_details join staff_patient_master on staff_patient_master.current_assign_staff_id = staff_details.pk WHERE patient_id = '".$this->session->userdata('patient_id')."' AND staff_details.is_deleted = 0");
+		foreach($rsstaff->result() as $row)
+		{
+			$staff_email = $row->s_email_id;
+			$staff_name = $row->s_fname.' '.$row->s_lname;
+
+			/****************** Send Email *************************/
+
+			$to_email = $staff_email;
+			$to_name = $staff_name;
+
+			$sub = 'Appointment Enquiry.';
+
+			$msg = 'Appointment Reschedule Enquiry Details - <br><br>';
+			$msg .= '<b>Patient Name : </b> '.$patient_name.' <br>';
+			$msg .= '<b>Contact No. : </b> '.$data['p_contact_no'].' <br>';
+			$msg .= '<b>Appointment Date : </b> '.$data['appointment_date'].' <br>';
+			$msg .= '<b>Appointment Shift / Timing : </b> '.$appontment_time.' <br>';
+			$msg .= '<br><br> Thanks, <br> - Clinic Management System.';
+
+			$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', TRUE);
+
 
 	}
+
+}
 /*-----------------------------------------------------End appointment schedule--------------------------------------------------*/
 }
 ?>

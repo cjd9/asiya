@@ -23,10 +23,10 @@ class patient_enquiry extends MY_Controller
 		// get data from table -
 		if($this->session->userdata('user_type')=='S'){
 
-		$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry  JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE added_by_user in (SELECT DISTINCT(pk) FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $pk) AND is_deleted = 0 ORDER BY patient_id) and patient_appointment_enquiry.is_deleted = 0");
+		$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry  JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE added_by_user in (SELECT DISTINCT(pk) FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $pk) AND is_deleted = 0 ORDER BY patient_id) and patient_appointment_enquiry.is_deleted = 0 order by appointment_date desc");
 
 		}else{
-			$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE  is_deleted = 0");
+			$data['rspatient_enquiry'] = $this->db->query("SELECT p_fname,p_lname,p_contact_no,problem,patient_appointment_enquiry.pk,appointment_date,time_slot,shift,added_by_user,status FROM patient_appointment_enquiry JOIN time_slot_master ON time_slot_master.pk =patient_appointment_enquiry.appointment_time  WHERE  is_deleted = 0 order by appointment_date desc");
 
 		}
 		$fulltime_slots = $this->db->query("SELECT * FROM time_slot_master")->result_array();

@@ -306,8 +306,9 @@ class Contact_list extends MY_Controller
 						);
 
 				$result = $this->mastermodel->add_data('staff_patient_master', $data1);
-
-				/****************** Send Email *************************/
+				if($result > 0)
+				{
+					/****************** Send Email *************************/
 
 				$patient_name = $data['p_fname'].' '.$data['p_lname'];
 
@@ -353,10 +354,16 @@ class Contact_list extends MY_Controller
 				{
 					$patient_contact_no = $data['p_contact_no'];
 
-					$msg = 'Hello '.$patient_name.', Your Registration is Successful. \nLogin Details : \nUsername - '.$data['p_contact_no'].', \nPassword : '.$patient_id.'.\nLink: http://clinic.asiya.co.in \n Thanks, - Clinic Management System.';
+					$msg = "Hello $patient_name, Your Registration is Successful. \nLogin Details : \nUsername - ".$data['p_contact_no'].", \nPassword : $patient_id.\nLink: http://clinic.asiya.co.in \n Thanks, - Clinic Management System.";
 
 					$res = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 				}
+			 }
+
+
+
+
+				
  }
 		/************************* send SMS *********************/
 

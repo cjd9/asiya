@@ -18,15 +18,16 @@
 	  </style>
 	</head>
 	<body style="border:5px double; height:98%;">
-		<div id="header">
-			<h2><img src="<?php echo base_url(); ?>images/logo-1.jpg" height="550%" width="15%"/> <b>ASIYA CLINIC of Physiotherapy & Rehabilitation</b></h2>
+		<div id="header" style="margin-top:45px;">
+			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" style=' height="550%" '/></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
+
 		</div>
 		<br /><br /><br /><br /><br />
 		<?php  
 			$r = $rsevaluation->row();
 		?>
-		<div>
+		<div style="margin-top:35px;">
 			<p>
 				<table width="95%" cellpadding="4"  border="0" align="center" style="top: 110px;">
 					<tr>
@@ -135,7 +136,7 @@
 				</table>
 			</p>
 			
-			<p style="page-break-before: always;">
+			<p style="page-break-before: always; margin-top:35px;">
 			<br /><br /><br /><br />
 				<table width="95%" cellpadding="4"  border="0" align="center">
 					<tr>
@@ -232,7 +233,7 @@
 				</table>
 			</p>
 			
-			<p style="page-break-before: always;">
+			<p style="page-break-before: always; margin-top:35px;">
 			<br /><br /><br /><br />
 				<table width="95%" cellpadding="4"  border="0" align="center">
 					<tr>

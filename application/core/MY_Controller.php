@@ -222,7 +222,7 @@ class MY_Controller extends CI_Controller
 
 				//$msg = 'Hello '.$patient_name.', Your next Physiotherapy Appointment with us dated on '.$appointment_date.' at '.$appointment_time.' is confirmed. For any queries or cancellation please call us on 40067272 or visit our website www.asiya.co.in - Regards, Dr Dhairav Shah, Asiya Centre of Physiotherapy and Rehabilitation.';
 
-				$msg = "Hello ".$patient_name.", Your next Physiotherapy Appointment with us dated on ".$appointment_date." at ".$appointment_time." is confirmed.\nRegards,\nDr Dhairav Shah,\nAsiya Centre of Physiotherapy and Rehabilitation.";
+				$msg = "Hello ".$patient_name.", Your next Physiotherapy Appointment with us dated on ".$appointment_date." at ".$appointment_time." is confirmed.\nRegards,\nDr Dhairav Shah,\nAsiya Clinic of Physiotherapy and Rehabilitation.";
 
 				$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 			}

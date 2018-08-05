@@ -43,7 +43,7 @@
 											<th><div align="center">#</div></th>
 											<th>Patient Name</th>
 											<th>Contact No.</th>
-											<th>date_of_appointment</th>
+											<th>Appointment Date</th>
 											<th>Time</th>
 											<th><div align="center">Action</div></th>
 										</tr>
@@ -63,7 +63,7 @@
  ?>" onclick="return confirmation()">
 														 <i class="fa fa-trash-o"></i> Cancel									        
 													</a>
-													<button class="btn btn-info btn-xs reschedule" data-id="<?php echo $row->pk; ?>" id="">
+													<button class="btn btn-info btn-xs reschedule <?php echo (strtotime($row->date_of_appointment) >  time() + 86400) ? '' : 'hide' ?>" data-id="<?php echo $row->pk; ?>" id="">
 														 <i class="fa fa-send-o"></i> Reschedule									        
 													</button>
 												</div>

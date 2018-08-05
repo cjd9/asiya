@@ -229,7 +229,7 @@ class Festival extends MY_Controller
 
 	// Activity Program Delete Data to the DB
 	function delete($festival_id)
-	{ die;
+	{ 
 		// WHERE condition -
 		//$where = array('pk' => $pk);
 

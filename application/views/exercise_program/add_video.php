@@ -33,9 +33,7 @@
 												<span class="glyphicon glyphicon-arrow-left"></span> Back
 										 </a>
 										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Add Video </b></h3>
-										<a class="btn btn-primary" href="<?php print base_url(); ?>exercise_program/displayCategory">
-									     Add Category
-									  </a>
+										
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">

@@ -14,7 +14,7 @@ class P_dashboard extends MY_Controller
 /*-----------------------------------------------------Start Patient Dashboard--------------------------------------------------*/
 	function index()
 	{	
-		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 group by activity_id,pk");
+		$data['rsactivity_program'] = $this->db->query("SELECT DISTINCT(activity_id), pk, expiry_date, date_of_upload, activity_program FROM activity_program WHERE is_deleted = 0 and CURDATE() <= expiry_date group by activity_id,pk");
 		$paient_id = $this->db->query("SELECT * FROM contact_list WHERE pk = ".$this->session->userdata('userid'))->row_array()['patient_id'];
 		$data['total_t_date'] = $this->db->query("SELECT count(patient_id) as count  from treatment where  patient_id ='".$this->session->userdata('patient_id')." 'and is_deleted = 0 ")->row_array();
 		$data['total_f_date'] = $this->db->query("SELECT sum(treatment_fees) as fee from treatment where  patient_id ='".$this->session->userdata('patient_id')."' and  is_deleted = 0 ")->row_array();
@@ -35,7 +35,7 @@ class P_dashboard extends MY_Controller
 				 	$fee_total += $row['treatment_fees'];
 				 	$treatment_total = $count;
 				 	$t[$i] = $count;
-				 	$fee[$i]= $fee_total/1000;
+				 	$fee[$i]= $fee_total;
 
 				 }
 
@@ -47,7 +47,7 @@ class P_dashboard extends MY_Controller
 		$arr1['data']= '['.str_replace('"', '', implode(",",$t)).']';
 
 
-		$arr2['name']= '"Total fee(in thousands)"';
+		$arr2['name']= '"Total fee"';
 		$arr2['data']= '['.str_replace('"', '', implode(",",$fee)).']';
 				// echo json_encode($arr); die;
 		//		$data['json'] = json_encode($arr1).','.json_encode($arr2);

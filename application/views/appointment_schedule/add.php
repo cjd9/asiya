@@ -264,6 +264,10 @@
 
 														<?php
 															}
+															else{
+																echo '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert">x</button><span><strong>No Appointments Found.</strong></span></div>'; 
+																break;
+															}
 
 														?>
 

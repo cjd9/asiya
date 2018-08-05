@@ -18,13 +18,13 @@
 	  </style>
 	</head>
 	<body style="border:5px double; height:120%;">
-		<div id="header">
-			<div style="=top:30px ;  margin-top:20px;""><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
+		<div id="header" style="margin-top:90px;">
+			<div style=""><img src="<?php echo base_url(); ?>images/Asiya.jpg"  /> </div><h2></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
 		</div>
 		<br /><br /><br /><br />
 
-		<div>
+		<div style="margin-top:90px;">
 			<?php
 			$edit_treatment_html = '';
 			 $edit_treatment_html .= '
@@ -32,20 +32,22 @@
 				      <thead>
 				        <tr>
 
-				          <th width="19%"><div align="center">Therapy</div></th>
-				          <th width="19%"><div align="center">Repetitions</div></th>
-				          <th width="19%"><div align="center">Sets</div></th>
-				          <th width="19%"><div align="center">Hold Time</div></th>
+				          <th width="19%"><div align="left">Therapy</div></th>
+				          <th width="19%"><div align="left">Repetitions</div></th>
+				          <th width="19%"><div align="left">Sets</div></th>
+				          <th width="19%"><div align="left">Hold Time</div></th>
 				        </tr>
 				      </thead>
 				      <tbody>';
 				foreach($rstreatment->result_array() as $treatment_meta) {
+					$time = '';
+					if(!empty($treatment_meta["time"])){$time = 'mins';}
 				  $edit_treatment_html .= '
 				        <tr>
-				          <td width="77%"><div align="center">'.$treatment_meta["therapy"].'</div></td>
-				          <td width="77%"><div align="center">'.$treatment_meta["reps"].'</div></td>
-				          <td width="77%"><div align="center">'.$treatment_meta["sets"].'</div></td>
-				          <td width="77%"><div align="center">'.$treatment_meta["time"].' mins</div></td>
+				          <td width="77%"><div align="left">'.$treatment_meta["therapy"].'</div></td>
+				          <td width="77%"><div align="left">'.$treatment_meta["reps"].'</div></td>
+				          <td width="77%"><div align="left">'.$treatment_meta["sets"].'</div></td>
+				          <td width="77%"><div align="left">'.$treatment_meta["time"].$time.'</div></td>
 
 				        </tr>
 				  ';

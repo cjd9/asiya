@@ -29,7 +29,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">Confirm On</label>
 								<div class="col-sm-9">
-									: <?php echo $r->confirm_on; ?>
+									: <?php echo date('d-m-Y',strtotime($r->confirm_on)); ?>
 								</div>
 							</div><!-- form-group -->
 							
@@ -43,7 +43,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">Cancelled On</label>
 								<div class="col-sm-9">
-									: <?php echo $r->cancelled_on; ?>
+									: <?php echo date('d-m-Y',strtotime($r->cancelled_on)); ?>
 								</div>
 							</div><!-- form-group -->
 						

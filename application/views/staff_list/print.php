@@ -18,8 +18,8 @@
 	  </style>
 	</head>
 	<body style="border:5px double; height:98%;">
-		<div id="header">
-			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" height="550%" width="15%"/> </h2>
+		<div id="header" style="margin-top:30px;">
+			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" height="550%" /> </h2>
 			<hr style="margin-left:35px; margin-right:35px; text-align: center;" />
 		</div>
 
@@ -50,7 +50,7 @@
 
 			<table width="90%" cellpadding="8"  border="0" align="center">
 				<tr>
-					<th colspan="5"  cellspacing="10"><b><u>STAFF BASIC DETAILS</u></b></th>
+					<th colspan="5"  cellspacing="10"><b><u>STAFF DETAILS</u></b></th>
 				</tr>
 				<tr>
 					<td width="20%"><b>Staff Name</b></td>

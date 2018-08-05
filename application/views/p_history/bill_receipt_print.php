@@ -18,18 +18,20 @@
 	  </style>
 	</head>
 	<body style="border:5px double; height:98%;">
-		<div id="header">
-			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" style=' height="550%" width="15%"'/></h2>
+
+		<div id="header" style="margin-top:45px;">
+			<h2><img src="<?php echo base_url(); ?>images/Asiya.jpg" style=' height="550%" '/></h2>
 			<hr style="margin-left:35px; margin-right:35px;" />
+
 		</div>
 		<br /><br /><br /><br />
 
-		<div>
+		<div style="margin-top:100px;">
 			<?php
 				$r = $rstreatment->row();
 			?>
 			<p>
-		  		<div style="margin-top:390px;">
+		  		<div>
 					<h2 align="center"><b>Bill Receipt</b></h2>
 				</div>
 

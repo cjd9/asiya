@@ -83,8 +83,14 @@ class Education_program extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		// get shared patient list for login staff -
-		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+		if($this->session->userdata('user_type')=='S'){
+		  $data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
 
+		}
+		else{
+		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE   is_deleted = 0");
+
+		}
 		$this->load->view('education_program/sms',$data);
 	}
 
@@ -105,7 +111,14 @@ class Education_program extends MY_Controller
 		$current_staff_id = $this->session->userdata("userid");
 
 		// get shared patient list for login staff -
-		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+		if($this->session->userdata('user_type')=='S'){
+		  $data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");
+
+		}
+		else{
+		$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE   is_deleted = 0");
+
+		}
 
 		$this->load->view('education_program/email',$data);
 

@@ -117,7 +117,7 @@
 
                 <?php if(!empty($birthday_today)) {
                   $count = 1; ?>
-                  <div id="myCarouselBirthday" class="carousel slide" data-ride="carousel">
+                  <div id="myCarouselBirthday" class="carousel slide" data-ride="carousel" data-interval="false">
                    <div class="carousel-inner row w-100 mx-auto">
                       <div class="item col-md-4 active">
 
@@ -166,7 +166,7 @@
 
                 <?php if(!empty($festival_today)) {
                   $count = 1; ?>
-                  <div id="myCarouselFestival" class="carousel slide" data-ride="carousel">
+                  <div id="myCarouselFestival" class="carousel slide" data-ride="carousel" data-interval="false">
                    <div class="carousel-inner row w-100 mx-auto">
                       <div class="item col-md-4 active">
 
@@ -216,7 +216,7 @@
 
                       <?php if(!empty($today_appointment)) {
                         $count = 1; ?>
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                          <div class="carousel-inner row w-100 mx-auto">
                             <div class="item col-md-4 active">
 
@@ -266,7 +266,7 @@
 
                       <?php if(!empty($tomorrow_appointment)) {
                         $count = 1; ?>
-                        <div id="myCarouselTomorrow" class="carousel slide" data-ride="carousel">
+                        <div id="myCarouselTomorrow" class="carousel slide" data-ride="carousel" data-interval="false">
                          <div class="carousel-inner row w-100 mx-auto">
                             <div class="item col-md-4 active">
 
@@ -504,7 +504,7 @@ Highcharts.chart('line-chart-week', {
     text: ''
   },
   subtitle: {
-    text: 'Monthly Report'
+    text: 'Weekly Report'
   },
   credits: {
     enabled: false
@@ -645,6 +645,9 @@ Highcharts.chart('areachart', {
         lineColor: '#666666'
       }
     }
+  },
+  credits: {
+    enabled: false
   },
   series: [<?php echo $json2.','.$json6;?>]
 });

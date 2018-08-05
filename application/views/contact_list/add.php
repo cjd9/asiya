@@ -317,7 +317,7 @@
 									<div class="panel-footer">
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
-											<button class="btn btn-primary mr5">Submit</button>
+											<button id="csubmit" class="btn btn-primary mr5">Submit</button>
 											<a href="<?php print base_url(); ?>contact_list" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
@@ -377,7 +377,10 @@
 			})
 						// select box validations -
 			$('#add_patient_form').on('submit', function()
+
 			{
+				$('#csubmit').prop('disabled',true);
+
 				$valid = true;
 				$('.err').text('');
 				$('#msg1').text('');
@@ -454,9 +457,11 @@
         }
 
         if(!$valid){
+        	$('#csubmit').prop('disabled',false);
+
         	return false;
         }
-
+        	
 
 			});
 

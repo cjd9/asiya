@@ -29,7 +29,7 @@
 					   <p><?php echo $view['education_program_desc']?></p>
                         </div>
                         <div class="col-md-3">
-                            <img src="/education_thumbnail/<?php echo $view['thumbnail']  ?>" onerror="this.src='/images/logo-new.png';" alt="Avatar" style="width: 100%">
+                            <img src="/education_thumbnail/<?php echo $view['thumbnail']  ?>" onerror="this.style.display = 'none'";  style="width: 100%">
 
                         </div>
       				  </div>

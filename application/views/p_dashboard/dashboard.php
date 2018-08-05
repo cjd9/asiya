@@ -76,7 +76,7 @@
                                   <tbody>
                              <?php foreach($today_appointment as $today){ ?>
                                   <tr>
-                                    <td><?php echo $today['date_of_appointment'];  ?></td>
+                                    <td><?php echo date(('d-m-Y'),strtotime($today['date_of_appointment'])); ?></td>
                                     <td><?php echo $today['time_slot'];  ?></td>
                                   </tr>
                              <?php } ?>

@@ -76,6 +76,13 @@
 			<a href="<?php echo base_url().'exercise_program'; ?>"><i class="fa fa-child"></i> <span>Excercise Program</span></a>
 		</li>
 
+			<?php 	if($this->session->userdata('user_type')=='A'){?>
+
+				<li <?php if(current_url() == base_url().'tag' || current_url() == base_url().'tag' || strpos(current_url(), base_url().'staff_list/edit/') !== false) {?> class="active" <?php } ?>>
+					<a href="<?php echo base_url().'tag'; ?>"><i class="fa fa-file-text-o"></i> <span>Categories</span></a>
+				</li>
+			<?php }?>
+
 		<li <?php if(current_url() == base_url().'clinical_meetings' || current_url() == base_url().'clinical_meetings/add' || strpos(current_url(), base_url().'clinical_meetings/edit/') !== false) {?> class="active" <?php } ?>>
 			<a href="<?php echo base_url().'clinical_meetings'; ?>"><i class="fa fa-hospital-o"></i> <span>Clinical Meetings</span></a>
 		</li>
