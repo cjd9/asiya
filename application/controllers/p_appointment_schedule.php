@@ -129,6 +129,8 @@ class p_appointment_schedule extends MY_Controller
 		$patient_name = $data['p_fname'].' '.$data['p_lname'];
 		//$appontment_time = $this->db->get_where('time_slot_master', array('pk' => $data['appointment_time']))->row()->time_slot;
 		$appontment_time = $data['appointment_time'];
+		$appontment_time =  $this->db->query("SELECT * FROM   time_slot_master WHERE pk = ".$appontment_time)->row_array()['time_slot'];
+
 
 		if($work_shift == 'M')
 		{
@@ -161,7 +163,6 @@ class p_appointment_schedule extends MY_Controller
 			$msg .= '<b>Appointment Shift / Timing : </b> '.$shift.' / '.$appontment_time.' <br>';
 			$msg .= '<b>Problem : </b> '.$data['problem'].' <br>';
 			$msg .= '<br><br> Thanks, <br> - Clinic Management System.';
-
 			$res = $this->mastermodel->send_mail($to_email, $to_name, $sub, $msg, '', TRUE);
 
 			/****************** Send Email *************************/
@@ -324,8 +325,7 @@ class p_appointment_schedule extends MY_Controller
 
 		$patient_name = $data['p_fname'].' '.$data['p_lname'];
 		//$appontment_time = $this->db->get_where('time_slot_master', array('pk' => $data['appointment_time']))->row()->time_slot;
-		$appontment_time = $data['appointment_time'];
-
+		$appontment_time =  $this->db->query("SELECT * FROM   time_slot_master WHERE pk = ".$this->input->post('timeslot'))->row_array()['time_slot'];
 		
 
 		// get all staff's email id from selected work shift -

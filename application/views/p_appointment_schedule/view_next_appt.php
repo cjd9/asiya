@@ -116,7 +116,8 @@
 						    inputOptions: <?php echo $timeslot; ?>,
 						    callback: function (result) {
 						        console.log(result);
-										$.ajax({
+						        if(result != null){
+						        	$.ajax({
 													type: "post",
 													url: '/p_appointment_schedule/update_appt_status/nocheck',
 													dataType: "json",
@@ -135,6 +136,8 @@
 													}
 
 										 });
+						        }
+										
 						    }
 						});
 

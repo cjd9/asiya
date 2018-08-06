@@ -103,26 +103,11 @@
 					<td width="43%"><b>:</b> <?php echo $r->referred_by; ?></td>
 				</tr>
 
-				<tr>
-					<td width="10%"><b>State</b></td>
-					<td width="25%" ><b>:</b> <?php echo $r->p_state; ?></td>
-				</tr>
-
-
-				<tr>
-					<td width="10%"><b>City</b></td>
-					<td width="15%"><b>:</b> <?php echo $r->p_city; ?></td>
-
-				</tr>
-				<tr>
-					<td width="10%"><b>Pin</b></td>
-					<td width="15%"><b>:</b> <?php echo $r->p_zip; ?></td>
-				</tr>
 		</table>
 		<table width="90%"cellpadding="4"  border="0" align="center">
 			<tr>
 								<td width="15% rowspan="3" valign="top"" ><b>Address</b></td>
-								<td width="80% rowspan="3" valign="top"" ><b>:</b> <?php echo wordwrap($r->p_address,70,"<br>\n"); ?></td>
+								<td width="80% rowspan="3" valign="top"" ><b>:</b> <?php echo wordwrap($r->p_address,70,"<br>\n").','.$r->p_city.','.$r->p_state.'-'.$r->p_zip ; ?></td>
 			</tr>
 
 		</table>

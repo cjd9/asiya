@@ -103,7 +103,7 @@ class Staff_list extends MY_Controller
 		$data['s_username'] = $data['staff_id'];
 		//$data['s_password'] = md5($data['staff_id']);
 
-		$data['s_password'] = $data['s_contact_no'];
+		$data['s_password'] = $data['staff_id'];
 
 		$data['user_type'] = 'S';	// default user type Staff
 		$data['user_status'] = 'A';	// default user Status Active

@@ -288,7 +288,6 @@ class Contact_list extends MY_Controller
 
 		// insert record into contact list -
 		$this->mastermodel->add_data('contact_list', $data);
-	if($this->session->userdata('user_type')=='S'){
 				$patient_id = $data['patient_id'];
 
 				// get current login user -
@@ -364,7 +363,7 @@ class Contact_list extends MY_Controller
 
 
 				
- }
+
 		/************************* send SMS *********************/
 
 		// function used to redirect -
