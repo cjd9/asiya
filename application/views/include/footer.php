@@ -124,6 +124,21 @@
 
 			// Form Toggles
 			jQuery('.toggle').toggles({on: true});
+
+			$(document).ready(function(){
+				    var $remaining = $('#remaining'),
+				        $messages = $remaining.next();
+
+				    $('#msg , #message').keyup(function(){
+				        var chars = this.value.length,
+				            messages = Math.ceil(chars / 160),
+				            remaining = messages * 160 - (chars % (messages * 160) || messages * 160);
+
+				        $remaining.text(remaining + ' characters remaining');
+				        $messages.text(messages + ' message(s)');
+				    });
+				});
+		
 		});
         </script>
 

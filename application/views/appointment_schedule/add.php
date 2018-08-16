@@ -55,6 +55,9 @@
 														<?php foreach ($rsstaff_list->result() as $r) { ?>
 															<option value="<?php echo $r->pk; ?>" <?php if(isset($staff_id) && $staff_id == $r->pk) { ?> selected="selected"<?php } ?>><?php echo $r->s_fname.' '.$r->s_mname.' '.$r->s_lname; ?></option>
 														<?php } ?>
+														<?php if($this->session->userdata('user_type')=='A'){ ?>
+														<option value="all">All</option></option>
+														<?php } ?>
 													</select>
 													<span id="msg1" style="color:#FF0000"></span>
 												</div>

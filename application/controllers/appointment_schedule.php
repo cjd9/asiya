@@ -194,11 +194,19 @@ class Appointment_schedule extends MY_Controller
 		$schedule_date			= $this->mastermodel->date_convert($_POST['schedule_date'],'ymd');
 
 		// set shift name -
-		$data['rsstaff'] = $this->db->query("SELECT * FROM staff_details WHERE pk IN (SELECT staff_id FROM appointment_schedule WHERE date_of_appointment = '$schedule_date'  AND is_deleted = 0)")->row_array();
+		
 		//print_r($data['rsstaff']); die;
 		$data['rstime_slots'] = $this->db->query("SELECT * FROM time_slot_master ")->result_array();
+		if($staff_id == 'all'){
+			$data['rsschedule'] = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date'  AND is_deleted = 0")->result_array();
+			$data['rsstaff'] = $this->db->query("SELECT * FROM staff_details WHERE pk IN (SELECT staff_id FROM appointment_schedule WHERE date_of_appointment = '$schedule_date'  AND is_deleted = 0)")->result_array();
+		}else{
+			$data['rsschedule'] = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND staff_id = $staff_id AND is_deleted = 0")->result_array();
+			$data['rsstaff'] = $this->db->query("SELECT * FROM staff_details WHERE pk IN (SELECT staff_id FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' and staff_details.pk = $staff_id AND is_deleted = 0)")->result_array();
+		}
 
-		$data['rsschedule'] = $this->db->query("SELECT * FROM appointment_schedule WHERE date_of_appointment = '$schedule_date' AND staff_id = $staff_id AND is_deleted = 0")->result_array();
+		//print_r($data['rsstaff']); die;
+		
 
 		if(!empty($data['rsschedule'])){
 			// get html page contents

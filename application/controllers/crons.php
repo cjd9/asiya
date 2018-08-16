@@ -294,7 +294,7 @@ class Crons extends CI_Controller
 		// 	 WHERE `date` ='".$today."'")->result_array();
 
 		$result = $this->db->query("SELECT * FROM (`religious_festivals`)
-			 WHERE `date` ='".$today."'")->result_array();
+			 WHERE message != '' and `date` ='".$today."'")->result_array();
 
 			 ;
 
@@ -367,7 +367,7 @@ class Crons extends CI_Controller
 					{
 						$patient_contact_no = $list['p_contact_no'];
 
-						$msg = 'Dear '.$patient_name.'\n '.$data['message'].'  - Asiya Clinic Management System.';
+						$msg = "Dear ".$patient_name."\n ".$data["message"];
 
 						$res_sms = $this->mastermodel->send_sms($patient_contact_no, $patient_name, $msg);
 						if($res_sms)

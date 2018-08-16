@@ -29,7 +29,8 @@
 		<div style="margin-top:75px;">
       <br /><br />
       <h3 style="text-align: center;  margin-top:-30px; ">Appointment Schedule for <?php echo date('F d Y',strtotime($rsschedule[0]['date_of_appointment'])) ; ?></h3>
-        <h4 style="text-align: center; ">Staff Name: <?php echo $rsstaff['s_fname'].' '.$rsstaff['s_lname'] ?></h4>
+      <?php foreach($rsstaff as $staff){ ?>
+       <h4 style="text-align: center; ">Staff Name: <?php echo $staff['s_fname'].' '.$staff['s_lname'] ?></h4>
              <div style="text-align: center; margin-left:15px; width:95%;">
                 <table cellspacing="2" class="tbl" style=" border:2px double;  width:100%;">
                 <tr>
@@ -42,7 +43,7 @@
                         foreach($rstime_slots as $slot) {
 
                                foreach($rsschedule as $apt) {
-                                 if($apt['time_slot_id'] == $slot['pk'])  {                      ?>
+                                 if($apt['staff_id'] == $staff['pk'] &&  $apt['time_slot_id'] == $slot['pk'])  {                      ?>
                                  <tr>
                                    <td><?php echo $apt['date_of_appointment']; ?></td>
                                    <td><?php echo $slot['time_slot']; ?></td>
@@ -63,7 +64,9 @@
 
 
 
-				<br> <br><br> <br>
+        <br> <br><br> <br>
+     <?php } ?>
+       
 
 
 

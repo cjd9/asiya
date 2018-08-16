@@ -73,6 +73,10 @@
 												<label class="col-md-2 control-label"> Message<span class="asterisk">*</span></label>
 												<div class="col-sm-10">
 													<textarea id="msg" name="msg" placeholder="Enter message here..." class="form-control validate[required]" rows="3"></textarea>
+													<p>
+													    <span id="remaining">160 characters remaining</span>
+													    <span id="messages">1 message(s)</span>
+													</p>
 												</div>
 											</div><!-- form-group -->
 											
@@ -208,7 +212,8 @@
 				});
 				
 			});
-		
+
+			
 		}); 
 	</script>
 	
