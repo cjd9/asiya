@@ -95,7 +95,11 @@
 											<div class="form-group">
 												<label class="col-md-2 control-label">Description </label>
 												<div class="col-sm-10">
-													<textarea rows="10" name="message" id="message" class="form-control validate[required]"><?php echo $r->message; ?></textarea> </textarea>
+													<textarea rows="10" name="message" id="message" class="form-control validate[required]"><?php echo $r->message; ?> </textarea>
+													<p>
+													    <span id="remaining">160 characters remaining</span>
+													    <span id="messages">1 message(s)</span>
+													</p>
 												</div>
 											</div><!-- form-group -->
 

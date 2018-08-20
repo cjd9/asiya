@@ -97,7 +97,11 @@
 											<div class="form-group">
 												<label class="col-md-2 control-label">Description </label>
 												<div class="col-sm-10">
-													<textarea rows="10" disabled name="message" id="message" class="form-control validate[required]"><?php echo $r->message; ?></textarea> </textarea>
+													<textarea rows="10" disabled name="message" id="message" class="form-control validate[required]"><?php echo $r->message; ?></textarea> 
+													<p>
+													    <span id="remaining">160 characters remaining</span>
+													    <span id="messages">1 message(s)</span>
+													</p>
 												</div>
 											</div><!-- form-group -->
 
@@ -134,6 +138,13 @@
   var datasel =<?php echo json_encode(explode(',',$rsfestival->result_array()[0]['religion_id'])) ?>;
 	$(document).ready(function()
 	{
+
+		 var chars = $('#message').html().length;
+				            var messages = Math.ceil(chars / 160);
+				           var  remaining = messages * 160 - (chars % (messages * 160) || messages * 160);
+
+				        $('#remaining').text(remaining + ' characters remaining');
+				        $('#messages').text(messages + ' message(s)');
 
     $('#religion_id').select2({}).select2('val', datasel);
 		var max_fields      = 10; //maximum input boxes allowed
@@ -196,6 +207,9 @@
 		}
 
 	});
+
+	
+				       
 	</script>
 
     </body>
