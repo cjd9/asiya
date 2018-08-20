@@ -9,6 +9,7 @@ class Exercise_program extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
+
 	}
 /*-----------------------------------------------------Start Exercise Program--------------------------------------------------*/
 	// Exercise Program List
@@ -57,7 +58,6 @@ class Exercise_program extends MY_Controller
 	 function addVideoDetails()
 	 {
 		 $data = $_POST;
-
 
 		 //$data['video_file'] = '';
 
@@ -114,7 +114,8 @@ class Exercise_program extends MY_Controller
 				$data['rscontact_list'] = $this->db->query("SELECT * FROM contact_list WHERE patient_id IN (SELECT patient_id FROM staff_patient_master WHERE current_assign_staff_id = $current_staff_id) AND is_deleted = 0");	// order by patient_id
 
 			}
-		$data['video_list'] = $this->db->query("SELECT DISTINCT tag FROM exercise_video_master")->result_array();	// order by patient_id
+		$data['video_list'] = $this->db->query("SELECT DISTINCT tag_master.tag,tag_master.id FROM exercise_video_master inner join tag_master on exercise_video_master.tag = tag_master.id
+")->result_array();	// order by patient_id
 		//$data['rscontact_list'] = $this->mastermodel->get_data('*', 'contact_list', 'is_deleted = 0', NULL, NULL, 0, NULL);
 
 		$this->load->view('exercise_program/add',$data);
@@ -249,8 +250,8 @@ class Exercise_program extends MY_Controller
 							$insert_video_meta[] = array(
 									'exercise_id' => $exercise_id,
 									'exercise_video_id' => $value['check'],
-									'exercise_start_date' => $value['exercise_start_date'],
-									'exercise_end_date' => $value['exercise_end_date'],
+									'exercise_start_date' => $this->mastermodel->date_convert($value['exercise_start_date'],'ymd'),
+									'exercise_end_date' =>$this->mastermodel->date_convert($value['exercise_end_date'],'ymd'),
 									'vid_name' => $value['vid_name'],
 									'vid_link' => $vid_link,
 									'reps' => $value['reps'],
@@ -317,8 +318,8 @@ class Exercise_program extends MY_Controller
 							$insert_video_meta[] = array(
 									'exercise_id' => $exercise_id,
 									'exercise_video_id' => $value['check'],
-									'exercise_start_date' => $value['exercise_start_date'],
-									'exercise_end_date' => $value['exercise_end_date'],
+									'exercise_start_date' => $this->mastermodel->date_convert($value['exercise_start_date'],'ymd'),
+									'exercise_end_date' =>$this->mastermodel->date_convert($value['exercise_end_date'],'ymd'),
 									'vid_name' => $value['vid_name'],
 									'vid_link' => $vid_link,
 									'reps' => $value['reps'],
@@ -340,8 +341,8 @@ class Exercise_program extends MY_Controller
 							$update_video_meta = array(
 									'exercise_id' => $exercise_id,
 									'exercise_video_id' => $value['insert_id'],
-									'exercise_start_date' => $value['exercise_start_date'],
-									'exercise_end_date' => $value['exercise_end_date'],
+									'exercise_start_date' => $this->mastermodel->date_convert($value['exercise_start_date'],'ymd'),
+									'exercise_end_date' =>$this->mastermodel->date_convert($value['exercise_end_date'],'ymd'),
 									'vid_name' => $value['vid_name'],
 									'vid_link' => $vid_link,
 									'reps' => $value['reps'],

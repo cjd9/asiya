@@ -130,7 +130,7 @@
 														  <select id="tag" name="tag" multiple ="multiple" data-placeholder="Choose One" class="select2-container width100p">
 															<option value=""></option>
 									<?php foreach($video_list as $vid){?>
-																<option value="<?php echo $vid['tag']?>"><?php echo $vid['tag']?></option>
+																<option value="<?php echo $vid['id']?>"><?php echo $vid['tag']?></option>
 									<?php } ?>
 														</select>
 														<span id="msg1" class="" style="color:#FF0000"></span>
@@ -175,10 +175,13 @@
 	{
 		jQuery.validator.addMethod("greaterThan",
 		function(value, element, params) {
-
+			console.log(new Date(value));
+			console.log($(params).val());
+			console.log(new Date($(params).val()));
 		    if (!/Invalid|NaN/.test(new Date(value))) {
 		        return new Date(value) > new Date($(params).val());
 		    }
+
 
 		    return isNaN(value) && isNaN($(params).val())
 		        || (Number(value) > Number($(params).val()));
@@ -256,7 +259,7 @@
 				    patient_id: {
 				      required: true
 
-				   
+
 				    },
 				    tag: {
 				      required: true

@@ -25,7 +25,7 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<form id="add_clinical_meetings_form" action="/exercise_program/addVideoDetails" method="post" enctype="multipart/form-data" onSubmit="return validate()">
+								<form id="add_category_video_form" action="/exercise_program/addVideoDetails" method="post" enctype="multipart/form-data" onSubmit="return validate()">
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
@@ -33,7 +33,7 @@
 												<span class="glyphicon glyphicon-arrow-left"></span> Back
 										 </a>
 										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Add Video </b></h3>
-										
+
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">
@@ -53,10 +53,10 @@
 									</div><!-- form-group -->
 												<label class="col-md-3 control-label">Category<span class="asterisk">*</span></label>
 												<div class="col-sm-9">
-						                          <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p">
+						                          <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p  validate[required]">
 																				<option value=""></option>
 																<?php foreach($tag_master as $tag){
-																	echo '<option value="'.$tag['tag'].'">'.$tag['tag'].'</option>';
+																	echo '<option value="'.$tag['id'].'">'.$tag['tag'].'</option>';
 																       }
 																?>
 
@@ -96,11 +96,33 @@
 		</section>
 
 		<?php $this->load->view('include/footer'); ?>
+		  <script src="<?php print base_url(); ?>js/jquery.validate.min.js"></script>
 
 	<script>
 		$(document).ready(function()
 		{
 			$("#add_clinical_meetings_form").validationEngine({promptPosition: "topRight: -100"});
+			$("#add_category_video_form").validate({
+					  rules: {
+
+					    tag: {
+					      required: true
+
+					    },
+					    description: {
+					      required: true
+
+					    },
+					    title: {
+					      required: true
+
+					    },
+					    video_file: {
+					      required: true
+
+					    }
+					  }
+					});
 		});
 		$(function () {
 					    $('input[type=file]').change(function () {
@@ -113,6 +135,8 @@
 					        }
 					    });
 					});
+
+
 	</script>
 
     </body>
