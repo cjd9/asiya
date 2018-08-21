@@ -12,10 +12,10 @@
 
 								<ul class="breadcrumb">
 									<li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
-									<li><a href="#">Category</a></li>
+									<li><a href="#">Video</a></li>
 
 								</ul>
-								<h4>Edit Category </h4>
+								<h4>Edit Video </h4>
 							</div>
 						</div><!-- media -->
 					</div><!-- pageheader -->
@@ -25,37 +25,57 @@
 						<?php if($this->session->flashdata('message')) { echo flash_message(); } ?>
 
 						<?php
-							$r = $rstag->row();
+							$r = $rsvideo->row();
 						 ?>
 
 						<div class="row">
 							<div class="col-md-12">
 								<form id="edit_festival_form" action="<?php echo $editaction; ?>" method="post" enctype="multipart/form-data" onSubmit="return validate()">
-								<input type="hidden" name="edit_pk" id="edit_pk"  value="<?php echo $r->id; ?>"/>
+								<input type="hidden" name="id" id="id"  value="<?php echo $r->id; ?>"/>
 
 								<div class="panel panel-default">
 									<div class ="panel-heading">
 
-										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Category </b></h3>
+										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Video </b></h3>
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">
 										<div class="row">
 											<input type="hidden" id="id" name="id" class="form-control validate[required]" value="<?php echo $r->id; ?>" />
-                      <?php
-												$sql = "SELECT id FROM tag_master ORDER BY id DESC LIMIT 1";
 
-												$rs = $this->db->query($sql);
-
-											?>
                       <div class="form-group">
-                       <label class="col-sm-2 control-label">Category Name<span class="asterisk">*</span></label>
+                       <label class="col-sm-2 control-label">Video Title<span class="asterisk">*</span></label>
                        <div class="col-sm-6">
-                         <input type="text" name="tag" value = "<?php echo $r->tag; ?>" id="tag" class="form-control validate[required]">
+                         <input type="text" name="title" value = "<?php echo $r->title; ?>" id="title" class="form-control validate[required]">
                        </div>
                      </div>
+                     <div class="form-group">
+
+                         <label class="col-sm-2 control-label">Tag<span class="asterisk">*</span></label>
+                         <div class="col-sm-5">
+                           <select id="tag" name="tag" data-placeholder="Choose Category " class="select2-container width100p">
+                             <option value=""></option>
+                             <?php
+                               foreach ($tags->result() as $rl)
+                               { ?>
+                                  <option <?php echo ($rl->id == $r->tag) ? 'selected' : '';
+?> value='<?php echo $rl->id ?>'><?php echo $rl->tag ?></option>;
+                            <?php   } ?>
+                             ?>
+                           </select>
+                           <span id="msg1" class="" style="color:#FF0000"></span>
+                         </div>
+
+                     </div><!-- form-group -->
 
 
+											<div class="form-group">
+												<label class="col-md-2 control-label">Description </label>
+												<div class="col-sm-10">
+													<textarea rows="10" name="description" id="description" class="form-control validate[required]"><?php echo $r->description; ?> </textarea>
+
+												</div>
+											</div><!-- form-group -->
 
 
 
@@ -68,7 +88,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>tag" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>festival" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
