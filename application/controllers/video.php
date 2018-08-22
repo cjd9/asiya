@@ -23,7 +23,7 @@ class Video extends MY_Controller
 		//$data['rsfestival'] = $this->mastermodel->get_data('*', 'festival', $where, NULL, NULL, 0, NULL);
 
 		$data['rsvideo'] = $this->db->query("SELECT * from exercise_video_master");
-    $data['tags'] = $this->db->query("SELECT * from tag_master");
+    $data['tags'] = $this->db->query("SELECT * from tag_master")->result_array();
 		$this->load->view('video/list',$data);
 	}
 

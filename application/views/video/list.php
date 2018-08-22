@@ -64,8 +64,8 @@
 											<th><div align="center">#</div></th>
 											<th>Video Name</th>
 											<th>Description</th>
-											<th>Tag</th>
-											<th>link</th>
+											<th>Category</th>
+											<th>Link</th>
 											<th><div align="center">Action</div></th>
 										</tr>
 									</thead>
@@ -77,7 +77,13 @@
 											<td align="center"><?php echo ++$cnt; ?></td>
 											<td><?php echo $row->title; ?></td>
 											<td><?php echo wordwrap($row->description,100,"<br>\n",TRUE); ?></td>
-											<td><?php echo $row->title; ?></td>
+											<td><?php
+												foreach($tags as $tag){
+													if($tag['id'] == $row->tag){
+														echo $tag['tag'];
+													}
+												}
+                       ?></td>
 											<td><a href="/exercise_program_file/<?php echo $row->name; ?>"> <?php echo $row->name; ?></a></td>
 											<td>
 												<div align="center">

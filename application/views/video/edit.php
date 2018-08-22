@@ -35,8 +35,11 @@
 
 								<div class="panel panel-default">
 									<div class ="panel-heading">
+										<a style="margin-top: -7px;" href="<?php echo base_url().'video'?>" type="button" class="btn btn-default btn-sm">
+												<span class="glyphicon glyphicon-arrow-left"></span> Back
+										 </a>
 
-										<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> <b>Edit Video </b></h3>
+										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-edit"></i> <b>Edit Video </b></h3>
 									</div><!-- panel-heading -->
 
 									<div class="panel-body">
@@ -88,7 +91,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>festival" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>video" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
@@ -114,11 +117,9 @@
 	</script>
 
 	<script>
-  var datasel =<?php echo json_encode(explode(',',$rsfestival->result_array()[0]['religion_id'])) ?>;
 	$(document).ready(function()
 	{
 
-    $('#religion_id').select2({}).select2('val', datasel);
 		var max_fields      = 10; //maximum input boxes allowed
 		var wrapper         = $("#file_upload"); //Fields wrapper
 		var add_button      = $("#add_more"); //Add button ID

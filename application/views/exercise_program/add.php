@@ -80,7 +80,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="date_of_upload" id="date_of_upload" value="<?php echo date('d-m-Y')?>">
+															<input type="text" class="form-control start_date" name="date_of_upload" id="date_of_upload" value="<?php echo date('d-m-Y')?>">
 														</div><!-- input-group -->
 													</div>
 												</div>
@@ -91,7 +91,7 @@
 													<div class="col-sm-6">
 														<div class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-															<input type="text" class="form-control datepicker" name="expiry_date" placeholder="dd-mm-yyyy" id="expiry_date">
+															<input type="text" class="form-control expiry_date" name="expiry_date" placeholder="dd-mm-yyyy" id="expiry_date">
 														</div><!-- input-group -->
 													</div>
 												</div>
@@ -177,7 +177,7 @@
 		function(value, element, params) {
 			console.log(new Date(value));
 			console.log($(params).val());
-			console.log(new Date($(params).val()));
+			console.log(new Date($(params).val()).getTime());
 		    if (!/Invalid|NaN/.test(new Date(value))) {
 		        return new Date(value) > new Date($(params).val());
 		    }
@@ -252,8 +252,7 @@
 		$("#add_exercise_program_form").validate({
 				  rules: {
 				    expiry_date: {
-				      required: true,
-							greaterThan: "#date_of_upload"
+				      required: true
 
 				    },
 				    patient_id: {
@@ -267,8 +266,39 @@
 				    }
 				  }
 				});
-
-
+				
+				$('.expiry_date').datepicker(
+				{
+					changeMonth: true,
+					changeYear: true,
+					yearRange: '1945:2050',
+					dateFormat: 'dd-mm-yy',
+					minDate: $('.start_date').val()
+				});
+				$('.start_date').datepicker(
+							{
+								changeMonth: true,
+								changeYear: true,
+								yearRange: '1945:2050',
+								dateFormat: 'dd-mm-yy',
+								minDate: 0,
+								 onSelect: function (dateText, inst) {
+										 $('.expiry_date').datepicker(
+										 {
+											 changeMonth: true,
+											 changeYear: true,
+											 yearRange: '1945:2050',
+											 dateFormat: 'dd-mm-yy',
+											 minDate: $('.start_date').val()
+										 });
+							     },
+									 beforeShow: function() {
+					        setTimeout(function(){
+					            $('.ui-datepicker').css('z-index', 99999999999999);
+					        }, 0)
+								}
+								//minDate: 0	// disable all previous dates
+							});
 	});
 
 	</script>
