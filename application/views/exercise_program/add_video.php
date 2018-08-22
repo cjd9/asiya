@@ -29,7 +29,7 @@
 
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<a style="margin-top: -7px;" href="<?php echo base_url().'exercise_program'?>" type="button" class="btn btn-default btn-sm">
+										<a style="margin-top: -7px;" href="<?php echo base_url().'video'?>" type="button" class="btn btn-default btn-sm">
 												<span class="glyphicon glyphicon-arrow-left"></span> Back
 										 </a>
 										<h3 class="panel-title text-center"><i class="glyphicon glyphicon-pencil"></i> <b>Add Video </b></h3>
@@ -46,7 +46,7 @@
 									</div><!-- form-group -->
                    				   <div class="form-group">
                       				<div class="form-group">
-												<label class="col-md-3 control-label"> Exercise Description<span class="asterisk">*</span></label>
+												<label class="col-md-3 control-label"> Exercise Description<span class="asterisk"></span></label>
 												<div class="col-sm-9">
 													<textarea name="description" id="description" class="form-control validate[required]"></textarea>
 												</div>
@@ -80,7 +80,7 @@
 									  <div class="row">
 										<div class="col-sm-7 col-sm-offset-4">
 											<button class="btn btn-primary mr5">Submit</button>
-											<a href="<?php print base_url(); ?>exercise_program" class="btn btn-dark">Cancel</a>
+											<a href="<?php print base_url(); ?>video" class="btn btn-dark">Cancel</a>
 										</div>
 									  </div>
 									</div><!-- panel-footer -->
@@ -109,10 +109,7 @@
 					      required: true
 
 					    },
-					    description: {
-					      required: true
 
-					    },
 					    title: {
 					      required: true
 

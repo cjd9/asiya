@@ -83,6 +83,13 @@
 				</li>
 			<?php }?>
 
+			<?php 	if($this->session->userdata('user_type')=='A'){?>
+
+				<li <?php if(current_url() == base_url().'video' || current_url() == base_url().'video' || strpos(current_url(), base_url().'staff_list/edit/') !== false) {?> class="active" <?php } ?>>
+					<a href="<?php echo base_url().'video'; ?>"><i class="fa fa-file-video-o"></i> <span>Video</span></a>
+				</li>
+			<?php }?>
+
 		<li <?php if(current_url() == base_url().'clinical_meetings' || current_url() == base_url().'clinical_meetings/add' || strpos(current_url(), base_url().'clinical_meetings/edit/') !== false) {?> class="active" <?php } ?>>
 			<a href="<?php echo base_url().'clinical_meetings'; ?>"><i class="fa fa-hospital-o"></i> <span>Clinical Meetings</span></a>
 		</li>
@@ -133,7 +140,7 @@
 				</li>
 			<?php }?>
 
-		
+
 
 	</ul>
 
