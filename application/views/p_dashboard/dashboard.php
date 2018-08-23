@@ -105,7 +105,7 @@
                              <?php foreach($rsexercise_program as $today){ ?>
                                   <tr>
                                     <td><?php echo substr($today['exercise_program'], 0, 100) ?> ....<a href="<?php print base_url(); ?>p_exercise_program/view/<?php echo $today['exercise_id']; ?>" >Go To Homework</a> </td>
-                                    <td><?php echo $today['expiry_date'];  ?></td>
+                                    <td><?php echo $this->mastermodel->date_convert($today['expiry_date']);  ?></td>
                                   </tr>
                              <?php } ?>
                                   </tbody>

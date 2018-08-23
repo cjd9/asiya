@@ -199,8 +199,8 @@ class Exercise_program extends MY_Controller
 									 <video id="player" class="img-thumbnail" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
 							 </div>
 								 <div class = "form-control">
-								 	<label class="control-label" for="">Start Date:</label> <input type="text" disabled value="'.$vid["exercise_start_date"].'" class="form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
-									<label class="control-label" for="">End Date:</label> <input type="text" disabled value="'.$vid["exercise_end_date"].'" class="form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
+								 	<label class="control-label" for="">Start Date:</label> <input type="text" disabled value="'. $this->mastermodel->date_convert($vid['exercise_start_date']).'" class="form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
+									<label class="control-label" for="">End Date:</label> <input type="text" disabled value="'.$this->mastermodel->date_convert($vid['exercise_end_date']).'" class="form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
 
 									 <label class="control-label" for="">No of Reps:</label>  <input type="number" disabled name="edit_video['.$vid["id"].'][reps]" value="'.$vid["reps"].'" class= "form-control" placeholder="No Of reps">
 									 <label class="control-label" for="">No of Sets:</label>     <input type="number" disabled name="edit_video['.$vid["id"].'][sets]" value="'.$vid["sets"].'" class= "form-control" placeholder="No Of sets">
@@ -230,8 +230,8 @@ class Exercise_program extends MY_Controller
 
 		// convert date format in form data -
 		$_POST['expiry_date'] = $this->mastermodel->date_convert($_POST['expiry_date'],'ymd');
-		$data['video']['exercise_start_date'] = $this->mastermodel->date_convert($_POST['exercise_start_date'],'ymd');
-		$data['video']['exercise_end_date'] = $this->mastermodel->date_convert($_POST['exercise_end_date'],'ymd');
+		// $data['video']['exercise_start_date'] = $this->mastermodel->date_convert($_POST['exercise_start_date'],'ymd');
+		// $data['video']['exercise_end_date'] = $this->mastermodel->date_convert($_POST['exercise_end_date'],'ymd');
 		$_POST['date_of_upload'] = $this->mastermodel->date_convert($_POST['date_of_upload'],'ymd');
 
 		// get evaluation id -
@@ -246,6 +246,12 @@ class Exercise_program extends MY_Controller
 			$insert_video_meta= array();
 				 foreach ($data['video'] as $value) {
 					 if(isset($value['check'])){
+						 if(empty($value['exercise_start_date'])){
+							 $value['exercise_start_date'] = $data['date_of_upload'];
+						 }
+						 if(empty($value['exercise_end_date'])){
+							  $value['exercise_end_date'] = $data['expiry_date'];
+						 }
 					 		$vid_link = $this->addUrl($value['vid_name'],$value['exercise_end_date']);
 							$insert_video_meta[] = array(
 									'exercise_id' => $exercise_id,
@@ -258,8 +264,10 @@ class Exercise_program extends MY_Controller
 									'sets' => $value['sets'],
 									'hold_time' => $value['hold_time'], //.str_pad($value['degree_month'],2,"0",STR_PAD_LEFT)."01",
 							);
+
 					}
 				 }
+				 //print_r($insert_video_meta); die;
 		$res = $this->mastermodel->insertBatch('exercise_meta', $insert_video_meta);
 
 		if(empty($res))
@@ -444,8 +452,8 @@ class Exercise_program extends MY_Controller
 										 <video id="player"  class="img-thumbnail" class="img-thumbnail" src="/exercise_program_file/'. $vid["name"].'"  width="300" height="250"></video>
 								 </div>
 									 <div class = "form-control">
-									 <label class="control-label" for="">Start Date:</label> <input type="text" class="required-field form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
-										<label class="control-label" for="">End Date:</label> <input type="text" class="required-field form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
+									 <label class="control-label" for="">Start Date:</label> <input type="text" class="form-control datepicker" name="video['.$vid["id"].'][exercise_start_date]" placeholder="dd-mm-yyyy" >
+										<label class="control-label" for="">End Date:</label> <input type="text" class="form-control datepicker" name="video['.$vid["id"].'][exercise_end_date]" placeholder="dd-mm-yyyy" >
 
 										 <label class="control-label" for="">No of Reps:</label>  <input type="number" name="video['.$vid["id"].'][reps]" class= "form-control" placeholder="No Of reps">
 										 <label class="control-label" for="">No of Sets:</label>     <input type="number" name="video['.$vid["id"].'][sets]" class= "form-control" placeholder="No Of sets">
