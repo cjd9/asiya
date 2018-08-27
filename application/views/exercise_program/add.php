@@ -235,7 +235,7 @@
 												changeMonth: true,
 												changeYear: true,
 												yearRange: '1945:2050',
-												dateFormat: 'yy-mm-dd',
+												dateFormat: 'dd-mm-yy',
 												 minDate: 0
 											});
 												jQuery.validator.addClassRules("required-field", {
@@ -299,6 +299,8 @@
 								}
 								//minDate: 0	// disable all previous dates
 							});
+
+
 	});
 
 	</script>

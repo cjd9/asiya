@@ -297,7 +297,7 @@ class Crons extends CI_Controller
 			 WHERE message != '' and `date` ='".$today."'")->result_array();
 
 			 ;
-
+			 print_r($result);
 		if(!empty($result))
 		{
 				foreach($result as $data)
@@ -314,6 +314,7 @@ class Crons extends CI_Controller
 							JOIN religion ON religion.pk = contact_list.p_religion_id
 						where is_deleted = 0 and p_religion_id =  $rid")->result_array();
 					}
+					print_r($list_data); die;
 
 					 	foreach($list_data as $list){
 					 	/****************** Send Email *************************/

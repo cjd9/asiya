@@ -103,10 +103,10 @@
 												<div class="col-sm-12">
 													<label class="col-md-2 control-label">Choose Tag<span class="asterisk">*</span></label>
 													<div class="col-sm-6">
-														  <select id="tag" name="tag" data-placeholder="Choose One" class="select2-container width100p">
+														  <select id="tag" name="tag" multiple ="multiple" data-placeholder="Choose One" class="select2-container width100p">
 															<option value=""></option>
 									<?php foreach($video_list as $vid){?>
-																<option value="<?php echo $vid['tag']?>"><?php echo $vid['tag']?></option>
+																<option value="<?php echo $vid['id']?>"><?php echo $vid['tag']?></option>
 									<?php } ?>
 														</select>
 														<span id="msg1" class="" style="color:#FF0000"></span>
@@ -213,6 +213,16 @@
 									 $('#video-append').empty()
 
 									 $('#video-append').append(result)
+									 		$('.datepicker').datepicker({
+												changeMonth: true,
+												changeYear: true,
+												yearRange: '1945:2050',
+												dateFormat: 'dd-mm-yy',
+												 minDate: 0
+											});
+												jQuery.validator.addClassRules("required-field", {
+											        required: true,
+											    });
 								 },
 								 beforeSend: function ()
 								 {

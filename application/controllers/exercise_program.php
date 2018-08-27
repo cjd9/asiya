@@ -133,8 +133,9 @@ class Exercise_program extends MY_Controller
 
 		// get data from table -
 		$data['rsexercise_program'] = $this->mastermodel->get_data('*', 'exercise_program', $where, NULL, NULL, 0, NULL);
-					 $data['video_list'] = $this->db->query("SELECT DISTINCT tag FROM exercise_video_master ")->result_array();
-
+	
+		$data['video_list'] = $this->db->query("SELECT DISTINCT tag_master.tag,tag_master.id FROM exercise_video_master inner join tag_master on exercise_video_master.tag = tag_master.id
+")->result_array();
 		$html='';
 			$selected_vids = $this->db->query("SELECT * FROM exercise_meta where exercise_id = '".$exercise_id."'");
 
@@ -150,8 +151,8 @@ class Exercise_program extends MY_Controller
 									 <video id="player" class="img-thumbnail" src="/exercise_program_file/'. $vid["vid_name"].'"  width="300" height="200"></video>
 							 </div>
 								 <div class = "form-control">
-								 	<label class="control-label" for="">Start Date:</label> <input type="text" class="form-control datepicker" name="edit_video['.$vid["id"].'][exercise_start_date]" value="'.$vid["exercise_start_date"].'" placeholder="dd-mm-yyyy" >
-									<label class="control-label" for="">End Date:</label> <input type="text" class="form-control datepicker" name="edit_video['.$vid["id"].'][exercise_end_date]" value="'.$vid["exercise_end_date"].'" placeholder="dd-mm-yyyy" >
+								 	<label class="control-label" for="">Start Date:</label> <input type="text" class="form-control datepicker" name="edit_video['.$vid["id"].'][exercise_start_date]" value="'. $this->mastermodel->date_convert($vid['exercise_start_date']).'" placeholder="dd-mm-yyyy" >
+									<label class="control-label" for="">End Date:</label> <input type="text" class="form-control datepicker" name="edit_video['.$vid["id"].'][exercise_end_date]" value="'. $this->mastermodel->date_convert($vid['exercise_end_date']).'" placeholder="dd-mm-yyyy" >
 
 									 <label class="control-label" for="">No of Reps:</label>  <input type="number" name="edit_video['.$vid["id"].'][reps]" value="'.$vid["reps"].'" class= "form-control" placeholder="No Of reps">
 									 <label class="control-label" for="">No of Sets:</label>     <input type="number" name="edit_video['.$vid["id"].'][sets]" value="'.$vid["sets"].'" class= "form-control" placeholder="No Of sets">
@@ -288,13 +289,13 @@ class Exercise_program extends MY_Controller
     {
 		// get form data -
 		$data = $_POST;
-	print_r($data);
 		//var_dump($_FILES);
+		//print_r($_POST); //die;
 
 		// convert date format in form data -
 		$data['expiry_date'] = $this->mastermodel->date_convert($data['expiry_date'],'ymd');
-		$_POST['video']['exercise_start_date'] = $this->mastermodel->date_convert($_POST['exercise_start_date'],'ymd');
-		$_POST['video']['exercise_end_date'] = $this->mastermodel->date_convert($_POST['exercise_end_date'],'ymd');
+		//$_POST['video']['exercise_start_date'] = $this->mastermodel->date_convert($_POST['exercise_start_date'],'ymd');
+		//$_POST['video']['exercise_end_date'] = $this->mastermodel->date_convert($_POST['exercise_end_date'],'ymd');
 		$data['date_of_upload'] = $this->mastermodel->date_convert($data['date_of_upload'],'ymd');
 
 		// get evaluation id -
@@ -318,10 +319,19 @@ class Exercise_program extends MY_Controller
 		// remove edit id from array -
 		unset($data['edit_pk']);
 		$result = $this->mastermodel->update_data('exercise_program', $where, $data);
-		if(!isset($_POST['video'])){
+
+
+		if(isset($_POST['video'])){
 		$insert_video_meta= array();
 				 foreach ($_POST['video'] as $value) {
 					 if(isset($value['check'])){
+						 if(empty($value['exercise_start_date'])){
+							 $value['exercise_start_date'] = $data['date_of_upload'];
+						 }
+						 if(empty($value['exercise_end_date'])){
+							  $value['exercise_end_date'] = $data['expiry_date'];
+						 }
+
 					 		$vid_link = $this->addUrl($value['vid_name'],$value['exercise_end_date']);
 							$insert_video_meta[] = array(
 									'exercise_id' => $exercise_id,
@@ -340,11 +350,15 @@ class Exercise_program extends MY_Controller
 			$res = $this->mastermodel->insertBatch('exercise_meta', $insert_video_meta);
 
 		 }
-
 		if(isset($_POST['edit_video'])){
 		$update_video_meta= array();
 				 foreach ($_POST['edit_video'] as $value) {
-
+				 			 if(empty($value['exercise_start_date'])){
+							 $value['exercise_start_date'] = $data['date_of_upload'];
+						 }
+						 if(empty($value['exercise_end_date'])){
+							  $value['exercise_end_date'] = $data['expiry_date'];
+						 }
 					 		$vid_link = $this->addUrl($value['vid_name'],$value['exercise_end_date']);
 							$update_video_meta = array(
 									'exercise_id' => $exercise_id,
